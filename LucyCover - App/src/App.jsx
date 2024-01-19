@@ -1,7 +1,7 @@
 import {RouterProvider,createBrowserRouter} from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
-import RootAuthElement from './pages/auth/RootAuthElement'
+import RootAuth from './pages/auth/RootAuth'
 
 const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
       {index:true, element: <HomePage />},
       {
         path: 'auth',
-        element: <RootAuthElement />
+        element: <RootAuth />
       }
     ]
   }

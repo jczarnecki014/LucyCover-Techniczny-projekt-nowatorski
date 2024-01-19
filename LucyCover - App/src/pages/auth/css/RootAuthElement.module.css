@@ -1,0 +1,14 @@
+.root_container{
+    background-color: red;
+}
+.root_mosaic_side{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: blue;
+}
+.root_side .root_backdrop_image{
+    display: inline-block;
+    width: 33%;
+    height: 25%;
+}
