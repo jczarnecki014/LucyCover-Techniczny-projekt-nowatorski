@@ -1,11 +1,13 @@
-
+import { Fragment } from 'react'
 import {Row,Col,Image,Form} from 'react-bootstrap'
+
 import LabelInput from '../utility/LabelInput'
+import AuthButtons from './AuthButtons'
 
 import LogoSRC from '../../assets/images/logo/logo.png'
 
 import style from './css/ModelsStyles.module.css'
-import { Fragment } from 'react'
+
 
 const CreateAccountModel = () => {
     return (
@@ -23,8 +25,7 @@ const CreateAccountModel = () => {
                         <LabelInput id="PasswordInput" label="Hasło" inputType="password" placeholder="Wpisz twoje hasło" />
                         <LabelInput id="RePasswordInput" label="Powtórz hasło" type="password" placeholder="Wpisz hasło ponownie" />
                         <LabelInput id="TokenInput" label="Kod autoryzacyjny" type="text" placeholder="Wpisz otrzymany token autoryzacyjny" />
-                        <button type="submit" className={style.LoginButton}>Zarejestruj się</button>
-                        <button type="submit" className={style.AuthSwitchButton}>Zaloguj się</button>
+                        <AuthButtons MainButtonText="Zarejestruj się" ToggleButtonText="Zaloguj się" />
                     </Form>
                 </Col>
             </Row>

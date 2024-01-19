@@ -17,7 +17,7 @@ form button{
 form button:first-of-type{
     margin-top: 0px;
 }
-.LoginButton{
+.AuthActionButton{
     background-color: #CB60C8;
     color:#fff;
 }
