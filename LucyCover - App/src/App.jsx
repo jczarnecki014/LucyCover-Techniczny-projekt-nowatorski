@@ -2,6 +2,8 @@ import {RouterProvider,createBrowserRouter} from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 import RootAuth from './pages/auth/RootAuth'
+import LoginPage from './pages/auth/LoginPage'
+import CreateAccountPage from './pages/auth/CreateAccountPage'
 
 const router = createBrowserRouter([
   {
@@ -12,7 +14,13 @@ const router = createBrowserRouter([
       {index:true, element: <HomePage />},
       {
         path: 'auth',
-        element: <RootAuth />
+        element: <RootAuth />,
+        children:[
+          {index:true, element: <LoginPage />},
+          {
+            path:'create-account', 
+            element: <CreateAccountPage />}
+        ]
       }
     ]
   }
