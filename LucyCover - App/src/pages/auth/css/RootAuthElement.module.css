@@ -1,14 +1,23 @@
 .root_container{
-    background-color: red;
+    background: url(../../../assets/images/auth/Backdrop_2.jpg);
+    background-size: cover;
+    /* background-color: red; */
 }
 .root_mosaic_side{
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: blue;
+    border-right: 5px solid rgb(252, 220, 244);
+    background: url(../../../assets/images/auth/Backdrop.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-.root_side .root_backdrop_image{
-    display: inline-block;
-    width: 33%;
-    height: 25%;
+.root_content_model_conatiner{
+    background-color: #fff;
+    height: 80vh;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
 }
