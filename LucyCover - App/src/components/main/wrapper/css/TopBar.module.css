@@ -1,0 +1,9 @@
+.top_bar{
+    background-color: #694177;
+    height: 6vh;
+}
+.back_button:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+    transition: transform 0.3s;
+}

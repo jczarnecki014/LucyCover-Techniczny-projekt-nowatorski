@@ -5,12 +5,12 @@ import {Row,Col,Image,Form} from 'react-bootstrap'
 import LabelInput from '../utility/LabelInput'
 import AuthButtons from './AuthButtons'
 
-import LogoSRC from '../../assets/images/logo/logo.png'
+import LogoSRC from '../../assets/images/logo_graphics/logo.png'
 
 import style from './css/ModelsStyles.module.css'
 
 import {path as LoginPagePath} from '../../pages/auth/LoginPage'
-import { CheckEmailIsValid } from '../../assets/images/auth/Validation/EmailValidation'
+import { CheckEmailIsValid } from '../../assets/auth/Validation/EmailValidation'
 
 const CreateAccountModel = () => {
 
