@@ -1,0 +1,27 @@
+.root_container {
+  background: url(../../../assets/images/auth/images/Backdrop_2.jpg);
+  background-size: cover;
+  /* background-color: red; */
+}
+.root_mosaic_side {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border-right: 5px solid rgb(252, 220, 244);
+  background: url(../../../assets/images/auth/images/Backdrop.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.root_content_model_conatiner {
+  background-color: #fff;
+  height: 80vh;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+.root_content_model_conatiner .image_logo {
+  width: 40%;
+  height: 35%;
+}

@@ -1,0 +1,37 @@
+form input{
+    display: block;
+    width: 100%;
+    padding: 10px 30px 10px 30px;
+    border: 1px solid #777;
+    border-radius: 5px;
+}
+form button{
+    width: 100%;
+    padding: 10px 30px 10px 30px;
+    margin-top: 10px;
+    border: 1px solid #CB60C8;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+form button:first-of-type{
+    margin-top: 0px;
+}
+.AuthActionButton{
+    background-color: #CB60C8;
+    color:#fff;
+}
+
+.AuthSwitchButton{
+    background-color: #fff;
+    color: #692267
+}
+.CountAccessRestoreLink {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 11px;
+    color:#555454;
+    font-weight: bold;
+    text-align: center;
+}
