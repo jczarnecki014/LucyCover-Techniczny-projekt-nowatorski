@@ -1,0 +1,20 @@
+.NotyfiactionBlock{
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.NotyfiactionBlock h5{
+    color: #692267;
+}
+.NotyfiactionBlock hr{
+    color: #692267;
+}
+
+.NotyfiactionBlock.warning{
+    background-color: #fcaaaa;
+}
+.NotyfiactionBlock.newMessage{
+    background-color: #FFE3F9;
+}
+.NotyfiactionBlock.systemNotyfication{
+    background-color: #E3FFFC;
+}

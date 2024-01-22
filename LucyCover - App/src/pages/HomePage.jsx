@@ -1,6 +1,10 @@
-
+import Wrapper from "../components/main/wrapper/Wrapper";
 
 const HomePage = () => {
-    return <h1>HomePage</h1>
+    return (
+        <Wrapper>
+            HomePage
+        </Wrapper>
+    )
 }
 export default HomePage;

@@ -1,5 +1,5 @@
 .root_container {
-  background: url(../../../assets/images/auth/images/Backdrop_2.jpg);
+  background: url(../../../assets/auth/images/Backdrop_2.jpg);
   background-size: cover;
   /* background-color: red; */
 }
@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   border-right: 5px solid rgb(252, 220, 244);
-  background: url(../../../assets/images/auth/images/Backdrop.png);
+  background: url(../../../assets/auth/images/Backdrop.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
