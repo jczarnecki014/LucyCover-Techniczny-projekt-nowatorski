@@ -24,16 +24,17 @@ const CreateAccountModel = () => {
             <Row className='d-flex justify-content-center pt-1'>
                 <Col sm='12' md="10">
                     <Form>
-                        <LabelInput id="UserNameInput" label="Nazwa użytkownika" type="text" placeholder="Wpisz twoją nazwę użytkownika" />
+                        <LabelInput controlId="UserNameInput" label="Nazwa użytkownika" type="text" placeholder="Wpisz twoją nazwę użytkownika" className='mb-3' />
                         <LabelInput 
-                            id="EmailInput" 
+                            controlId="EmailInput" 
                             label="Adres email" 
                             inputType="email" 
                             placeholder="Wpisz swój adres email"  
                             validationFunction={CheckEmailIsValid}
+                            className='mb-3'
                         />
-                        <LabelInput id="PasswordInput" label="Hasło" inputType="password" placeholder="Wpisz twoje hasło" />
-                        <LabelInput id="RePasswordInput" label="Powtórz hasło" type="password" placeholder="Wpisz hasło ponownie" />
+                        <LabelInput controlId="PasswordInput" label="Hasło" inputType="password" placeholder="Wpisz twoje hasło" className='mb-3' />
+                        <LabelInput controlId="RePasswordInput" label="Powtórz hasło" type="password" placeholder="Wpisz hasło ponownie" className='mb-3' />
                         <AuthButtons MainButtonOption={{buttonText:'Zarejestruj się'}} ToggleButtonOption={{buttonText:'Zaloguj się',togglePath:LoginPagePath}} />
                     </Form>
                 </Col>

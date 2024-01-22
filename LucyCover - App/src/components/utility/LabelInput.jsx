@@ -5,11 +5,17 @@ import { color, motion,AnimatePresence } from "framer-motion";
 import { Form } from "react-bootstrap";
 
 const LabelInput = ({
-  id,
+  controlId,
+  styleId,
   label,
   inputType,
   placeholder,
   validationFunction,
+  readonly,
+  value,
+  boxShadow,
+  className,
+  id,
 }) => {
   const [inputIsValid, setInputIsValid] = useState(true);
   const input = useRef("");
@@ -21,7 +27,7 @@ const LabelInput = ({
   };
 
   return (
-    <Form.Group className="mb-3" controlId={id}>
+    <Form.Group id={id} className={className} controlId={controlId}>
       <Form.Label>{label}</Form.Label>
       <motion.input
         style={
@@ -31,6 +37,9 @@ const LabelInput = ({
             scale: 1.1,
           }
         }
+        className={boxShadow && 'boxShadow-light'}
+        disabled={readonly}
+        value={value}
         type={inputType}
         placeholder={placeholder}
         ref={input}
