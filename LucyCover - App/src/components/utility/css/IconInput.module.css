@@ -1,0 +1,8 @@
+.IconInput_Box{
+    background-color: #fff;
+}
+.IconInput_Box input{
+    border: none;
+    outline: none;
+    max-width: 100%;
+}

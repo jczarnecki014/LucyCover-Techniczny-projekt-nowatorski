@@ -1,0 +1,290 @@
+/*-------------------------------------------------------------------*/
+                            /*MAIN STYLES*/
+/*-------------------------------------------------------------------*/
+
+.Container{
+    display: grid;
+    height: 100%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'PatientSearch PatientDetails'
+}
+button{
+    border: 0;
+    min-width: 15%;
+    text-align: center;
+    color:#fff;
+}
+
+button:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+/*-------------------------------------------------------------------*/
+                            /*PATIENT SEARCH*/
+/*-------------------------------------------------------------------*/
+
+.Container .PatientSearch{
+    grid-area: PatientSearch;
+    background-color: #FFF5FF;
+    overflow: hidden;
+    height: 100%;
+}
+
+.PatientSearch .Header{
+    min-height: 5%;
+    padding: 5px 25px 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #555454;
+}
+
+.Header button {
+    background-color: #3FA91A;;
+}
+
+
+/*-------------------------------------------------------------------*/
+                            /*PATIENT LIST*/
+/*-------------------------------------------------------------------*/
+
+.PatientSearch .PatientsList{
+    padding: 15px 25px 15px 25px;
+    align-items:flex-start;
+    height: 95%;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+}
+
+.PatientsList .PatientElement{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border: 3px solid #EEECEC;
+    border-radius: 20px;
+    background-color: #EEECEC;
+}
+
+.PatientsList .PatientElement:hover{
+    border-color: #CB60C8;
+    box-shadow: 0px 4px 4px -3px rgba(224, 17, 203, 1);
+    cursor:pointer;
+    transition: 0.3s;
+}
+
+.PatientsList .PatientElement.active{
+    border-color: #CB60C8;
+    box-shadow: 0px 4px 4px -3px rgba(224, 17, 203, 1);
+}
+
+.PatientElement .IconBackground{
+    background-color: #989898;
+    border-radius: 20px;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.PatientElement h6{
+    font-size: 80%;
+}
+.PatientElement h5{
+    font-size: 90%;
+}
+
+
+/*-------------------------------------------------------------------*/
+                            /*PATIENT DEATILS*/
+/*-------------------------------------------------------------------*/
+
+
+.Container .PatientDetails{
+    grid-area: PatientDetails;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-rows: 0.1fr 0.5fr 1fr 0.3fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "PatientHeader"
+    "PatientName"
+    "PatientContact"
+    "PatientChildrens";
+}
+
+/*-------------------------------------------------------------------*/
+                            /*PATIENT DEATILS -- HEADER*/
+/*-------------------------------------------------------------------*/
+
+.PatientDetails .PatientHeader{
+    grid-area: PatientHeader;
+    display: flex;
+    padding: 5px 25px 5px 20px;
+    justify-content: space-between;
+    color:#fff;
+    background-color: #473947;
+}
+.PatientHeader button {
+    background-color: #CB60C8;;
+}
+
+/*-------------------------------------------------------------------*/
+                /*PATIENT DEATILS -- DETAILS BLOCK*/
+/*-------------------------------------------------------------------*/
+
+.PatientDetails .DetailBlock{
+    padding: 5px 25px 5px 20px;
+}
+
+/*-------------------------------------------------------------------*/
+                /*PATIENT DETAILS - PATIENT NAME SECTION*/
+/*-------------------------------------------------------------------*/
+
+.DetailBlock#PatientName{
+    grid-area: PatientName;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+#PatientName .PatientIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: #fff;
+    width: 20%;
+}
+
+#PatientName .PatientNameForm{
+    width: 70%;
+} 
+#PatientName .PatientNameForm input{
+    margin-bottom: 10px;
+}
+
+#PatientName .PatientIcon {
+    background-color: #989898;
+}
+
+/*-------------------------------------------------------------------*/
+                /*PATIENT DETAILS - PATIENT CONTACT SECTION*/
+/*-------------------------------------------------------------------*/
+
+
+.DetailBlock#PatientContact{
+    grid-area: PatientContact;
+}
+#PatientContact .PatientContactFrom{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #F3F3F3;
+    border: 1px solid #C2C2C2 ;
+    border-radius: 20px;
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    padding: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+#PatientContact .PatientContactFrom .FormElement{
+    width:45%;
+    margin-bottom: 20px;
+}
+#PatientContact .PatientContactFrom .FormElement#ZipCode{
+    width: 25%;
+}
+#PatientContact .PatientContactFrom .FormElement#Province{
+    width: 65%;
+}
+
+
+/*-------------------------------------------------------------------*/
+                /*PATIENT DETAILS - PATIENT CHILDRENS SECTION*/
+/*-------------------------------------------------------------------*/
+
+
+.DetailBlock#PatientChildrens{
+    grid-area: PatientChildrens;
+    margin-bottom: 25px;
+}
+#PatientChildrens .ChildrenList{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+    background-color: #FFECEC;
+    border: 1px solid #C2C2C2;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+#PatientChildrens .ChildrenList .ChildrenElement{
+    text-align: center;
+    background-color: #FCFCFC;
+    border-radius: 20px;
+    padding: 20px;
+}
+.ChildrenElement .Icon{
+    background-color: #989898;
+    color:#fff;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+
+
+
+/*-------------------------------------------------------------------*/
+                            /*SMALL DEVICES - MEDIA QUERY*/
+/*-------------------------------------------------------------------*/
+
+
+
+@media only screen and (max-width:1200px){
+    .Container{
+        display: grid;
+        height: 100%;
+        grid-template-rows: 0.45fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        'PatientSearch PatientSearch'
+        'PatientDetails PatientDetails';
+    }
+    .PatientSearch .PatientsList{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 250px;
+    }
+
+    #PatientName .PatientIcon{
+        width: 30%;
+    }
+    
+    #PatientName .PatientNameForm{
+        width: 60%;
+    }
+
+    .Container .PatientDetails{
+        overflow-y: visible;
+    }
+
+    #PatientContact .PatientContactFrom .FormElement{
+        width:100%;
+    }
+
+    #PatientContact .PatientContactFrom .FormElement#ZipCode{
+        width: 35%;
+    }
+
+    #PatientContact .PatientContactFrom .FormElement#Province{
+        width: 60%;
+    }
+
+    
+}

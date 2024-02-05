@@ -20,13 +20,14 @@ const LoginModel = () => {
             <Col sm='12' md="10">
                 <Form>
                     <LabelInput 
-                        id='EmailInput' 
+                        controlId='EmailInput' 
                         label="Adres email" 
                         inputType="email" 
                         placeholder='Wpisz swój adres email' 
-                        validationFunction={CheckEmailIsValid} />
+                        validationFunction={CheckEmailIsValid}
+                        className='mb-3' />
 
-                    <LabelInput id='PasswordInput' label="Hasło" inputType="password" placeholder='Twoje hasło' />
+                    <LabelInput controlId='PasswordInput' label="Hasło" inputType="password" placeholder='Twoje hasło' className='mb-3' />
 
                     <AuthButtons 
                         MainButtonOption={{buttonText:'Zaloguj się'}} 
