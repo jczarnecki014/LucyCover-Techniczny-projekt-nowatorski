@@ -1,0 +1,168 @@
+/*-------------------------------------------------------------------*/
+                            /*PATIENT ADDING FORM*/
+/*-------------------------------------------------------------------*/
+
+
+.PatientAddingForm{
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr;
+    grid-template-columns: 0.3fr 1fr;
+    grid-template-areas: 
+        'ContactIcon ContactInputs'
+        'PlaceIcon PlaceInputs'
+        'Children Children';
+    gap: 20px;
+    width: 100%;
+    min-height: 100%;
+}
+
+.PatientAddingForm .Input{
+    width: 45%;
+}
+
+/*-------------------------------------------------------------------*/
+                            /*FORM ICONS */
+/*-------------------------------------------------------------------*/
+
+.PatientAddingForm .FormIcons{
+    display: flex;
+    gap:15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.FormIcons#ContactIcon{
+    grid-area: ContactIcon;
+    background-color: #989898;
+}
+
+.FormIcons#PlaceIcon{
+    grid-area: PlaceIcon;
+    background-color: #3FA91A;
+    
+}
+
+/*-------------------------------------------------------------------*/
+                            /*FORM BUTTONS */
+/*-------------------------------------------------------------------*/
+
+.SubmitButton{
+    background-color: #CB60C8;
+}
+
+.SubmitButton#MobileVersion{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: none;
+}
+.SubmitButton#DesktopVersion{
+    margin-top: 25px;
+}
+.SubmitButton:hover{
+    background-color: #692267;
+    border-color: #692267;;
+    transform: none;
+}
+.SubmitButton:disabled{
+    background-color: #692267;
+    border-color: #692267;;
+}
+
+/*-------------------------------------------------------------------*/
+                            /*FORM INPUTS */
+/*-------------------------------------------------------------------*/
+
+.PatientAddingForm .FormInputs{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 25px 0px 25px;
+    flex-wrap: wrap;
+}
+
+.FormInputs#ContactInputs{
+    grid-area: ContactInputs;
+}
+
+.FormInputs#PlaceInputs{
+    grid-area: PlaceInputs;
+}
+
+/*-------------------------------------------------------------------*/
+                            /*CHILDREN */
+/*-------------------------------------------------------------------*/
+
+.PatientAddingForm .Children{
+    grid-area: Children;
+}
+.Children .ChildrenList{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.ChildrenList .ChildrenElement{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 25px 10px 25px;
+    color:#CB60C8;
+    background-color: #FFE3F9;
+    border-radius: 20px;
+}
+.ChildrenElement.Active{
+    background-color: #CB60C8;
+    color:#fff;
+}
+.ChildrenElement:hover{
+    cursor: pointer;
+}
+
+.ChildrenElement .RemoveIcon{
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    color:#692267;
+}
+
+
+/*-------------------------------------------------------------------*/
+                            /*SMALL DEVICES */
+/*-------------------------------------------------------------------*/
+
+@media only screen and (max-width:1200px){
+    .PatientAddingForm{
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            'ContactIcon'
+            'ContactInputs'
+            'PlaceIcon'
+            'PlaceInputs'
+            'Children';
+        gap: 20px;
+    
+        width: 100%;
+        height: 100%;
+    }
+    .Children .ChildrenList{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .SubmitButton{
+        margin-top: 25px;
+    }
+    .SubmitButton#DesktopVersion{
+        display: none;
+    }
+    .SubmitButton#MobileVersion{
+        display: block;
+    }
+}

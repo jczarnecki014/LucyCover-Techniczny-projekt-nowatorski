@@ -22,6 +22,8 @@ const Patients = () => {
     const activePatient = useSelector((state) => state.patientSearch.activePatient)
     const patientAddingMode = useSelector((state) => state.overlayModel.isVisible)
 
+    console.log(activePatient)
+
     const dispatch = useDispatch();
 
     const PatientFormToggler = (displayMode) => {
@@ -36,6 +38,7 @@ const Patients = () => {
             </AnimatePresence>
 
             <PatientSearch className={style.PatientSearch} patients={patientsList} showNewPatientForm={PatientFormToggler} />
+            
             <PatientDetails>
                 <PatientDetails.Header firstName={activePatient.firstName} lastName={activePatient.lastName} />
                 <PatientDetails.NameSection firstName={activePatient.firstName} lastName={activePatient.lastName} />

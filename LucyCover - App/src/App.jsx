@@ -6,6 +6,11 @@ import LoginPage from './pages/auth/LoginPage'
 import CreateAccountPage from './pages/auth/CreateAccountPage'
 import PatientsPage,{loader as PatientsPageLoader} from './pages/dashboard/PatientsPage'
 
+import { Fragment } from 'react'
+import { useSelector } from 'react-redux'
+
+import Popup from './components/utility/Popup'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,7 +43,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <Fragment>
+        <RouterProvider router={router} />
+    </Fragment>
   )
 }
 

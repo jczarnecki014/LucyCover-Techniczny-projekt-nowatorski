@@ -1,6 +1,4 @@
-body{
-    overflow: hidden;
-}
+
 .backdrop{
     position: fixed;
     background-color: rgb(105,34,103,0.6);
@@ -11,8 +9,8 @@ body{
 }
 .model{
     position: fixed;
-    width: 60%;
-    height: 80%;
+    width: 70%;
+    height: 90%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -26,6 +24,7 @@ body{
     border-radius: 20px;
     color: #5C5C5C;
 }
+
 .model .header{
     display: flex;
     justify-content: space-between;
@@ -36,6 +35,7 @@ body{
     border-radius: 20px 20px 0px 0px;
     border-bottom: 2px solid #F896F5;
     grid-area: header;
+    overflow: hidden;
 }
 .model .header button{
     background-color: #CB60C8;
@@ -43,7 +43,27 @@ body{
 }
 .model .content{
     border-radius: 0px 0px 20px 20px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding:20px;
     grid-area: content;
+    overflow-y: auto;
+}
+
+.model.small{
+    height: 45%;
+}
+.model.small .content{
+    padding: 25px 50px 25px 50px;
+}
+
+@media only screen and (max-width:1200px){
+    .model{
+        width: 90%;
+        height: 90%;
+    }
+    .model.small{
+        height: 90%;
+    }
+    .model.small .content{
+        padding: 25px;
+    }
 }

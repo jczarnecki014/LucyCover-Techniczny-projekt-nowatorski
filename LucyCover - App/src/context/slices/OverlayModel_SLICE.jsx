@@ -4,12 +4,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const OverlayModelSlice = createSlice({
     name: 'overlayModel',
     initialState: {
-        isVisible: false
+        isVisible: false,
     },
     reducers:{
         OverlayToggle: (state,action) => {
             state.isVisible = action.payload
-        }
+        },
     }
 })
 

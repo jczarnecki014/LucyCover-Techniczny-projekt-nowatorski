@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { setActivePatient } from '../../../../context/slices/PatientSearch_SLICE';
+import { SetActivePatient } from '../../../../context/slices/PatientSearch_SLICE';
 
 import {motion} from 'framer-motion'
 
@@ -45,12 +45,12 @@ const PatientSearch = ({patients,className,showNewPatientForm}) => {
     }
 
     const NewPatietntButtonClickHandler = () => {
-        showNewPatientForm(true)
+        showNewPatientForm({display: true, mode:'content'})
     }
 
     const PatientElementClickHandler = (id) => {
         const selectedPatient = patients.find((patient) => patient.id === id);
-        dispatch(setActivePatient(selectedPatient))
+        dispatch(SetActivePatient(selectedPatient))
     }
 
     return (

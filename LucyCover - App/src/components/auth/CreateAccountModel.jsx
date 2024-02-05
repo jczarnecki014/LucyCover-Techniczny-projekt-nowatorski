@@ -10,7 +10,7 @@ import LogoSRC from '../../assets/images/logo_graphics/logo.png'
 import style from './css/ModelsStyles.module.css'
 
 import {path as LoginPagePath} from '../../pages/auth/LoginPage'
-import { CheckEmailIsValid } from '../../assets/auth/Validation/EmailValidation'
+import { CheckEmailIsValid } from '../../assets/Validation/PersonalData'
 
 const CreateAccountModel = () => {
 
