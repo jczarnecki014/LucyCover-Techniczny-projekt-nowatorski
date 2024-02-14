@@ -9,20 +9,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'PatientSearch PatientDetails'
 }
-button{
-    border: 0;
-    min-width: 15%;
-    text-align: center;
-    color:#fff;
-}
-
-button:hover {
-    transform: scale(1.1);
-    transition: 0.3s;
-}
 
 /*-------------------------------------------------------------------*/
-                            /*PATIENT SEARCH*/
+                            /*PATIENT ADDING FORM*/
 /*-------------------------------------------------------------------*/
 
 .Container .PatientSearch{
@@ -236,6 +225,7 @@ button:hover {
     padding: 20px;
     margin-bottom: 10px;
 }
+
 
 
 

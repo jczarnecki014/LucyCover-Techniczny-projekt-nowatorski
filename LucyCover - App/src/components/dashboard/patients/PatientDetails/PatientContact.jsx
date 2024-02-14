@@ -1,6 +1,5 @@
 import style from '../css/PatientsWrapper.module.css'
 
-import { FaUser } from "react-icons/fa";
 import LabelInput from '../../../utility/LabelInput'
 
 const PatientContact = ({city,street,zipCode,province,phone,email,firstName,lastName}) => {

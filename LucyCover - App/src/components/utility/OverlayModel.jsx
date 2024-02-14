@@ -1,8 +1,8 @@
 import { createPortal } from "react-dom";
-import style from './OverlayModel.module.css'
+import style from './css/OverlayModel.module.css'
 
 import { useDispatch } from "react-redux";
-import { OverlayToggle } from "../../../context/slices/OverlayModel_SLICE";
+import { OverlayToggle } from "../../context/slices/OverlayModel_SLICE";
 
 import {motion} from 'framer-motion'
 
@@ -19,15 +19,21 @@ const BackDrop = () => {
 }
 
 
-const Model = ({children,title}) => {
+const Model = ({children,title,OnQuitButtonClick,smallSize=false}) => {
 
     const dispatch = useDispatch();
 
+    const defultQuitHandler = () => {
+        dispatch(OverlayToggle(false))
+    }
+
+    const QuitButtonClickHandler = (OnQuitButtonClick !== undefined ? OnQuitButtonClick : defultQuitHandler);
+
     return (
-        <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className={style.model}>
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className={`${style.model} ${smallSize && style.small}`}>
             <div className={style.header}>
                 <h1>{title}</h1>
-                <button onClick={()=>dispatch(OverlayToggle(false))}>Zamknij</button>
+                <button onClick={QuitButtonClickHandler}>Zamknij</button>
             </div>
             <div className={style.content}>
                 {children}
@@ -36,7 +42,7 @@ const Model = ({children,title}) => {
     )
 }
 
-const OverlayModel = ({children,title}) => {
+const OverlayModel = ({children,title,OnQuitButtonClick,smallSize}) => {
     const backDropDOM = document.querySelector('#backdrop');
     const modelDOM = document.querySelector('#model')
 
@@ -47,7 +53,7 @@ const OverlayModel = ({children,title}) => {
                 backDropDOM
             )}
             {createPortal(
-                    <Model title={title}>
+                    <Model title={title} smallSize={smallSize} OnQuitButtonClick={OnQuitButtonClick}>
                         {children}
                     </Model>,
                 modelDOM

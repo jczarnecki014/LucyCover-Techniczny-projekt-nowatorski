@@ -17,14 +17,14 @@ const PatientSearchSlice = createSlice({
         },
     },
     reducers: {
-        setActivePatient: (state,action) => {
+        SetActivePatient: (state,action) => {
             state.activePatient = action.payload
         },
-        removeActivepatient: (state) => {
+        RemoveActivepatient: (state) => {
             state.activePatient = null
         },
     }
 })
 
-export const {setActivePatient,removeActivepatient} = PatientSearchSlice.actions
+export const {SetActivePatient,RemoveActivepatient} = PatientSearchSlice.actions
 export default PatientSearchSlice

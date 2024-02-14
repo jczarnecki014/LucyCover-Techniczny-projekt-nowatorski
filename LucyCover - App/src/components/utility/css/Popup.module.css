@@ -1,0 +1,22 @@
+.PopupContainer{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.PopupContainer .ButtonSection{
+    display: flex;
+    gap:25px;
+}
+.ButtonSection button {
+    background-color: #fff;
+    border: 1px solid #CB60C8;
+    color: #CB60C8;
+    width: 150px;
+    padding: 10px;
+}
+.ButtonSection button#MainButton {
+   background-color: #CB60C8;
+   color: #fff;
+}

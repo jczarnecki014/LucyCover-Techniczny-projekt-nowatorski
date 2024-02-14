@@ -1,0 +1,60 @@
+
+.ChildrenddingForm{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.3fr 1fr;
+    grid-template-areas: 
+        'ChildrenIcon ChildrenInputs';
+    gap: 20px;
+    width: 100%;
+    min-height: 100%;
+}
+
+.ChildrenddingForm .ChildrenIcon{
+    grid-area: ChildrenIcon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFE3F9;
+    color: #CB60C8;
+    border-radius: 20px;
+}
+
+.ChildrenddingForm .ChildrenInputs{
+    grid-area: ChildrenInputs;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ChildrenInputs .Input{
+    width: 45%;
+}
+
+.ChildrenInputs .SubmitButton{
+    background-color: #CB60C8;
+}
+
+.SubmitButton:hover{
+    background-color: #692267;
+    border-color: #692267;;
+    transform: none;
+}
+
+.SubmitButton:disabled{
+    background-color: #692267;
+    border-color: #692267;;
+}
+
+
+@media only screen and (max-width:1200px){
+    .ChildrenddingForm{
+        display: grid;
+        grid-template-rows: 0.5fr 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            'ChildrenIcon'
+            'ChildrenInputs';
+    }
+    
+}
