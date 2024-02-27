@@ -1,12 +1,12 @@
 import { Fragment, useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 
-import { ClearForm } from '../../../../context/slices/AddPatientForm'
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE'
+import { ClearForm } from '../../../../../context/slices/AddPatientForm'
+import { OverlayToggle } from '../../../../../context/slices/OverlayModel_SLICE'
 
 import PatientForm from './PatientForm/PatientForm'
 import ChildrenForm from './ChildrenForm/ChildrenForm'
-import Popup from '../../../utility/Popup'
+import Popup from '../../../../utility/Popup'
 
 
 const PatientAddingForm = () => {

@@ -1,0 +1,47 @@
+.Container{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+    width: 100%;
+    height: 60%;
+    padding: 20px 0px 0px 20px;
+}
+
+.Container .Tails {
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 64px;
+}
+
+.Tails:hover {
+    cursor: pointer;
+    transform: scale(0.9);
+    transition: 0.3s;
+}
+
+.Tails#Documentation{
+    background-color: #CB60C8;
+}
+
+.Tails#Recomendation{
+    background-color: #3FA91A;
+}
+
+.Tails#Visits{
+    background-color: #8F8204;
+}
+
+.Tails#Manage{
+    background-color: #089EA8;
+}
+
+@media only screen and (max-width:1200px){
+   .Container{
+    padding: 20px 20px 0px 20px
+   }
+}

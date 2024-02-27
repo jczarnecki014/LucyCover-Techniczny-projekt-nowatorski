@@ -1,19 +1,19 @@
 import { useState,useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { SetActivePatient } from '../../../../context/slices/PatientSearch_SLICE';
+import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE';
 
 import {motion} from 'framer-motion'
 
-import style from '../css/PatientsWrapper.module.css'
+import style from '../css/PatientSearch.module.css'
 
-import IconInput from '../../../utility/IconInput';
+import IconInput from '../../../../utility/IconInput';
 import PatientElement from './PatientElement';
 
 import { IoClose } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 
-import { GetPatientsListFilteredByTerm } from '../../../../assets/main/GetPatientsListFilteredByTerm';
+import { GetPatientsListFilteredByTerm } from '../../../../../assets/main/GetPatientsListFilteredByTerm';
 import { AnimatePresence } from 'framer-motion';
 
 const PatientSearch = ({patients,className,showNewPatientForm}) => {
@@ -54,7 +54,7 @@ const PatientSearch = ({patients,className,showNewPatientForm}) => {
     }
 
     return (
-        <motion.div className={className} layout>
+        <>
             <div className={style.Header}>
                 <button onClick={NewPatietntButtonClickHandler}>Dodaj</button>
                 <IconInput placeholder='Imie i nazwisko' value={searchTerm} onInput={SearchInputHandler}>
@@ -70,7 +70,7 @@ const PatientSearch = ({patients,className,showNewPatientForm}) => {
                     ))}
                 </AnimatePresence>
             </div>
-        </motion.div> 
+        </> 
     )
 }
 

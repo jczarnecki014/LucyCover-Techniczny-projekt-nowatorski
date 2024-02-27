@@ -1,4 +1,4 @@
-import Patients from "../../components/dashboard/patients/Patients";
+import Patients from "../../components/dashboard/patients/PatientsList/Patients";
 
 import { DUMMY_PATIENTS } from "../../assets/DUMMY_DATA/DUMMY_PATIENTS";
 
@@ -11,9 +11,6 @@ export const loader = async () => {
     //Fetch patients List from API
     
     return DUMMY_PATIENTS
-
-
-
 }
 
 export default PatientsPage;

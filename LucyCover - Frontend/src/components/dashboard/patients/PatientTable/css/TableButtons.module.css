@@ -1,0 +1,16 @@
+.ButtonSection{
+    text-align: right;
+}
+
+.ButtonSection button {
+    margin: 10px;
+    padding: 5px 15px 5px 15px;
+}
+
+#Show{
+    background-color: #17AA40;
+}
+
+#Delete{
+    background-color: #D00000;
+}
