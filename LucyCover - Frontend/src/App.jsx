@@ -8,6 +8,8 @@ import PatientsPage,{loader as PatientsPageLoader} from './pages/dashboard/Patie
 import PatientMenuPage, {loader as PatientMenuLoader} from './pages/dashboard/PatientMenuPage'
 import PatientDocumentationPage,{loader as PatientDocumentationLoader} from './pages/dashboard/PatientDocumentationPage'
 import PatientRecommendationpage,{loader as PatientRecommendationLoader} from './pages/dashboard/PatientRecommendationpage'
+import PatientDocumentationDisplayPage,{loader as PatientDocumentationDisplayLoader} from './pages/dashboard/PatientDocumentationDisplayPage'
+import PatientDocumentationEdit from './pages/dashboard/PatientDocumentationEdit'
 
 import { Fragment } from 'react'
 
@@ -37,8 +39,27 @@ const router = createBrowserRouter([
                   },
                   {
                     path: 'documentation',
-                    loader: PatientDocumentationLoader,
-                    element: <PatientDocumentationPage />
+                    children:[
+                      {
+                        index: true,
+                        loader: PatientDocumentationLoader,
+                        element: <PatientDocumentationPage />
+                      },
+                      {
+                        path: ':documentationId',
+                        children:[
+                          {
+                            index: true,
+                            loader: PatientDocumentationDisplayLoader,
+                            element: <PatientDocumentationDisplayPage />
+                          },
+                          {
+                            path: 'edit',
+                            element: <PatientDocumentationEdit />
+                          },
+                        ]
+                      }
+                    ]
                   },
                   {
                     path: 'recommendation',
@@ -61,7 +82,7 @@ const router = createBrowserRouter([
             element: <CreateAccountPage />
           },
         ]
-      }
+      },
     ]
   }
 ])

@@ -1,0 +1,37 @@
+.Container{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap:25px;
+    text-align: center;
+}
+
+.Container .ButtonSection{
+   display: flex;
+   gap: 25px;
+}
+
+.Container .ButtonSection button{
+    padding: 5px 50px 5px 50px;
+ }
+
+.Container .ButtonSection button#FirstDocumentation{
+    border: #D00000 solid 2px;
+    background-color: #FBFBFB;
+    color: #D00000;
+ } 
+
+ .Container .ButtonSection button#NextDocumentation{
+    background-color: #CB60C8;
+    color: #fff;
+ } 
+
+
+@media screen and (max-width: 1200px){
+    .Container .ButtonSection{
+        display: flex;
+        flex-direction: column;
+    }
+}

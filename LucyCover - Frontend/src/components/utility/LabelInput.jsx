@@ -6,7 +6,6 @@ import { Form } from "react-bootstrap";
 
 const LabelInput = ({
   controlId,
-  styleId,
   label,
   inputType,
   max,
@@ -15,7 +14,7 @@ const LabelInput = ({
   validationFunction,
   required=false,
   readonly,
-  value,
+  value='',
   boxShadow,
   className,
   id,
@@ -24,7 +23,6 @@ const LabelInput = ({
   
   const [isValid,setIsValid] = useState(true)
   const [inputValue,setInputValue] = useState('')
-  const [firstLoad,setFirstLoad] = useState(true)
 
   const InputChangeHandler = (event) => {
     setInputValue(event.target.value)
@@ -38,8 +36,7 @@ const LabelInput = ({
 
   useEffect(()=>{
     timeout = setTimeout(()=>{
-      if(firstLoad){
-        setFirstLoad(false)
+      if(readonly){
         return;
       }
 
@@ -76,13 +73,14 @@ const LabelInput = ({
 
   return (
     <Form.Group id={id} className={className} controlId={controlId}>
-      <Form.Label>{label}</Form.Label>
+      {
+        label && <Form.Label>{label}</Form.Label>
+      }
       <motion.input
         style={
           !isValid && {
             borderColor: "#cf2f74",
             color: "#cf2f74",
-            scale: 1.1,
           }
         }
         className={boxShadow && 'boxShadow-light'}
@@ -98,7 +96,7 @@ const LabelInput = ({
       <AnimatePresence>
         {!isValid && 
             <motion.p initial={{x:-200}} animate={{x:0, color:"#cf2f74"}} exit={{x:-200, opacity:0}}>
-                To pole zostało błędnie wypełnione
+                Proszę wypełnić te pole
             </motion.p>
         }
       </AnimatePresence>
