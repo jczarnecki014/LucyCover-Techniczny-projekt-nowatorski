@@ -1,4 +1,4 @@
-import style from '../css/PatientsWrapper.module.css'
+import style from './css/PatientDetails.module.css'
 
 import { FaUser } from "react-icons/fa";
 

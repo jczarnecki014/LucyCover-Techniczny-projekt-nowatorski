@@ -1,8 +1,8 @@
-import style from '../css/PatientsWrapper.module.css'
+import style from './css/PatientDetails.module.css'
 
 import LabelInput from '../../../utility/LabelInput'
 
-const PatientContact = ({city,street,zipCode,province,phone,email,firstName,lastName}) => {
+const PatientContact = ({city,street,zipCode,province,phone,email}) => {
     return (
         <div id={style.PatientContact} className={style.DetailBlock}>
             <h5>Dane Kontaktowe</h5>

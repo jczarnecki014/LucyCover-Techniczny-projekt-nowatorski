@@ -1,0 +1,39 @@
+.Container{
+    display: grid;
+    height: 100%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'PatientLeftSide PatientRightSide'
+}
+
+.Container .PatientLeftSide{
+    grid-area: PatientLeftSide;
+    background-color: #FFF5FF;
+    overflow: hidden;
+    height: 100%;
+}
+
+.PatientLeftSide#Overflow_Y_auto{
+    overflow-y: scroll;
+}
+
+.Container .PatientRightSide{
+    grid-area: PatientRightSide;
+    overflow-y: auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
+
+@media only screen and (max-width:1200px){
+    .Container{
+        display: grid;
+        height: 100%;
+        grid-template-rows: 0.45fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        'PatientLeftSide PatientLeftSide'
+        'PatientRightSide PatientRightSide';
+    } 
+}

@@ -1,4 +1,4 @@
-import style from '../css/PatientsWrapper.module.css'
+import style from './css/PatientDetails.module.css'
 
 import {motion,AnimatePresence} from 'framer-motion'
 
@@ -9,16 +9,17 @@ import PatientChildrens from './PatientChildrens';
 
 
 const PatientDetails = ({children}) => {
+    
     return (
-            <div className={style.PatientDetails}>
-                {children}
-            </div>
+        <div className={style.PatientDetails}>
+            {children}
+        </div>
     )
 }
 
 PatientDetails.Header = PatientHeader
 PatientDetails.NameSection = PatientName
 PatientDetails.ContactSection = PatientContact
-PatientDetails.ChildrenSections = PatientChildrens
+PatientDetails.ChildrenSection = PatientChildrens
 
 export default PatientDetails

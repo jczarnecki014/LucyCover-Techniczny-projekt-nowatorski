@@ -1,4 +1,4 @@
-import style from '../css/PatientsWrapper.module.css'
+import style from '../css/PatientSearch.module.css'
 import { useSelector } from 'react-redux';
 
 import {motion} from 'framer-motion'

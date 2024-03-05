@@ -1,11 +1,11 @@
 import { useSelector,useDispatch } from 'react-redux';
-import { SetChildrenInput,ResetChildrenInputs } from '../../../../../context/slices/AddPatientForm';
+import { SetChildrenInput,ResetChildrenInputs } from '../../../../../../context/slices/AddPatientForm';
 
 import style from '../../css/ChildrenAddingForm.module.css'
 
-import OverlayModel from "../../../../utility/OverlayModel";
+import OverlayModel from "../../../../../utility/OverlayModel";
 import { PiBabyBold } from "react-icons/pi";
-import LabelInput from '../../../../utility/LabelInput';
+import LabelInput from '../../../../../utility/LabelInput';
 
 const ChildrenForm = ({changeFormMode,AddChildrenToList}) => {
     

@@ -3,9 +3,9 @@ import { Fragment } from "react"
 import style from '../../css/PatientAddingForm.module.css'
 
 import { BiSolidHomeHeart } from "react-icons/bi";
-import LabelInput from "../../../../utility/LabelInput";
+import LabelInput from "../../../../../utility/LabelInput";
 
-import { CheckZipCodeIsValid } from "../../../../../assets/Validation/PersonalData";
+import { CheckZipCodeIsValid } from "../../../../../../assets/Validation/PersonalData";
 
 const PatientFormPlaceSection = ({setPatientInput,FormSubmit,formIsValid,patientInputs}) => {
 

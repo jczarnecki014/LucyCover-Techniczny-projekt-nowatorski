@@ -1,10 +1,16 @@
-import style from '../css/PatientsWrapper.module.css'
+import style from './css/PatientDetails.module.css'
 
-const PatientHeader = ({firstName,lastName}) => {
+import { Link } from 'react-router-dom'
+
+const PatientHeader = ({id,firstName,lastName}) => {
     return (
         <div className={style.PatientHeader}>
             <h5>{firstName} {lastName}</h5>
-            <button>Wyświetl</button>
+            <button>
+                <Link to={id}>
+                    <button>Wyświetl</button>
+                </Link>
+            </button>
         </div>
     )
 }
