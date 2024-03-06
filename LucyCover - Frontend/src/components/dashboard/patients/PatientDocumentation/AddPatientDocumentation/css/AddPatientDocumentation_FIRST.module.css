@@ -1,5 +1,6 @@
 .Container{
     display: grid;
+    position: relative;
     min-height: 100%;
     grid-template-rows: 1fr;
     grid-template-columns: 0.5fr 0.5fr;
@@ -17,16 +18,26 @@
 
 .PatientFormSection span{
     display: flex;
+    right: 0px;
     gap:15px;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 25px;
 }
 
-span .StandardInput{
-    width: 35%;
+.PatientFormButtonSection{
+    display: flex;
+    justify-content: right;
 }
 
+.PatientFormButtonSection  button{
+    background-color: #CB60C8;
+    width: 150px;
+}
+
+span .StandardInput{
+    width: 45%;
+}
 
 span .SmallInput{
     width: 20%;
@@ -38,4 +49,25 @@ span .WideInput{
 
 span .FullInput{
     width: 100%;
+}
+
+@media screen and (max-width:1200px) {
+    .Container{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    .Container .LeftSide{
+        padding-right: 0px;
+        border: 0px;
+    }
+    
+    .Container .RightSide{
+        padding-left: 0px;
+    }
+    .Container .LeftSide{
+        padding-right: 25px;
+        border-right: 1px solid #bbbbbb;
+    }
+    
 }

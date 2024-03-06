@@ -1,15 +1,19 @@
 import { useState } from "react"
 
+import { MdKeyboardArrowRight } from "react-icons/md";
+
 import OverlayModel from "../../../../utility/OverlayModel"
 import LabelInput from "../../../../utility/LabelInput"
 import SelectInput from "../../../../utility/SelectInput"
 
 import style from './css/AddPatientDocumentation_FIRST.module.css'
+import TextArea from "../../../../utility/TextArea"
 
 const AddPatientDocumentation_FIRST = () => {
 
     const [babyBirthTimeIsVisible,setBabyBirthTimeIsVisible] = useState(false)
     const [babyBirthTypeReasonIsVisible,setBbabyBirthTypeReasonIsVisible] = useState(false)
+    const [motherBreastfeedBefore,setMotherBreastfeedBefore] = useState('')
 
     return (
         <OverlayModel title="Dodaj nową dokumentacje">
@@ -22,9 +26,9 @@ const AddPatientDocumentation_FIRST = () => {
                         <span>
                             <LabelInput controlId='motherFirstName' label='Imie' className={style.StandardInput} />
                             <LabelInput controlId='motherLastName' label='Nazwisko' className={style.StandardInput} />
-                            <LabelInput controlId='motherAge' label='Wiek' className={style.SmallInput} />
+                            <LabelInput controlId='motherAge' label='Wiek' className={style.StandardInput} />
+                            <LabelInput controlId='motherProfesion' label='Zawód' className={style.StandardInput} />
                             <LabelInput controlId='motherAddress' label='Adres' className={style.FullInput} />
-                            <LabelInput controlId='motherProfesion' label='Zawód' className={style.FullInput} />
                         </span>
                     </section>
                     <section className={style.PatientFormSection}>
@@ -32,11 +36,10 @@ const AddPatientDocumentation_FIRST = () => {
                         <hr />
                         <span>
                             <LabelInput controlId='babyFirstName' label='Imie' className={style.StandardInput} />
-                            <LabelInput controlId='babyBirthDay' label='Data urodzenia dziecka' className={style.StandardInput} inputType='date' />
-                            <LabelInput controlId='babyAge' label='Wiek' className={style.SmallInput} />
+                            <LabelInput controlId='babyAge' label='Wiek' className={style.StandardInput} />
+                            <LabelInput controlId='babyBirthDay' label='Data urodzenia dziecka' className={style.FullInput} inputType='date' />
                             <LabelInput controlId='babyBirthPlace' label='Miejsce urodzenia (szpital)' className={style.FullInput} />
-                            <LabelInput controlId='babyApgarScore' label='Punkty Apgar' className={style.SmallInput} />
-                            <LabelInput controlId='babyApgarScore' label='Wiek' className={style.StandardInput} />
+                            <LabelInput controlId='babyApgarScore' label='Apgar' className={style.StandardInput} />
 
                             <SelectInput controlId='babyBirthTime' label="Urodzone" className={style.StandardInput} options={["O czasie", "Wcześniej", "Później"]} defaultOption="Czas urodzenia" 
                                          onChange={(value) => (value === 'Wcześniej' || value === 'Później') ? setBabyBirthTimeIsVisible(true) : setBabyBirthTimeIsVisible(false) }/>
@@ -57,7 +60,27 @@ const AddPatientDocumentation_FIRST = () => {
                     </section>
                 </div>
                 <div className={style.RightSide}>
-                    <LabelInput controlId='babyBirthMedicine' label='Leki podczas porodu' className={style.FullInput} type="textarea" />
+                    <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} />
+                    <section className={style.PatientFormSection}>
+                        <h6>Wywiad rodzinny</h6>
+                        <hr />
+                        <span>
+                            <SelectInput controlId='motherBreastfeedBefore ' label="Karmienie poprzednich dzieci piersią" className={style.FullInput} options={['Pierwsze dziecko',"Tak", "Nie"]} defaultOption="Czy karmiła ?" 
+                                        onChange={(value) => setMotherBreastfeedBefore(value) } />
+                            
+                            {
+                                motherBreastfeedBefore === 'Tak' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Jak długo karmiła ?' className={style.FullInput} />
+                            }
+
+                            {
+                                motherBreastfeedBefore === 'Nie' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Dlaczego nie karmiła ?' className={style.FullInput} />
+                            }
+                        </span>
+                    </section>
+
+                    <section className={style.PatientFormButtonSection}>
+                            <button>Zapisz <MdKeyboardArrowRight /> </button>
+                    </section>
                 </div>
             </form>
         </OverlayModel>
