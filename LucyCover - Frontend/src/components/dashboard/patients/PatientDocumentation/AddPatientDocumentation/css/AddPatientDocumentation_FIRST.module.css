@@ -1,0 +1,17 @@
+.Container{
+    display: grid;
+    min-height: 100%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.5fr 0.5fr;
+    /* background-color: red; */
+}
+
+.Container .LeftSide{
+    padding-right: 25px;
+}
+.MotherPersonalData span{
+    display: flex;
+    flex-wrap: wrap;
+}
+.MotherPersonalData input{
+}
