@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import OverlayModel from "../../../../utility/OverlayModel"
 import LabelInput from "../../../../utility/LabelInput"
 import SelectInput from "../../../../utility/SelectInput"
@@ -5,6 +7,10 @@ import SelectInput from "../../../../utility/SelectInput"
 import style from './css/AddPatientDocumentation_FIRST.module.css'
 
 const AddPatientDocumentation_FIRST = () => {
+
+    const [babyBirthTimeIsVisible,setBabyBirthTimeIsVisible] = useState(false)
+    const [babyBirthTypeReasonIsVisible,setBbabyBirthTypeReasonIsVisible] = useState(false)
+
     return (
         <OverlayModel title="Dodaj nową dokumentacje">
             <form className={style.Container}>
@@ -31,12 +37,27 @@ const AddPatientDocumentation_FIRST = () => {
                             <LabelInput controlId='babyBirthPlace' label='Miejsce urodzenia (szpital)' className={style.FullInput} />
                             <LabelInput controlId='babyApgarScore' label='Punkty Apgar' className={style.SmallInput} />
                             <LabelInput controlId='babyApgarScore' label='Wiek' className={style.StandardInput} />
-                            <SelectInput label="Urodzone" className={style.StandardInput} options={["O czasie", "Wczesniej", "Później"]} defaultOption="Czas urodzenia"/>
+
+                            <SelectInput controlId='babyBirthTime' label="Urodzone" className={style.StandardInput} options={["O czasie", "Wcześniej", "Później"]} defaultOption="Czas urodzenia" 
+                                         onChange={(value) => (value === 'Wcześniej' || value === 'Później') ? setBabyBirthTimeIsVisible(true) : setBabyBirthTimeIsVisible(false) }/>
+                            {
+                                babyBirthTimeIsVisible && <LabelInput controlId='babyBirthTime_ADDITIONAL' label='O ile' className={style.FullInput} />
+                            }
+
+                            <SelectInput controlId='babyBirthType' label="Poród" className={style.FullInput} options={["Naturalny", "Zabiegowy", "Cięcie cesarskie"]} defaultOption="Rodzaj porodu" 
+                                        onChange={(value) => (value === 'Zabiegowy' || value === 'Cięcie cesarskie') ? setBbabyBirthTypeReasonIsVisible(true) : setBbabyBirthTypeReasonIsVisible(false) } />
+                            
+                            {
+                                babyBirthTypeReasonIsVisible && <LabelInput controlId='babyBirthTypeReason' label='Powód takiego porodu' className={style.FullInput} />
+                            }
+
+                            <LabelInput controlId='babyBirthMedicine' label='Leki podczas porodu' className={style.FullInput} />
+
                         </span>
                     </section>
                 </div>
-                <div className={style.LeftSide}>
-                    right
+                <div className={style.RightSide}>
+                    <LabelInput controlId='babyBirthMedicine' label='Leki podczas porodu' className={style.FullInput} type="textarea" />
                 </div>
             </form>
         </OverlayModel>

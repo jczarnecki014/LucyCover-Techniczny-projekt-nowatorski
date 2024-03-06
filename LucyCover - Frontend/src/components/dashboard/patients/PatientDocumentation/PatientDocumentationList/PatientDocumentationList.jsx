@@ -21,11 +21,11 @@ const PatientDocumentationList = () => {
             <PatientTable columns={['ID','Data wizyty','Dziecko']} data={patientData.documentation} patientName={patientData.patientName}>
                 {(documentation) => documentation.map(document => {
                     return (
-                        <tr id={document.first && style.First}>
-                        <td>{document.id}</td>
-                        <td>{document.date}</td>
-                        <td>{document.baby}</td>
-                        <TableButtons />
+                        <tr id={document.first ? style.First : ''} key={document.id}>
+                            <td>{document.id}</td>
+                            <td>{document.date}</td>
+                            <td>{document.baby}</td>
+                            <TableButtons />
                         </tr>
                     )
                 })}

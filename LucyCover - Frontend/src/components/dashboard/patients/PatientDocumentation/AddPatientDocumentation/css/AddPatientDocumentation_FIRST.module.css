@@ -10,6 +10,11 @@
     padding-right: 25px;
     border-right: 1px solid #bbbbbb;
 }
+
+.Container .RightSide{
+    padding-left: 25px;
+}
+
 .PatientFormSection span{
     display: flex;
     gap:15px;
@@ -21,6 +26,7 @@
 span .StandardInput{
     width: 35%;
 }
+
 
 span .SmallInput{
     width: 20%;

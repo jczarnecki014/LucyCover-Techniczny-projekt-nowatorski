@@ -23,8 +23,8 @@ const PatientTable = ({columns,data,patientName,children}) => {
               <table>
                 <thead>
                   <tr>
-                    {columns.map((label) => (
-                      <th>{label}</th>
+                    {columns.map((label,index) => (
+                      <th key={index}>{label}</th>
                     ))}
                     <th></th>
                   </tr>
