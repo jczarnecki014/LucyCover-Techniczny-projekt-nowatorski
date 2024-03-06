@@ -8,10 +8,28 @@
 
 .Container .LeftSide{
     padding-right: 25px;
+    border-right: 1px solid #bbbbbb;
 }
-.MotherPersonalData span{
+.PatientFormSection span{
     display: flex;
+    gap:15px;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 25px;
 }
-.MotherPersonalData input{
+
+span .StandardInput{
+    width: 35%;
+}
+
+span .SmallInput{
+    width: 20%;
+}
+
+span .WideInput{
+    width: 70%;
+}
+
+span .FullInput{
+    width: 100%;
 }
