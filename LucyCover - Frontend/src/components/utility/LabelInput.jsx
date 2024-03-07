@@ -15,7 +15,7 @@ const LabelInput = ({
   validationFunction,
   required=false,
   readonly,
-  value,
+  value='',
   boxShadow,
   className,
   id,

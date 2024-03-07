@@ -24,27 +24,27 @@ const AddPatientDocumentation_FIRST = () => {
                         <h6>Dane matki</h6>
                         <hr />
                         <span>
-                            <LabelInput controlId='motherFirstName' label='Imie' className={style.StandardInput} />
-                            <LabelInput controlId='motherLastName' label='Nazwisko' className={style.StandardInput} />
-                            <LabelInput controlId='motherAge' label='Wiek' className={style.StandardInput} />
-                            <LabelInput controlId='motherProfesion' label='Zawód' className={style.StandardInput} />
-                            <LabelInput controlId='motherAddress' label='Adres' className={style.FullInput} />
+                            <LabelInput controlId='motherFirstName' label='Imie' className={style.StandardInput} required />
+                            <LabelInput controlId='motherLastName' label='Nazwisko' className={style.StandardInput} required/>
+                            <LabelInput controlId='motherAge' label='Wiek' className={style.StandardInput} required />
+                            <LabelInput controlId='motherProfesion' label='Zawód' className={style.StandardInput} required />
+                            <LabelInput controlId='motherAddress' label='Adres' className={style.FullInput} required/>
                         </span>
                     </section>
                     <section className={style.PatientFormSection}>
                         <h6>Dane dziecka</h6>
                         <hr />
                         <span>
-                            <LabelInput controlId='babyFirstName' label='Imie' className={style.StandardInput} />
-                            <LabelInput controlId='babyAge' label='Wiek' className={style.StandardInput} />
-                            <LabelInput controlId='babyBirthDay' label='Data urodzenia dziecka' className={style.FullInput} inputType='date' />
-                            <LabelInput controlId='babyBirthPlace' label='Miejsce urodzenia (szpital)' className={style.FullInput} />
-                            <LabelInput controlId='babyApgarScore' label='Apgar' className={style.StandardInput} />
+                            <LabelInput controlId='babyFirstName' label='Imie' className={style.StandardInput} required />
+                            <LabelInput controlId='babyAge' label='Wiek' className={style.StandardInput} required />
+                            <LabelInput controlId='babyBirthDay' label='Data urodzenia dziecka' className={style.FullInput} inputType='date' required />
+                            <LabelInput controlId='babyBirthPlace' label='Miejsce urodzenia (szpital)' className={style.FullInput} required />
+                            <LabelInput controlId='babyApgarScore' label='Apgar' className={style.StandardInput} required />
 
                             <SelectInput controlId='babyBirthTime' label="Urodzone" className={style.StandardInput} options={["O czasie", "Wcześniej", "Później"]} defaultOption="Czas urodzenia" 
                                          onChange={(value) => (value === 'Wcześniej' || value === 'Później') ? setBabyBirthTimeIsVisible(true) : setBabyBirthTimeIsVisible(false) }/>
                             {
-                                babyBirthTimeIsVisible && <LabelInput controlId='babyBirthTime_ADDITIONAL' label='O ile' className={style.FullInput} />
+                                babyBirthTimeIsVisible && <LabelInput controlId='babyBirthTime_ADDITIONAL' label='O ile' className={style.FullInput} required />
                             }
 
                             <SelectInput controlId='babyBirthType' label="Poród" className={style.FullInput} options={["Naturalny", "Zabiegowy", "Cięcie cesarskie"]} defaultOption="Rodzaj porodu" 
