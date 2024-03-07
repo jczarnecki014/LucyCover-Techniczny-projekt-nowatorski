@@ -7,7 +7,7 @@ function SelectInput({
     options,
     defaultOption,
     controlId,
-    onChange
+    onChange,
 }) {
 
     const ChangeHandler = (event) => {
@@ -18,10 +18,10 @@ function SelectInput({
     <Form.Group  className={className}>
       <Form.Label>{label}</Form.Label>
         <Form.Select size='lg' style={{border: '1px solid #888',fontSize: '17px'}} onChange={ChangeHandler} >
-        <option defaultChecked disabled>{defaultOption}</option>
-        {options.map((option,index) => (
-            <option key={index} value={option}>{option}</option>
-        ))}
+        <option disabled>{defaultOption}</option>
+        {options.map((option,index) => {
+            {option === defaultOption ? <option default key={index} value={option}>{option}</option> : <option key={index} value={option}>{option}</option>}
+        })}
         </Form.Select>
     </Form.Group>
   );
