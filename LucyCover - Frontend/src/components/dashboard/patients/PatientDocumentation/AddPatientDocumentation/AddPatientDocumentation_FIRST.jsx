@@ -42,7 +42,7 @@ const AddPatientDocumentation_FIRST = () => {
                         <hr />
                         <span>
                             <LabelInput controlId='babyFirstName' label='Imie' className={style.StandardInput} required onInput={SetFormInputHandler} />
-                            <LabelInput controlId='babyAge' label='Wiek' className={style.StandardInput} required />
+                            <LabelInput controlId='babyAge' label='Wiek' className={style.StandardInput} required onInput={SetFormInputHandler} />
                             <LabelInput controlId='babyBirthDay' label='Data urodzenia dziecka' className={style.FullInput} inputType='date' required onInput={SetFormInputHandler} />
                             <LabelInput controlId='babyBirthPlace' label='Miejsce urodzenia (szpital)' className={style.FullInput} required onInput={SetFormInputHandler} />
                             <LabelInput controlId='babyApgarScore' label='Apgar' className={style.StandardInput} required onInput={SetFormInputHandler} />
@@ -50,17 +50,17 @@ const AddPatientDocumentation_FIRST = () => {
                             <SelectInput controlId='babyBirthTime' label="Urodzone" className={style.StandardInput} options={["O czasie", "Wcześniej", "Później"]} 
                                          onChange={SetFormInputHandler} />
                             {
-                                ['Wcześniej','Później'].includes(formInputs.babyBirthTime.value) && <LabelInput controlId='babyBirthTime_ADDITIONAL' label='O ile' className={style.FullInput} required />
+                                ['Wcześniej','Później'].includes(formInputs.babyBirthTime.value) && <LabelInput controlId='babyBirthTime_ADDITIONAL' label='O ile' className={style.FullInput} onInput={SetFormInputHandler} />
                             }
 
                             <SelectInput controlId='babyBirthType' label="Poród" className={style.FullInput} options={["Naturalny", "Zabiegowy", "Cięcie cesarskie"]} 
                                         onChange={SetFormInputHandler} />
                             
                             {
-                                ['Zabiegowy','Cięcie cesarskie'].includes(formInputs.babyBirthType.value) && <LabelInput controlId='babyBirthTypeReason' label='Powód takiego porodu' className={style.FullInput} />
+                                ['Zabiegowy','Cięcie cesarskie'].includes(formInputs.babyBirthType.value) && <LabelInput controlId='babyBirthTypeReason' label='Powód takiego porodu' className={style.FullInput} onInput={SetFormInputHandler} />
                             }
 
-                            <LabelInput controlId='babyBirthMedicine' label='Leki podczas porodu' className={style.FullInput} />
+                            <LabelInput controlId='babyBirthMedicine' label='Leki podczas porodu' className={style.FullInput} required onInput={SetFormInputHandler}/>
 
                         </span>
                     </section>
@@ -75,11 +75,11 @@ const AddPatientDocumentation_FIRST = () => {
                                         onChange={SetFormInputHandler} />
                             
                             {
-                                formInputs.motherBreastfeedBefore.value === 'Tak' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Jak długo karmiła ?' className={style.FullInput} />
+                                formInputs.motherBreastfeedBefore.value === 'Tak' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Jak długo karmiła ?' className={style.FullInput} onInput={SetFormInputHandler}/>
                             }
 
                             {
-                                formInputs.motherBreastfeedBefore.value === 'Nie' && <LabelInput controlId='motherBreastfeedBefore_Why' label='Dlaczego nie karmiła ?' className={style.FullInput} />
+                                formInputs.motherBreastfeedBefore.value === 'Nie' && <LabelInput controlId='motherBreastfeedBefore_Why' label='Dlaczego nie karmiła ?' className={style.FullInput} onInput={SetFormInputHandler}/>
                             }
                         </span>
                     </section>
