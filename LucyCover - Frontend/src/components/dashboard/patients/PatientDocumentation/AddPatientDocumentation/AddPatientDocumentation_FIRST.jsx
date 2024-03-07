@@ -9,13 +9,14 @@ import SelectInput from "../../../../utility/SelectInput"
 
 import style from './css/AddPatientDocumentation_FIRST.module.css'
 import TextArea from "../../../../utility/TextArea"
+import CheckFormIsValid from "../../../../../assets/Validation/CheckFormIsValid";
 
 const AddPatientDocumentation_FIRST = () => {
 
     const dispatch = useDispatch();
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
 
-    console.log(formInputs)
+    const formIsValid = CheckFormIsValid(formInputs)
 
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
@@ -66,7 +67,9 @@ const AddPatientDocumentation_FIRST = () => {
                     </section>
                 </div>
                 <div className={style.RightSide}>
-                    <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} />
+
+                    <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler}/>
+
                     <section className={style.PatientFormSection}>
                         <h6>Wywiad rodzinny</h6>
                         <hr />
@@ -85,7 +88,7 @@ const AddPatientDocumentation_FIRST = () => {
                     </section>
 
                     <section className={style.PatientFormButtonSection}>
-                            <button>Zapisz <MdKeyboardArrowRight /> </button>
+                            <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
                     </section>
                 </div>
             </form>

@@ -35,6 +35,12 @@
     width: 150px;
 }
 
+.PatientFormButtonSection  button:disabled{
+    background-color: #692267;
+    border-color: #692267;
+    cursor:not-allowed;
+}
+
 span .StandardInput{
     width: 45%;
 }
