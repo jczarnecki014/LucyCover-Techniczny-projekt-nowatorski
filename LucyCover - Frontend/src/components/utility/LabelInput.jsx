@@ -76,7 +76,9 @@ const LabelInput = ({
 
   return (
     <Form.Group id={id} className={className} controlId={controlId}>
-      <Form.Label>{label}</Form.Label>
+      {
+        label && <Form.Label>{label}</Form.Label>
+      }
       <motion.input
         style={
           !isValid && {

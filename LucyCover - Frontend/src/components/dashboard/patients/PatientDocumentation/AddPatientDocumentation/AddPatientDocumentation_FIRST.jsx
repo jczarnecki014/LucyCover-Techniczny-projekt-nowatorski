@@ -7,7 +7,7 @@ import OverlayModel from "../../../../utility/OverlayModel"
 import LabelInput from "../../../../utility/LabelInput"
 import SelectInput from "../../../../utility/SelectInput"
 
-import style from './css/AddPatientDocumentation_FIRST.module.css'
+import style from './css/AddPatientDocumentation_FORMS.module.css'
 import TextArea from "../../../../utility/TextArea"
 import CheckFormIsValid from "../../../../../assets/Validation/CheckFormIsValid";
 

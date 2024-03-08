@@ -24,6 +24,15 @@
     justify-content: space-between;
     margin-bottom: 25px;
 }
+.PatientFormSection table{ 
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.PatientFormSection table td,th {
+    border: 1px solid black;
+    padding: 8px;
+}
 
 .PatientFormButtonSection{
     display: flex;
