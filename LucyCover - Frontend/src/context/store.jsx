@@ -4,6 +4,7 @@ import PatientSearchSlice from "./slices/PatientSearch_SLICE";
 import OverlayModelSlice from "./slices/OverlayModel_SLICE";
 import AddPatientForm from "./slices/AddPatientForm";
 import AddFirstDocumentationForm from "./slices/AddFirstDocumentationForm";
+import AddNextDocumentationForm from "./slices/AddNextDocumentationForm";
 
 
 const reducers = combineReducers({
@@ -11,6 +12,7 @@ const reducers = combineReducers({
     overlayModel: OverlayModelSlice.reducer,
     addPatientForm: AddPatientForm.reducer,
     addFirstDocumentationForm: AddFirstDocumentationForm.reducer,
+    addNextDocumentationForm: AddNextDocumentationForm.reducer
 })
 
 const store = configureStore({

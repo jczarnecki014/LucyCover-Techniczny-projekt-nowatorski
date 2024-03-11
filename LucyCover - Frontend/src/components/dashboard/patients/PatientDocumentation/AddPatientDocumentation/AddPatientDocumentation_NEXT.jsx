@@ -1,45 +1,31 @@
+import { useSelector, useDispatch } from "react-redux"
+
+import { SetInput } from "../../../../../context/slices/AddNextDocumentationForm"
+
 import OverlayModel from "../../../../utility/OverlayModel"
 import LabelInput from "../../../../utility/LabelInput"
 import SelectInput from "../../../../utility/SelectInput"
 import TextArea from "../../../../utility/TextArea"
 
 import style from './css/AddPatientDocumentation_FORMS.module.css'
+import BabyFeedingSection from "./NextDocumentationSections/BabyFeedingSection"
 
 const AddPatientDocumentation_NEXT = () => {
+
+    const dispatch = useDispatch();
 
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
     }
 
+    const form = useSelector(state => state.addNextDocumentationForm)
+    console.log(form)
+
     return (
         <OverlayModel title="Dodaj nową dokumentacje">
             <form className={style.Container}>
                 <div className={style.LeftSide}>
-                    <section className={style.PatientFormSection}>
-                        <h6>Karmienie obecnie</h6>
-                        <hr />
-                        <span>
-                            <LabelInput controlId='PatientFeedingCountPerDay' label='Liczba karmień na dobe' className={style.FullInput} required onInput={SetFormInputHandler} />
-                            <LabelInput controlId='PatientFeedingBreastNumber' label='Z ilu piersi' className={style.FullInput} required onInput={SetFormInputHandler} />
-                            <SelectInput controlId='PatientFeedingInNight' label="W tym karmienia nocne" className={style.StandardInput} options={["Tak", "Nie"]} 
-                                         onChange={SetFormInputHandler} />
-                            <LabelInput controlId='PatientFeedingHowMuchTime' label='Jak długo trwa jedno karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} />
-                            <SelectInput controlId='PatientFeedingInNight' label="W tym karmienia nocne" className={style.FullInput} options={["Tak", "Nie"]} 
-                                         onChange={SetFormInputHandler} />
-                            <SelectInput controlId='PatientBreastFeedingWithHood' label="Karmienie z Kapturkiem" className={style.StandardInput} options={["Tak", "Nie"]} 
-                                         onChange={SetFormInputHandler} />
-
-                            {/* Opcjonalnie */}
-                           <LabelInput controlId='PatientBreastFeedingWithHood_HowLong' label='Jak długo trwa jedno karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} />
-
-                           <SelectInput controlId='PatientBreastFeedingAsNeeded' label="Karmienie według potrzeb" className={style.StandardInput} options={["Tak", "Nie"]} 
-                                         onChange={SetFormInputHandler} />
-                            
-                            {/* Opcjonalnie */}
-                           <LabelInput controlId='PatientBreastFeedingAsNeeded_How' label='Jak wygląda to karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} /> 
-
-                        </span>
-                    </section>
+                    <BabyFeedingSection SetFormInputHandler={SetFormInputHandler} />
 
                     <section className={style.PatientFormSection}>
                         <h6>Dokarmianie w ciągu ostatnich 3 dni</h6>
@@ -57,30 +43,29 @@ const AddPatientDocumentation_NEXT = () => {
                                     <tr>
                                         <td>Matki</td>
                                         <td>
-                                            <LabelInput controlId='PatientFeedingCountPerDay' className={style.FullInput} required onInput={SetFormInputHandler} />
+                                            <LabelInput controlId='PatientFeedingCountPerDay_DAY1' className={style.FullInput} required onInput={SetFormInputHandler} />
                                         </td>
                                         <td>
-                                            <LabelInput controlId='PatientFeedingCountPerDay' className={style.FullInput} required onInput={SetFormInputHandler} />
+                                            <LabelInput controlId='PatientFeedingCountPerDay_DAY2' className={style.FullInput} required onInput={SetFormInputHandler} />
                                         </td>
                                         <td>
-                                            <LabelInput controlId='PatientFeedingCountPerDay' className={style.FullInput} required onInput={SetFormInputHandler} />
+                                            <LabelInput controlId='PatientFeedingCountPerDay_DAY3' className={style.FullInput} required onInput={SetFormInputHandler} />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Mieszanka</td>
                                         <td>
-                                            <LabelInput controlId='PatientFeedingCountPerDay' className={style.FullInput} required onInput={SetFormInputHandler} />
+                                            <LabelInput controlId='PatientFeedingMIXCountPerDay_DAY1' className={style.FullInput} required onInput={SetFormInputHandler} />
                                         </td>
                                         <td>
-                                            <LabelInput controlId='PatientFeedingCountPerDay' className={style.FullInput} required onInput={SetFormInputHandler} />
+                                            <LabelInput controlId='PatientFeedingMIXCountPerDay_DAY2' className={style.FullInput} required onInput={SetFormInputHandler} />
                                         </td>
                                         <td>
-                                            <LabelInput controlId='PatientFeedingCountPerDay' className={style.FullInput} required onInput={SetFormInputHandler} />
+                                            <LabelInput controlId='PatientFeedingMIXCountPerDay_DAY3' className={style.FullInput} required onInput={SetFormInputHandler} />
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <LabelInput controlId='PatientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} />
                             <LabelInput controlId='PatientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} />
                             <SelectInput controlId='PatientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.StandardInput} options={["Tak", "Nie"]} 
                                          onChange={SetFormInputHandler} />
@@ -103,7 +88,7 @@ const AddPatientDocumentation_NEXT = () => {
                            <SelectInput controlId='PatientMilkRush' label="Nawał mleczny" className={style.StandardInput} options={["Tak", "Nie"]} 
                                          onChange={SetFormInputHandler} />
 
-                            <SelectInput controlId='PatientBreastSiye' label="Rozmiar piersi" className={style.StandardInput} options={["Mała", "Średnia", "Duża"]} 
+                            <SelectInput controlId='PatientBreastSize' label="Rozmiar piersi" className={style.StandardInput} options={["Mała", "Średnia", "Duża"]} 
                                          onChange={SetFormInputHandler} />
 
                             <SelectInput controlId='PatientBreastChanges' label="Pierś - zmiany" className={style.StandardInput} options={["Tak", "Nie"]} 
@@ -121,7 +106,7 @@ const AddPatientDocumentation_NEXT = () => {
                             </span>
 
                             <SelectInput controlId='PatientBreastNipple' label="Brodawka - aby wybrac wiele opcji przytrzymaj CTRL" className={style.FullInput} multiple
-                                         options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} onChange={SetFormInputHandler} />
+                                         options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} defaultOption={['Prawidłowa']} onChange={SetFormInputHandler} />
 
                             <LabelInput controlId='PatientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} onInput={SetFormInputHandler} />
 
