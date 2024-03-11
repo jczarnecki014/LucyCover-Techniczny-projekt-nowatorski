@@ -29,8 +29,14 @@
     border-collapse: collapse;
 }
 
-.PatientFormSection table td,th {
+.PatientFormSection table td {
     border: 1px solid black;
+    padding: 8px;
+}
+
+.PatientFormSection table th {
+    border: 1px solid black;
+    background-color: #dddddd;
     padding: 8px;
 }
 

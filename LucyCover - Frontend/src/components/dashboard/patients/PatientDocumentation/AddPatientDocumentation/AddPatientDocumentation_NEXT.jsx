@@ -33,7 +33,7 @@ const AddPatientDocumentation_NEXT = () => {
 
                            <SelectInput controlId='PatientBreastFeedingAsNeeded' label="Karmienie według potrzeb" className={style.StandardInput} options={["Tak", "Nie"]} 
                                          onChange={SetFormInputHandler} />
-
+                            
                             {/* Opcjonalnie */}
                            <LabelInput controlId='PatientBreastFeedingAsNeeded_How' label='Jak wygląda to karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} /> 
 
@@ -79,12 +79,26 @@ const AddPatientDocumentation_NEXT = () => {
                                     </tr>
                                 </tbody>
                             </table>
+                            <LabelInput controlId='PatientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} />
+                            <LabelInput controlId='PatientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} />
+                            <SelectInput controlId='PatientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                         onChange={SetFormInputHandler} />
+
+                            {/* Opcjonalnie */}
+                            <LabelInput controlId='PatientExpressingBreastMilkHowManyYesterday' label='Ile wczoraj ?' className={style.StandardInput} onInput={SetFormInputHandler}/>
                         </span>
                     </section>
 
                 </div>
                 <div className={style.RightSide}>
-                    <h1>Right</h1>
+                    <section className={style.PatientFormSection}>
+                            <h6>Wydalanie</h6>
+                            <hr />
+                            <span>
+                                <LabelInput controlId='BabyPeeingADay' label='Moczenie w pieluch (na dobe)' className={style.StandardInput} required onInput={SetFormInputHandler} />
+                                <LabelInput controlId='BabyExcretionADay' label='Oddawanie stolca (na dobe)' className={style.StandardInput} required onInput={SetFormInputHandler} />
+                            </span>
+                    </section>
                 </div>
             </form>
         </OverlayModel>
