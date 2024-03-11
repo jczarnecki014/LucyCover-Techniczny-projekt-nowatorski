@@ -1,6 +1,7 @@
 import OverlayModel from "../../../../utility/OverlayModel"
 import LabelInput from "../../../../utility/LabelInput"
 import SelectInput from "../../../../utility/SelectInput"
+import TextArea from "../../../../utility/TextArea"
 
 import style from './css/AddPatientDocumentation_FORMS.module.css'
 
@@ -111,6 +112,29 @@ const AddPatientDocumentation_NEXT = () => {
                             {/* Opcjonalnie */}
                             <LabelInput controlId='PatientBreastChanges_WHAT' label='Jakie zmiany ?' className={style.StandardInput} onInput={SetFormInputHandler} />
 
+
+                            <span className={style.BreastChangesImage}>
+                                <span className={style.Overlay}>
+                                    <h4>Zaznacz zmiany na rysunku</h4>
+                                    <button>Edytuj rysunek</button>
+                                </span>
+                            </span>
+
+                            <SelectInput controlId='PatientBreastNipple' label="Brodawka - aby wybrac wiele opcji przytrzymaj CTRL" className={style.FullInput} multiple
+                                         options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} onChange={SetFormInputHandler} />
+
+                            <LabelInput controlId='PatientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} onInput={SetFormInputHandler} />
+
+                            <SelectInput controlId='PatientBreastNippleChanges' label="Brodawki zmianny" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                         onChange={SetFormInputHandler} />
+                                
+                            {/* Opcjonalnie */}
+                            <LabelInput controlId='PatientBreastNippleChanges_WHAT' label='Jakie zmiany ?' className={style.StandardInput} onInput={SetFormInputHandler} />
+
+                            <LabelInput controlId='PatientMentalState' label='Stan emocjonalny matki' className={style.FullInput} onInput={SetFormInputHandler} />
+
+                            <TextArea controlId='ResearchObservationBabyBehaviour' label="Badnie/Obserwacja/Zachowanie dziecka" className={style.FullInput} onChange={SetFormInputHandler}/>
+
                         </span>
                     </section>
 
@@ -149,6 +173,24 @@ const AddPatientDocumentation_NEXT = () => {
                                 <LabelInput controlId='PatientPeriodAfterDelivery_WHEN' label='Kiedy' className={style.StandardInput} onInput={SetFormInputHandler}/>
                             </span>
                     </section>
+
+                    <section className={style.PatientFormSection}>
+                            <h6>Zalecenia</h6>
+                            <hr />
+                            <span>
+                                <SelectInput controlId='PostureCorection' label="Korekta pozycji" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                             onChange={SetFormInputHandler} />
+
+                                <SelectInput controlId='SuckTraining' label="Trening ssania" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                             onChange={SetFormInputHandler} />
+
+                                <LabelInput controlId='BabyFatten' label='Dokarmianie (czym? jak? ile?)' className={style.FullInput} onInput={SetFormInputHandler}/>
+
+                                <TextArea controlId='OtherRecommendation' label="Inne" className={style.FullInput} onChange={SetFormInputHandler}/>
+
+                            </span>
+                    </section>
+
                 </div>
             </form>
         </OverlayModel>

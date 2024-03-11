@@ -8,6 +8,7 @@ function SelectInput({
     defaultOption,
     controlId,
     onChange,
+    multiple,
 }) {
 
     const ChangeHandler = (event) => {
@@ -24,10 +25,13 @@ function SelectInput({
   return (
     <Form.Group  className={className}>
       <Form.Label>{label}</Form.Label>
-        <Form.Select size='lg' style={{border: '1px solid #888',fontSize: '17px'}} onChange={ChangeHandler} defaultValue={defaultOption ? defaultOption : options[0]}>
-        {options.map((option,index) => (
-          <option  key={index} value={option}>{option}</option>
-        ))}
+        <Form.Select size='lg' style={{border: '1px solid #888',fontSize: '17px'}} onChange={ChangeHandler} 
+                     defaultValue={defaultOption ? defaultOption : options[0]} multiple={multiple && true}>
+
+          {options.map((option,index) => (
+            <option  key={index} value={option}>{option}</option>
+          ))}
+
         </Form.Select>
     </Form.Group>
   );
