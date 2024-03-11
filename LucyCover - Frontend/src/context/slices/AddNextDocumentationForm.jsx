@@ -6,7 +6,6 @@ const AddNextDocumentationForm = createSlice({
         formInputs:{
             PatientFeedingCountPerDay: {value:'', isValid: false},
             PatientFeedingBreastNumber: {value:'', isValid: false},
-            PatientFeedingInNight: {value:'', isValid: false},
             PatientFeedingHowMuchTime: {value:'', isValid: false},
             PatientFeedingInNight: {value:'', isValid: false},
             PatientBreastFeedingWithHood: {value:'', isValid: false},
