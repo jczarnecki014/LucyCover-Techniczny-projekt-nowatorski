@@ -89,6 +89,31 @@ const AddPatientDocumentation_NEXT = () => {
                         </span>
                     </section>
 
+                    <section className={style.PatientFormSection}>
+                        <h6>Badanie piersi / wywiad/ obserwacja</h6>
+                        <hr />
+                        <span>
+                           <SelectInput controlId='PatientBreastGrowingDuringPregnacy' label="Wzrost piersi w ciąży" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                         onChange={SetFormInputHandler} />
+                            
+                            {/* Opcjonalnie */}
+                           <LabelInput controlId='PatientBreastGrowingDuringPregnacy_DAY' label='W której dobie' className={style.StandardInput} onInput={SetFormInputHandler} /> 
+                           
+                           <SelectInput controlId='PatientMilkRush' label="Nawał mleczny" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                         onChange={SetFormInputHandler} />
+
+                            <SelectInput controlId='PatientBreastSiye' label="Rozmiar piersi" className={style.StandardInput} options={["Mała", "Średnia", "Duża"]} 
+                                         onChange={SetFormInputHandler} />
+
+                            <SelectInput controlId='PatientBreastChanges' label="Pierś - zmiany" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                         onChange={SetFormInputHandler} />
+                                
+                            {/* Opcjonalnie */}
+                            <LabelInput controlId='PatientBreastChanges_WHAT' label='Jakie zmiany ?' className={style.StandardInput} onInput={SetFormInputHandler} />
+
+                        </span>
+                    </section>
+
                 </div>
                 <div className={style.RightSide}>
                     <section className={style.PatientFormSection}>
@@ -97,6 +122,31 @@ const AddPatientDocumentation_NEXT = () => {
                             <span>
                                 <LabelInput controlId='BabyPeeingADay' label='Moczenie w pieluch (na dobe)' className={style.StandardInput} required onInput={SetFormInputHandler} />
                                 <LabelInput controlId='BabyExcretionADay' label='Oddawanie stolca (na dobe)' className={style.StandardInput} required onInput={SetFormInputHandler} />
+                                <SelectInput controlId='BabyColic' label="Objawy kolki" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                         onChange={SetFormInputHandler} />
+
+                                {/* Opcjonalnie */}
+                                <LabelInput controlId='BabyColicSinceWhen' label='Od kiedy ? (kolka)' className={style.StandardInput} onInput={SetFormInputHandler}/>
+
+                                <SelectInput controlId='BabyNipple' label="Smoczek uspokajaczek" className={style.StandardInput} options={["Tak", "Nie"]} 
+                                         onChange={SetFormInputHandler} />
+
+                                {/* Opcjonalnie */}
+                                <LabelInput controlId='BabyNippleSinceWhen' label='Od kiedy ? (smoczek)' className={style.StandardInput} onInput={SetFormInputHandler}/>
+                            </span>
+                    </section>
+
+                    <section className={style.PatientFormSection}>
+                            <h6>Stosowane leki/ użwyki/ antykoncepcja</h6>
+                            <hr />
+                            <span>
+                                <LabelInput controlId='PatientMedicationsUsed' label='Matka' className={style.StandardInput} required onInput={SetFormInputHandler} />
+                                <LabelInput controlId='BabyMedicationsUsed' label='Dziecko' className={style.StandardInput} required onInput={SetFormInputHandler} />
+                                <SelectInput controlId='PatientPeriodAfterDelivery' label="Miesiączka po porodzie" className={style.StandardInput} options={["Nie", "Tak"]} 
+                                         onChange={SetFormInputHandler} />
+
+                                {/* Opcjonalnie */}
+                                <LabelInput controlId='PatientPeriodAfterDelivery_WHEN' label='Kiedy' className={style.StandardInput} onInput={SetFormInputHandler}/>
                             </span>
                     </section>
                 </div>
