@@ -21,7 +21,7 @@ const AddNextDocumentationForm = createSlice({
             PatientFeedingWay: {value:'', isValid: false},
             PatientExpressingBreastMilk: {value:'', isValid: false},
             PatientExpressingBreastMilkHowManyYesterday: {value:'', isValid: false},
-            PatientBreastGrowingDuringPregnacy: {value:'', isValid: false},
+            PatientBreastGrowingDuringPregnacy: {value:'Tak', isValid: true},
             PatientBreastGrowingDuringPregnacy_DAY: {value:'', isValid: false},
             PatientMilkRush: {value:'', isValid: false},
             PatientBreastSize: {value:'', isValid: false},

@@ -4,7 +4,7 @@ import SelectInput from "../../../../../utility/SelectInput";
 import style from '../css/AddPatientDocumentation_FORMS.module.css'
 
 
-const BabyAdditionalFeeding = ({SetFormInputHandler}) => {
+const BabyAdditionalFeeding = ({SetFormInputHandler,formInputs}) => {
     return (
         <section className={style.PatientFormSection}>
             <h6>Dokarmianie w ciągu ostatnich 3 dni</h6>
@@ -46,11 +46,13 @@ const BabyAdditionalFeeding = ({SetFormInputHandler}) => {
                     </tbody>
                 </table>
                 <LabelInput controlId='PatientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} />
-                <SelectInput controlId='PatientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.StandardInput} options={["Tak", "Nie"]} 
+                <SelectInput controlId='PatientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.FullInput} options={["Nie", "Tak"]} 
                                 onChange={SetFormInputHandler} />
 
-                {/* Opcjonalnie */}
-                <LabelInput controlId='PatientExpressingBreastMilkHowManyYesterday' label='Ile wczoraj ?' className={style.StandardInput} onInput={SetFormInputHandler}/>
+                {
+                    formInputs.PatientExpressingBreastMilk.value === 'Tak' && <LabelInput controlId='PatientExpressingBreastMilkHowManyYesterday' label='Ile wczoraj ?' 
+                                                                                                        className={style.FullInput} onInput={SetFormInputHandler}/>
+                }
             </span>
         </section>
     )

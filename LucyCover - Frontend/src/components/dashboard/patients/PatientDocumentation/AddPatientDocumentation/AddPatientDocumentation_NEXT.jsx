@@ -3,11 +3,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { SetInput } from "../../../../../context/slices/AddNextDocumentationForm"
 
 import OverlayModel from "../../../../utility/OverlayModel"
-import LabelInput from "../../../../utility/LabelInput"
-import SelectInput from "../../../../utility/SelectInput"
-import TextArea from "../../../../utility/TextArea"
 
 import style from './css/AddPatientDocumentation_FORMS.module.css'
+
 import BabyFeedingSection from "./NextDocumentationSections/BabyFeedingSection"
 import BabyAdditionalFeeding from "./NextDocumentationSections/BabyAdditionalFeeding"
 import PatientBreastExaminationSection from "./NextDocumentationSections/PatientBreastExaminationSection"
@@ -18,26 +16,26 @@ import PatientRecommendationSection from "./NextDocumentationSections/PatientRec
 const AddPatientDocumentation_NEXT = () => {
 
     const dispatch = useDispatch();
+    const formInputs = useSelector(state => state.addNextDocumentationForm.formInputs)
 
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
     }
 
-    const form = useSelector(state => state.addNextDocumentationForm)
-    console.log(form)
+    console.log(formInputs)
 
     return (
         <OverlayModel title="Dodaj nową dokumentacje (domowa)">
             <form className={style.Container}>
                 <div className={style.LeftSide}>
-                    <BabyFeedingSection SetFormInputHandler={SetFormInputHandler} />
-                    <BabyAdditionalFeeding SetFormInputHandler={SetFormInputHandler} /> 
-                    <PatientBreastExaminationSection SetFormInputHandler={SetFormInputHandler} />
+                    <BabyFeedingSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
+                    <BabyAdditionalFeeding SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} /> 
+                    <PatientBreastExaminationSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
 
                 </div>
                 <div className={style.RightSide}>
-                    <BabyExcretionSection SetFormInputHandler={SetFormInputHandler} />
-                    <PatientMedicineSection SetFormInputHandler={SetFormInputHandler} />
+                    <BabyExcretionSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
+                    <PatientMedicineSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
                     <PatientRecommendationSection SetFormInputHandler={SetFormInputHandler} />
                 </div>
             </form>
