@@ -46,18 +46,20 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
                                          options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} defaultOption={formInputs.PatientBreastNipple.value} 
                                          onChange={SetFormInputHandler} />
 
-                            <LabelInput controlId='PatientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} onInput={SetFormInputHandler} />
+                            <LabelInput controlId='PatientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} required onInput={SetFormInputHandler} />
 
                             <SelectInput controlId='PatientBreastNippleChanges' label="Brodawki zmianny" className={style.FullInput} options={["Nie", "Tak"]} 
                                          onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastNippleChanges.value} />
                                 
                             {
-                                formInputs.PatientBreastNippleChanges.value == 'Tak' && <LabelInput controlId='PatientBreastNippleChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} />
+                                formInputs.PatientBreastNippleChanges.value == 'Tak' && <LabelInput controlId='PatientBreastNippleChanges_WHAT' label='Jakie zmiany ?' 
+                                                                                                    className={style.FullInput} onInput={SetFormInputHandler} />
                             }
 
-                            <LabelInput controlId='PatientMentalState' label='Stan emocjonalny matki' className={style.FullInput} onInput={SetFormInputHandler} />
+                            <LabelInput controlId='PatientMentalState' label='Stan emocjonalny matki' className={style.FullInput} required onInput={SetFormInputHandler} />
 
-                            <TextArea controlId='ResearchObservationBabyBehaviour' label="Badnie/Obserwacja/Zachowanie dziecka" className={style.FullInput} onChange={SetFormInputHandler}/>
+                            <TextArea controlId='ResearchObservationBabyBehaviour' label="Badnie/Obserwacja/Zachowanie dziecka" className={style.FullInput} 
+                                    onChange={SetFormInputHandler}/>
 
                         </span>
                     </section>

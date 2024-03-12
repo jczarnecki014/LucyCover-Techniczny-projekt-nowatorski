@@ -6,6 +6,8 @@ import OverlayModel from "../../../../utility/OverlayModel"
 
 import style from './css/AddPatientDocumentation_FORMS.module.css'
 
+import CheckFormIsValid from "../../../../../assets/Validation/CheckFormIsValid"
+
 import BabyFeedingSection from "./NextDocumentationSections/BabyFeedingSection"
 import BabyAdditionalFeeding from "./NextDocumentationSections/BabyAdditionalFeeding"
 import PatientBreastExaminationSection from "./NextDocumentationSections/PatientBreastExaminationSection"
@@ -18,6 +20,7 @@ const AddPatientDocumentation_NEXT = () => {
 
     const dispatch = useDispatch();
     const formInputs = useSelector(state => state.addNextDocumentationForm.formInputs)
+    const formIsValid = CheckFormIsValid(formInputs)
 
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
@@ -39,7 +42,7 @@ const AddPatientDocumentation_NEXT = () => {
                     <PatientMedicineSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
                     <PatientRecommendationSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
                     <section className={style.PatientFormButtonSection}>
-                        <button >Zapisz <MdKeyboardArrowRight /> </button>
+                        <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
                     </section>
                 </div>
             </form>

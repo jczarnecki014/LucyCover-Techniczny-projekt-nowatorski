@@ -127,7 +127,7 @@ span .FullInput{
     }
     .Container .LeftSide{
         padding-right: 25px;
-        border-right: 1px solid #bbbbbb;
+        border-right: 0px;
     }
     
 }

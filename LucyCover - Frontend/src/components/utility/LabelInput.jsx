@@ -6,7 +6,6 @@ import { Form } from "react-bootstrap";
 
 const LabelInput = ({
   controlId,
-  styleId,
   label,
   inputType,
   max,
@@ -84,7 +83,6 @@ const LabelInput = ({
           !isValid && {
             borderColor: "#cf2f74",
             color: "#cf2f74",
-            scale: 1.1,
           }
         }
         className={boxShadow && 'boxShadow-light'}
