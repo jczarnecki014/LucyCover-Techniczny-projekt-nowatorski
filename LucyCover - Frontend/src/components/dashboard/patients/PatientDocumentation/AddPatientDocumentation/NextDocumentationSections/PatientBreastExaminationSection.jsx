@@ -22,7 +22,7 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
                            <SelectInput controlId='PatientMilkRush' label="Nawał mleczny" className={style.StandardInput} options={["Tak", "Nie"]} 
                                          onChange={SetFormInputHandler} defaultOption={formInputs.PatientMilkRush.value} />
 
-                            <SelectInput controlId='PatientBreastSize' label="Rozmiar piersi" className={style.StandardInput} options={["Mała", "Średnia", "Duża"]} 
+                            <SelectInput controlId='PatientBreastSize' label="Rozmiar piersi" className={style.FullInput} options={["Mała", "Średnia", "Duża"]} 
                                          onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastSize.value} />
 
                             <SelectInput controlId='PatientBreastChanges' label="Pierś - zmiany" className={style.FullInput} options={["Nie", "Tak"]} 

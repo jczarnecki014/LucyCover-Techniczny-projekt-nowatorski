@@ -41,10 +41,13 @@ const TextArea = ({
     },[value,textAreaIsValid])
 
 
+    const stylex = textAreaIsValid ? {borderColor: '#888', marginBottom:'25px',width:'100%',borderRadius:'5px'} 
+                                  : {borderColor: "#cf2f74",  color: "#cf2f74",width:'100%',borderRadius:'5px' }
+
     return (
         <Form.Group className={className} controlId={controlId}>
             <Form.Label>{label}</Form.Label>
-            <motion.textarea rows={3}  style={{borderColor: '#888', marginBottom:'25px',width:'100%',borderRadius:'5px'}} onBlur={(event)=>setValue(event.target.value)} />
+            <motion.textarea rows={3} style={stylex}  onBlur={(event)=>setValue(event.target.value)} />
             <AnimatePresence>
               {!textAreaIsValid && 
                   <motion.p initial={{x:-200}} animate={{x:0, color:"#cf2f74"}} exit={{x:-200, opacity:0}}>

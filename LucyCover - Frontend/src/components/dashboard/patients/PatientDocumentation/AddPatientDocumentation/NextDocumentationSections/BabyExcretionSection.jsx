@@ -12,15 +12,15 @@ const BabyExcretionSection = ({SetFormInputHandler,formInputs}) => {
             <span>
                 <LabelInput controlId='BabyPeeingADay' label='Moczenie w pieluch (na dobe)' className={style.StandardInput} onInput={SetFormInputHandler} />
                 <LabelInput controlId='BabyExcretionADay' label='Oddawanie stolca (na dobe)' className={style.StandardInput} onInput={SetFormInputHandler} />
-                <SelectInput controlId='BabyColic' label="Objawy kolki" className={style.StandardInput} options={["Nie", "Tak"]} 
+                <SelectInput controlId='BabyColic' label="Objawy kolki" className={style.FullInput} options={["Nie", "Tak"]} 
                             onChange={SetFormInputHandler} defaultOption={formInputs.BabyColic.value} />
 
                 {
-                    formInputs.BabyColic.value === 'Tak' && <LabelInput controlId='BabyColicSinceWhen' label='Od kiedy ? (kolka)' className={style.StandardInput} 
+                    formInputs.BabyColic.value === 'Tak' && <LabelInput controlId='BabyColicSinceWhen' label='Od kiedy ? (kolka)' className={style.FullInput} 
                                                                         onInput={SetFormInputHandler}/>
                 }
 
-                <SelectInput controlId='BabyNipple' label="Smoczek uspokajaczek" className={style.StandardInput} options={["Nie", "Tak"]} 
+                <SelectInput controlId='BabyNipple' label="Smoczek uspokajaczek" className={style.FullInput} options={["Nie", "Tak"]} 
                             onChange={SetFormInputHandler} defaultOption={formInputs.BabyNipple.value} />
 
                 {

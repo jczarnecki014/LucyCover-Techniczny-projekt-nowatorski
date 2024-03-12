@@ -18,15 +18,15 @@ const BabyFeedingSection = ({SetFormInputHandler,formInputs}) => {
 
                 <LabelInput controlId='PatientFeedingHowMuchTime' label='Jak długo trwa jedno karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} />
 
-                <SelectInput controlId='PatientBreastFeedingWithHood' label="Czy również karmienie z Kapturkiem" className={style.StandardInput} options={["Nie", "Tak"]} 
+                <SelectInput controlId='PatientBreastFeedingWithHood' label="Czy również karmienie z Kapturkiem" className={style.FullInput} options={["Nie", "Tak"]} 
                                 onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastFeedingWithHood.value} />
 
                 {
                     formInputs.PatientBreastFeedingWithHood.value === 'Tak' &&  <LabelInput controlId='PatientBreastFeedingWithHood_HowLong' label='Jak długo trwa jedno karmienie' 
-                                                                                          className={style.StandardInput} onInput={SetFormInputHandler} />
+                                                                                          className={style.FullInput} onInput={SetFormInputHandler} />
                 }
 
-                <SelectInput controlId='PatientBreastFeedingAsNeeded' label="Karmienie według potrzeb" className={style.StandardInput} options={["Nie", "Tak"]} 
+                <SelectInput controlId='PatientBreastFeedingAsNeeded' label="Karmienie według potrzeb" className={style.FullInput} options={["Nie", "Tak"]} 
                                 onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastFeedingAsNeeded.value} />
                 
                 {
