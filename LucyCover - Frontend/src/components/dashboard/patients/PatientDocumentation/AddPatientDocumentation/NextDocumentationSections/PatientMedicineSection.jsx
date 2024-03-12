@@ -10,8 +10,8 @@ const PatientMedicineSection = ({SetFormInputHandler,formInputs}) => {
             <h6>Stosowane leki/ użwyki/ antykoncepcja</h6>
             <hr />
             <span>
-                <LabelInput controlId='PatientMedicationsUsed' label='Matka' className={style.StandardInput} required onInput={SetFormInputHandler} />
-                <LabelInput controlId='BabyMedicationsUsed' label='Dziecko' className={style.StandardInput} required onInput={SetFormInputHandler} />
+                <LabelInput controlId='PatientMedicationsUsed' label='Matka' className={style.StandardInput} onInput={SetFormInputHandler} />
+                <LabelInput controlId='BabyMedicationsUsed' label='Dziecko' className={style.StandardInput} onInput={SetFormInputHandler} />
                 <SelectInput controlId='PatientPeriodAfterDelivery' label="Miesiączka po porodzie" className={style.FullInput} options={["Nie", "Tak"]} 
                             onChange={SetFormInputHandler} defaultOption={formInputs.PatientPeriodAfterDelivery.value} />
 
