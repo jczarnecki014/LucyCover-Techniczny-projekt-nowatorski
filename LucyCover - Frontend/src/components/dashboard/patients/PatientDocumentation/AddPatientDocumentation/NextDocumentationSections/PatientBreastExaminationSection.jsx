@@ -12,7 +12,7 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
                         <hr />
                         <span>
                            <SelectInput controlId='PatientBreastGrowingDuringPregnacy' label="Wzrost piersi w ciąży" className={style.StandardInput} options={["Tak", "Nie"]} 
-                                         onChange={SetFormInputHandler} />
+                                         onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastGrowingDuringPregnacy.value} />
                             
                             {
                                 formInputs.PatientBreastGrowingDuringPregnacy.value === 'Tak' && <LabelInput controlId='PatientBreastGrowingDuringPregnacy_DAY' label='W której dobie' 
@@ -20,13 +20,13 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
                             } 
                            
                            <SelectInput controlId='PatientMilkRush' label="Nawał mleczny" className={style.StandardInput} options={["Tak", "Nie"]} 
-                                         onChange={SetFormInputHandler} />
+                                         onChange={SetFormInputHandler} defaultOption={formInputs.PatientMilkRush.value} />
 
                             <SelectInput controlId='PatientBreastSize' label="Rozmiar piersi" className={style.StandardInput} options={["Mała", "Średnia", "Duża"]} 
-                                         onChange={SetFormInputHandler} />
+                                         onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastSize.value} />
 
                             <SelectInput controlId='PatientBreastChanges' label="Pierś - zmiany" className={style.FullInput} options={["Nie", "Tak"]} 
-                                         onChange={SetFormInputHandler} />
+                                         onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastChanges.value} />
                                 
                             {
                                 formInputs.PatientBreastChanges.value === 'Tak' && <LabelInput controlId='PatientBreastChanges_WHAT' label='Jakie zmiany ?' 
@@ -43,12 +43,13 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
                             </span>
 
                             <SelectInput controlId='PatientBreastNipple' label="Brodawka - aby wybrac wiele opcji przytrzymaj CTRL" className={style.FullInput} multiple
-                                         options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} defaultOption={['Prawidłowa']} onChange={SetFormInputHandler} />
+                                         options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} defaultOption={formInputs.PatientBreastNipple.value} 
+                                         onChange={SetFormInputHandler} />
 
                             <LabelInput controlId='PatientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} onInput={SetFormInputHandler} />
 
                             <SelectInput controlId='PatientBreastNippleChanges' label="Brodawki zmianny" className={style.FullInput} options={["Nie", "Tak"]} 
-                                         onChange={SetFormInputHandler} />
+                                         onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastNippleChanges.value} />
                                 
                             {
                                 formInputs.PatientBreastNippleChanges.value == 'Tak' && <LabelInput controlId='PatientBreastNippleChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} />

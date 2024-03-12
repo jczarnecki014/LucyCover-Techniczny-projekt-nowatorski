@@ -47,7 +47,7 @@ const BabyAdditionalFeeding = ({SetFormInputHandler,formInputs}) => {
                 </table>
                 <LabelInput controlId='PatientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} />
                 <SelectInput controlId='PatientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.FullInput} options={["Nie", "Tak"]} 
-                                onChange={SetFormInputHandler} />
+                                onChange={SetFormInputHandler} defaultOption={formInputs.PatientExpressingBreastMilk.value} />
 
                 {
                     formInputs.PatientExpressingBreastMilk.value === 'Tak' && <LabelInput controlId='PatientExpressingBreastMilkHowManyYesterday' label='Ile wczoraj ?' 

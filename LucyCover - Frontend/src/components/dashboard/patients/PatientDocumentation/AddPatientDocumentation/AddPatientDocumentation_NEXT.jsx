@@ -12,6 +12,7 @@ import PatientBreastExaminationSection from "./NextDocumentationSections/Patient
 import BabyExcretionSection from "./NextDocumentationSections/BabyExcretionSection"
 import PatientMedicineSection from "./NextDocumentationSections/PatientMedicineSection"
 import PatientRecommendationSection from "./NextDocumentationSections/PatientRecommendationSection"
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const AddPatientDocumentation_NEXT = () => {
 
@@ -36,7 +37,10 @@ const AddPatientDocumentation_NEXT = () => {
                 <div className={style.RightSide}>
                     <BabyExcretionSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
                     <PatientMedicineSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
-                    <PatientRecommendationSection SetFormInputHandler={SetFormInputHandler} />
+                    <PatientRecommendationSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
+                    <section className={style.PatientFormButtonSection}>
+                        <button >Zapisz <MdKeyboardArrowRight /> </button>
+                    </section>
                 </div>
             </form>
         </OverlayModel>

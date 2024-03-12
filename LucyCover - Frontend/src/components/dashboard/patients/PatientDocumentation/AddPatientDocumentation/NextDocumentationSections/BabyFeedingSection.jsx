@@ -11,12 +11,16 @@ const BabyFeedingSection = ({SetFormInputHandler,formInputs}) => {
             <hr />
             <span>
                 <LabelInput controlId='PatientFeedingCountPerDay' label='Liczba karmień na dobe' className={style.FullInput} required onInput={SetFormInputHandler} />
+
                 <LabelInput controlId='PatientFeedingBreastNumber' label='Z ilu piersi' className={style.FullInput} required onInput={SetFormInputHandler} />
+
                 <SelectInput controlId='PatientFeedingInNight' label="W tym karmienia nocne" className={style.StandardInput} options={["Tak", "Nie"]} 
-                                onChange={SetFormInputHandler} />
+                                onChange={SetFormInputHandler} defaultOption={formInputs.PatientFeedingInNight.value} />
+
                 <LabelInput controlId='PatientFeedingHowMuchTime' label='Jak długo trwa jedno karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} />
+                
                 <SelectInput controlId='PatientBreastFeedingWithHood' label="Karmienie z Kapturkiem" className={style.StandardInput} options={["Nie", "Tak"]} 
-                                onChange={SetFormInputHandler} />
+                                onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastFeedingWithHood.value} />
 
                 {
                     formInputs.PatientBreastFeedingWithHood.value === 'Tak' &&  <LabelInput controlId='PatientBreastFeedingWithHood_HowLong' label='Jak długo trwa jedno karmienie' 
@@ -24,7 +28,7 @@ const BabyFeedingSection = ({SetFormInputHandler,formInputs}) => {
                 }
 
                 <SelectInput controlId='PatientBreastFeedingAsNeeded' label="Karmienie według potrzeb" className={style.StandardInput} options={["Nie", "Tak"]} 
-                                onChange={SetFormInputHandler} />
+                                onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastFeedingAsNeeded.value} />
                 
                 {
                     formInputs.PatientBreastFeedingAsNeeded.value === 'Tak' && <LabelInput controlId='PatientBreastFeedingAsNeeded_How' label='Jak wygląda to karmienie' 

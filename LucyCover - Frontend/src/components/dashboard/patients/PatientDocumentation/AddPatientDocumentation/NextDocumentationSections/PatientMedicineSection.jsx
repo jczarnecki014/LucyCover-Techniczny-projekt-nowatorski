@@ -13,7 +13,7 @@ const PatientMedicineSection = ({SetFormInputHandler,formInputs}) => {
                 <LabelInput controlId='PatientMedicationsUsed' label='Matka' className={style.StandardInput} required onInput={SetFormInputHandler} />
                 <LabelInput controlId='BabyMedicationsUsed' label='Dziecko' className={style.StandardInput} required onInput={SetFormInputHandler} />
                 <SelectInput controlId='PatientPeriodAfterDelivery' label="Miesiączka po porodzie" className={style.FullInput} options={["Nie", "Tak"]} 
-                            onChange={SetFormInputHandler} />
+                            onChange={SetFormInputHandler} defaultOption={formInputs.PatientPeriodAfterDelivery.value} />
 
                 {
                     formInputs.PatientPeriodAfterDelivery.value === 'Tak' && <LabelInput controlId='PatientPeriodAfterDelivery_WHEN' label='Kiedy' 

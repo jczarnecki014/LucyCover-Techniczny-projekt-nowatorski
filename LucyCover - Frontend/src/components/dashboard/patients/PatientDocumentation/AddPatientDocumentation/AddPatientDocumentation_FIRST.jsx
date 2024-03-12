@@ -4,8 +4,6 @@ import { SetInput } from "../../../../../context/slices/AddFirstDocumentationFor
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import OverlayModel from "../../../../utility/OverlayModel"
-import LabelInput from "../../../../utility/LabelInput"
-import SelectInput from "../../../../utility/SelectInput"
 
 import style from './css/AddPatientDocumentation_FORMS.module.css'
 import TextArea from "../../../../utility/TextArea"
@@ -37,7 +35,7 @@ const AddPatientDocumentation_FIRST = () => {
                     <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler}/>
                     <PatientFamilyInterviewSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
                     <section className={style.PatientFormButtonSection}>
-                            <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
+                        <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
                     </section>
                 </div>
             </form>
