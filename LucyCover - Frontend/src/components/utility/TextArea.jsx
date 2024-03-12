@@ -1,26 +1,57 @@
 import { Form } from "react-bootstrap"
 
+import { AnimatePresence,motion } from "framer-motion"
+
+import { useState,useEffect } from "react"
+
 const TextArea = ({
     label,
     className,
     controlId,
-    onChange
+    onChange,
+    required
 }) => {
-    const ChangeHandler = (event) => {
+    const [value,setValue] = useState('')
+    const [textAreaIsValid,setTextAreaIsValid] =useState(true)
+    const [firstDisplay,setFirstDisplay] = useState(true)
+
+    useEffect(()=>{
+
+        let isValid = true;
+
+        if(firstDisplay){
+          setFirstDisplay(false)
+          return;
+        }
+
+        if(required && value.trim().length === 0) {
+          isValid=false;
+        }
+
         const inputObject = {
           inputId: controlId,
           inputObject: {
-            value: event.target.value,
-            isValid:true
+            value: value,
+            isValid
           }
         }
-         onChange(inputObject)
-      }
+        setTextAreaIsValid(isValid)
+        onChange(inputObject)
+
+    },[value,textAreaIsValid])
+
 
     return (
         <Form.Group className={className} controlId={controlId}>
             <Form.Label>{label}</Form.Label>
-            <Form.Control as="textarea" rows={3}  style={{borderColor: '#888', marginBottom:'25px'}} onBlur={ChangeHandler} />
+            <motion.textarea rows={3}  style={{borderColor: '#888', marginBottom:'25px',width:'100%',borderRadius:'5px'}} onBlur={(event)=>setValue(event.target.value)} />
+            <AnimatePresence>
+              {!textAreaIsValid && 
+                  <motion.p initial={{x:-200}} animate={{x:0, color:"#cf2f74"}} exit={{x:-200, opacity:0}}>
+                      To pole zostało błędnie wypełnione
+                  </motion.p>
+              }
+            </AnimatePresence>
         </Form.Group>
     )
 }

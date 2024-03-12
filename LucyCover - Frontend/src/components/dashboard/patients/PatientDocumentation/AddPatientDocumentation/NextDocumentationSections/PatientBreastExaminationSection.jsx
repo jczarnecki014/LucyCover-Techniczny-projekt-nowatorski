@@ -59,7 +59,7 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
                             <LabelInput controlId='PatientMentalState' label='Stan emocjonalny matki' className={style.FullInput} required onInput={SetFormInputHandler} />
 
                             <TextArea controlId='ResearchObservationBabyBehaviour' label="Badnie/Obserwacja/Zachowanie dziecka" className={style.FullInput} 
-                                    onChange={SetFormInputHandler}/>
+                                    onChange={SetFormInputHandler} required/>
 
                         </span>
                     </section>
