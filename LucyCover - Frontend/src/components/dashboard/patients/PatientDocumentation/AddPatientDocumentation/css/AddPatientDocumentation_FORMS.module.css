@@ -52,7 +52,7 @@
 .PatientFormSection .BreastChangesImage{
     width: 100%;
     min-height: 300px;
-    background: url(../../../../../../assets/images/breast.PNG);
+    /* background: url(../../../../../../assets/images/breast.PNG); */
     background-size:cover;
     background-repeat: no-repeat;
 }

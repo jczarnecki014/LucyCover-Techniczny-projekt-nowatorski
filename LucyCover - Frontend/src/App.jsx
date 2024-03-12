@@ -8,7 +8,6 @@ import PatientsPage,{loader as PatientsPageLoader} from './pages/dashboard/Patie
 import PatientMenuPage, {loader as PatientMenuLoader} from './pages/dashboard/PatientMenuPage'
 import PatientDocumentationPage,{loader as PatientDocumentationLoader} from './pages/dashboard/PatientDocumentationPage'
 import PatientRecommendationpage,{loader as PatientRecommendationLoader} from './pages/dashboard/PatientRecommendationpage'
-import TestComponent from './pages/dashboard/TestComponent'
 
 import { Fragment } from 'react'
 
@@ -63,10 +62,6 @@ const router = createBrowserRouter([
           },
         ]
       },
-      {
-        path:'test',
-        element: <TestComponent />
-      }
     ]
   }
 ])

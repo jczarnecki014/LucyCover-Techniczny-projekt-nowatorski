@@ -1,6 +1,9 @@
+import DrawingComponent from "../../../../../utility/DrawingComponent";
 import LabelInput from "../../../../../utility/LabelInput";
 import SelectInput from "../../../../../utility/SelectInput";
 import TextArea from "../../../../../utility/TextArea";
+
+import image from '../../../../../../assets/images/breast.png'
 
 import style from '../css/AddPatientDocumentation_FORMS.module.css'
 
@@ -36,10 +39,11 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
 
 
                             <span className={style.BreastChangesImage}>
-                                <span className={style.Overlay}>
+                                {/* <span className={style.Overlay}>
                                     <h4>Zaznacz zmiany na rysunku</h4>
                                     <button>Edytuj rysunek</button>
-                                </span>
+                                </span> */}
+                                <DrawingComponent image={image} />
                             </span>
 
                             <SelectInput controlId='PatientBreastNipple' label="Brodawka - aby wybrac wiele opcji przytrzymaj CTRL" className={style.FullInput} multiple
