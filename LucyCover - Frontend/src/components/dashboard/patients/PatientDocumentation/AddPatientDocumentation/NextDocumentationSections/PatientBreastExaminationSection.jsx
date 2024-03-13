@@ -1,4 +1,4 @@
-import DrawingComponent from "../../../../../utility/DrawingComponent";
+import Canvas from "../../../../../utility/Canvas";
 import LabelInput from "../../../../../utility/LabelInput";
 import SelectInput from "../../../../../utility/SelectInput";
 import TextArea from "../../../../../utility/TextArea";
@@ -43,7 +43,7 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {
                                     <h4>Zaznacz zmiany na rysunku</h4>
                                     <button>Edytuj rysunek</button>
                                 </span> */}
-                                <DrawingComponent image={image} />
+                                <Canvas className={style.FullInput}/>
                             </span>
 
                             <SelectInput controlId='PatientBreastNipple' label="Brodawka - aby wybrac wiele opcji przytrzymaj CTRL" className={style.FullInput} multiple
