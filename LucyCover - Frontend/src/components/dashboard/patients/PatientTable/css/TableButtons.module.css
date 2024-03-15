@@ -7,6 +7,11 @@
     padding: 5px 15px 5px 15px;
 }
 
+.ButtonSection button a{
+    color:#fff;
+    text-decoration: none;
+}
+
 #Show{
     background-color: #17AA40;
 }

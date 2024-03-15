@@ -1,0 +1,25 @@
+.Container{
+    display: grid;
+    grid-template-rows: 0.1fr 1.2fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        'TopBar' 
+        'DocumentContent';
+    background-color: red;
+    width: 100%;
+    height: 100%;
+}
+.TopBar{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: #473947;
+    color:#fff;
+    padding: 0 20px 0px 20px;
+    grid-area: 'TopBar';
+}
+
+.DocumentContent{
+    background-color: green;
+    grid-area: 'DocumentContent';
+}

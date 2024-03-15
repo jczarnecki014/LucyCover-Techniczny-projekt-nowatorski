@@ -25,7 +25,7 @@ const PatientDocumentationList = () => {
                             <td>{document.id}</td>
                             <td>{document.date}</td>
                             <td>{document.baby}</td>
-                            <TableButtons />
+                            <TableButtons href={document.id} />
                         </tr>
                     )
                 })}

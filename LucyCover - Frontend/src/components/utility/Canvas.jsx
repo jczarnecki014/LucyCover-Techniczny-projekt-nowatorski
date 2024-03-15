@@ -10,8 +10,9 @@ const Canvas = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const parent = canvas.parentElement;
-        canvas.width = 700;
+        canvas.width = 800;
         canvas.height = 300;
+        canvas.backgroundColor = 'red'
 
         const context = canvas.getContext("2d");
         context.lineCap = "round";
