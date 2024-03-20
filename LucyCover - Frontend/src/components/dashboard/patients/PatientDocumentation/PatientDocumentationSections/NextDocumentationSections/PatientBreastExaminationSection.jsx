@@ -5,7 +5,7 @@ import TextArea from "../../../../../utility/TextArea";
 
 import image from '../../../../../../assets/images/breast.png'
 
-import style from '../css/AddPatientDocumentation_FORMS.module.css'
+import style from '../css/PatientDocumentationSections.module.css'
 
 
 const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs}) => {

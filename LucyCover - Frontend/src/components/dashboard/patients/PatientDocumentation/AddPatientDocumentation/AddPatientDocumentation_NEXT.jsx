@@ -8,12 +8,12 @@ import style from './css/AddPatientDocumentation_FORMS.module.css'
 
 import CheckFormIsValid from "../../../../../assets/Validation/CheckFormIsValid"
 
-import BabyFeedingSection from "./NextDocumentationSections/BabyFeedingSection"
-import BabyAdditionalFeeding from "./NextDocumentationSections/BabyAdditionalFeeding"
-import PatientBreastExaminationSection from "./NextDocumentationSections/PatientBreastExaminationSection"
-import BabyExcretionSection from "./NextDocumentationSections/BabyExcretionSection"
-import PatientMedicineSection from "./NextDocumentationSections/PatientMedicineSection"
-import PatientRecommendationSection from "./NextDocumentationSections/PatientRecommendationSection"
+import BabyFeedingSection from "../PatientDocumentationSections/NextDocumentationSections/BabyFeedingSection"
+import BabyAdditionalFeeding from "../PatientDocumentationSections/NextDocumentationSections/BabyAdditionalFeeding"
+import PatientBreastExaminationSection from "../PatientDocumentationSections/NextDocumentationSections/PatientBreastExaminationSection"
+import BabyExcretionSection from "../PatientDocumentationSections/NextDocumentationSections/BabyExcretionSection"
+import PatientMedicineSection from "../PatientDocumentationSections/NextDocumentationSections/PatientMedicineSection"
+import PatientRecommendationSection from "../PatientDocumentationSections/NextDocumentationSections/PatientRecommendationSection"
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 const AddPatientDocumentation_NEXT = () => {

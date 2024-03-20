@@ -6,12 +6,19 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import OverlayModel from "../../../../utility/OverlayModel"
 
 import style from './css/AddPatientDocumentation_FORMS.module.css'
-import TextArea from "../../../../utility/TextArea"
 import CheckFormIsValid from "../../../../../assets/Validation/CheckFormIsValid";
 
-import PatientDetailsSection from "./FirstDocumentationSections/PatientDetailsSection";
-import BabyDetailsSection from "./FirstDocumentationSections/BabyDetailsSection";
-import PatientFamilyInterviewSection from "./FirstDocumentationSections/PatientFamilyInterviewSection";
+import PatientDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/PatientDetailsSection";
+import BabyDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/BabyDetailsSection";
+import PatientFamilyInterviewSection from "../PatientDocumentationSections/FirstDocumentationSections/PatientFamilyInterviewSection";
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                    UWAGA                                                //
+//          Inputy z FIRST różnią się troche od NEXT - DEFAULT W SELECT NIE SĄ SILNIE POWIĄZANE Z CONTEXT //
+//                                                                                                       //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const AddPatientDocumentation_FIRST = () => {
 
@@ -32,7 +39,6 @@ const AddPatientDocumentation_FIRST = () => {
                     <BabyDetailsSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
                 </div>
                 <div className={style.RightSide}>
-                    <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler}/>
                     <PatientFamilyInterviewSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
                     <section className={style.PatientFormButtonSection}>
                         <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>

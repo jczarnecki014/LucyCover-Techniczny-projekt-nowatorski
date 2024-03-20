@@ -1,7 +1,7 @@
 import LabelInput from "../../../../../utility/LabelInput";
 import SelectInput from "../../../../../utility/SelectInput";
 
-import style from '../css/AddPatientDocumentation_FORMS.module.css'
+import style from '../css/PatientDocumentationSections.module.css'
 
 const BabyFeedingSection = ({SetFormInputHandler,formInputs}) => {
     return (

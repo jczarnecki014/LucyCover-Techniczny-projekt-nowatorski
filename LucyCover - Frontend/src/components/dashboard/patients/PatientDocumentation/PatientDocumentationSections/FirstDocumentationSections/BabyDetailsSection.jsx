@@ -1,4 +1,4 @@
-import style from '../css/AddPatientDocumentation_FORMS.module.css'
+import style from '../css/PatientDocumentationSections.module.css'
 
 import LabelInput from '../../../../../utility/LabelInput'
 import SelectInput from '../../../../../utility/SelectInput'

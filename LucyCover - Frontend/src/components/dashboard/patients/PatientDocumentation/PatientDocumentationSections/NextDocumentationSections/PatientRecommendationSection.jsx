@@ -2,7 +2,7 @@ import LabelInput from "../../../../../utility/LabelInput";
 import SelectInput from "../../../../../utility/SelectInput";
 import TextArea from "../../../../../utility/TextArea";
 
-import style from '../css/AddPatientDocumentation_FORMS.module.css'
+import style from '../css/PatientDocumentationSections.module.css'
 
 
 const PatientRecommendationSection = ({SetFormInputHandler,formInputs}) => {

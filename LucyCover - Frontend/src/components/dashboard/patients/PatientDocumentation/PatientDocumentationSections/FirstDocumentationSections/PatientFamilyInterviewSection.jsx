@@ -1,11 +1,16 @@
-import style from '../css/AddPatientDocumentation_FORMS.module.css'
+import style from '../css/PatientDocumentationSections.module.css'
 
 import LabelInput from '../../../../../utility/LabelInput'
 import SelectInput from '../../../../../utility/SelectInput'
 
+import TextArea from '../../../../../utility/TextArea'
+
 const PatientFamilyInterviewSection = ({SetFormInputHandler,formInputs}) => {
     return (
         <section className={style.PatientFormSection}>
+
+            <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler}/>
+
             <h6>Wywiad rodzinny</h6>
             <hr />
             <span>

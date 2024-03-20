@@ -5,21 +5,42 @@
     grid-template-areas: 
         'TopBar' 
         'DocumentContent';
-    background-color: red;
     width: 100%;
     height: 100%;
 }
 .TopBar{
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
     background-color: #473947;
     color:#fff;
-    padding: 0 20px 0px 20px;
+    padding: 0 25px 0px 25px;
     grid-area: 'TopBar';
 }
 
+.TopBar .ButtonSection{
+    display: flex;
+    gap: 20px;
+}
+.TopBar .ButtonSection button{
+    width: 100px;
+    padding: 5px 15px 5px 15px;
+}
+
 .DocumentContent{
-    background-color: green;
+    display: grid;
+    overflow-y: auto;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-area: 'DocumentContent';
+    padding: 25px 25px 0px 25px;
+}
+
+.DocumentContent .LeftSide{
+    padding-right: 25px;
+    border-right: 1px solid #bbbbbb;
+}
+
+.DocumentContent .RightSide{
+    padding-left: 25px;
 }

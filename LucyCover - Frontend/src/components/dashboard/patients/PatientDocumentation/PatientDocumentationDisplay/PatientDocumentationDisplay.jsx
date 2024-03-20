@@ -1,6 +1,16 @@
 import style from './css/PatientDocumentationDisplay.module.css'
+import { useSelector } from 'react-redux'
+
+import PatientDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/PatientDetailsSection";
+import BabyDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/BabyDetailsSection";
+import PatientFamilyInterviewSection from "../PatientDocumentationSections/FirstDocumentationSections/PatientFamilyInterviewSection";
 
 const PatientDocumentationDisplay = () => {
+
+    const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
+
+    console.log(formInputs)
+
     return (
         <div className={style.Container}>
             <div className={style.TopBar}>
@@ -12,9 +22,15 @@ const PatientDocumentationDisplay = () => {
                     <button id={style.DeleteButton}>Usuń</button>
                 </div>
             </div>
-            <div className={style.DocumentContent}>
-
-            </div>
+            <form className={style.DocumentContent}>
+                <div className={style.LeftSide}>
+                    <PatientDetailsSection formInputs={formInputs} />
+                    <BabyDetailsSection formInputs={formInputs} />
+                </div>
+                <div className={style.RightSide}>
+                    <PatientFamilyInterviewSection formInputs={formInputs} />
+                </div>
+            </form>
         </div>
     )
 }
