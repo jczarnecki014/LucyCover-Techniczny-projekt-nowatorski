@@ -46,6 +46,7 @@ const router = createBrowserRouter([
                       },
                       {
                         path: ':documentationId',
+                        loader: PatientDocumentationDisplayLoader,
                         element: <PatientDocumentationDisplayPage />
                       }
                     ]

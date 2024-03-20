@@ -9,7 +9,8 @@ const TextArea = ({
     className,
     controlId,
     onChange,
-    required
+    required,
+    readonly,
 }) => {
     const [value,setValue] = useState('')
     const [textAreaIsValid,setTextAreaIsValid] =useState(true)
@@ -47,7 +48,7 @@ const TextArea = ({
     return (
         <Form.Group className={className} controlId={controlId}>
             <Form.Label>{label}</Form.Label>
-            <motion.textarea rows={3} style={stylex}  onBlur={(event)=>setValue(event.target.value)} />
+            <motion.textarea rows={3} style={stylex}  onBlur={(event)=>setValue(event.target.value)} disabled={readonly} />
             <AnimatePresence>
               {!textAreaIsValid && 
                   <motion.p initial={{x:-200}} animate={{x:0, color:"#cf2f74"}} exit={{x:-200, opacity:0}}>

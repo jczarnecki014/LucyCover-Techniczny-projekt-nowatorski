@@ -1,4 +1,4 @@
-import { color } from 'framer-motion';
+
 import Form from 'react-bootstrap/Form';
 
 function SelectInput({
@@ -9,6 +9,7 @@ function SelectInput({
     controlId,
     onChange,
     multiple,
+    readonly
 }) {
 
     const ChangeHandler = (event) => {
@@ -38,8 +39,7 @@ function SelectInput({
   return (
     <Form.Group  className={className}>
       <Form.Label>{label}</Form.Label>
-        <Form.Select size='lg' style={{border: '1px solid #888',fontSize: '17px'}} onChange={multiple ? MultipleChangeHandler : ChangeHandler} 
-                     defaultValue={defaultOption ? defaultOption : options[0]} multiple={multiple && true}>
+        <Form.Select size='lg' style={{border: '1px solid #888',fontSize: '17px'}} onChange={multiple ? MultipleChangeHandler : ChangeHandler} defaultValue={defaultOption ? defaultOption : options[0]} multiple={multiple && true} disabled={readonly}>
 
           {options.map((option,index) => (
             <option  key={index} value={option}>{option}</option>

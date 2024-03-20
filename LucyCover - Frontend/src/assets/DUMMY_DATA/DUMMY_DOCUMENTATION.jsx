@@ -3,8 +3,9 @@ export const DUMMY_DOCUMENTATION = [
         id: 'bb9e7x700-2758-4b74-9678-8e61b1862b9a',
         first:true,
         patientId: 'p1',
-        baby: 'Alicja KretXXX',
-        date: '07-10-2024'
+        baby: 'Alicja KretXXX',//id
+        date: '07-10-2024',
+        documentId: '8ddd9110-924f-496c-b77b-c5f45ce82231'
     },
     {
         id: 'a53e7aa9d-4ff6-4f2c-90ba-b28658e8ee98',

@@ -1,5 +1,6 @@
 import style from './css/PatientDocumentationDisplay.module.css'
 import { useSelector } from 'react-redux'
+import { useLoaderData } from 'react-router-dom';
 
 import PatientDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/PatientDetailsSection";
 import BabyDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/BabyDetailsSection";
@@ -7,9 +8,7 @@ import PatientFamilyInterviewSection from "../PatientDocumentationSections/First
 
 const PatientDocumentationDisplay = () => {
 
-    const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
-
-    console.log(formInputs)
+    const formInputs = useLoaderData()
 
     return (
         <div className={style.Container}>
@@ -24,11 +23,11 @@ const PatientDocumentationDisplay = () => {
             </div>
             <form className={style.DocumentContent}>
                 <div className={style.LeftSide}>
-                    <PatientDetailsSection formInputs={formInputs} />
-                    <BabyDetailsSection formInputs={formInputs} />
+                    <PatientDetailsSection formInputs={formInputs} displayMode/>
+                    <BabyDetailsSection formInputs={formInputs} displayMode />
                 </div>
                 <div className={style.RightSide}>
-                    <PatientFamilyInterviewSection formInputs={formInputs} />
+                    <PatientFamilyInterviewSection formInputs={formInputs} displayMode/>
                 </div>
             </form>
         </div>

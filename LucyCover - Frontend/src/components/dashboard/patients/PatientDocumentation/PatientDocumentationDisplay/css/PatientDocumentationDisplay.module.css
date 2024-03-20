@@ -27,6 +27,14 @@
     padding: 5px 15px 5px 15px;
 }
 
+.TopBar .ButtonSection button#EditButton{
+    background-color: #FFB800;
+}
+
+.TopBar .ButtonSection button#DeleteButton{
+    background-color: #AA1717;
+}
+
 .DocumentContent{
     display: grid;
     overflow-y: auto;
