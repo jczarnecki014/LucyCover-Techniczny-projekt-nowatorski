@@ -9,7 +9,7 @@ import PatientFamilyInterviewSection from "../PatientDocumentationSections/First
 const PatientDocumentationDisplay = () => {
 
     const formInputs = useLoaderData()
-
+    console.log(formInputs)
     return (
         <div className={style.Container}>
             <div className={style.TopBar}>

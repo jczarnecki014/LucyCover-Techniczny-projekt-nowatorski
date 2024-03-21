@@ -18,11 +18,11 @@ const PatientFamilyInterviewSection = ({SetFormInputHandler,formInputs,displayMo
                 <SelectInput controlId="motherBreastfeedBefore" label="Karmienie poprzednich dzieci piersią" className={style.FullInput} options={['Pierwsze dziecko',"Tak", "Nie"]} onChange={SetFormInputHandler} readonly={isReadonly} />
                 
                 {
-                    formInputs.motherBreastfeedBefore.value === 'Tak' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Jak długo karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} />
+                    formInputs.motherBreastfeedBefore === 'Tak' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Jak długo karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} />
                 }
 
                 {
-                    formInputs.motherBreastfeedBefore.value === 'Nie' && <LabelInput controlId='motherBreastfeedBefore_Why' label='Dlaczego nie karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} />
+                    formInputs.motherBreastfeedBefore === 'Nie' && <LabelInput controlId='motherBreastfeedBefore_Why' label='Dlaczego nie karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} />
                 }
             </span>
         </section>
