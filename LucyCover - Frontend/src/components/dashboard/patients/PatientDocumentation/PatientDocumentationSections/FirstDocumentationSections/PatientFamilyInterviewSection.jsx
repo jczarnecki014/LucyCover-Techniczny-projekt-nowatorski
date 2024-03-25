@@ -10,19 +10,19 @@ const PatientFamilyInterviewSection = ({SetFormInputHandler,formInputs,displayMo
     return (
         <section className={style.PatientFormSection}>
 
-            <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler} readonly={isReadonly} />
+            <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler} readonly={isReadonly} defaultValue={formInputs.documentationReason} />
 
             <h6>Wywiad rodzinny</h6>
             <hr />
             <span>
-                <SelectInput controlId="motherBreastfeedBefore" label="Karmienie poprzednich dzieci piersią" className={style.FullInput} options={['Pierwsze dziecko',"Tak", "Nie"]} onChange={SetFormInputHandler} readonly={isReadonly} />
+                <SelectInput controlId="motherBreastfeedBefore" label="Karmienie poprzednich dzieci piersią" className={style.FullInput} options={['Pierwsze dziecko',"Tak", "Nie"]} onChange={SetFormInputHandler} readonly={isReadonly} defaultOption={formInputs.motherBreastfeedBefore} />
                 
                 {
-                    formInputs.motherBreastfeedBefore === 'Tak' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Jak długo karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} />
+                    formInputs.motherBreastfeedBefore === 'Tak' && <LabelInput controlId='motherBreastfeedBefore_HowLong' label='Jak długo karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.motherBreastfeedBefore_HowLong} />
                 }
 
                 {
-                    formInputs.motherBreastfeedBefore === 'Nie' && <LabelInput controlId='motherBreastfeedBefore_Why' label='Dlaczego nie karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} />
+                    formInputs.motherBreastfeedBefore === 'Nie' && <LabelInput controlId='motherBreastfeedBefore_Why' label='Dlaczego nie karmiła ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.motherBreastfeedBefore_Why} />
                 }
             </span>
         </section>

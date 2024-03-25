@@ -13,7 +13,7 @@ const AddNextDocumentationForm = createSlice({
             PatientBreastFeedingAsNeeded: {value:'Nie', isValid: true},
             PatientBreastFeedingAsNeeded_How: {value:'', isValid: true},
                 PatientFeedingCountPerDay_DAY1: {value:'', isValid: false},
-                PatientFeedingCountPerDay_DAY2: {value:' ', isValid: false},
+                PatientFeedingCountPerDay_DAY2: {value:'', isValid: false},
                 PatientFeedingCountPerDay_DAY3: {value:'', isValid: false},
                 PatientFeedingMIXCountPerDay_DAY1: {value:'', isValid: false},
                 PatientFeedingMIXCountPerDay_DAY2: {value:'', isValid: false},

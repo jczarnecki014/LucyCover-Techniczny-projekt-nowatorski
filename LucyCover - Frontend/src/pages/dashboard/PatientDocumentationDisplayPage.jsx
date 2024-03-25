@@ -2,6 +2,7 @@ import PatientDocumentationDisplay from "../../components/dashboard/patients/Pat
 
 import { DUMMY_DOCUMENTATION } from "../../assets/DUMMY_DATA/DUMMY_DOCUMENTATION";
 import { DUMMY_DOCUMENTATION_FIRST } from "../../assets/DUMMY_DATA/DUMMY_DOCUMENTATION_FIRST";
+import { DUMMY_DOCUMENTATION_NEXT} from "../../assets/DUMMY_DATA/DUMMY_DOCUMENTATION_NEXT"
 
 
 const PatientDocumentationDisplayPage = () => {
@@ -11,12 +12,32 @@ const PatientDocumentationDisplayPage = () => {
 }
 
 export const loader = async ({params}) => {
+
+    //it need refactor because of from backend we won't fetch botch first and next documentation list!!!!
+
     const documentId = params.documentationId;
+
+    //document.first = true <--- first visit documentation
+    //document.first = false <--- next visit documentation
+    const isFirstVisit = DUMMY_DOCUMENTATION.find(document => (document.id === documentId )).first
+
     const documentDetailsId = DUMMY_DOCUMENTATION.find(document => (document.id === documentId )).documentId
 
-    const documentationDetails = DUMMY_DOCUMENTATION_FIRST.find(document => (document.id === documentDetailsId ))
+    let documentationDetailsList;
 
-    return documentationDetails
+    if(isFirstVisit) {
+        documentationDetailsList = DUMMY_DOCUMENTATION_FIRST
+    }
+    else {
+        documentationDetailsList = DUMMY_DOCUMENTATION_NEXT
+    }
+
+    const documentationDetails = documentationDetailsList.find(document => (document.id === documentDetailsId ))
+
+    return {
+        first: isFirstVisit,
+        documentationDetails,
+    }
 }
 
 export default PatientDocumentationDisplayPage;

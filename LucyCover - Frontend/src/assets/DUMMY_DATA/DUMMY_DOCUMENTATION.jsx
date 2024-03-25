@@ -12,7 +12,8 @@ export const DUMMY_DOCUMENTATION = [
         first:false,
         patientId: 'p1',
         baby: 'Alicja Kret',
-        date: '07-10-2024'
+        date: '07-10-2024',
+        documentId: '0c8ae7c1-fe09-4d30-8ced-f45f8f7f8fa2'
     },
     {
         id: 'a53e73a9d-4ff6-4f2c-90ba-b28658e8ee98',

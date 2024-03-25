@@ -1,15 +1,12 @@
 import style from './css/PatientDocumentationDisplay.module.css'
-import { useSelector } from 'react-redux'
-import { useLoaderData } from 'react-router-dom';
 
-import PatientDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/PatientDetailsSection";
-import BabyDetailsSection from "../PatientDocumentationSections/FirstDocumentationSections/BabyDetailsSection";
-import PatientFamilyInterviewSection from "../PatientDocumentationSections/FirstDocumentationSections/PatientFamilyInterviewSection";
+import { useLoaderData } from 'react-router-dom';
+import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIRST';
 
 const PatientDocumentationDisplay = () => {
 
-    const formInputs = useLoaderData()
-    console.log(formInputs)
+    const XXX = useLoaderData()
+    console.log(XXX)
     return (
         <div className={style.Container}>
             <div className={style.TopBar}>
@@ -21,15 +18,12 @@ const PatientDocumentationDisplay = () => {
                     <button id={style.DeleteButton}>Usuń</button>
                 </div>
             </div>
-            <form className={style.DocumentContent}>
-                <div className={style.LeftSide}>
-                    <PatientDetailsSection formInputs={formInputs} displayMode/>
-                    <BabyDetailsSection formInputs={formInputs} displayMode />
-                </div>
-                <div className={style.RightSide}>
-                    <PatientFamilyInterviewSection formInputs={formInputs} displayMode/>
-                </div>
-            </form>
+            {
+                XXX.first && <PatientDocumentationDisplay_FIRST formInputs={XXX.documentationDetails} />
+            }
+            {
+                XXX.first === false && <PatientDocumentationDisplay_FIRST formInputs={XXX.documentationDetails} />
+            }
         </div>
     )
 }
