@@ -12,20 +12,16 @@ const BabyExcretionSection = ({SetFormInputHandler,formInputs}) => {
             <span>
                 <LabelInput controlId='BabyPeeingADay' label='Moczenie w pieluch (na dobe)' className={style.StandardInput} onInput={SetFormInputHandler} />
                 <LabelInput controlId='BabyExcretionADay' label='Oddawanie stolca (na dobe)' className={style.StandardInput} onInput={SetFormInputHandler} />
-                <SelectInput controlId='BabyColic' label="Objawy kolki" className={style.FullInput} options={["Nie", "Tak"]} 
-                            onChange={SetFormInputHandler} defaultOption={formInputs.BabyColic.value} />
+                <SelectInput controlId='BabyColic' label="Objawy kolki" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.BabyColic.value} />
 
                 {
-                    formInputs.BabyColic.value === 'Tak' && <LabelInput controlId='BabyColicSinceWhen' label='Od kiedy ? (kolka)' className={style.FullInput} 
-                                                                        onInput={SetFormInputHandler}/>
+                    formInputs.BabyColic.value === 'Tak' && <LabelInput controlId='BabyColicSinceWhen' label='Od kiedy ? (kolka)' className={style.FullInput} onInput={SetFormInputHandler}/>
                 }
 
-                <SelectInput controlId='BabyNipple' label="Smoczek uspokajaczek" className={style.FullInput} options={["Nie", "Tak"]} 
-                            onChange={SetFormInputHandler} defaultOption={formInputs.BabyNipple.value} />
+                <SelectInput controlId='BabyNipple' label="Smoczek uspokajaczek" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.BabyNipple.value} />
 
                 {
-                    formInputs.BabyNipple.value === 'Tak' && <LabelInput controlId='BabyNippleSinceWhen' label='Od kiedy ? (smoczek)' className={style.FullInput} 
-                                                                         onInput={SetFormInputHandler}/>
+                    formInputs.BabyNipple.value === 'Tak' && <LabelInput controlId='BabyNippleSinceWhen' label='Od kiedy ? (smoczek)' className={style.FullInput} onInput={SetFormInputHandler}/>
                 }
             </span>
     </section>

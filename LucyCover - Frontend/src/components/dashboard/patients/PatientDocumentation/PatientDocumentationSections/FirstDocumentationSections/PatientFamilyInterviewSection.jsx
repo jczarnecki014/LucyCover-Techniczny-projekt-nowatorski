@@ -5,8 +5,8 @@ import SelectInput from '../../../../../utility/SelectInput'
 
 import TextArea from '../../../../../utility/TextArea'
 
-const PatientFamilyInterviewSection = ({SetFormInputHandler,formInputs,displayMode}) => {
-    const isReadonly = displayMode;
+const PatientFamilyInterviewSection = ({SetFormInputHandler,formInputs,readlOnlyMode}) => {
+    const isReadonly = readlOnlyMode;
     return (
         <section className={style.PatientFormSection}>
 

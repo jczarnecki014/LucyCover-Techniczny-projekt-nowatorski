@@ -9,11 +9,11 @@ const PatientDocumentationDisplay_FIRST = ({formInputs}) => {
     return (
         <form className={style.DocumentContent}>
             <div className={style.LeftSide}>
-                <PatientDetailsSection formInputs={formInputs} displayMode/>
-                <BabyDetailsSection formInputs={formInputs} displayMode />
+                <PatientDetailsSection formInputs={formInputs} readlOnlyMode/>
+                <BabyDetailsSection formInputs={formInputs} readlOnlyMode />
             </div>
             <div className={style.RightSide}>
-                <PatientFamilyInterviewSection formInputs={formInputs} displayMode/>
+                <PatientFamilyInterviewSection formInputs={formInputs} readlOnlyMode/>
             </div>
         </form>
     )

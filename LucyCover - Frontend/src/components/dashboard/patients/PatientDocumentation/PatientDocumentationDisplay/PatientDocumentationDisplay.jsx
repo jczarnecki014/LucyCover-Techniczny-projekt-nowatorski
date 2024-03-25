@@ -2,6 +2,7 @@ import style from './css/PatientDocumentationDisplay.module.css'
 
 import { useLoaderData } from 'react-router-dom';
 import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIRST';
+import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT';
 
 const PatientDocumentationDisplay = () => {
 
@@ -11,7 +12,7 @@ const PatientDocumentationDisplay = () => {
         <div className={style.Container}>
             <div className={style.TopBar}>
                 <h6>Barbara Kret</h6>
-                <h6>Kolejna wizyta</h6>
+                <h6>{XXX.first ? 'Pierwsza wizyta' : 'Kolejna wizyta'}</h6>
                 <h6>Wizyta: 20.12.2023</h6>
                 <div className={style.ButtonSection}>
                     <button id={style.EditButton}>Modyfikuj</button>
@@ -22,7 +23,7 @@ const PatientDocumentationDisplay = () => {
                 XXX.first && <PatientDocumentationDisplay_FIRST formInputs={XXX.documentationDetails} />
             }
             {
-                XXX.first === false && <PatientDocumentationDisplay_FIRST formInputs={XXX.documentationDetails} />
+                XXX.first === false && <PatientDocumentationDisplay_NEXT formInputs={XXX.documentationDetails} />
             }
         </div>
     )

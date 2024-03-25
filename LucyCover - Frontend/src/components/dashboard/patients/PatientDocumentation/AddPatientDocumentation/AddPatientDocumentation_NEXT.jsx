@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
+import { useFormData } from "../../../../../hooks/useFormData"
 
 import { SetInput } from "../../../../../context/slices/AddNextDocumentationForm"
 
@@ -22,25 +23,27 @@ const AddPatientDocumentation_NEXT = () => {
     const formInputs = useSelector(state => state.addNextDocumentationForm.formInputs)
     const formIsValid = CheckFormIsValid(formInputs)
 
+    const getValue = useFormData();
+    const formValue = getValue(formInputs)
+
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
     }
 
-    console.log(formInputs)
 
     return (
         <OverlayModel title="Dodaj nową dokumentacje (domowa)">
             <form className={style.Container}>
                 <div className={style.LeftSide}>
-                    <BabyFeedingSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
-                    <BabyAdditionalFeeding SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} /> 
-                    <PatientBreastExaminationSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
+                    <BabyFeedingSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                    <BabyAdditionalFeeding SetFormInputHandler={SetFormInputHandler} formInputs={formValue} /> 
+                    <PatientBreastExaminationSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
 
                 </div>
                 <div className={style.RightSide}>
-                    <BabyExcretionSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
-                    <PatientMedicineSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
-                    <PatientRecommendationSection SetFormInputHandler={SetFormInputHandler} formInputs={formInputs} />
+                    <BabyExcretionSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                    <PatientMedicineSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                    <PatientRecommendationSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
                     <section className={style.PatientFormButtonSection}>
                         <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
                     </section>

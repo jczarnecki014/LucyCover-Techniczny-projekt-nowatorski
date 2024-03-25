@@ -2,8 +2,8 @@ import style from '../css/PatientDocumentationSections.module.css'
 
 import LabelInput from '../../../../../utility/LabelInput'
 
-const PatientDetailsSection = ({SetFormInputHandler,displayMode,formInputs}) => {
-    const isReadonly = displayMode;
+const PatientDetailsSection = ({SetFormInputHandler,readlOnlyMode,formInputs}) => {
+    const isReadonly = readlOnlyMode;
     return (
         <section className={style.PatientFormSection}>
             <h6>Dane matki</h6>

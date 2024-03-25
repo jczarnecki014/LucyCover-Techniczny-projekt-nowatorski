@@ -3,9 +3,9 @@ import style from '../css/PatientDocumentationSections.module.css'
 import LabelInput from '../../../../../utility/LabelInput'
 import SelectInput from '../../../../../utility/SelectInput'
 
-const BabyDetailsSection = ({SetFormInputHandler,formInputs,displayMode}) => {
+const BabyDetailsSection = ({SetFormInputHandler,formInputs,readlOnlyMode}) => {
 
-    const isReadonly = displayMode;
+    const isReadonly = readlOnlyMode;
     return (
         <section className={style.PatientFormSection}>
             <h6>Dane dziecka</h6>
