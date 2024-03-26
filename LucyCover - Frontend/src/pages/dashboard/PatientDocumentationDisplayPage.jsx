@@ -19,23 +19,21 @@ export const loader = async ({params}) => {
 
     //document.first = true <--- first visit documentation
     //document.first = false <--- next visit documentation
-    const isFirstVisit = DUMMY_DOCUMENTATION.find(document => (document.id === documentId )).first
-
-    const documentDetailsId = DUMMY_DOCUMENTATION.find(document => (document.id === documentId )).documentId
+    const documentation = DUMMY_DOCUMENTATION.find(document => (document.id === documentId ))
 
     let documentationDetailsList;
 
-    if(isFirstVisit) {
+    if(documentation.first) {
         documentationDetailsList = DUMMY_DOCUMENTATION_FIRST
     }
     else {
         documentationDetailsList = DUMMY_DOCUMENTATION_NEXT
     }
 
-    const documentationDetails = documentationDetailsList.find(document => (document.id === documentDetailsId ))
+    const documentationDetails = documentationDetailsList.find(document => (document.id === documentation.documentId ))
 
     return {
-        first: isFirstVisit,
+        documentation,
         documentationDetails,
     }
 }

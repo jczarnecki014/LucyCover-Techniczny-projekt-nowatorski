@@ -6,24 +6,25 @@ import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT
 
 const PatientDocumentationDisplay = () => {
 
-    const XXX = useLoaderData()
-    console.log(XXX)
+    const documentation = useLoaderData()
+    const {baby,date,first} = documentation.documentation
+
     return (
         <div className={style.Container}>
             <div className={style.TopBar}>
-                <h6>Barbara Kret</h6>
-                <h6>{XXX.first ? 'Pierwsza wizyta' : 'Kolejna wizyta'}</h6>
-                <h6>Wizyta: 20.12.2023</h6>
+                <h6>{baby}</h6>
+                <h6>{first ? 'Pierwsza wizyta' : 'Kolejna wizyta'}</h6>
+                <h6>Wizyta: {date}</h6>
                 <div className={style.ButtonSection}>
                     <button id={style.EditButton}>Modyfikuj</button>
                     <button id={style.DeleteButton}>Usuń</button>
                 </div>
             </div>
             {
-                XXX.first && <PatientDocumentationDisplay_FIRST formInputs={XXX.documentationDetails} />
+                first === true && <PatientDocumentationDisplay_FIRST formInputs={documentation.documentationDetails} />
             }
             {
-                XXX.first === false && <PatientDocumentationDisplay_NEXT formInputs={XXX.documentationDetails} />
+                first === false && <PatientDocumentationDisplay_NEXT formInputs={documentation.documentationDetails} />
             }
         </div>
     )

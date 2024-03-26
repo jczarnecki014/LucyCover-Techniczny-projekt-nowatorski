@@ -52,3 +52,30 @@
 .DocumentContent .RightSide{
     padding-left: 25px;
 }
+
+@media screen and (max-width:1200px) {
+    .Container{
+        grid-template-rows: 0.04fr 0.9fr;
+    }
+
+    .TopBar{
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+    }
+
+    .DocumentContent{
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    
+    .DocumentContent .LeftSide{
+        padding-right: 0px;
+        border-right: none;
+    }
+
+    .DocumentContent .RightSide{
+        padding-left: 0px;
+    }
+    
+}

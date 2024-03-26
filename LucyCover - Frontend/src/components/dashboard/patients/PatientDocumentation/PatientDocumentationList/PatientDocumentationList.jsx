@@ -2,6 +2,7 @@ import { AnimatePresence } from "framer-motion"
 import PatientTable from "../../PatientTable/PatientTable"
 import TableButtons from "../../PatientTable/TableButtons"
 import AddPatientDocumentation from "../AddPatientDocumentation/AddPatientDocumentation"
+import DeleteConfirmation from "../../PatientsPopups.jsx/DeleteConfirmation"
 
 import style from './css/PatientDocumentation.module.css'
 
@@ -17,6 +18,8 @@ const PatientDocumentationList = () => {
             <AnimatePresence>
                 {documentationAddingMode && <AddPatientDocumentation />}
             </AnimatePresence>
+
+            <DeleteConfirmation />
             
             <PatientTable columns={['ID','Data wizyty','Dziecko']} data={patientData.documentation} patientName={patientData.patientName}>
                 {(documentation) => documentation.map(document => {

@@ -17,9 +17,9 @@ const PatientDocumentationDisplay_NEXT = ({formInputs}) => {
                 <PatientBreastExaminationSection formInputs={formInputs} readlOnlyMode />
             </div>
             <div className={style.RightSide}>
-                <BabyExcretionSection formInputs={formInputs} />
-                <PatientMedicineSection formInputs={formInputs} />
-                <PatientRecommendationSection formInputs={formInputs} />
+                <BabyExcretionSection formInputs={formInputs} readlOnlyMode />
+                <PatientMedicineSection formInputs={formInputs} readlOnlyMode />
+                <PatientRecommendationSection formInputs={formInputs} readlOnlyMode />
             </div>
         </form>
     )
