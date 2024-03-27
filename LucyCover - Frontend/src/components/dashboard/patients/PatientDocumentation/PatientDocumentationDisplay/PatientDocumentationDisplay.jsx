@@ -1,6 +1,6 @@
 import style from './css/PatientDocumentationDisplay.module.css'
 
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIRST';
 import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT';
 
@@ -16,7 +16,9 @@ const PatientDocumentationDisplay = () => {
                 <h6>{first ? 'Pierwsza wizyta' : 'Kolejna wizyta'}</h6>
                 <h6>Wizyta: {date}</h6>
                 <div className={style.ButtonSection}>
-                    <button id={style.EditButton}>Modyfikuj</button>
+                    <button id={style.EditButton}>
+                        <Link to='edit'>Modyfikuj</Link>
+                    </button>
                     <button id={style.DeleteButton}>Usuń</button>
                 </div>
             </div>

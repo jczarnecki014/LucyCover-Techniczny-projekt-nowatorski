@@ -9,6 +9,7 @@ import PatientMenuPage, {loader as PatientMenuLoader} from './pages/dashboard/Pa
 import PatientDocumentationPage,{loader as PatientDocumentationLoader} from './pages/dashboard/PatientDocumentationPage'
 import PatientRecommendationpage,{loader as PatientRecommendationLoader} from './pages/dashboard/PatientRecommendationpage'
 import PatientDocumentationDisplayPage,{loader as PatientDocumentationDisplayLoader} from './pages/dashboard/PatientDocumentationDisplayPage'
+import PatientDocumentationEdit from './pages/dashboard/PatientDocumentationEdit'
 
 import { Fragment } from 'react'
 
@@ -46,8 +47,17 @@ const router = createBrowserRouter([
                       },
                       {
                         path: ':documentationId',
-                        loader: PatientDocumentationDisplayLoader,
-                        element: <PatientDocumentationDisplayPage />
+                        children:[
+                          {
+                            index: true,
+                            loader: PatientDocumentationDisplayLoader,
+                            element: <PatientDocumentationDisplayPage />
+                          },
+                          {
+                            path: 'edit',
+                            element: <PatientDocumentationEdit />
+                          },
+                        ]
                       }
                     ]
                   },
