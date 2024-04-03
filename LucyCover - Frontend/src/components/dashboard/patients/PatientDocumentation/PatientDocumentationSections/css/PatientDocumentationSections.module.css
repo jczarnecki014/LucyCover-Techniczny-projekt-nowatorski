@@ -1,0 +1,79 @@
+.PatientFormSection h6{
+    color:#CB60C8;
+    font-weight: bold;
+}
+
+.PatientFormSection hr{
+    color:#762D66;
+}
+
+.PatientFormSection span{
+    display: flex;
+    right: 0px;
+    gap:15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.PatientFormSection table{ 
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.PatientFormSection table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.PatientFormSection table th {
+    border: 1px solid black;
+    background-color: #dddddd;
+    padding: 8px;
+}
+
+.PatientFormSection .BreastChangesImage{
+    width: 100%;
+    min-height: 300px;
+    /* background: url(../../../../../../assets/images/breast.PNG); */
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+/* .PatientFormSection .BreastChangesImage .Overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:30px;
+    width: 100%;
+    min-height: 100%;
+    margin:0;
+    padding: 0;
+    background-color: rgb(0,0,0,0.7);
+    color:#fff
+}
+
+.PatientFormSection .BreastChangesImage .Overlay button{
+    width: 250px;
+    height: 50px;
+    border:0px;
+    background-color: #eee;
+    color:#303030;
+} */
+
+
+span .StandardInput{
+    width: 45%;
+}
+
+span .SmallInput{
+    width: 20%;
+}
+
+span .WideInput{
+    width: 70%;
+}
+
+span .FullInput{
+    width: 100%;
+}

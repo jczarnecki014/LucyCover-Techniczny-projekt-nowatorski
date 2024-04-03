@@ -23,6 +23,7 @@
     background-color: #FBFBFB;
     border-radius: 20px;
     color: #5C5C5C;
+    z-index: 100;
 }
 
 .model .header{

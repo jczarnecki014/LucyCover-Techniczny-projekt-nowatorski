@@ -1,0 +1,81 @@
+.Container{
+    display: grid;
+    grid-template-rows: 0.1fr 1.2fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        'TopBar' 
+        'DocumentContent';
+    width: 100%;
+    height: 100%;
+}
+.TopBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #473947;
+    color:#fff;
+    padding: 0 25px 0px 25px;
+    grid-area: 'TopBar';
+}
+
+.TopBar .ButtonSection{
+    display: flex;
+    gap: 20px;
+}
+.TopBar .ButtonSection button{
+    width: 100px;
+    padding: 5px 15px 5px 15px;
+}
+
+.TopBar .ButtonSection button#EditButton{
+    background-color: #FFB800;
+}
+
+.TopBar .ButtonSection button#DeleteButton{
+    background-color: #AA1717;
+}
+
+.DocumentContent{
+    display: grid;
+    overflow-y: auto;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-area: 'DocumentContent';
+    padding: 25px 25px 0px 25px;
+}
+
+.DocumentContent .LeftSide{
+    padding-right: 25px;
+    border-right: 1px solid #bbbbbb;
+}
+
+.DocumentContent .RightSide{
+    padding-left: 25px;
+}
+
+@media screen and (max-width:1200px) {
+    .Container{
+        grid-template-rows: 0.04fr 0.9fr;
+    }
+
+    .TopBar{
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+    }
+
+    .DocumentContent{
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    
+    .DocumentContent .LeftSide{
+        padding-right: 0px;
+        border-right: none;
+    }
+
+    .DocumentContent .RightSide{
+        padding-left: 0px;
+    }
+    
+}

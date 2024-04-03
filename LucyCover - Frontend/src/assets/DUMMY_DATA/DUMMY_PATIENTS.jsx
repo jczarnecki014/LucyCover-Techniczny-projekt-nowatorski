@@ -47,7 +47,19 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        children:[
+            {
+                id: 'c4',
+                firstName: 'Aleksander',
+                lastName: 'Kiszka'
+            },
+            {
+                id: 'c5',
+                firstName: 'Nikola',
+                lastName: 'Kiszka'
+            },
+        ]
     },
     {
         id: 'p4',

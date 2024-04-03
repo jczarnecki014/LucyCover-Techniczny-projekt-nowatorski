@@ -1,0 +1,54 @@
+.Container{
+    display: grid;
+    position: relative;
+    min-height: 100%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.5fr 0.5fr;
+    /* background-color: red; */
+}
+
+.Container .LeftSide{
+    padding-right: 25px;
+    border-right: 1px solid #bbbbbb;
+}
+
+.Container .RightSide{
+    padding-left: 25px;
+}
+
+.PatientFormButtonSection{
+    display: flex;
+    justify-content: right;
+}
+
+.PatientFormButtonSection  button{
+    background-color: #CB60C8;
+    width: 150px;
+}
+
+.PatientFormButtonSection  button:disabled{
+    background-color: #692267;
+    border-color: #692267;
+    cursor:not-allowed;
+}
+
+@media screen and (max-width:1200px) {
+    .Container{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    .Container .LeftSide{
+        padding-right: 0px;
+        border: 0px;
+    }
+    
+    .Container .RightSide{
+        padding-left: 0px;
+    }
+    .Container .LeftSide{
+        padding-right: 25px;
+        border-right: 0px;
+    }
+    
+}

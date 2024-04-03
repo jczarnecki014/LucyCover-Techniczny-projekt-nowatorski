@@ -2,11 +2,11 @@
 
 import { DUMMY_DOCUMENTATION } from "../../assets/DUMMY_DATA/DUMMY_DOCUMENTATION";
 import { DUMMY_PATIENTS } from "../../assets/DUMMY_DATA/DUMMY_PATIENTS";
-import PatientDocumentation from "../../components/dashboard/patients/PatientDocumentation/PatientDocumentation";
+import PatientDocumentationList from "../../components/dashboard/patients/PatientDocumentation/PatientDocumentationList/PatientDocumentationList";
 
 const PatientDocumentationPage = () => {
     return  (
-        <PatientDocumentation />
+        <PatientDocumentationList />
     )
 }
 

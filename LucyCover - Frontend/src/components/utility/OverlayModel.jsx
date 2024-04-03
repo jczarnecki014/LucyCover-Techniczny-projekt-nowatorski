@@ -6,12 +6,9 @@ import { OverlayToggle } from "../../context/slices/OverlayModel_SLICE";
 
 import {motion} from 'framer-motion'
 
-const BackDrop = () => {
-
-    const dispatch = useDispatch();
-
+const BackDrop = ({onQuit}) => {
     return (
-        <div className={style.backdrop} onClick={()=>dispatch(OverlayToggle(false))}>
+        <div className={style.backdrop} onClick={onQuit}>
 
         </div>
     )
@@ -19,21 +16,12 @@ const BackDrop = () => {
 }
 
 
-const Model = ({children,title,OnQuitButtonClick,smallSize=false}) => {
-
-    const dispatch = useDispatch();
-
-    const defultQuitHandler = () => {
-        dispatch(OverlayToggle(false))
-    }
-
-    const QuitButtonClickHandler = (OnQuitButtonClick !== undefined ? OnQuitButtonClick : defultQuitHandler);
-
+const Model = ({children,title,onQuit,smallSize=false}) => {
     return (
         <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className={`${style.model} ${smallSize && style.small}`}>
             <div className={style.header}>
                 <h1>{title}</h1>
-                <button onClick={QuitButtonClickHandler}>Zamknij</button>
+                <button onClick={onQuit}>Zamknij</button>
             </div>
             <div className={style.content}>
                 {children}
@@ -46,14 +34,23 @@ const OverlayModel = ({children,title,OnQuitButtonClick,smallSize}) => {
     const backDropDOM = document.querySelector('#backdrop');
     const modelDOM = document.querySelector('#model')
 
+    const dispatch = useDispatch();
+
+    const QuitHandler = () => {
+        if(OnQuitButtonClick){
+            OnQuitButtonClick()
+        }
+        dispatch(OverlayToggle(false))
+    }
+
     return (
         <div>
             {createPortal(
-                <BackDrop />,
+                <BackDrop onQuit={QuitHandler} />,
                 backDropDOM
             )}
             {createPortal(
-                    <Model title={title} smallSize={smallSize} OnQuitButtonClick={OnQuitButtonClick}>
+                    <Model title={title} smallSize={smallSize} onQuit={QuitHandler}>
                         {children}
                     </Model>,
                 modelDOM
