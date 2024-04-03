@@ -10,12 +10,13 @@ import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIR
 import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT';
 import PatientDocumentationForm_FIRST from '../PatientDocumentationSections/FirstDocumentationSections/PatientDocumentationForm_FIRST';
 import PatientDocumentationForm_NEXT from '../PatientDocumentationSections/NextDocumentationSections/PatientDocumentationForm_NEXT';
-import DeleteConfirmation from '../../PatientsPopups.jsx/DeleteConfirmation';
+import DeleteConfirmation from '../../PatientsPopups/DeleteConfirmation';
+import { AnimatePresence } from 'framer-motion';
 
 const PatientDocumentationDisplay = () => {
     const documentation = useLoaderData()
     const {baby,date,first} = documentation.documentation
-    const [popupMode,setFormMode] = useState('AddPatientDocumentation');
+    const [popupMode,setFormMode] = useState('AddingForm / DeleteConfirmation');
 
     const editFormIsVisible = useSelector((state) => state.overlayModel.isVisible)
     const dispatch = useDispatch();
@@ -27,20 +28,22 @@ const PatientDocumentationDisplay = () => {
 
     return (
         <>
-            {/* ///////////////////////// Show first time documentation /////////////////////////////////////// */}
-            {
-                (editFormIsVisible && popupMode === 'AddPatientDocumentation'  && first === true) && <PatientDocumentationForm_FIRST toDisplayValues={documentation.documentationDetails} />
-            }
+            <AnimatePresence>
+                {/* ///////////////////////// Show first time documentation /////////////////////////////////////// */}
+                {
+                    (editFormIsVisible && popupMode === 'AddingForm'  && first === true) && <PatientDocumentationForm_FIRST toDisplayValues={documentation.documentationDetails} />
+                }
 
-            {/* ///////////////////////// Show next time documentation /////////////////////////////////////// */}
-            {
-                (editFormIsVisible && popupMode === 'AddPatientDocumentation' && first === false) && <PatientDocumentationForm_NEXT toDisplayValues={documentation.documentationDetails} />
-            }
+                {/* ///////////////////////// Show next time documentation /////////////////////////////////////// */}
+                {
+                    (editFormIsVisible && popupMode === 'AddingForm' && first === false) && <PatientDocumentationForm_NEXT toDisplayValues={documentation.documentationDetails} />
+                }
 
-            {/* ///////////////////////// Show delete documentation confirmation ///////////////////////////// */}
-            {
-                (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} patient={baby} />
-            }
+                {/* ///////////////////////// Show delete documentation confirmation ///////////////////////////// */}
+                {
+                    (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} patient={baby} />
+                }
+            </AnimatePresence>
 
             <div className={style.Container}>
                 <div className={style.TopBar}>
@@ -48,7 +51,7 @@ const PatientDocumentationDisplay = () => {
                     <h6>{first ? 'Pierwsza wizyta' : 'Kolejna wizyta'}</h6>
                     <h6>Wizyta: {date}</h6>
                     <div className={style.ButtonSection}>
-                        <button id={style.EditButton} onClick={()=>ShowPopupHandler('AddPatientDocumentation')}>Modyfikuj</button>
+                        <button id={style.EditButton} onClick={()=>ShowPopupHandler('AddingForm')}>Modyfikuj</button>
                         <button id={style.DeleteButton} onClick={()=>ShowPopupHandler('DeleteConfirmation')}>Usuń</button>
                     </div>
                 </div>

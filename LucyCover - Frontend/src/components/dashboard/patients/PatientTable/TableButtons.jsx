@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 
 const TableButtons = ({showPopup,document}) => {
 
-    const {id,date,baby} = document;
+    const {id,date,patient} = document;
 
     return (
         <td className={style.ButtonSection}>
             <button id={style.Show}>
                 <Link to={`${id}`}>Zobacz</Link>
             </button>
-            <button id={style.Delete} onClick={()=>showPopup('DeleteConfirmation',{day:date,patient:baby})} >
+            <button id={style.Delete} onClick={()=>showPopup('DeleteConfirmation',{day:date,patient:patient})} >
                 Usuń
             </button>
         </td>

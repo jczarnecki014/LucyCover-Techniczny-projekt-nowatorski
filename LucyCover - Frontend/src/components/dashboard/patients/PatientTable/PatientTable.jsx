@@ -6,7 +6,7 @@ const PatientTable = ({columns,data,patientName,children,showPopup}) => {
         <div className={style.Container}>
             <div className={style.DocumentationHeader}>
                 <h5>{patientName}</h5>
-                <button onClick={()=>showPopup('AddPatientDocumentation')}>
+                <button onClick={()=>showPopup('AddingForm')}>
                     Dodaj
                 </button>
             </div>

@@ -12,16 +12,18 @@ const TextArea = ({
     required,
     readonly,
     defaultValue="",
+    rows=3,
 }) => {
-    const [value,setValue] = useState('')
+    const [value,setValue] = useState(defaultValue)
     const [textAreaIsValid,setTextAreaIsValid] =useState(true)
 
 
     useEffect(()=>{
-      setValue(defaultValue)
+      setValue(value)
     },[value])
 
     useEffect(()=>{
+      const timeout = setTimeout(()=>{
         let isValid = true;
 
         if(required && value.trim().length === 0) {
@@ -40,6 +42,11 @@ const TextArea = ({
         if(onChange){
           onChange(inputObject)
         }
+      },500)
+
+      return () => {
+        clearTimeout(timeout)
+      }
     },[value,textAreaIsValid])
 
 
@@ -49,12 +56,12 @@ const TextArea = ({
     return (
         <Form.Group className={className} controlId={controlId}>
             <Form.Label>{label}</Form.Label>
-            <motion.textarea rows={3} style={stylex}  onChange={(event)=>setValue(event.target.value)} disabled={readonly} 
+            <motion.textarea rows={rows} style={stylex}  onChange={(event)=>setValue(event.target.value)} disabled={readonly} 
                              value={value} />
             <AnimatePresence>
               {!textAreaIsValid && 
                   <motion.p initial={{x:-200}} animate={{x:0, color:"#cf2f74"}} exit={{x:-200, opacity:0}}>
-                      To pole zostało błędnie wypełnione
+                      Prosze wypełnić te pole
                   </motion.p>
               }
             </AnimatePresence>

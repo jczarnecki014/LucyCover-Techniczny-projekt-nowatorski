@@ -1,6 +1,6 @@
 import Popup from '../../../utility/Popup';
 
-const DeleteConfirmation = ({what="test",day="test",patient="test"}) => {
+const DeleteConfirmation = ({what="X",day="X",patient="X"}) => {
     return (
         <Popup 
             type="warning" 

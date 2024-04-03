@@ -7,9 +7,10 @@ import CreateAccountPage from './pages/auth/CreateAccountPage'
 import PatientsPage,{loader as PatientsPageLoader} from './pages/dashboard/PatientsPage'
 import PatientMenuPage, {loader as PatientMenuLoader} from './pages/dashboard/PatientMenuPage'
 import PatientDocumentationPage,{loader as PatientDocumentationLoader} from './pages/dashboard/PatientDocumentationPage'
-import PatientRecommendationpage,{loader as PatientRecommendationLoader} from './pages/dashboard/PatientRecommendationpage'
+import PatientRecommendationPage,{loader as PatientRecommendationLoader} from './pages/dashboard/PatientRecommendationPage'
 import PatientDocumentationDisplayPage,{loader as PatientDocumentationDisplayLoader} from './pages/dashboard/PatientDocumentationDisplayPage'
 import PatientDocumentationEdit from './pages/dashboard/PatientDocumentationEdit'
+import PatientRecommendationDisplayPage,{loader as PatientRecommendationDisplayLoader} from './pages/dashboard/PatientRecommendationDisplayPage'
 
 import { Fragment } from 'react'
 
@@ -63,8 +64,18 @@ const router = createBrowserRouter([
                   },
                   {
                     path: 'recommendation',
-                    loader: PatientRecommendationLoader,
-                    element: <PatientRecommendationpage />
+                    children:[
+                      {
+                        index: true,
+                        loader: PatientRecommendationLoader,
+                        element: <PatientRecommendationPage />
+                      },
+                      {
+                        path: ':recommendationId',
+                        loader: PatientRecommendationDisplayLoader,
+                        element: <PatientRecommendationDisplayPage />
+                      },
+                    ]
                   }
                 ]
               },

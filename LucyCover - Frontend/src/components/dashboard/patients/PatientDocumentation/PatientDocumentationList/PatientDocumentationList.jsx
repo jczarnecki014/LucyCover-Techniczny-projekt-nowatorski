@@ -2,21 +2,20 @@ import { AnimatePresence } from "framer-motion"
 import PatientTable from "../../PatientTable/PatientTable"
 import TableButtons from "../../PatientTable/TableButtons"
 import AddPatientDocumentation from "../AddPatientDocumentation/AddPatientDocumentation"
-import DeleteConfirmation from "../../PatientsPopups.jsx/DeleteConfirmation"
+import DeleteConfirmation from "../../PatientsPopups/DeleteConfirmation"
 
 import style from './css/PatientDocumentation.module.css'
 
-import { useSelector} from "react-redux"
+import { useSelector,useDispatch} from "react-redux"
 import { useLoaderData } from "react-router-dom"
-import { useDispatch } from 'react-redux'
 import { OverlayToggle } from "../../../../../context/slices/OverlayModel_SLICE"
 import { useState } from "react"
 
 const PatientDocumentationList = () => {
     const patientData = useLoaderData()
     const popupIsVisible = useSelector((state) => state.overlayModel.isVisible)
-    const [popupDetails,setFormMode] = useState({
-        mode:'AddPatientDocumentation',
+    const [popupDetails,setPopupDetails] = useState({
+        mode:'AddingForm / DeleteConfirmation',
         popupData: {
             day:'',
             patient:'',
@@ -27,7 +26,7 @@ const PatientDocumentationList = () => {
 
     const showPopupHandler = (popupMode,popupData={}) => {
         dispatch(OverlayToggle(true))
-        setFormMode({
+        setPopupDetails({
             mode:popupMode,
             popupData
         })
@@ -36,7 +35,7 @@ const PatientDocumentationList = () => {
     return (
         <>
             <AnimatePresence>
-                {(popupIsVisible && popupDetails.mode === 'AddPatientDocumentation')  && <AddPatientDocumentation />}
+                {(popupIsVisible && popupDetails.mode === 'AddingForm')  && <AddPatientDocumentation />}
                 {(popupIsVisible && popupDetails.mode === 'DeleteConfirmation')  && <DeleteConfirmation what='dokumentacje' day={popupDetails.popupData.day} patient={popupDetails.popupData.patient} />}
             </AnimatePresence>
             
@@ -47,7 +46,7 @@ const PatientDocumentationList = () => {
                             <td>{document.id}</td>
                             <td>{document.date}</td>
                             <td>{document.baby}</td>
-                            <TableButtons document={document} showPopup={showPopupHandler} />
+                            <TableButtons document={{...document,patient:document.baby}} showPopup={showPopupHandler} />
                         </tr>
                     )
                 })}
