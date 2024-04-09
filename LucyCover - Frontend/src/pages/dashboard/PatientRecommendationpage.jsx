@@ -3,7 +3,7 @@ import PatientRecommendation from "../../components/dashboard/patients/PatientRe
 import { DUMMY_RECOMMENDATION } from "../../assets/DUMMY_DATA/DUMMY_RECOMMENDATION";
 import { DUMMY_PATIENTS } from "../../assets/DUMMY_DATA/DUMMY_PATIENTS";
 
-const PatientRecommendationpage = () => {
+const PatientRecommendationPage = () => {
     return  (
         <PatientRecommendation />
     )
@@ -18,4 +18,4 @@ export const loader = async ({params}) => {
     };
 }
 
-export default PatientRecommendationpage;
+export default PatientRecommendationPage;
