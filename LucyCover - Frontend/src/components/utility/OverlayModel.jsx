@@ -40,7 +40,9 @@ const OverlayModel = ({children,title,OnQuitButtonClick,smallSize}) => {
         if(OnQuitButtonClick){
             OnQuitButtonClick()
         }
-        dispatch(OverlayToggle(false))
+        else {
+            dispatch(OverlayToggle(false))
+        }
     }
 
     return (

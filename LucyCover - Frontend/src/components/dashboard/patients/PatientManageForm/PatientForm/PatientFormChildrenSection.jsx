@@ -1,4 +1,5 @@
-import style from '../../css/PatientAddingForm.module.css'
+
+import style from '../css/PatientAddingForm.module.css'
 
 import ChildrenElement from './ChildrenElement'
 

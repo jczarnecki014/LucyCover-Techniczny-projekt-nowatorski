@@ -4,6 +4,7 @@ import { useFormData } from "../../../../../../hooks/useFormData"
 import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddNextDocumentationForm"
 
 import OverlayModel from "../../../../../utility/OverlayModel"
+import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE"
 
 import style from '../css/PatientDocumentation_FORMS.module.css'
 
@@ -32,6 +33,7 @@ const PatientDocumentationForm_NEXT = ({toDisplayValues}) => {
 
     const OnCloseClearFormHandler = () => {
         dispatch(SetFormDefault())
+        dispatch(OverlayToggle(false))
     }
 
     return (

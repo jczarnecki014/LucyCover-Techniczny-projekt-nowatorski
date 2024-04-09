@@ -1,4 +1,4 @@
-const emailREGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+const emailREGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 const phoneREGEX = /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/
 const zipCodeRegex = /\d{2}-\d{3}/
 
