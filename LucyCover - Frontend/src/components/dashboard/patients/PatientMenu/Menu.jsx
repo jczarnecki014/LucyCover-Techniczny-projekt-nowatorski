@@ -7,7 +7,7 @@ import { RiUserSettingsLine } from "react-icons/ri";
 
 import { Link } from 'react-router-dom';
 
-const Menu = () => {
+const Menu = ({ShowPatientFormToggler}) => {
     return (
         <div className={style.Container}>
             <Link id={style.Documentation} className={style.Tails} to="documentation">
@@ -22,7 +22,7 @@ const Menu = () => {
                 <IoCalendar />
                 <h5>Wizyty</h5>
             </div>
-            <div id={style.Manage} className={style.Tails}>
+            <div id={style.Manage} className={style.Tails} onClick={ShowPatientFormToggler}>
                 <RiUserSettingsLine />
                 <h5>Zarządzaj</h5>
             </div>

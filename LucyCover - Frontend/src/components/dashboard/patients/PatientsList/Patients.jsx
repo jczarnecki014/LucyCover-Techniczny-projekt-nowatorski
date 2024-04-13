@@ -7,7 +7,7 @@ import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
 
 import PatientSearch from './PatientSearch/PatientSearch';
 import PatientDetails from '../PatientDetails/PatientDetails';
-import PatientAddingForm from './PatientAdding/PatientAddingForm';
+import PatientManageForm from '../PatientManageForm/PatientManageForm';
 import { AnimatePresence } from 'framer-motion';
 import PatientLayout from '../PatientLayout/PatientLayout';
 
@@ -32,7 +32,7 @@ const Patients = () => {
 
         <>
             <AnimatePresence>
-                {patientAddingMode && <PatientAddingForm />}
+                {patientAddingMode && <PatientManageForm />}
             </AnimatePresence>
 
             <PatientLayout>

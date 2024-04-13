@@ -126,10 +126,11 @@
 
 .ChildrenElement .RemoveIcon{
     position: absolute;
-    right: -8px;
-    top: -8px;
+    right: -15px;
+    top: -15px;
     color:#692267;
 }
+
 
 
 /*-------------------------------------------------------------------*/

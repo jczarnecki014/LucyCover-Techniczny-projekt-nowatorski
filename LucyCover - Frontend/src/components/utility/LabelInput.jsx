@@ -63,7 +63,7 @@ const LabelInput = ({
       if(onInput){
         onInput(inputObject)
       }
-    },700)
+    },400)
 
     return () => {
       clearTimeout(timeout)

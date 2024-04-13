@@ -1,20 +1,26 @@
 
-import style from '../../css/PatientAddingForm.module.css'
+import style from '../css/PatientAddingForm.module.css'
 
-import OverlayModel from "../../../../../utility/OverlayModel"
+import OverlayModel from "../../../../utility/OverlayModel"
 import PatientFormContactSection from './PatientFormContactSection'
 import PatientFormPlaceSection from './PatientFormPlaceSection'
 import PatientFormChildrenSection from './PatientFormChildrenSection'
 import { AnimatePresence } from 'framer-motion'
-import { useSelector,useDispatch } from 'react-redux'
-import { SetPatientInput } from '../../../../../../context/slices/AddPatientForm'
-import CheckFormIsValid from '../../../../../../assets/Validation/CheckFormIsValid'
-const PatientForm = ({changeFormMode,childrenList,RemoveChildrenFromList,AddNewPatient}) => {
-
-    const PatientInputs = useSelector(state => state.addPatientForm.patientInputs)
+import { useDispatch } from 'react-redux'
+import { SetPatientInput } from '../../../../../context/slices/AddPatientForm'
+const PatientForm = (
+    {
+        changeFormMode,
+        childrenList=[],
+        RemoveChildrenFromList,
+        AddNewPatient,
+        EditChildrenMode,
+        PatientInputs,
+        formIsValid,
+        onFormClose
+    }
+) => {
     const dispach = useDispatch()
-
-    const formIsValid = CheckFormIsValid(PatientInputs)
 
     const SetPatientInputHandler = ({inputId,inputObject}) => {
         dispach(SetPatientInput({inputId,inputObject}))
@@ -36,14 +42,14 @@ const PatientForm = ({changeFormMode,childrenList,RemoveChildrenFromList,AddNewP
     }
 
     return (
-        <OverlayModel title='Dodaj pacjenta'>
+        <OverlayModel title='Edytuj pacjenta' OnQuitButtonClick={onFormClose} >
             <form className={style.PatientAddingForm}>
                 <PatientFormContactSection setPatientInput={SetPatientInputHandler} patientInputs={PatientInputs}/>
                 <PatientFormPlaceSection setPatientInput={SetPatientInputHandler} FormSubmit={FormSubmitHandler} formIsValid={formIsValid} patientInputs={PatientInputs} />
                 <PatientFormChildrenSection>
                     <AnimatePresence>
                         {childrenList.map((children)=>(
-                            <PatientFormChildrenSection.ChildrenElement key={children.listId} childrenDetails={children} RemoveChildrenFromList={RemoveChildrenFromList}/>
+                            <PatientFormChildrenSection.ChildrenElement key={children.id} childrenDetails={children} RemoveChildrenFromList={RemoveChildrenFromList} EditChildrenMode={EditChildrenMode}/>
                         ))}
                     </AnimatePresence>
                     <PatientFormChildrenSection.ChildrenElement setChildrenFormMode={changeFormMode}/>

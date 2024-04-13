@@ -8,22 +8,30 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        email:'kuba-projekt@wp.pl',
+        birthDay:'2023-04-04',
+        birthPlace:'Jelenia Góra',
         children:[
             {
                 id: 'c1',
                 firstName: 'Alicja',
-                lastName: 'Kret'
+                lastName: 'Kret',
+                birthDay: '2024-03-21',
+                birthPlace:'Jelenia Góra',
             },
             {
                 id: 'c2',
                 firstName: 'Krstyna',
-                lastName: 'Kret'
+                lastName: 'Kret',
+                birthDay: '2024-03-21',
+                birthPlace:'Jelenia Góra',
             },
             {
                 id: 'c3',
                 firstName: 'Norbert',
-                lastName: 'Kret'
+                lastName: 'Kret',
+                birthDay: '2024-03-21',
+                birthPlace:'Jelenia Góra',
             }
         ]
     },

@@ -2,6 +2,8 @@ import { useDispatch,useSelector } from "react-redux";
 import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
 import { useFormData } from "../../../../../../hooks/useFormData";
 
+import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE";
+
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import OverlayModel from "../../../../../utility/OverlayModel"
@@ -38,6 +40,7 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues}) => {
 
     const OnCloseClearFormHandler = () => {
         dispatch(SetFormDefault())
+        dispatch(OverlayToggle(false))
     }
 
     return (
