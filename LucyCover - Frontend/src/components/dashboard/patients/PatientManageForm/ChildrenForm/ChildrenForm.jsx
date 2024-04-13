@@ -22,6 +22,8 @@ const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildre
 
     let FormIsValid = CheckFormIsValid(ChildrenInputs);
 
+    console.log(ChildrenInputs)
+
     const dispach = useDispatch()
 
     const SetChildrenInputHandler = ({inputId,inputObject}) => {
@@ -31,10 +33,10 @@ const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildre
     const FormSubmitHandler = (event) => {
         event.preventDefault();
         const children = {
-            firstName: ChildrenInputs.firstName.value,
-            lastName: ChildrenInputs.lastName.value,
-            birthDay: ChildrenInputs.birthDay.value,
-            birthPlace: ChildrenInputs.birthPlace.value,
+            childFirstName: ChildrenInputs.childFirstName.value,
+            childLastName: ChildrenInputs.childLastName.value,
+            childBirthDate: ChildrenInputs.childBirthDate.value,
+            childBirthPlace: ChildrenInputs.childBirthPlace.value,
         }
 
         if(updatingMode){
@@ -63,13 +65,13 @@ const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildre
                     <PiBabyBold size={70} />
                 </div>
                 <div className={style.ChildrenInputs}>
-                    <LabelInput className={style.Input} controlId='firstName' label="Imię" onInput={SetChildrenInputHandler} value={defaultChildrenInputs.firstName} required />
+                    <LabelInput className={style.Input} controlId='childFirstName' label="Imię" onInput={SetChildrenInputHandler} value={defaultChildrenInputs.childFirstName} required />
 
-                    <LabelInput className={style.Input} controlId='lastName' label="Nazwisko" onInput={SetChildrenInputHandler} value={defaultChildrenInputs.lastName} required />
+                    <LabelInput className={style.Input} controlId='childLastName' label="Nazwisko" onInput={SetChildrenInputHandler} value={defaultChildrenInputs.childLastName} required />
 
-                    <LabelInput className={style.Input} controlId='birthDay' label="Data urodzenia" inputType='date' onInput={SetChildrenInputHandler} value={defaultChildrenInputs.birthDay} max={currentDate} required />
+                    <LabelInput className={style.Input} controlId='childBirthDate' label="Data urodzenia" inputType='date' onInput={SetChildrenInputHandler} value={defaultChildrenInputs.childBirthDate} max={currentDate} required />
 
-                    <LabelInput className={style.Input} controlId='birthPlace' label="Miejsce urodzenia" onInput={SetChildrenInputHandler} value={defaultChildrenInputs.birthPlace} required />
+                    <LabelInput className={style.Input} controlId='childBirthPlace' label="Miejsce urodzenia" onInput={SetChildrenInputHandler} value={defaultChildrenInputs.childBirthPlace} required />
                     
                     <button className={style.SubmitButton} disabled={!FormIsValid} type='submit'>{updatingMode ? 'Edytuj':'Dodaj'}</button>
                 </div>

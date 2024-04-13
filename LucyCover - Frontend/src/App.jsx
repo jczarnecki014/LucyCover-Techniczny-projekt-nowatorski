@@ -11,6 +11,7 @@ import PatientRecommendationPage,{loader as PatientRecommendationLoader} from '.
 import PatientDocumentationDisplayPage,{loader as PatientDocumentationDisplayLoader} from './pages/dashboard/PatientDocumentationDisplayPage'
 import PatientDocumentationEdit from './pages/dashboard/PatientDocumentationEdit'
 import PatientRecommendationDisplayPage,{loader as PatientRecommendationDisplayLoader} from './pages/dashboard/PatientRecommendationDisplayPage'
+import PatientSchedulePage, {loader as PatientSchedulePageLoader} from './pages/dashboard/PatientShedulePage'
 
 import { Fragment } from 'react'
 
@@ -76,6 +77,11 @@ const router = createBrowserRouter([
                         element: <PatientRecommendationDisplayPage />
                       },
                     ]
+                  },
+                  {
+                    path: 'schedule',
+                    loader: PatientSchedulePageLoader,
+                    element: <PatientSchedulePage />,
                   }
                 ]
               },

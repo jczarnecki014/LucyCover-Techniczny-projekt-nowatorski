@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import AddPatientDocumentation_MENU from "./AddPatientDocumentation_MENU"
+import PopupMenu from "../../../../utility/PatientsPopups/PatientPopupMenu"
 import PatientDocumentationForm_FIRST from "../PatientDocumentationSections/FirstDocumentationSections/PatientDocumentationForm_FIRST"
 import PatientDocumentationForm_NEXT from "../PatientDocumentationSections/NextDocumentationSections/PatientDocumentationForm_NEXT"
 
@@ -13,7 +13,12 @@ const AddPatientDocumentation = () => {
 
     return (
         <>
-            {formMode === 'menu' && <AddPatientDocumentation_MENU onModeChange={FormModeChangeHandler} />}
+            {formMode === 'menu' && <PopupMenu 
+                                        title="Dodaj nową dokumentację" 
+                                        header="Wybierz rodzaj wprowadzanej dokumentacji" 
+                                        leftBtn={{desc:'Pierwszorazowa wizyta',func:FormModeChangeHandler}}
+                                        rightBtn={{desc:'Kolejna wizyta (domowa)',func:FormModeChangeHandler}} 
+                                        />}
             {formMode === 'FirstDocumentation' && <PatientDocumentationForm_FIRST />}
             {formMode === 'NextDocumentation' && <PatientDocumentationForm_NEXT />}
         </>

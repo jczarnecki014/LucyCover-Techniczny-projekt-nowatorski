@@ -11,7 +11,7 @@ const PatientTable = ({columns,data,patientName,children,showPopup}) => {
                 </button>
             </div>
             <div className={style.DocumentationList}>
-              <table>
+              <table className={style.PatientTable}>
                 <thead>
                   <tr>
                     {columns.map((label,index) => (

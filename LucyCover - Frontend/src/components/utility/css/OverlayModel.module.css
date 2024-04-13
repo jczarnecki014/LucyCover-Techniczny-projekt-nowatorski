@@ -38,9 +38,16 @@
     grid-area: header;
     overflow: hidden;
 }
-.model .header button{
+.model .header .buttonSection {
+    display: flex;
+    justify-content: end;
+    gap:20px;
+    width: 40%;
+}
+
+.model .header .buttonSection button{
     background-color: #CB60C8;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 50px 5px 50px;
 }
 .model .content{
     border-radius: 0px 0px 20px 20px;
@@ -66,5 +73,21 @@
     }
     .model.small .content{
         padding: 25px;
+    }
+    .model .header {
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .model .header .buttonSection {
+        display: flex;
+        justify-content: center;
+        gap:20px;
+        width: 100%;
+    }
+    
+    .model .header .buttonSection button{
+        background-color: #CB60C8;
+        padding: 5px 50px 5px 50px;
     }
 }

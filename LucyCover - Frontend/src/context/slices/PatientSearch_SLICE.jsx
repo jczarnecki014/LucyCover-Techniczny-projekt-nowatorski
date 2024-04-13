@@ -1,30 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const activePatient_DEFAULT = {
+    id: '',
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    birthPlace:'',
+    city: '',
+    address: '',
+    province: '',
+    zipCode: '',
+    phoneNumber:'',
+    email:'',
+    children: []
+}
+
+const activeChildren_DEFAULT = {
+    id: '',
+    childFirstName: '',
+    childLastName: '',
+    childBirthDate: '',
+    childBirthPlace:'',
+}
+
 const PatientSearchSlice = createSlice({
     name: 'PatientSearch',
     initialState:{
-        activePatient: {
-            id: '',
-            firstName: '',
-            lastName: '',
-            city: '',
-            address: '',
-            province: '',
-            zipCode: '',
-            phoneNumber:'',
-            email:'',
-            children: []
-        },
+        activePatient:activePatient_DEFAULT, 
+        activeChildren:activeChildren_DEFAULT,
     },
     reducers: {
         SetActivePatient: (state,action) => {
+            state.activeChildren = activeChildren_DEFAULT
             state.activePatient = action.payload
         },
-        RemoveActivepatient: (state) => {
-            state.activePatient = null
+        SetActiveChildren: (state,action) => {
+            state.activeChildren = action.payload
+        },
+        ResetActivePatients: (state) => {
+            state.activePatient = activePatient_DEFAULT
+            state.activeChildren = activeChildren_DEFAULT
         },
     }
 })
 
-export const {SetActivePatient,RemoveActivepatient} = PatientSearchSlice.actions
+export const {SetActivePatient,SetActiveChildren,ResetActivePatients} = PatientSearchSlice.actions
 export default PatientSearchSlice

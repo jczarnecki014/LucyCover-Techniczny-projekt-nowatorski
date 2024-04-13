@@ -5,7 +5,7 @@ import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE"
 import TableButtons from "../PatientTable/TableButtons"
 import PatientTable from "../PatientTable/PatientTable"
 import AddPatientRecommendation from "./AddPatientRecommendation"
-import DeleteConfirmation from '../PatientsPopups/DeleteConfirmation'
+import DeleteConfirmation from '../../../utility/PatientsPopups/DeleteConfirmation'
 import { AnimatePresence } from "framer-motion"
 
 const PatientRecommendation = () => {

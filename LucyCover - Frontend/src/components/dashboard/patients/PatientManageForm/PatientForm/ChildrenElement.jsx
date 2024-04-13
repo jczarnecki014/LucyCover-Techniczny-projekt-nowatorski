@@ -62,8 +62,8 @@ const ChildrenElement = ({childrenDetails,RemoveChildrenFromList,setChildrenForm
                         </AnimatePresence>
 
                         <PiBabyBold size={50} />
-                        <h6>{childrenDetails.firstName}</h6>
-                        <small>{childrenDetails.birthDay}</small>
+                        <h6>{childrenDetails.childFirstName}</h6>
+                        <small>{childrenDetails.childBirthDate}</small>
                 </motion.span>
             )
         }

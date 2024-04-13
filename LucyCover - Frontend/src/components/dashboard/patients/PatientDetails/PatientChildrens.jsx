@@ -12,7 +12,7 @@ const PatientChildrens = ({children=[]}) => {
                         <div className={style.Icon}>
                             <FaUser size={40} />
                         </div>
-                        <h6>{child.firstName} {child.lastName}</h6>
+                        <h6>{child.childFirstName} {child.childLastName}</h6>
                     </div>
                 ))}
             </div>

@@ -5,15 +5,6 @@ form input{
     border: 1px solid #777;
     border-radius: 5px;
 }
-form button{
-    width: 100%;
-    padding: 10px 30px 10px 30px;
-    margin-top: 10px;
-    border: 1px solid #CB60C8;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-}
 form button:first-of-type{
     margin-top: 0px;
 }

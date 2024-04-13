@@ -18,10 +18,10 @@ const Menu = ({ShowPatientFormToggler}) => {
                 <MdRecommend />
                 <h5>Zalecenia</h5>
             </Link>
-            <div id={style.Visits} className={style.Tails}>
+            <Link id={style.Visits} className={style.Tails} to="schedule">
                 <IoCalendar />
                 <h5>Wizyty</h5>
-            </div>
+            </Link>
             <div id={style.Manage} className={style.Tails} onClick={ShowPatientFormToggler}>
                 <RiUserSettingsLine />
                 <h5>Zarządzaj</h5>
