@@ -67,3 +67,102 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
+# Obsługiwane przez Visual Studio
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Pliki wynikowe binarne i katalogi generowane przez Visual Studio
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# IIS
+.publish/
+
+# Katalogi generowane przez narzędzia
+node_modules/
+bower_components/
+
+# Pliki tymczasowe
+*.tmp
+*.temp
+*.tmp.*
+
+# Dane konfiguracyjne specyficzne dla platformy
+.vs/
+.vscode/
+_Tests/obj/
+.vscode/test-results/
+
+# Pliki lock dla narzędzi dependency manager
+project.lock.json
+project.fragment.lock.json
+
+# Logi i ślady
+*.log
+*.tlg
+*.trace
+
+# Bazy danych lokalne
+*.mdf
+*.ldf
+*.ndf
+
+# Konfiguracje
+*.config
+*.csproj.user
+*.csproj.nuget.g.targets
+
+# Pliki tymczasowe środowiska pracy
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# PLIKI PUBLISH SETTINGS
+publishProfiles/
+
+# Pliki konfiguracji specyficzne dla systemu
+appsettings.Development.json
+appsettings.Local.json
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Pliki katalogów chmurowych (Dropbox, OneDrive)
+.dropbox
+.dropbox.cache/
+OneDrive/
+
+# Logs
+*.log
+
+# npm debug log
+npm-debug.log*
+
+# yarn debug log
+yarn-debug.log*
+yarn-error.log*
+
+# End of file
