@@ -1,0 +1,160 @@
+.Container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.Section {
+    display: flex;
+    gap:20px;
+    padding: 20px 0px 20px 0px;
+}
+
+.Section .Icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    background-color: #A4A3A3;
+    border-radius: 30px;
+}
+
+.Inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 85%;
+    padding: 0px 25px 0px 25px;
+}
+
+.Inputs .Input {
+    width: 45%;
+}
+
+#ChildrenSection {
+    border-radius: 30px;
+    background-color: rgb(248,150,245,0.2)
+}
+
+#ChildrenSection.Section .Icon {
+    margin-left: 20px;
+    width: 12%;
+    background: url('../../../../../assets/images/AddNewVisitForm/babyIcon.jpg');
+    background-size: cover;
+}
+
+#ChildrenSection button.Input {
+    height: 45px;
+    margin-top: 24px;
+    background-color: #CB60C8;
+}
+
+#AddressSection {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+#AddressSection .Inputs {
+    width: 100%;
+    gap:15px;
+    padding: 10px 25px 10px 25px;
+}
+
+#AddressSection .Input_w25{
+    width: 20%;
+}
+
+#AddressSection .Input_w50{
+    width: 45%;
+}
+
+#AddressSection .Input_w75{
+    width: 75%;
+}
+
+#AddressSection .Input{
+    width: 100%;
+}
+
+#AddressSection .TextArea{
+    width: 100%;
+}
+
+.ButtonSection {
+    display: flex;
+    gap:30px;
+    padding: 0px 20px 30px 0px;
+    justify-content: end;
+}
+
+.ButtonSection button{
+    width: 20%;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.ButtonSection button#ActionButton {
+    background-color: #CB60C8;
+}
+
+.ButtonSection button#ActionButton:disabled{
+    background-color: #692267;
+}
+
+.ButtonSection button#ActionButton:disabled:hover{
+    transform: none;
+}
+
+.ButtonSection button#Done {
+    background-color: #3FA91A;
+}
+
+.ButtonSection button#Rejected {
+    background-color: #D00000;
+}
+
+.ButtonSection button#Scheduled {
+    background-color: #FFB800;
+}
+
+@media only screen and (max-width:1200px){
+    .Section {
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .Section .Icon{
+        display: none;
+    }
+
+    .Inputs .Input{
+        width: 100%;
+    }
+
+    .Inputs {
+        justify-content: center;
+        padding: 20px 0px 20px 0px;
+    }
+
+    #AddressSection {
+        grid-template-columns: 1fr;
+    }
+
+    #AddressSection .Input_w50 {
+        width: 100%;
+    }
+
+    .ButtonSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ButtonSection button{
+        width: 85%;
+    }
+}

@@ -20,33 +20,34 @@
 .DocumentationList{
    overflow-y: auto;
 }
-.DocumentationList table{
+.DocumentationList .PatientTable{
     width: 100%;
     border-collapse: collapse;
     border: 1px #AAA solid;
 }
 
-.DocumentationList table thead,tbody td,th{
+.DocumentationList > .PatientTable > thead th,
+.DocumentationList > .PatientTable > tbody td {
     padding-left: 20px;
 }
 
-.DocumentationList table thead tr{
+.DocumentationList .PatientTable thead tr{
     background-color: #b9b9b9;
     border-bottom: 1px #202020 solid;
     height: 50px;
 }
 
-.DocumentationList table tbody tr{
+.DocumentationList .PatientTable tbody tr{
     background-color: #FFFAFA;
     border-bottom: 1px #AAA solid;
     height: 50px;
 }
 
-.DocumentationList table tbody tr:nth-child(even){
+.DocumentationList .PatientTable tbody tr:nth-child(even){
     background-color: #EEEBE9;
 }
 
-.DocumentationList table tbody tr#First{
+.DocumentationList .PatientTable tbody tr#First{
     background-color: #FFCDFD;
     border-bottom: 1px #AAA solid;
     height: 50px;

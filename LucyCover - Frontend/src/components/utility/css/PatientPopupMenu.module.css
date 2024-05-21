@@ -17,13 +17,13 @@
     padding: 5px 50px 5px 50px;
  }
 
-.Container .ButtonSection button#FirstDocumentation{
+.Container .ButtonSection button#FirstOption{
     border: #D00000 solid 2px;
     background-color: #FBFBFB;
     color: #D00000;
  } 
 
- .Container .ButtonSection button#NextDocumentation{
+ .Container .ButtonSection button#NextOption{
     background-color: #CB60C8;
     color: #fff;
  } 

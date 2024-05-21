@@ -1,4 +1,4 @@
-import Popup from '../../../utility/Popup';
+import Popup from '../Popup';
 
 const DeleteConfirmation = ({what="X",day="X",patient="X"}) => {
     return (

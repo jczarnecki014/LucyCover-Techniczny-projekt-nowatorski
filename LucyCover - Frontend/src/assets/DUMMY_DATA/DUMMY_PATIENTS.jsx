@@ -8,32 +8,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'kuba-projekt@wp.pl',
-        birthDay:'2023-04-04',
+        email:'',
+        birthDate:'2023-04-04',
         birthPlace:'Jelenia Góra',
-        children:[
-            {
-                id: 'c1',
-                firstName: 'Alicja',
-                lastName: 'Kret',
-                birthDay: '2024-03-21',
-                birthPlace:'Jelenia Góra',
-            },
-            {
-                id: 'c2',
-                firstName: 'Krstyna',
-                lastName: 'Kret',
-                birthDay: '2024-03-21',
-                birthPlace:'Jelenia Góra',
-            },
-            {
-                id: 'c3',
-                firstName: 'Norbert',
-                lastName: 'Kret',
-                birthDay: '2024-03-21',
-                birthPlace:'Jelenia Góra',
-            }
-        ]
     },
     {
         id: 'p2',
@@ -44,7 +21,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p3',
@@ -56,16 +35,22 @@ export const DUMMY_PATIENTS = [
         zipCode: '58-560',
         phoneNumber:'607 411 432',
         email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
         children:[
             {
                 id: 'c4',
-                firstName: 'Aleksander',
-                lastName: 'Kiszka'
+                childFirstName: 'Aleksander',
+                childBirthDate:'2023-04-04',
+                childLastName: 'Kiszka',
+                childBirthPlace:'Jelenia Góra',
             },
             {
                 id: 'c5',
-                firstName: 'Nikola',
-                lastName: 'Kiszka'
+                childFirstName: 'Nikola',
+                childBirthDate:'2022-04-04',
+                childLastName: 'Kiszka',
+                childBirthPlace:'Jelenia Góra',
             },
         ]
     },
@@ -78,7 +63,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p5',
@@ -89,7 +76,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {   id: 'p6',
         firstName: 'Roksana',
@@ -99,7 +88,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p7',
@@ -110,7 +101,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p8',
@@ -121,7 +114,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p9',
@@ -132,7 +127,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p10',
@@ -143,7 +140,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p11',
@@ -154,7 +153,9 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'XDUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'XDUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
     {
         id: 'p12',
@@ -165,6 +166,8 @@ export const DUMMY_PATIENTS = [
         province: 'Dolnośląskie',
         zipCode: '58-560',
         phoneNumber:'607 411 432',
-        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM'
+        email:'DUMNY_EMAIL@DUMNY_DOMAIN.COM',
+        birthDate:'2023-04-04',
+        birthPlace:'Jelenia Góra',
     },
 ]

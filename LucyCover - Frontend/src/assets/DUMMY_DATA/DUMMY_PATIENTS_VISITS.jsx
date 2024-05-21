@@ -1,0 +1,51 @@
+export const DUMMY_PATIENTS_VISITS = [
+    {
+        id: '8ddd9110-924f-496c-b77b-c5f45ce82231',
+        date: '21.09.2024',
+        time: '11:20',
+        visitState: 'Odbyta',
+        patientId: 'p1',
+    },
+    {
+        id: '8ddd911x-924a-496c-b77b-c5f45ce82231',
+        date: '22.09.2024',
+        time: '9:30',
+        visitState: 'Odwołana',
+        patientId: 'p1',
+    },
+    {
+        id: '8ddd911n-924a-496c-b77b-c5f45ce82231',
+        date: '24.09.2024',
+        time: '14:00',
+        visitState: 'Zaplanowana',
+        patientId: 'p1',
+    },
+    {
+        id: '8ddd911p-924a-496c-b77b-c5f45ce82231',
+        date: '28.09.2024',
+        time: '14:00',
+        visitState: 'Zaplanowana',
+        patientId: 'p1',
+    },
+    {
+        id: '8ddd961x-924a-496c-b77b-c5f45ce82231',
+        date: '02.10.2024',
+        time: '16:15',
+        visitState: 'Odbyta',
+        patientId: 'p1',
+    },
+    {
+        id: '8ddd911x-924a-496c-b71b-c5f45ce82231',
+        date: '05.10.2024',
+        time: '8:30',
+        visitState: 'Odwołana',
+        patientId: 'p1',
+    },
+    {
+        id: '8ddd911x-924a-496c-b77b-c5f45ce88231',
+        date: '12.10.2024',
+        time: '13:30',
+        visitState: 'Odwołana',
+        patientId: 'p1',
+    },
+]

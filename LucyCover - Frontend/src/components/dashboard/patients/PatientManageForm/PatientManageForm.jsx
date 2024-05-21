@@ -11,6 +11,7 @@ import PatientForm from './PatientForm/PatientForm'
 import ChildrenForm from './ChildrenForm/ChildrenForm'
 import Popup from '../../../utility/Popup'
 
+import {DUMMY_CHILDREN} from '../../../../assets/DUMMY_DATA/DUMMY_CHILDREN'
 
 const PatientManageForm = ({activePatient}) => {
 
@@ -18,7 +19,7 @@ const PatientManageForm = ({activePatient}) => {
     const getValue = useFormData();
     const dispatch = useDispatch()
 
-    const defaultChildrenList = activePatient ? activePatient.children : []
+    const defaultChildrenList = activePatient ? DUMMY_CHILDREN.filter(child => child.patientId === activePatient.id) : []
     const defaultPatientInputs = (activePatient != undefined) ? activePatient : getValue(patientContextInputs)
 
     const [formMode,setFormMode] = useState('patient')
@@ -34,8 +35,8 @@ const PatientManageForm = ({activePatient}) => {
         setChildrenInEditMode(null);
     }
 
-    const EditChildrenFormDisplay = (childrenId) => {
-        const toEditChildren = childrenList.find(children => (childrenId === children.id))
+    const EditChildrenFormDisplay = (childId) => {
+        const toEditChildren = childrenList.find(child => (childId === child.id))
         setChildrenInEditMode(toEditChildren)
         setFormMode('children')
     }
@@ -62,6 +63,8 @@ const PatientManageForm = ({activePatient}) => {
         })
     }
 
+    console.log(patientContextInputs)
+
     const RemoveChildrenFromListHandler = (childrenId) =>  {
         setChildrenList((previousState) => {
             const newChildrenList = previousState.filter(children => (childrenId !== children.id))
@@ -84,6 +87,7 @@ const PatientManageForm = ({activePatient}) => {
         dispatch(OverlayToggle(false))
     }
 
+    console.log(patientInputs)
 
     return (
         <Fragment>

@@ -4,7 +4,7 @@ const defaultState = {
     patientInputs:{
         firstName: {value:'', isValid: false},
         lastName: {value:'', isValid: false},
-        birthDay: {value:'', isValid: false},
+        birthDate: {value:'', isValid: false},
         birthPlace: {value:'', isValid: false},
         phoneNumber: {value:'', isValid: false},
         email: {value:'', isValid: false},
@@ -14,10 +14,10 @@ const defaultState = {
         zipCode: {value:'', isValid: false},
     },
     childrenInputs: {
-        firstName: {value: '', isValid: false},
-        lastName: {value: '', isValid: false},
-        birthDay: {value: '', isValid: false},
-        birthPlace: {value: '', isValid: false},
+        childFirstName: {value: '', isValid: false},
+        childLastName: {value: '', isValid: false},
+        childBirthDate: {value: '', isValid: false},
+        childBirthPlace: {value: '', isValid: false},
     }
 }
 
@@ -40,32 +40,11 @@ const AddPatientForm = createSlice({
             }
         },
         ResetChildrenInputs: (state) => {
-            state.childrenInputs = {
-                firstName: {value: '', isValid: false},
-                lastName: {value: '', isValid: false},
-                birthDay: {value: '', isValid: false},
-                birthPlace: {value: '', isValid: false},
-            }
+            state.childrenInputs = defaultState.childrenInputs
         },
         ClearForm: (state) => {
-            state.patientInputs = {
-                firstName: {value:'', isValid: false},
-                lastName: {value:'', isValid: false},
-                birthDay: {value:'', isValid: false},
-                birthPlace: {value:'', isValid: false},
-                phoneNumber: {value:'', isValid: false},
-                email: {value:'', isValid: false},
-                province: {value:'', isValid: false},
-                city: {value:'', isValid: false},
-                address: {value:'', isValid: false},
-                zipCode: {value:'', isValid: false},
-            },
-            state.childrenInputs = {
-                firstName: {value: '', isValid: false},
-                lastName: {value: '', isValid: false},
-                birthDay: {value: '', isValid: false},
-                birthPlace: {value: '', isValid: false},
-            }
+            state.patientInputs = defaultState.patientInputs,
+            state.childrenInputs = defaultState.childrenInputs
         }
     }
 })

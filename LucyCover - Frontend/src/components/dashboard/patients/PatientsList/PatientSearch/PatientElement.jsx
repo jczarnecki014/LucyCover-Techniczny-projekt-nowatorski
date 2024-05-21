@@ -10,10 +10,7 @@ const variants = {
     visible: {opacity:1, scale:1},
 }
 
-const PatientElement = ({id,firstName,lastName,city,address,setActivePatient}) => {
-
-    const activePatientId = useSelector(state => state.patientSearch.activePatient.id);
-
+const PatientElement = ({id,firstName,lastName,city,address,birthDate,patientType,setActivePatient,activePatientId}) => {
     const ClickHandler = () => {
         setActivePatient(id)
     }
@@ -31,8 +28,22 @@ const PatientElement = ({id,firstName,lastName,city,address,setActivePatient}) =
                 <FaUser size={60} />
             </div>
             <h5>{firstName} {lastName}</h5>
-            <h6>{city}</h6>
-            <h6>ul.{address}</h6>
+            {
+                patientType == 'mother' && (
+                    <>
+                        <h6>{city}</h6>
+                        <h6>ul.{address}</h6>
+                    </>
+                )
+            }
+            {
+                patientType == 'children' && (
+                    <>
+                        <h6>URODZONY</h6>
+                        <h6>{birthDate}</h6>
+                    </>
+                )
+            }
         </motion.div>
     )
 }

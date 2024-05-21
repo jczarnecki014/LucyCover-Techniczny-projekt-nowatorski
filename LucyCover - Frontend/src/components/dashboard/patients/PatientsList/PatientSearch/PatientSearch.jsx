@@ -1,9 +1,7 @@
 import { useState,useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE';
-
-import {motion} from 'framer-motion'
 
 import style from '../css/PatientSearch.module.css'
 
@@ -22,6 +20,7 @@ const PatientSearch = ({patients,className,showNewPatientForm}) => {
     const [patientList,setPatientList] = useState(patients)
 
     const dispatch = useDispatch()
+    const activePatientId = useSelector(state => state.patientSearch.activePatient.id);
 
     let timeout
 
@@ -66,7 +65,7 @@ const PatientSearch = ({patients,className,showNewPatientForm}) => {
                     {patientList.map((patient) => (
                         <PatientElement key={patient.id} id={patient.id} firstName={patient.firstName} 
                                         lastName={patient.lastName} city={patient.city} 
-                                        address={patient.address} setActivePatient={PatientElementClickHandler}/>
+                                        address={patient.address} patientType='mother' setActivePatient={PatientElementClickHandler} activePatientId={activePatientId}/>
                     ))}
                 </AnimatePresence>
             </div>

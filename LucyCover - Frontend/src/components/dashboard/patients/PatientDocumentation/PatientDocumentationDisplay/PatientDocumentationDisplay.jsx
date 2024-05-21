@@ -10,7 +10,7 @@ import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIR
 import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT';
 import PatientDocumentationForm_FIRST from '../PatientDocumentationSections/FirstDocumentationSections/PatientDocumentationForm_FIRST';
 import PatientDocumentationForm_NEXT from '../PatientDocumentationSections/NextDocumentationSections/PatientDocumentationForm_NEXT';
-import DeleteConfirmation from '../../PatientsPopups/DeleteConfirmation';
+import DeleteConfirmation from '../../../../utility/PatientsPopups/DeleteConfirmation';
 import { AnimatePresence } from 'framer-motion';
 
 const PatientDocumentationDisplay = () => {

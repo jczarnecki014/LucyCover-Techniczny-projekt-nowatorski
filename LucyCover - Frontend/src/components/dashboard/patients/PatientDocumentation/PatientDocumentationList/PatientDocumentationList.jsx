@@ -2,7 +2,7 @@ import { AnimatePresence } from "framer-motion"
 import PatientTable from "../../PatientTable/PatientTable"
 import TableButtons from "../../PatientTable/TableButtons"
 import AddPatientDocumentation from "../AddPatientDocumentation/AddPatientDocumentation"
-import DeleteConfirmation from "../../PatientsPopups/DeleteConfirmation"
+import DeleteConfirmation from "../../../../utility/PatientsPopups/DeleteConfirmation"
 
 import style from './css/PatientDocumentation.module.css'
 

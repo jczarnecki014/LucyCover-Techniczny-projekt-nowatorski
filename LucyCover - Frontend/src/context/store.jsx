@@ -6,6 +6,7 @@ import AddPatientForm from "./slices/AddPatientForm";
 import AddFirstDocumentationForm from "./slices/AddFirstDocumentationForm";
 import AddNextDocumentationForm from "./slices/AddNextDocumentationForm";
 import AddPatientRecommendation from "./slices/AddPatientRecommendation";
+import AddNewVisitToScheduleForm from "./slices/AddNewVisitToScheduleForm";
 
 
 const reducers = combineReducers({
@@ -14,7 +15,8 @@ const reducers = combineReducers({
     addPatientForm: AddPatientForm.reducer,
     addFirstDocumentationForm: AddFirstDocumentationForm.reducer,
     addNextDocumentationForm: AddNextDocumentationForm.reducer,
-    addPatientRecommendation: AddPatientRecommendation.reducer
+    addPatientRecommendation: AddPatientRecommendation.reducer,
+    addNewVisitToScheduleForm: AddNewVisitToScheduleForm.reducer,
 })
 
 const store = configureStore({

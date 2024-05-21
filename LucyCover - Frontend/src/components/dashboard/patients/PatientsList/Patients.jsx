@@ -11,6 +11,8 @@ import PatientManageForm from '../PatientManageForm/PatientManageForm';
 import { AnimatePresence } from 'framer-motion';
 import PatientLayout from '../PatientLayout/PatientLayout';
 
+import {DUMMY_CHILDREN} from '../../../../assets/DUMMY_DATA/DUMMY_CHILDREN'
+
 
 const Patients = () => {
 
@@ -19,7 +21,8 @@ const Patients = () => {
     const activePatient = useSelector((state) => state.patientSearch.activePatient)
     const patientAddingMode = useSelector((state) => state.overlayModel.isVisible)
 
-    const {id,firstName,lastName,city,address,province,zipCode,children,phoneNumber,email} = activePatient
+    const {id,firstName,lastName,city,address,province,zipCode,phoneNumber,email} = activePatient
+    const children = DUMMY_CHILDREN.filter(child => child.patientId == activePatient.id)
 
     const dispatch = useDispatch();
 

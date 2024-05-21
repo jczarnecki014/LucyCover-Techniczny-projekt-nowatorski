@@ -35,9 +35,9 @@ const GetContentByType = (type) => {
     }
 }
 
-const Popup = ({type,description,CancleAction,AcceptAction}) => {
+const Popup = ({type,title,description,CancleAction,AcceptAction}) => {
     return (
-        <OverlayModel smallSize={true}>
+        <OverlayModel title={title} smallSize={true}>
             <div className={style.PopupContainer}>
                 {GetContentByType(type)}
                 <p>{description}</p>

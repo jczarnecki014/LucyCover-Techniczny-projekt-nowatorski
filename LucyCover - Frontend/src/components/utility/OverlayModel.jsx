@@ -16,12 +16,17 @@ const BackDrop = ({onQuit}) => {
 }
 
 
-const Model = ({children,title,onQuit,smallSize=false}) => {
+const Model = ({children,title,onQuit,smallSize=false,funcButton}) => {
     return (
         <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className={`${style.model} ${smallSize && style.small}`}>
             <div className={style.header}>
                 <h1>{title}</h1>
-                <button onClick={onQuit}>Zamknij</button>
+                <div className={style.buttonSection}>
+                    {
+                        funcButton && <button onClick={funcButton.func}>{funcButton.btnLabel}</button> 
+                    }
+                    <button onClick={onQuit}>Zamknij</button>
+                </div>
             </div>
             <div className={style.content}>
                 {children}
@@ -30,7 +35,15 @@ const Model = ({children,title,onQuit,smallSize=false}) => {
     )
 }
 
-const OverlayModel = ({children,title,OnQuitButtonClick,smallSize}) => {
+/**
+ * Component overlaying content and displaying value over screen
+ * @param {string} title - display title of this popup
+ * @param {Function} OnQuitButtonClick - function running after popup close
+ * @param {babel} smallSize - showing small version of popup 
+ * @param {Object} funcButton - Object to configure additional action button
+ */
+
+const OverlayModel = ({children,title,OnQuitButtonClick,smallSize,funcButton}) => {
     const backDropDOM = document.querySelector('#backdrop');
     const modelDOM = document.querySelector('#model')
 
@@ -52,7 +65,7 @@ const OverlayModel = ({children,title,OnQuitButtonClick,smallSize}) => {
                 backDropDOM
             )}
             {createPortal(
-                    <Model title={title} smallSize={smallSize} onQuit={QuitHandler}>
+                    <Model title={title} smallSize={smallSize} onQuit={QuitHandler} funcButton={funcButton}>
                         {children}
                     </Model>,
                 modelDOM
