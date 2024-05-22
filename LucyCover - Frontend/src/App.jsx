@@ -1,4 +1,6 @@
 import {RouterProvider,createBrowserRouter} from 'react-router-dom'
+import {QueryClientProvider} from '@tanstack/react-query'
+import { queryClient } from './api/https'
 
 import DashboardRoot from './pages/dashboard/DashboardRoot'
 import RootAuth from './pages/auth/RootAuth'
@@ -106,9 +108,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Fragment>
-        <RouterProvider router={router} />
-    </Fragment>
+    <QueryClientProvider client={queryClient} >
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   )
 }
 
