@@ -7,6 +7,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//CORSE Settings
+
+builder.Services.AddCors(option => {
+    option.AddPolicy("LucyCoverFrontend",policyBuilder => {
+        policyBuilder.AllowAnyHeader();
+        policyBuilder.AllowAnyMethod();
+        policyBuilder.WithOrigins("http://localhost:5173");
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -15,6 +25,8 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 }
+
+app.UseCors("LucyCoverFrontend");
 
 app.UseHttpsRedirection();
 
