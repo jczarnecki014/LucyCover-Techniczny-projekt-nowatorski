@@ -7,7 +7,7 @@ namespace LucyCover_Database
     {
         public DbConnection(DbContextOptions<DbConnection> options) : base(options) { }
 
-        DbSet<Patient> Patients{ get; set; }
+        internal DbSet<Patient> Patients{ get; set; }
 
 
     }

@@ -1,5 +1,9 @@
+using LucyCover___Backend.Services;
 using LucyCover_Database;
+using LucyCover_Database.Repository;
+using LucyCover_Database.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +24,15 @@ builder.Services.AddCors(option => {
     });
 });
 
-//Database connection
+//Database connection + Repositories
 builder.Services.AddDbContext<DbConnection>(option => {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+//Autompaer configuration
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+//App services
+builder.Services.AddScoped<IPatientService,PatientService>();
 
 var app = builder.Build();
 
