@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using LucyCover_Model;
+using LucyCover_Model.Database_Model;
 
 namespace LucyCover___Backend.Controllers
 {
@@ -7,40 +9,9 @@ namespace LucyCover___Backend.Controllers
     public class PatientController : Controller
     {
         [HttpGet]
-        public IActionResult GetPatients()
+        public ActionResult<Patient> GetPatients()
         {
-            List<object> patients = new List<object>
-            {
-                new {
-                    id = "p1",
-                    firstName = "Barbara",
-                    lastName = "Kret",
-                    city = "Jelenia Góra",
-                    address = "Wolności 31B",
-                    province = "Dolnośląskie",
-                    zipCode = "58-560",
-                    phoneNumber = "607 411 432",
-                    email = "Krecik@wp.pl",
-                    birthDate = "1996-04-04",
-                    birthPlace = "Jelenia Góra",
-                },
-                new {
-                    id = "p2",
-                    firstName = "Nicola",
-                    lastName = "Prokosz",
-                    city = "Jelenia Góra",
-                    address = "Lubańska 7",
-                    province = "Dolnośląskie",
-                    zipCode = "58-560",
-                    phoneNumber = "526 765 342",
-                    email = "prokosz34@outlook.com",
-                    birthDate = "1987-02-11",
-                    birthPlace = "Jelenia Góra",
-                },
-
-            };
-
-            return Ok(patients);
+            return Ok();
 
         }
     }

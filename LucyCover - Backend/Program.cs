@@ -1,3 +1,6 @@
+using LucyCover_Database;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +18,11 @@ builder.Services.AddCors(option => {
         policyBuilder.AllowAnyMethod();
         policyBuilder.WithOrigins("http://localhost:5173");
     });
+});
+
+//Database connection
+builder.Services.AddDbContext<DbConnection>(option => {
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 var app = builder.Build();
