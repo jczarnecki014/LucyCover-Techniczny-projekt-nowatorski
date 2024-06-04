@@ -1,17 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LucyCover_Model.Database_Entities;
+using System.ComponentModel.DataAnnotations;
 namespace LucyCover_Model.Database_Model
 {
     public class Patient
     {
-        [Required]
         [Key]
         public Guid id { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [MaxLength(50)]
         public string firstName { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [MaxLength(50)]
         public string lastName { get; set; }
 
@@ -45,7 +45,9 @@ namespace LucyCover_Model.Database_Model
 
         [Required]
         [MaxLength(50)]
-        public string BirthPlace { get;set; }
+        public string birthPlace { get;set; }
+
+        public ICollection<Children> children { get; set; }
 
     }
 }

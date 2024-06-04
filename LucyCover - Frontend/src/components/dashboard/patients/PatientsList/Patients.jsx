@@ -10,23 +10,20 @@ import { AnimatePresence } from 'framer-motion';
 import PatientLayout from '../PatientLayout/PatientLayout';
 
 
-import {DUMMY_CHILDREN} from '../../../../assets/DUMMY_DATA/DUMMY_CHILDREN'
-
-
 const Patients = () => {
 
     //take data from cache
     const {data} = useQuery({
         queryKey:['patients'],
-        queryFn: ({signal}) => fetchPatientsForSearchList(signal)
+        refetchOnWindowFocus:true,
+        queryFn: ({signal}) => fetchPatientsForSearchList(signal)                     
     })
-
-
+    
     const activePatient = useSelector((state) => state.patientSearch.activePatient)
+    console.log(activePatient)
     const patientAddingMode = useSelector((state) => state.overlayModel.isVisible)
 
-    const {id,firstName,lastName,city,address,province,zipCode,phoneNumber,email} = activePatient
-    const children = DUMMY_CHILDREN.filter(child => child.patientId == activePatient.id)
+    const {id,firstName,lastName,city,address,province,zipCode,phoneNumber,email,children} = activePatient
 
     const dispatch = useDispatch();
 

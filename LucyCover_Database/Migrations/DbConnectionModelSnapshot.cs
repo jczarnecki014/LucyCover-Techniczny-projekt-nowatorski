@@ -22,16 +22,47 @@ namespace LucyCover_Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LucyCover_Model.Database_Model.Patient", b =>
+            modelBuilder.Entity("LucyCover_Model.Database_Entities.Children", b =>
                 {
                     b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("BirthPlace")
+                    b.Property<string>("childBirthDate")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("childBirthPlace")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("childFirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("childLastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid>("patientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("patientId");
+
+                    b.ToTable("Children");
+                });
+
+            modelBuilder.Entity("LucyCover_Model.Database_Model.Patient", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("address")
                         .IsRequired()
@@ -42,6 +73,11 @@ namespace LucyCover_Database.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("birthPlace")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("city")
                         .IsRequired()
@@ -81,6 +117,22 @@ namespace LucyCover_Database.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("LucyCover_Model.Database_Entities.Children", b =>
+                {
+                    b.HasOne("LucyCover_Model.Database_Model.Patient", "patient")
+                        .WithMany("children")
+                        .HasForeignKey("patientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("patient");
+                });
+
+            modelBuilder.Entity("LucyCover_Model.Database_Model.Patient", b =>
+                {
+                    b.Navigation("children");
                 });
 #pragma warning restore 612, 618
         }

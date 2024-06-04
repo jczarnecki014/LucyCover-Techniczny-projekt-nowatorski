@@ -15,8 +15,6 @@ import PatientDocumentationEdit from './pages/dashboard/PatientDocumentationEdit
 import PatientRecommendationDisplayPage,{loader as PatientRecommendationDisplayLoader} from './pages/dashboard/PatientRecommendationDisplayPage'
 import PatientSchedulePage, {loader as PatientSchedulePageLoader} from './pages/dashboard/PatientShedulePage'
 
-import { Fragment } from 'react'
-
 const router = createBrowserRouter([
   {
     path: '/',

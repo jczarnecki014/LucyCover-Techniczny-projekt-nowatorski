@@ -10,6 +10,7 @@ namespace LucyCover_Database.Repository.IRepository
     public interface IRepository<T> where T : class
     {
         void Add (T entity);
+        void AddRange (IEnumerable<T> entities);
         IEnumerable<T> GetAll (Expression<Func<T,bool>>?filter = null, string? includeProperties = null);
         T GetFirstOfDefault(Expression<Func<T,bool>>filter, string? includeProperties = null);
         void Remove(T entity);

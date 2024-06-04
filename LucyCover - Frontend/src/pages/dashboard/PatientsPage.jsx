@@ -13,4 +13,5 @@ export const loader = async () => {
     })
 }
 
+
 export default PatientsPage;

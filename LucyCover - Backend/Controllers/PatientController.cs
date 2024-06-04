@@ -2,7 +2,7 @@
 using LucyCover_Model;
 using LucyCover_Model.Database_Model;
 using LucyCover___Backend.Services;
-
+using LucyCover_Model.DTO_Modeles;
 
 namespace LucyCover___Backend.Controllers
 {
@@ -22,5 +22,19 @@ namespace LucyCover___Backend.Controllers
             List<Patient> patients = _patientService.GetPatients().ToList();
             return Ok(patients);
         }
+
+        [HttpGet("{patientId}")]
+        public ActionResult<Guid> GetPatient([FromRoute] Guid patientId)
+        {
+            Patient patient = _patientService.GetPatient(patientId);
+            return Ok(patient);
+        }
+
+        [HttpPost]
+        public IActionResult PostPatient([FromBody] AddPatient_DTO patient) {
+            string patientId = _patientService.CreatePatient(patient);
+            return Created($"/api/patients/{patientId}",null);
+        }
+
     }
 }

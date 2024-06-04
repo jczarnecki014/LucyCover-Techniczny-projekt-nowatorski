@@ -1,6 +1,6 @@
 import PatientMenu from "../../components/dashboard/patients/PatientMenu/PatientMenu";
-
-import { DUMMY_PATIENTS } from "../../assets/DUMMY_DATA/DUMMY_PATIENTS";
+import { queryClient } from "../../api/https";
+import { fetchPatient } from "../../api/https";
 import { redirect } from "react-router-dom";
 
 const PatientMenuPage = () => {
@@ -10,18 +10,12 @@ const PatientMenuPage = () => {
 }
 
 export const loader = async ({params}) => {
-    const patient = DUMMY_PATIENTS.find((patient) => patient.id === params.patientId)
+    const patientId = params.patientId
 
-    try{
-        if(!patient){
-            throw new Error("User not exist")
-        }
-    }
-    catch(error){
-        return redirect("/404")
-    }
-
-    return patient
+    return queryClient.fetchQuery({
+        queryKey:['patients',patientId],
+        queryFn: ({signal}) => fetchPatient({signal,patientId})                     
+    })
 }
 
 export default PatientMenuPage;
