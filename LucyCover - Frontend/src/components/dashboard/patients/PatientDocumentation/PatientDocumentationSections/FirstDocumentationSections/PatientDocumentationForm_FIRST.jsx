@@ -1,5 +1,6 @@
+import { useState,useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
+import { SetInput,LoadDefaultData,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
 import { useFormData } from "../../../../../../hooks/useFormData";
 
 import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE";
@@ -17,6 +18,7 @@ import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
 
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                    UWAGA                                                //
 //          Inputy z FIRST różnią się troche od NEXT - DEFAULT W SELECT NIE SĄ SILNIE POWIĄZANE Z CONTEXT //
@@ -24,14 +26,22 @@ import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const PatientDocumentationForm_FIRST = ({toDisplayValues}) => {
+    const [firstRun,setFirstRun] = useState(true)
 
     const dispatch = useDispatch();
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
 
+    // console.log(formInputs)
+
+    useEffect(()=>{
+        if(firstRun && toDisplayValues != undefined){
+            dispatch(LoadDefaultData(toDisplayValues))
+        }
+        setFirstRun(false)
+    },[toDisplayValues])
+
     const getValue = useFormData();
-
-    const formValue = toDisplayValues === undefined ? getValue(formInputs) : toDisplayValues;
-
+    const formValue = getValue(formInputs);
     const formIsValid = CheckFormIsValid(formInputs)
 
     const SetFormInputHandler = ({inputId,inputObject}) => {

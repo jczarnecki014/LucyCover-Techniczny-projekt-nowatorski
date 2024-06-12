@@ -2,6 +2,7 @@
 
 import { DUMMY_DOCUMENTATION } from "../../assets/DUMMY_DATA/DUMMY_DOCUMENTATION";
 import { DUMMY_PATIENTS } from "../../assets/DUMMY_DATA/DUMMY_PATIENTS";
+import {fetchDocumentation, queryClient} from '../../api/https'
 import PatientDocumentationList from "../../components/dashboard/patients/PatientDocumentation/PatientDocumentationList/PatientDocumentationList";
 
 const PatientDocumentationPage = () => {
@@ -11,12 +12,12 @@ const PatientDocumentationPage = () => {
 }
 
 export const loader = async ({params}) => {
-    const documentation = DUMMY_DOCUMENTATION.filter(document => document.patientId === params.patientId)
-    const patient = DUMMY_PATIENTS.find(patient => patient.id === params.patientId)
-    return {
-        documentation,
-        patientName: `${patient.firstName} ${patient.lastName}`
-    };
+    const patientId = params.patientId
+
+    return queryClient.fetchQuery({
+        queryKey:['documentation'],
+        queryFn: ({signal}) => fetchDocumentation({signal,patientId})
+    })
 }
 
 export default PatientDocumentationPage;

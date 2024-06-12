@@ -9,8 +9,8 @@ const PatientFamilyInterviewSection = ({SetFormInputHandler,formInputs,readOnlyM
     const isReadonly = readOnlyMode;
     return (
         <section className={style.PatientFormSection}>
-
-            <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler} readonly={isReadonly} defaultValue={formInputs.documentationReason} />
+            
+            <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler} defaultValue={formInputs.motherFirstName} readonly={isReadonly} />
 
             <h6>Wywiad rodzinny</h6>
             <hr />

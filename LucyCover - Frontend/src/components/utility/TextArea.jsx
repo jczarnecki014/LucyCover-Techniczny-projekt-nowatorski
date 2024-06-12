@@ -11,12 +11,11 @@ const TextArea = ({
     onChange,
     required,
     readonly,
-    defaultValue="",
+    defaultValue='',
     rows=3,
 }) => {
     const [value,setValue] = useState(defaultValue)
     const [textAreaIsValid,setTextAreaIsValid] =useState(true)
-
 
     useEffect(()=>{
       setValue(value)
@@ -37,6 +36,7 @@ const TextArea = ({
             isValid
           }
         }
+
         setTextAreaIsValid(isValid)
 
         if(onChange){
@@ -47,7 +47,7 @@ const TextArea = ({
       return () => {
         clearTimeout(timeout)
       }
-    },[value,textAreaIsValid])
+    },[value])
 
 
     const stylex = textAreaIsValid ? {borderColor: '#888', marginBottom:'25px',width:'100%',borderRadius:'5px'} 

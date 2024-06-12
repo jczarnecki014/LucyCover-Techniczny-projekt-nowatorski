@@ -4,6 +4,7 @@ using LucyCover_Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LucyCover_Database.Migrations
 {
     [DbContext(typeof(DbConnection))]
-    partial class DbConnectionModelSnapshot : ModelSnapshot
+    [Migration("20240612044324_AddPatientsWithChildrenAndDocumentationToDb")]
+    partial class AddPatientsWithChildrenAndDocumentationToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +67,7 @@ namespace LucyCover_Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ChildId")
+                    b.Property<Guid>("ChildrenId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Date")
@@ -82,7 +85,7 @@ namespace LucyCover_Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChildId");
+                    b.HasIndex("ChildrenId");
 
                     b.HasIndex("PatientId");
 
@@ -506,9 +509,9 @@ namespace LucyCover_Database.Migrations
 
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Documentation", b =>
                 {
-                    b.HasOne("LucyCover_Model.Database_Entities.Children", "Child")
+                    b.HasOne("LucyCover_Model.Database_Entities.Children", "Children")
                         .WithMany()
-                        .HasForeignKey("ChildId")
+                        .HasForeignKey("ChildrenId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -518,7 +521,7 @@ namespace LucyCover_Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Child");
+                    b.Navigation("Children");
 
                     b.Navigation("Patient");
                 });

@@ -45,7 +45,7 @@ const PatientDocumentationList = () => {
                         <tr id={document.first ? style.First : ''} key={document.id}>
                             <td>{document.id}</td>
                             <td>{document.date}</td>
-                            <td>{document.baby}</td>
+                            <td>{document.child.childFirstName} {document.child.childLastName}</td>
                             <TableButtons document={{...document,patient:document.baby}} showPopup={showPopupHandler} />
                         </tr>
                     )
