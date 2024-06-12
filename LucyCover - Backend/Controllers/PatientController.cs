@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using LucyCover_Model;
+using LucyCover_Model.Database_Model;
+using LucyCover___Backend.Services;
+using LucyCover_Model.DTO_Modeles;
 
 namespace LucyCover___Backend.Controllers
 {
@@ -6,42 +10,31 @@ namespace LucyCover___Backend.Controllers
     [Route("/api/patients")]
     public class PatientController : Controller
     {
-        [HttpGet]
-        public IActionResult GetPatients()
+        private IPatientService _patientService;
+        public PatientController(IPatientService patientService)
         {
-            List<object> patients = new List<object>
-            {
-                new {
-                    id = "p1",
-                    firstName = "Barbara",
-                    lastName = "Kret",
-                    city = "Jelenia Góra",
-                    address = "Wolności 31B",
-                    province = "Dolnośląskie",
-                    zipCode = "58-560",
-                    phoneNumber = "607 411 432",
-                    email = "Krecik@wp.pl",
-                    birthDate = "1996-04-04",
-                    birthPlace = "Jelenia Góra",
-                },
-                new {
-                    id = "p2",
-                    firstName = "Nicola",
-                    lastName = "Prokosz",
-                    city = "Jelenia Góra",
-                    address = "Lubańska 7",
-                    province = "Dolnośląskie",
-                    zipCode = "58-560",
-                    phoneNumber = "526 765 342",
-                    email = "prokosz34@outlook.com",
-                    birthDate = "1987-02-11",
-                    birthPlace = "Jelenia Góra",
-                },
-
-            };
-
-            return Ok(patients);
-
+        _patientService = patientService;
         }
+
+        [HttpGet]
+        public ActionResult<Patient> GetPatients()
+        {
+            List<Patient> patients = _patientService.GetPatients().ToList();
+            return Ok(patients);
+        }
+
+        [HttpGet("{patientId}")]
+        public ActionResult<Guid> GetPatient([FromRoute] Guid patientId)
+        {
+            Patient patient = _patientService.GetPatient(patientId);
+            return Ok(patient);
+        }
+
+        [HttpPost]
+        public IActionResult PostPatient([FromBody] AddPatient_DTO patient) {
+            string patientId = _patientService.CreatePatient(patient);
+            return Created($"/api/patients/{patientId}",null);
+        }
+
     }
 }

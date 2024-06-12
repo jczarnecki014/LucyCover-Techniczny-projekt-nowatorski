@@ -22,7 +22,6 @@ const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildre
 
     let FormIsValid = CheckFormIsValid(ChildrenInputs);
 
-    console.log(ChildrenInputs)
 
     const dispach = useDispatch()
 

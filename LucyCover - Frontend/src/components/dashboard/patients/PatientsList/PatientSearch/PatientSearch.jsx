@@ -33,7 +33,7 @@ const PatientSearch = ({patients,className,showNewPatientForm}) => {
         return () => {
             clearTimeout(timeout)
         }
-    },[searchTerm])
+    },[searchTerm,patients])
 
     const SearchInputHandler = (event) => {
         setSearchTerm(event.target.value)

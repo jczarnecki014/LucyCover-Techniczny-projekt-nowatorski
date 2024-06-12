@@ -1,5 +1,8 @@
 import { Fragment, useState,useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
+import { useMutation } from '@tanstack/react-query'
+import { createNewPatient } from '../../../../api/https'
+import { queryClient } from '../../../../api/https'
 
 import {useFormData} from '../../../../hooks/useFormData'
 import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
@@ -18,6 +21,18 @@ const PatientManageForm = ({activePatient}) => {
     const patientContextInputs = useSelector(state => state.addPatientForm.patientInputs)
     const getValue = useFormData();
     const dispatch = useDispatch()
+
+    const {mutate,isPending} = useMutation({
+        mutationFn: createNewPatient,
+        onSuccess: () => {
+            setFormMode("success")
+            queryClient.invalidateQueries(["patients"])
+        },
+        onError: (error) => {
+            console.error(error)
+            setFormMode("error")
+        }
+    })
 
     const defaultChildrenList = activePatient ? DUMMY_CHILDREN.filter(child => child.patientId === activePatient.id) : []
     const defaultPatientInputs = (activePatient != undefined) ? activePatient : getValue(patientContextInputs)
@@ -49,7 +64,7 @@ const PatientManageForm = ({activePatient}) => {
             ...patientDetails,
             children:childrenList
         }
-        setFormMode('success')
+        mutate(newPatient)
         dispatch(ClearForm())
     }
 
@@ -62,8 +77,6 @@ const PatientManageForm = ({activePatient}) => {
             return [...previousState,childrenToSave]
         })
     }
-
-    console.log(patientContextInputs)
 
     const RemoveChildrenFromListHandler = (childrenId) =>  {
         setChildrenList((previousState) => {
@@ -87,7 +100,7 @@ const PatientManageForm = ({activePatient}) => {
         dispatch(OverlayToggle(false))
     }
 
-    console.log(patientInputs)
+
 
     return (
         <Fragment>
@@ -99,13 +112,18 @@ const PatientManageForm = ({activePatient}) => {
                                             AddNewPatient={AddNewPatientHandler} 
                                             PatientInputs={patientInputs} 
                                             formIsValid={formIsValid} 
-                                            onFormClose={FormClearHandler} />}
+                                            onFormClose={FormClearHandler}
+                                            isPending={isPending} />
+        }
                                                     
             {formMode === 'children' && <ChildrenForm changeFormMode={FormModeChangeHandler} AddChildrenToList={AddChildrenToListHandler} EditChildren={EditChildrenHandler} defaultValue={childrenInEditMode} />}
 
             {formMode === 'childrenWarning' && <Popup type='warning' description="Czy napewno chcesz dodać pacjenta z pustą listą przypisanych noworodków ?" CancleAction={()=>setFormMode('children')} AcceptAction={()=>AddNewPatientHandler()} /> }
 
             {formMode === 'success' && <Popup type='success' description="Pacjent został dodany pomyślnie"  AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
+
+            {formMode === 'error' && <Popup type='error' title="Coś poszło nie tak.." description="Pacjent nie został zapisany w systemie"  AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
+
         </Fragment>
     )
 }

@@ -1,28 +1,29 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
-
+import { useQuery } from '@tanstack/react-query';
+import { fetchPatientsForSearchList } from '../../../../api/https';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
-
 import PatientSearch from './PatientSearch/PatientSearch';
 import PatientDetails from '../PatientDetails/PatientDetails';
 import PatientManageForm from '../PatientManageForm/PatientManageForm';
 import { AnimatePresence } from 'framer-motion';
 import PatientLayout from '../PatientLayout/PatientLayout';
 
-import {DUMMY_CHILDREN} from '../../../../assets/DUMMY_DATA/DUMMY_CHILDREN'
-
 
 const Patients = () => {
 
-    const patientsList = useLoaderData();
-
+    //take data from cache
+    const {data} = useQuery({
+        queryKey:['patients'],
+        refetchOnWindowFocus:true,
+        queryFn: ({signal}) => fetchPatientsForSearchList(signal)                     
+    })
+    
     const activePatient = useSelector((state) => state.patientSearch.activePatient)
+    console.log(activePatient)
     const patientAddingMode = useSelector((state) => state.overlayModel.isVisible)
 
-    const {id,firstName,lastName,city,address,province,zipCode,phoneNumber,email} = activePatient
-    const children = DUMMY_CHILDREN.filter(child => child.patientId == activePatient.id)
+    const {id,firstName,lastName,city,address,province,zipCode,phoneNumber,email,children} = activePatient
 
     const dispatch = useDispatch();
 
@@ -40,7 +41,7 @@ const Patients = () => {
 
             <PatientLayout>
                 <PatientLayout.LeftSide>
-                    <PatientSearch patients={patientsList} showNewPatientForm={PatientFormToggler} />
+                    <PatientSearch patients={data} showNewPatientForm={PatientFormToggler} />
                 </PatientLayout.LeftSide>
 
                 <PatientLayout.RightSide>

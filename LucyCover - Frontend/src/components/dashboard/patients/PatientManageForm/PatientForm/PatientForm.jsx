@@ -17,7 +17,8 @@ const PatientForm = (
         EditChildrenMode,
         PatientInputs,
         formIsValid,
-        onFormClose
+        onFormClose,
+        isPending
     }
 ) => {
     const dispach = useDispatch()
@@ -43,9 +44,9 @@ const PatientForm = (
 
     return (
         <OverlayModel title='Edytuj pacjenta' OnQuitButtonClick={onFormClose} >
-            <form className={style.PatientAddingForm}>
+            <form className={style.PatientAddingForm} onSubmit={FormSubmitHandler}>
                 <PatientFormContactSection setPatientInput={SetPatientInputHandler} patientInputs={PatientInputs}/>
-                <PatientFormPlaceSection setPatientInput={SetPatientInputHandler} FormSubmit={FormSubmitHandler} formIsValid={formIsValid} patientInputs={PatientInputs} />
+                <PatientFormPlaceSection setPatientInput={SetPatientInputHandler} FormSubmit={FormSubmitHandler} formIsValid={formIsValid} patientInputs={PatientInputs} isPending={isPending} />
                 <PatientFormChildrenSection>
                     <AnimatePresence>
                         {childrenList.map((children)=>(

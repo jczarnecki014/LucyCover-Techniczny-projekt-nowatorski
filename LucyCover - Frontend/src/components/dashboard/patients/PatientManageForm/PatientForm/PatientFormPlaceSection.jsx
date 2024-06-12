@@ -5,7 +5,7 @@ import LabelInput from "../../../../utility/LabelInput";
 
 import { CheckZipCodeIsValid } from "../../../../../assets/Validation/PersonalData";
 
-const PatientFormPlaceSection = ({setPatientInput,FormSubmit,formIsValid,patientInputs}) => {
+const PatientFormPlaceSection = ({setPatientInput,FormSubmit,formIsValid,patientInputs,isPending}) => {
 
     const {province,city,address,zipCode} = patientInputs
 
@@ -20,7 +20,9 @@ const PatientFormPlaceSection = ({setPatientInput,FormSubmit,formIsValid,patient
                 <LabelInput className={style.Input} controlId="city" label="Miejscowość" required onInput={setPatientInput} value={city} />
                 <LabelInput className={style.Input} controlId="address" label="Adres" required onInput={setPatientInput} value={address} />
                 <LabelInput className={style.Input} controlId="zipCode" label="Kod pocztowy" required onInput={setPatientInput} value={zipCode} validationFunction={CheckZipCodeIsValid} />
-                <button id={style.DesktopVersion} className={style.SubmitButton} onClick={FormSubmit} disabled={!formIsValid}>Dodaj</button>
+                <button id={style.DesktopVersion} className={style.SubmitButton} disabled={!formIsValid}>
+                    {!isPending ? "Dodaj" : 'Zapisywanie' }
+                </button>
             </div>
         </Fragment>
     )
