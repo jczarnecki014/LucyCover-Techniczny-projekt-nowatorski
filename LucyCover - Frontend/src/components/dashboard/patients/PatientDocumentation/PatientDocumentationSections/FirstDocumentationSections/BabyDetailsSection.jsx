@@ -19,7 +19,7 @@ const BabyDetailsSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
 
                 <LabelInput controlId='babyBirthPlace' label='Miejsce urodzenia (szpital)' className={style.FullInput} required onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.babyBirthPlace} />
 
-                <LabelInput controlId='babyApgarScore' label='Apgar' className={style.StandardInput} required onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.babyApgarScore} />
+                <LabelInput controlId='babyApgarScore' label='Apgar' className={style.StandardInput} required maxLenght={2} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.babyApgarScore} />
 
                 <SelectInput controlId='babyBirthTime' label="Urodzone" className={style.StandardInput} options={["O czasie", "Wcześniej", "Później"]} onChange={SetFormInputHandler} readonly={isReadonly} defaultOption={formInputs.babyBirthTime} />
                 {

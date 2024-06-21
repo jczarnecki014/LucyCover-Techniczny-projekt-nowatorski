@@ -1,7 +1,6 @@
 import style from './css/PatientTable.module.css'
 
 const PatientTable = ({columns,data,patientName,children,showPopup}) => {
-    console.log(data)
     return (
         <div className={style.Container}>
             <div className={style.DocumentationHeader}>

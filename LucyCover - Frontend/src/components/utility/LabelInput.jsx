@@ -13,6 +13,7 @@ const LabelInput = ({
   placeholder,
   validationFunction,
   required=false,
+  maxLenght,
   readonly,
   value='',
   boxShadow,
@@ -87,6 +88,7 @@ const LabelInput = ({
         disabled={readonly}
         required={required}
         value={inputValue}
+        maxLength={maxLenght}
         type={inputType}
         max={max}
         min={min}

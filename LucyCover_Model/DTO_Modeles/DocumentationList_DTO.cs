@@ -1,4 +1,5 @@
 ﻿using LucyCover_Model.Database_Entities;
+using LucyCover_Model.Database_Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ namespace LucyCover_Model.DTO_Modeles
 {
     public class DocumentationList_DTO
     {
-       public string patientName { get; set; }
+       public Patient patient { get;set;}
        public List<Documentation> documentation { get; set;}
     }
 }

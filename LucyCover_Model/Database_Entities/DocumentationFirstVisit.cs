@@ -74,7 +74,7 @@ namespace LucyCover_Model.Database_Entities
         public string DocumentationReason { get; set; }
 
         [Required]
-        [MaxLength(3)]
+        [MaxLength(50)]
         public string MotherBreastfeedBefore { get; set; }
 
         [MaxLength(50)]

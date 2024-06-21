@@ -39,29 +39,6 @@
     background-repeat: no-repeat;
 }
 
-/* .PatientFormSection .BreastChangesImage .Overlay{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap:30px;
-    width: 100%;
-    min-height: 100%;
-    margin:0;
-    padding: 0;
-    background-color: rgb(0,0,0,0.7);
-    color:#fff
-}
-
-.PatientFormSection .BreastChangesImage .Overlay button{
-    width: 250px;
-    height: 50px;
-    border:0px;
-    background-color: #eee;
-    color:#303030;
-} */
-
-
 span .StandardInput{
     width: 45%;
 }

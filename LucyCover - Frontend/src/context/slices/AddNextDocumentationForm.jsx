@@ -1,49 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState = {
-    PatientFeedingCountPerDay: {value:'', isValid: false},
-    PatientFeedingBreastNumber: {value:'', isValid: false},
-    PatientFeedingHowMuchTime: {value:'', isValid: false},
-    PatientFeedingInNight: {value:'Nie', isValid: true},
-    PatientBreastFeedingWithHood: {value:'Nie', isValid: true},
-    PatientBreastFeedingWithHood_HowLong: {value:'', isValid: true},
-    PatientBreastFeedingAsNeeded: {value:'Nie', isValid: true},
-    PatientBreastFeedingAsNeeded_How: {value:'', isValid: true},
-        PatientFeedingCountPerDay_DAY1: {value:'', isValid: false},
-        PatientFeedingCountPerDay_DAY2: {value:'', isValid: false},
-        PatientFeedingCountPerDay_DAY3: {value:'', isValid: false},
-        PatientFeedingMIXCountPerDay_DAY1: {value:'', isValid: false},
-        PatientFeedingMIXCountPerDay_DAY2: {value:'', isValid: false},
-        PatientFeedingMIXCountPerDay_DAY3: {value:'', isValid: false},
-    PatientFeedingWay: {value:'', isValid: false},
-    PatientExpressingBreastMilk: {value:'Nie', isValid: true},
-    PatientExpressingBreastMilkHowManyYesterday: {value:'', isValid: true},
-    PatientBreastGrowingDuringPregnacy: {value:'Nie', isValid: true},
-    PatientBreastGrowingDuringPregnacy_DAY: {value:'', isValid: true},
-    PatientMilkRush: {value:'Nie', isValid: true},
-    PatientBreastSize: {value:'Mała', isValid: true},
-    PatientBreastChanges: {value:'Nie', isValid: true},
-    PatientBreastChanges_WHAT: {value:'', isValid: true},
-    PatientBreastNipple: {value:['Prawidłowa'], isValid: true},
-    PatientBreastNippleAfterFeeding: {value:'', isValid: false},
-    PatientBreastNippleChanges: {value:'Nie', isValid: true},
-    PatientBreastNippleChanges_WHAT: {value:'', isValid: true},
-    PatientMentalState: {value:'', isValid: false},
-    ResearchObservationBabyBehaviour: {value:'', isValid: false},
-    BabyPeeingADay: {value:'', isValid: false},
-    BabyExcretionADay: {value:'', isValid: false},
-    BabyColic: {value:'Nie', isValid: true},
-    BabyColicSinceWhen: {value:'', isValid: true},
-    BabyNipple: {value:'Nie', isValid: true},
-    BabyNippleSinceWhen: {value:'', isValid: true},
-    PatientMedicationsUsed: {value:'', isValid: true},
-    BabyMedicationsUsed: {value:'', isValid: true},
-    PatientPeriodAfterDelivery: {value:'Nie', isValid: true},
-    PatientPeriodAfterDelivery_WHEN: {value:'', isValid: true},
+    patientFeedingCountPerDay: {value:'', isValid: false},
+    patientFeedingBreastNumber: {value:'', isValid: false},
+    patientFeedingHowMuchTime: {value:'', isValid: false},
+    patientFeedingInNight: {value:'Nie', isValid: true},
+    patientBreastFeedingWithHood: {value:'Nie', isValid: true},
+    patientBreastFeedingWithHood_HowLong: {value:'', isValid: true},
+    patientBreastFeedingAsNeeded: {value:'Nie', isValid: true},
+    patientBreastFeedingAsNeeded_How: {value:'', isValid: true},
+        patientFeedingCountPerDay_DAY1: {value:'', isValid: false},
+        patientFeedingCountPerDay_DAY2: {value:'', isValid: false},
+        patientFeedingCountPerDay_DAY3: {value:'', isValid: false},
+        patientFeedingMIXCountPerDay_DAY1: {value:'', isValid: false},
+        patientFeedingMIXCountPerDay_DAY2: {value:'', isValid: false},
+    patientFeedingMIXCountPerDay_DAY3: {value:'', isValid: false},
+    patientFeedingWay: {value:'', isValid: false},
+    patientExpressingBreastMilk: {value:'Nie', isValid: true},
+    patientExpressingBreastMilkHowManyYesterday: {value:'', isValid: true},
+    patientBreastGrowingDuringPregnacy: {value:'Nie', isValid: true},
+    patientBreastGrowingDuringPregnacy_DAY: {value:'', isValid: true},
+    patientMilkRush: {value:'Nie', isValid: true},
+    patientBreastSize: {value:'Mała', isValid: true},
+    patientBreastChanges: {value:'Nie', isValid: true},
+    patientBreastChanges_WHAT: {value:'', isValid: true},
+    patientBreastNipple: {value:'', isValid: false},
+    patientBreastNippleAfterFeeding: {value:'', isValid: false},
+    patientBreastNippleChanges: {value:'Nie', isValid: true},
+    patientBreastNippleChanges_WHAT: {value:'', isValid: true},
+    patientMentalState: {value:'', isValid: false},
+    researchObservationBabyBehaviour: {value:'', isValid: false},
+    babyPeeingADay: {value:'', isValid: false},
+    babyExcretionADay: {value:'', isValid: false},
+    babyColic: {value:'Nie', isValid: true},
+    babyColicSinceWhen: {value:'', isValid: true},
+    babyNipple: {value:'Nie', isValid: true},
+    babyNippleSinceWhen: {value:'', isValid: true},
+    patientMedicationsUsed: {value:'', isValid: true},
+    babyMedicationsUsed: {value:'', isValid: true},
+    patientPeriodAfterDelivery: {value:'Nie', isValid: true},
+    patientPeriodAfterDelivery_WHEN: {value:'', isValid: true},
     PostureCorection: {value:'Nie', isValid: true},
     SuckTraining: {value:'Nie', isValid: true},
-    BabyFatten: {value:'', isValid: true},
-    OtherRecommendation: {value:'', isValid: true},
+    babyFatten: {value:'', isValid: true},
+    otherRecommendation: {value:'', isValid: true},
+    patientChildId: {value:'',isValid:false},
+    visitDate: {value:'',isValid:false},
 }
 
 const AddNextDocumentationForm = createSlice({
@@ -59,11 +61,25 @@ const AddNextDocumentationForm = createSlice({
                 [inputId]:inputObject
             }
         },
+        LoadDefaultData: (state,action) => {
+            const recivedData = action.payload
+            let newState = defaultState;
+            for(let propName in recivedData){
+                newState = {
+                    ...newState,
+                    [propName]: {
+                        value: recivedData[propName],
+                        isValid: true //after asigned to inputs onChange function automaticaly check validation of recived inputs //
+                    }
+                }
+            }
+            state.formInputs = newState;
+        },
         SetFormDefault: (state,action) => {
             state.formInputs = defaultState
         }
     }
 })
 
-export const {SetInput,SetFormDefault} = AddNextDocumentationForm.actions
+export const {SetInput,SetFormDefault,LoadDefaultData} = AddNextDocumentationForm.actions
 export default AddNextDocumentationForm

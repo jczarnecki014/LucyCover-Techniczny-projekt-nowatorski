@@ -12,9 +12,11 @@ namespace LucyCover_Model.DTO_Modeles
     public class DocumentationDTO
     {
     [Required]
+        public Guid Id { get;set; }
         public bool First { get; set; }
-        public Patient Patient { get;set;}
         public Children Child { get; set; }
+        public Guid PatientId { get;set; }
+        public List<Children> ChildrenList { get; set; }
         public string Date { get; set; }
         public DocumentationFirstVisitDTO DocumentationFirstVisit { get; set; }
         public DocumentationNextVisitDTO DocumentationNextVisit { get; set; }

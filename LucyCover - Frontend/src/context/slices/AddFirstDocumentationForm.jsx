@@ -11,7 +11,7 @@ let defaultState = {
     babyBirthDay: {value:'', isValid: false},
     babyBirthPlace: {value:'', isValid: false},
     babyApgarScore: {value:'', isValid: false},
-    babyBirthTime: {value:'O czasie', isValid: true},
+    babyBirthTime: {value:'O Czasie', isValid: true},
     babyBirthTime_ADDITIONAL: {value:'', isValid: true},
     babyBirthType: {value:'Naturalny', isValid: true},
     babyBirthTypeReason: {value:'', isValid: true},
@@ -20,6 +20,8 @@ let defaultState = {
     motherBreastfeedBefore: {value:'Pierwsze dziecko', isValid: true},
     motherBreastfeedBefore_HowLong: {value:'', isValid: true},
     motherBreastfeedBefore_Why: {value:'', isValid: true},
+    patientChildId: {value:'',isValid:false},
+    visitDate: {value:'',isValid:false},
 }
 
 const AddFirstDocumentationForm = createSlice({

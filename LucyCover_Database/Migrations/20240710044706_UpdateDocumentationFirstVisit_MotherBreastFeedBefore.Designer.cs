@@ -4,6 +4,7 @@ using LucyCover_Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LucyCover_Database.Migrations
 {
     [DbContext(typeof(DbConnection))]
-    partial class DbConnectionModelSnapshot : ModelSnapshot
+    [Migration("20240710044706_UpdateDocumentationFirstVisit_MotherBreastFeedBefore")]
+    partial class UpdateDocumentationFirstVisit_MotherBreastFeedBefore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,6 +73,9 @@ namespace LucyCover_Database.Migrations
                     b.Property<string>("Date")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("DocumentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("First")
                         .HasColumnType("bit");
@@ -427,30 +433,6 @@ namespace LucyCover_Database.Migrations
                     b.ToTable("DocumentationNextVisit");
                 });
 
-            modelBuilder.Entity("LucyCover_Model.Database_Entities.Recommendation", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("patientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("patientId");
-
-                    b.ToTable("Recommendations");
-                });
-
             modelBuilder.Entity("LucyCover_Model.Database_Model.Patient", b =>
                 {
                     b.Property<Guid>("id")
@@ -554,17 +536,6 @@ namespace LucyCover_Database.Migrations
                         .IsRequired();
 
                     b.Navigation("Documentation");
-                });
-
-            modelBuilder.Entity("LucyCover_Model.Database_Entities.Recommendation", b =>
-                {
-                    b.HasOne("LucyCover_Model.Database_Model.Patient", "patient")
-                        .WithMany()
-                        .HasForeignKey("patientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("patient");
                 });
 
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Documentation", b =>

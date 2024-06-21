@@ -12,14 +12,14 @@ const PatientDocumentationDisplay_NEXT = ({formInputs}) => {
     return (
         <form className={style.DocumentContent}>
             <div className={style.LeftSide}>
-                <BabyFeedingSection formInputs={formInputs} readlOnlyMode />
-                <BabyAdditionalFeeding formInputs={formInputs} readlOnlyMode /> 
-                <PatientBreastExaminationSection formInputs={formInputs} readlOnlyMode />
+                <BabyFeedingSection formInputs={formInputs} readOnlyMode />
+                <BabyAdditionalFeeding formInputs={formInputs} readOnlyMode /> 
+                <PatientBreastExaminationSection formInputs={formInputs} readOnlyMode />
             </div>
             <div className={style.RightSide}>
-                <BabyExcretionSection formInputs={formInputs} readlOnlyMode />
-                <PatientMedicineSection formInputs={formInputs} readlOnlyMode />
-                <PatientRecommendationSection formInputs={formInputs} readlOnlyMode />
+                <BabyExcretionSection formInputs={formInputs} readOnlyMode />
+                <PatientMedicineSection formInputs={formInputs} readOnlyMode />
+                <PatientRecommendationSection formInputs={formInputs} readOnlyMode />
             </div>
         </form>
     )

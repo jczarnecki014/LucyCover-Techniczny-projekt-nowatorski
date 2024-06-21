@@ -15,6 +15,8 @@ import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsVal
 import PatientDetailsSection from "./PatientDetailsSection";
 import BabyDetailsSection from "./BabyDetailsSection";
 import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
+import BaseInformation from "../BaseInformation";
+import Popup from "../../../../../utility/Popup";
 
 
 
@@ -25,13 +27,10 @@ import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
 //                                                                                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const PatientDocumentationForm_FIRST = ({toDisplayValues}) => {
+const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit,isSuccess,childrenList,documentationId}) => {
     const [firstRun,setFirstRun] = useState(true)
-
     const dispatch = useDispatch();
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
-
-    // console.log(formInputs)
 
     useEffect(()=>{
         if(firstRun && toDisplayValues != undefined){
@@ -39,6 +38,14 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues}) => {
         }
         setFirstRun(false)
     },[toDisplayValues])
+
+    useEffect(()=>{
+        if(isSuccess && toDisplayValues){
+            setTimeout(()=>{
+                location.reload()
+            },2000)
+        }
+    },[isSuccess])
 
     const getValue = useFormData();
     const formValue = getValue(formInputs);
@@ -53,21 +60,43 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues}) => {
         dispatch(OverlayToggle(false))
     }
 
+    const FormSumbitHandler = (event) => {
+        event.preventDefault();
+        onFormSubmit(true,formValue,documentationId)
+        dispatch(SetFormDefault())
+    }
+
     return (
-        <OverlayModel title="Dodaj nową dokumentacje (pierwsza)" OnQuitButtonClick={OnCloseClearFormHandler}>
-            <form className={style.Container}>
-                <div className={style.LeftSide}>
-                    <PatientDetailsSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
-                    <BabyDetailsSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
-                </div>
-                <div className={style.RightSide}>
-                    <PatientFamilyInterviewSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
-                    <section className={style.PatientFormButtonSection}>
-                        <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
-                    </section>
-                </div>
-            </form>
-        </OverlayModel>
+        <>
+        {isSuccess && (
+            <Popup type="success" title="Sukces !" description="Pomyślnie utworzono nową dokumentację dla twojego pacjenta" />
+            )
+        }
+
+        {isSuccess && toDisplayValues && (
+            <Popup type="success" title="Sukces !" description="Operacja zakończyła się pomyślnie" additionalInfo="Zaczekaj, trwa aktualizacja" />
+            )
+        }
+
+        {!isSuccess && (
+            <OverlayModel title="Dodaj nową dokumentacje (pierwsza)" OnQuitButtonClick={OnCloseClearFormHandler}>
+                <form className={style.Container} onSubmit={FormSumbitHandler}>
+                    <div className={style.LeftSide}>
+                        <PatientDetailsSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                        <BabyDetailsSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                    </div>
+                    <div className={style.RightSide}>
+                        <PatientFamilyInterviewSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                        <BaseInformation SetFormInputHandler={SetFormInputHandler} formInputs={formValue} childrenList={childrenList} />
+                        <section className={style.PatientFormButtonSection}>
+                            <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
+                        </section>
+                    </div>
+                </form>
+            </OverlayModel> 
+            )
+        }
+        </>
     )
 }
 

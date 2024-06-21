@@ -9,7 +9,6 @@ import PatientManageForm from '../PatientManageForm/PatientManageForm';
 import { AnimatePresence } from 'framer-motion';
 import PatientLayout from '../PatientLayout/PatientLayout';
 
-
 const Patients = () => {
 
     //take data from cache
@@ -20,7 +19,6 @@ const Patients = () => {
     })
     
     const activePatient = useSelector((state) => state.patientSearch.activePatient)
-    console.log(activePatient)
     const patientAddingMode = useSelector((state) => state.overlayModel.isVisible)
 
     const {id,firstName,lastName,city,address,province,zipCode,phoneNumber,email,children} = activePatient
@@ -30,8 +28,7 @@ const Patients = () => {
     const PatientFormToggler = (displayMode) => {
         dispatch(OverlayToggle(displayMode))
     }
-
-
+    
     return (
 
         <>

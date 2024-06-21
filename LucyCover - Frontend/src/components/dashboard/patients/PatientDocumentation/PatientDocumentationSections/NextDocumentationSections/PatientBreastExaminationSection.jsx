@@ -8,29 +8,29 @@ import image from '../../../../../../assets/images/breast.png'
 import style from '../css/PatientDocumentationSections.module.css'
 
 
-const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs,readlOnlyMode}) => {
+const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
 
-    const isReadonly = readlOnlyMode;
+    const isReadonly = readOnlyMode;
 
     return (
         <section className={style.PatientFormSection}>
             <h6>Badanie piersi / wywiad/ obserwacja</h6>
             <hr />
             <span>
-                <SelectInput controlId='PatientBreastGrowingDuringPregnacy' label="Wzrost piersi w ciąży" className={style.StandardInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastGrowingDuringPregnacy} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastGrowingDuringPregnacy' label="Wzrost piersi w ciąży" className={style.StandardInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastGrowingDuringPregnacy} readonly={isReadonly} />
                 
                 {
-                    formInputs.PatientBreastGrowingDuringPregnacy === 'Tak' && <LabelInput controlId='PatientBreastGrowingDuringPregnacy_DAY' label='W której dobie' className={style.StandardInput} onInput={SetFormInputHandler} value={formInputs.PatientBreastGrowingDuringPregnacy_DAY} readonly={isReadonly} />
+                    formInputs.patientBreastGrowingDuringPregnacy === 'Tak' && <LabelInput controlId='patientBreastGrowingDuringPregnacy_DAY' label='W której dobie' className={style.StandardInput} onInput={SetFormInputHandler} value={formInputs.patientBreastGrowingDuringPregnacy_DAY} readonly={isReadonly} />
                 } 
                 
-                <SelectInput controlId='PatientMilkRush' label="Nawał mleczny" className={style.StandardInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.PatientMilkRush} readonly={isReadonly} />
+                <SelectInput controlId='patientMilkRush' label="Nawał mleczny" className={style.StandardInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientMilkRush} readonly={isReadonly} />
 
-                <SelectInput controlId='PatientBreastSize' label="Rozmiar piersi" className={style.FullInput} options={["Mała", "Średnia", "Duża"]} onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastSize} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastSize' label="Rozmiar piersi" className={style.FullInput} options={["Mała", "Średnia", "Duża"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastSize} readonly={isReadonly} />
 
-                <SelectInput controlId='PatientBreastChanges' label="Pierś - zmiany" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastChanges} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastChanges' label="Pierś - zmiany" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastChanges} readonly={isReadonly} />
                     
                 {
-                    formInputs.PatientBreastChanges === 'Tak' && <LabelInput controlId='PatientBreastChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.PatientBreastChanges_WHAT}  readonly={isReadonly} />
+                    formInputs.patientBreastChanges === 'Tak' && <LabelInput controlId='patientBreastChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.patientBreastChanges_WHAT}  readonly={isReadonly} />
                 }
 
 
@@ -43,19 +43,19 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs,readlOn
                     <Canvas className={style.FullInput}/>
                 </span>
 
-                <SelectInput controlId='PatientBreastNipple' label="Brodawka - aby wybrac wiele opcji przytrzymaj CTRL" className={style.FullInput} multiple options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} defaultOption={formInputs.PatientBreastNipple} onChange={SetFormInputHandler} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastNipple' label="Brodawka - aby wybrac wiele opcji przytrzymaj CTRL" className={style.FullInput} multiple options={["Prawidłowa", "Duża", "Długa","Płaska", "Szeroka", "Wklęsła","Mała"]} defaultOption={formInputs.patientBreastNipple} onChange={SetFormInputHandler} readonly={isReadonly} required />
 
-                <LabelInput controlId='PatientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} required onInput={SetFormInputHandler} value={formInputs.PatientBreastNippleAfterFeeding} readonly={isReadonly} />
+                <LabelInput controlId='patientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} required onInput={SetFormInputHandler} value={formInputs.patientBreastNippleAfterFeeding} readonly={isReadonly} />
 
-                <SelectInput controlId='PatientBreastNippleChanges' label="Brodawki zmianny" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.PatientBreastNippleChanges} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastNippleChanges' label="Brodawki zmianny" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastNippleChanges} readonly={isReadonly} />
                     
                 {
-                    formInputs.PatientBreastNippleChanges.value == 'Tak' && <LabelInput controlId='PatientBreastNippleChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.PatientBreastNippleChanges_WHAT} readonly={isReadonly} />
+                    formInputs.patientBreastNippleChanges == 'Tak' && <LabelInput controlId='patientBreastNippleChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.patientBreastNippleChanges_WHAT} readonly={isReadonly} />
                 }
 
-                <LabelInput controlId='PatientMentalState' label='Stan emocjonalny matki' className={style.FullInput} required onInput={SetFormInputHandler} value={formInputs.PatientMentalState} readonly={isReadonly} />
+                <LabelInput controlId='patientMentalState' label='Stan emocjonalny matki' className={style.FullInput} required onInput={SetFormInputHandler} value={formInputs.patientMentalState} readonly={isReadonly} />
 
-                <TextArea controlId='ResearchObservationBabyBehaviour' label="Badnie/Obserwacja/Zachowanie dziecka" className={style.FullInput} onChange={SetFormInputHandler} required defaultValue={formInputs.ResearchObservationBabyBehaviour} readonly={isReadonly}  />
+                <TextArea controlId='researchObservationBabyBehaviour' label="Badnie/Obserwacja/Zachowanie dziecka" className={style.FullInput} onChange={SetFormInputHandler} required defaultValue={formInputs.researchObservationBabyBehaviour} readonly={isReadonly}  />
 
             </span>
         </section>

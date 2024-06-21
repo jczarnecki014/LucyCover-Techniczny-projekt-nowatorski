@@ -7,6 +7,7 @@ using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.DTO_Modeles;
 using LucyCover_Model.DTO_Modeles.Validators;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,9 +40,12 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 //FluentValidator
 builder.Services.AddScoped<IValidator<AddPatient_DTO>,AddPatientDTOValidator>();
+builder.Services.AddScoped<IValidator<DocumentationFirstVisitDTO>,DocumentationFirstVisitDTOValidator>();
+builder.Services.AddScoped<IValidator<DocumentationNextVisitDTO>,DocumentationNextVisitDTOValidator>();
 //App services
 builder.Services.AddScoped<IPatientService,PatientService>();
 builder.Services.AddScoped<IDocumentationService,DocumentationService>();
+builder.Services.AddScoped<IRecommendationService,RecommendationService>();
 
 var app = builder.Build();
 

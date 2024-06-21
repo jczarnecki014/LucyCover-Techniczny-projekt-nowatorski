@@ -15,11 +15,20 @@ namespace LucyCover_Database.Repository
             _db= db;
             patient = new PatientRepository(db);
             documentation= new DocumentationRepository(db);
+            documentationFirstVisit = new DocumentationFirstVisitRepository(db);
+            documentationNextVisit = new DocumentationNextVisitRepository(db);
+            recommendation = new RecommendationRepository(db);
         }
 
         public IPatientRepository patient { get; private set; }
 
         public IDocumentationRepository documentation {get; private set; }
+
+        public IDocumentationFirstVisitRepository documentationFirstVisit {get; private set; }
+
+        public IDocumentationNextVisitRepository documentationNextVisit { get; private set; }
+
+        public IRecommendationRepository recommendation { get; private set; }
 
         public void Save()
         {
