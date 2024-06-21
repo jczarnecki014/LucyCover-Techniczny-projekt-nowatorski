@@ -15,7 +15,7 @@ import { AnimatePresence } from 'framer-motion';
 
 const PatientDocumentationDisplay = () => {
     const documentation = useLoaderData()
-    const {baby,date,first} = documentation.documentation
+    const {child,date,first} = documentation
     const [popupMode,setFormMode] = useState('AddingForm / DeleteConfirmation');
 
     const editFormIsVisible = useSelector((state) => state.overlayModel.isVisible)
@@ -31,23 +31,23 @@ const PatientDocumentationDisplay = () => {
             <AnimatePresence>
                 {/* ///////////////////////// Show first time documentation /////////////////////////////////////// */}
                 {
-                    (editFormIsVisible && popupMode === 'AddingForm'  && first === true) && <PatientDocumentationForm_FIRST toDisplayValues={documentation.documentationDetails} />
+                    (editFormIsVisible && popupMode === 'AddingForm'  && first === true) && <PatientDocumentationForm_FIRST toDisplayValues={documentation.documentationFirstVisit} />
                 }
 
                 {/* ///////////////////////// Show next time documentation /////////////////////////////////////// */}
                 {
-                    (editFormIsVisible && popupMode === 'AddingForm' && first === false) && <PatientDocumentationForm_NEXT toDisplayValues={documentation.documentationDetails} />
+                    (editFormIsVisible && popupMode === 'AddingForm' && first === false) && <PatientDocumentationForm_NEXT toDisplayValues={documentation.documentationNextVisit} />
                 }
 
                 {/* ///////////////////////// Show delete documentation confirmation ///////////////////////////// */}
                 {
-                    (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} patient={baby} />
+                    (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} patient={child.childFirstName} />
                 }
             </AnimatePresence>
 
             <div className={style.Container}>
                 <div className={style.TopBar}>
-                    <h6>{baby}</h6>
+                    <h6>{child.childFirstName}</h6>
                     <h6>{first ? 'Pierwsza wizyta' : 'Kolejna wizyta'}</h6>
                     <h6>Wizyta: {date}</h6>
                     <div className={style.ButtonSection}>
@@ -56,10 +56,10 @@ const PatientDocumentationDisplay = () => {
                     </div>
                 </div>
                 {
-                    first === true && <PatientDocumentationDisplay_FIRST formInputs={documentation.documentationDetails} />
+                    first === true && <PatientDocumentationDisplay_FIRST formInputs={documentation.documentationFirstVisit} />
                 }
                 {
-                    first === false && <PatientDocumentationDisplay_NEXT formInputs={documentation.documentationDetails} />
+                    first === false && <PatientDocumentationDisplay_NEXT formInputs={documentation.documentationNextVisit} />
                 }
             </div>
         </>

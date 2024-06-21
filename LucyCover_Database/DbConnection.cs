@@ -10,6 +10,8 @@ namespace LucyCover_Database
 
         public DbSet<Patient> Patients{ get; set; }
         public DbSet<Children> Children { get;set;}
-        
+        public DbSet<Documentation> Documentation { get; set; }
+        public DbSet<DocumentationFirstVisit> DocumentationFirstVisit{ get; set; }
+        public DbSet<DocumentationNextVisit> DocumentationNextVisit{ get; set; }
     }
 }

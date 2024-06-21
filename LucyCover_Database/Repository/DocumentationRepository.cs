@@ -1,0 +1,24 @@
+﻿using LucyCover_Database.Repository.IRepository;
+using LucyCover_Model.Database_Entities;
+using LucyCover_Model.Database_Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LucyCover_Database.Repository
+{
+    public class DocumentationRepository : Repository<Documentation>, IDocumentationRepository
+    {
+        private readonly DbConnection _db;
+        public DocumentationRepository(DbConnection db):base(db) 
+        {
+            _db = db;
+        }
+        public void Update(Documentation documentation)
+        {
+           _db.Documentation.Update(documentation);
+        }
+    }
+}

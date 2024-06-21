@@ -23,6 +23,25 @@ export async function fetchPatient({signal,patientId}) {
     return data;
 }
 
+export async function fetchDocumentation({signal,patientId}) {
+    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}`,{signal}) //signal to abort request when left page
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+    const data = await response.json()
+    
+    return data;
+}
+
+export async function fetchDocumentationDetails({signal,patientId,documentId}) {
+    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}/${documentId}`,{signal}) //signal to abort request when left page
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+    const data = await response.json()
+    
+    return data;
+}
 
 export async function createNewPatient(patient) {
     const response = await fetch('https://localhost:7014/api/patients',{

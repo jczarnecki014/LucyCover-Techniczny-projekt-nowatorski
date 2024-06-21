@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const defaultState = {
+let defaultState = {
     motherFirstName: {value:'', isValid: false},
     motherLastName: {value:'', isValid: false},
     motherAge: {value:'', isValid: false},
@@ -16,7 +16,7 @@ const defaultState = {
     babyBirthType: {value:'Naturalny', isValid: true},
     babyBirthTypeReason: {value:'', isValid: true},
     babyBirthMedicine: {value:'', isValid: false},
-    documentationReason: {value:'', isValid: true},
+    documentationReason: {value:'test2', isValid: true},
     motherBreastfeedBefore: {value:'Pierwsze dziecko', isValid: true},
     motherBreastfeedBefore_HowLong: {value:'', isValid: true},
     motherBreastfeedBefore_Why: {value:'', isValid: true},
@@ -35,11 +35,25 @@ const AddFirstDocumentationForm = createSlice({
                 [inputId]:inputObject
             }
         },
+        LoadDefaultData: (state,action) => {
+            const recivedData = action.payload
+            let newState = defaultState;
+            for(let propName in recivedData){
+                newState = {
+                    ...newState,
+                    [propName]: {
+                        value: recivedData[propName],
+                        isValid: true //after asigned to inputs onChange function automaticaly check validation of recived inputs //
+                    }
+                }
+            }
+            state.formInputs = newState;
+        },
         SetFormDefault: (state,action) => {
             state.formInputs = defaultState
         }
     }
 })
 
-export const {SetInput,SetFormDefault} = AddFirstDocumentationForm.actions
+export const {SetInput,LoadDefaultData,SetFormDefault} = AddFirstDocumentationForm.actions
 export default AddFirstDocumentationForm
