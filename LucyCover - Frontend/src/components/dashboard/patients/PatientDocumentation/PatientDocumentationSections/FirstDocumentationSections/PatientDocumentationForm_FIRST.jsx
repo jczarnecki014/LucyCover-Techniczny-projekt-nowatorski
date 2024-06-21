@@ -15,6 +15,7 @@ import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsVal
 import PatientDetailsSection from "./PatientDetailsSection";
 import BabyDetailsSection from "./BabyDetailsSection";
 import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
+import BaseInformation from "../BaseInformation";
 
 
 
@@ -25,13 +26,11 @@ import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
 //                                                                                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const PatientDocumentationForm_FIRST = ({toDisplayValues}) => {
+const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit}) => {
     const [firstRun,setFirstRun] = useState(true)
 
     const dispatch = useDispatch();
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
-
-    // console.log(formInputs)
 
     useEffect(()=>{
         if(firstRun && toDisplayValues != undefined){
@@ -53,17 +52,23 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues}) => {
         dispatch(OverlayToggle(false))
     }
 
+    const FormSumbitHandler = (event) => {
+        event.preventDefault();
+        onFormSubmit('firstVisit',formInputs)
+    }
+
     return (
         <OverlayModel title="Dodaj nową dokumentacje (pierwsza)" OnQuitButtonClick={OnCloseClearFormHandler}>
-            <form className={style.Container}>
+            <form className={style.Container} onSubmit={FormSumbitHandler}>
                 <div className={style.LeftSide}>
                     <PatientDetailsSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
                     <BabyDetailsSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
                 </div>
                 <div className={style.RightSide}>
                     <PatientFamilyInterviewSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                    <BaseInformation SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
                     <section className={style.PatientFormButtonSection}>
-                        <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
+                        <button disabled={formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
                     </section>
                 </div>
             </form>

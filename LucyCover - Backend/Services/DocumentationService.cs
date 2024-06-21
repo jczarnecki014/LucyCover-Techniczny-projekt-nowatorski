@@ -63,5 +63,10 @@ namespace LucyCover___Backend.Services
             DocumentationDTO documentationDTO = _mapper.Map<DocumentationDTO>(documentation);
             return documentationDTO;
         }
+
+        public Guid UpserDocumentation(Guid patientId) 
+        {
+            return new Guid();
+        }
     }
 }

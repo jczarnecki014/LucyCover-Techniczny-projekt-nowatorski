@@ -28,5 +28,11 @@ namespace LucyCover___Backend.Controllers
         DocumentationDTO documentation = _service.GetDocumentationDetails(documentationId,patientId);
         return documentation;
         }
+
+        [HttpPost("{patientId}")]
+        public ActionResult<Guid> UpsertDocumentation([FromRoute] Guid patientId,[FromBody] UpsertDocumentationDTO documentation)
+        {
+            return Ok(new Guid());
+        }
     }
 }

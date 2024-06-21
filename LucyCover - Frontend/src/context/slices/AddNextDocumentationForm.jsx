@@ -44,6 +44,8 @@ const defaultState = {
     SuckTraining: {value:'Nie', isValid: true},
     BabyFatten: {value:'', isValid: true},
     OtherRecommendation: {value:'', isValid: true},
+    patientChildrenName: {value:'',isValid:false},
+    visitDate: {value:'',isValid:false},
 }
 
 const AddNextDocumentationForm = createSlice({

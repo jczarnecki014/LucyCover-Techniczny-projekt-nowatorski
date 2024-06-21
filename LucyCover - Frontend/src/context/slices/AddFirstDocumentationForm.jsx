@@ -20,6 +20,8 @@ let defaultState = {
     motherBreastfeedBefore: {value:'Pierwsze dziecko', isValid: true},
     motherBreastfeedBefore_HowLong: {value:'', isValid: true},
     motherBreastfeedBefore_Why: {value:'', isValid: true},
+    patientChildrenName: {value:'',isValid:false},
+    visitDate: {value:'',isValid:false},
 }
 
 const AddFirstDocumentationForm = createSlice({

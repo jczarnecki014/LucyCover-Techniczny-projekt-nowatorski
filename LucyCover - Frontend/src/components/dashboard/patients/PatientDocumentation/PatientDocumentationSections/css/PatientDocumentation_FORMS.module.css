@@ -18,11 +18,13 @@
 
 .PatientFormButtonSection{
     display: flex;
+    margin-top: 20px;
     justify-content: right;
 }
 
 .PatientFormButtonSection  button{
     background-color: #CB60C8;
+    padding: 10px 20px 10px 20px;
     width: 150px;
 }
 

@@ -11,6 +11,10 @@ const AddPatientDocumentation = () => {
         setFormMode(mode)
     }
 
+    const FetchDataHandler = (documentationType,formInputs) => {
+        console.log(formInputs)
+    }
+
     return (
         <>
             {formMode === 'menu' && <PopupMenu 
@@ -19,8 +23,8 @@ const AddPatientDocumentation = () => {
                                         leftBtn={{desc:'Pierwszorazowa wizyta',func:FormModeChangeHandler}}
                                         rightBtn={{desc:'Kolejna wizyta (domowa)',func:FormModeChangeHandler}} 
                                         />}
-            {formMode === 'FirstDocumentation' && <PatientDocumentationForm_FIRST />}
-            {formMode === 'NextDocumentation' && <PatientDocumentationForm_NEXT />}
+            {formMode === 'FirstDocumentation' && <PatientDocumentationForm_FIRST onFormSubmit={FetchDataHandler} />}
+            {formMode === 'NextDocumentation' && <PatientDocumentationForm_NEXT onFormSubmit={FetchDataHandler} />}
         </>
     )
 }
