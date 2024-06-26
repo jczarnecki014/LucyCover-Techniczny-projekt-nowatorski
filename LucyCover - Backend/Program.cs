@@ -39,6 +39,7 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 //FluentValidator
 builder.Services.AddScoped<IValidator<AddPatient_DTO>,AddPatientDTOValidator>();
+builder.Services.AddScoped<IValidator<DocumentationFirstVisitDTO>,DocumentationFirstVisitDTOValidator>();
 //App services
 builder.Services.AddScoped<IPatientService,PatientService>();
 builder.Services.AddScoped<IDocumentationService,DocumentationService>();

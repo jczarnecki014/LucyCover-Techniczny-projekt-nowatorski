@@ -26,7 +26,7 @@ import BaseInformation from "../BaseInformation";
 //                                                                                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit}) => {
+const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit,patient}) => {
     const [firstRun,setFirstRun] = useState(true)
 
     const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit}) => {
 
     const FormSumbitHandler = (event) => {
         event.preventDefault();
-        onFormSubmit('firstVisit',formInputs)
+        onFormSubmit(true,formValue)
     }
 
     return (
@@ -66,9 +66,9 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit}) => {
                 </div>
                 <div className={style.RightSide}>
                     <PatientFamilyInterviewSection SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
-                    <BaseInformation SetFormInputHandler={SetFormInputHandler} formInputs={formValue} />
+                    <BaseInformation SetFormInputHandler={SetFormInputHandler} formInputs={formValue} childrenList={patient.children} />
                     <section className={style.PatientFormButtonSection}>
-                        <button disabled={formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
+                        <button disabled={!formIsValid}>Zapisz <MdKeyboardArrowRight /> </button>
                     </section>
                 </div>
             </form>

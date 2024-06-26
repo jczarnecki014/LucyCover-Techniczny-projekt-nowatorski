@@ -1,5 +1,6 @@
 ﻿using LucyCover___Backend.Services;
 using LucyCover_Model.Database_Entities;
+using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,10 +30,11 @@ namespace LucyCover___Backend.Controllers
         return documentation;
         }
 
+
         [HttpPost("{patientId}")]
-        public ActionResult<Guid> UpsertDocumentation([FromRoute] Guid patientId,[FromBody] UpsertDocumentationDTO documentation)
+        public IActionResult AddDocumentation([FromBody] UpsertDocumentationDTO documentationDTO, [FromRoute] Guid patientId)
         {
-            return Ok(new Guid());
+            return Ok();
         }
     }
 }

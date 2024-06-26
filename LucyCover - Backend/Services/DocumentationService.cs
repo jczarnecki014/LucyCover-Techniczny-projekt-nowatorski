@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
@@ -16,10 +17,12 @@ namespace LucyCover___Backend.Services
     {
         private IUnitOfWork _unitOfWork { get; set; }
         private IMapper _mapper { get;set; }
-        public DocumentationService(IUnitOfWork unitOfWork,IMapper mapper) 
+        private IValidator<DocumentationFirstVisitDTO> _validator;
+        public DocumentationService(IUnitOfWork unitOfWork,IMapper mapper,IValidator<DocumentationFirstVisitDTO>validator) 
         {
             _unitOfWork= unitOfWork;
             _mapper= mapper;
+            _validator = validator;
         }
 
         public DocumentationList_DTO GetAll(Guid patientId)
@@ -36,8 +39,10 @@ namespace LucyCover___Backend.Services
                 throw new KeyNotFoundException("Documentation for this user id were not found !");
             }
 
-            DocumentationList_DTO documentationDTO = _mapper.Map<DocumentationList_DTO>(patient);
+            DocumentationList_DTO documentationDTO = new DocumentationList_DTO();
+            documentationDTO.patient= patient;
             documentationDTO.documentation = documentation;
+
             return documentationDTO;
         }
 
@@ -64,8 +69,25 @@ namespace LucyCover___Backend.Services
             return documentationDTO;
         }
 
-        public Guid UpserDocumentation(Guid patientId) 
+        public Guid UpserDocumentation(Guid patientId,UpsertDocumentationDTO documentation) 
         {
+            Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId);
+
+            if(patient == null) 
+            {
+                throw new KeyNotFoundException();
+            }
+
+            bool isValid = _validator.Validate(documentation.DocumentationFirstVisit).IsValid;
+
+            if(isValid) 
+            {
+                
+            }
+
+
+
+
             return new Guid();
         }
     }

@@ -56,3 +56,21 @@ export async function createNewPatient(patient) {
         throw new Error("Error during creating patient")
     }
 }
+
+
+export async function createNewDocumentation({documentationDetails,patientId}) {
+    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}`,{
+        method: 'POST',
+        body: JSON.stringify(documentationDetails),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    const test = await response.json()
+    console.log(test)
+
+    if(response.status !== 200) {
+        throw new Error(test)
+    }
+}

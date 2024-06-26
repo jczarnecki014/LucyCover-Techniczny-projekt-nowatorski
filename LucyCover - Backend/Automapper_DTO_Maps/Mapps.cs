@@ -11,9 +11,6 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
         {
             CreateMap<AddPatient_DTO,Patient>();
             CreateMap<Children_DTO,Children>();
-            CreateMap<Patient,DocumentationList_DTO>()
-                .ForMember(m=>m.patientName, c=>c.MapFrom(src => $"{src.firstName} {src.lastName}"))
-                .ForMember(m=> m.documentation,c=>c.Ignore());
             CreateMap<DocumentationFirstVisit,DocumentationFirstVisitDTO>();
             CreateMap<DocumentationNextVisit,DocumentationNextVisitDTO>();
             CreateMap<Documentation,DocumentationDTO>();

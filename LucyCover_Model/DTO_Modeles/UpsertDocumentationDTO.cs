@@ -11,7 +11,7 @@ namespace LucyCover_Model.DTO_Modeles
         public string Date { get;set;}
         public string ChildrenName { get;set;}
         public bool First { get;set;}
-        public DocumentationFirstVisitDTO DocumentationFirstVisit { get; set; }
-        public DocumentationNextVisitDTO DocumentationNextVisit { get; set; }
+        public DocumentationFirstVisitDTO? DocumentationFirstVisit { get; set; }
+        public DocumentationNextVisitDTO? DocumentationNextVisit { get; set; }
     }
 }

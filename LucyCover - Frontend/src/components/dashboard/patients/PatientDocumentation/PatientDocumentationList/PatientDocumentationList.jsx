@@ -23,7 +23,6 @@ const PatientDocumentationList = () => {
     });
 
     const dispatch = useDispatch();
-
     const showPopupHandler = (popupMode,popupData={}) => {
         dispatch(OverlayToggle(true))
         setPopupDetails({
@@ -35,11 +34,11 @@ const PatientDocumentationList = () => {
     return (
         <>
             <AnimatePresence>
-                {(popupIsVisible && popupDetails.mode === 'AddingForm')  && <AddPatientDocumentation />}
+                {(popupIsVisible && popupDetails.mode === 'AddingForm')  && <AddPatientDocumentation patientId={patientData.patientId} patientData={patientData.patient} />}
                 {(popupIsVisible && popupDetails.mode === 'DeleteConfirmation')  && <DeleteConfirmation what='dokumentacje' day={popupDetails.popupData.day} patient={popupDetails.popupData.patient} />}
             </AnimatePresence>
             
-            <PatientTable columns={['ID','Data wizyty','Dziecko']} data={patientData.documentation} patientName={patientData.patientName} showPopup={showPopupHandler}>
+            <PatientTable columns={['ID','Data wizyty','Dziecko']} data={patientData.documentation} patientName={`${patientData.patient.firstName} ${patientData.patient.lastName}`} showPopup={showPopupHandler}>
                 {(documentation) => documentation.map(document => {
                     return (
                         <tr id={document.first ? style.First : ''} key={document.id}>
