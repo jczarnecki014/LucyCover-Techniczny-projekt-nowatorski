@@ -11,5 +11,8 @@ namespace LucyCover_Database.Repository.IRepository
         void Save();
         public IPatientRepository patient { get; }
         public IDocumentationRepository documentation { get; }
+        public IDocumentationFirstVisitRepository documentationFirstVisit { get; }
+        public IDocumentationNextVisitRepository documentationNextVisit { get; }
+        public IRecommendationRepository recommendation { get; }
     }
 }

@@ -1,29 +1,35 @@
 import style from './css/PatientDocumentationDisplay.module.css'
-
 import { useSelector,useDispatch } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
-
+import useFetchDocumentation from '../../../../../hooks/useFetchDocumentation';
 import { OverlayToggle } from '../../../../../context/slices/OverlayModel_SLICE';
-
 import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIRST';
 import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT';
 import PatientDocumentationForm_FIRST from '../PatientDocumentationSections/FirstDocumentationSections/PatientDocumentationForm_FIRST';
 import PatientDocumentationForm_NEXT from '../PatientDocumentationSections/NextDocumentationSections/PatientDocumentationForm_NEXT';
 import DeleteConfirmation from '../../../../utility/PatientsPopups/DeleteConfirmation';
+import { DeleteDocumentation } from '../../../../../api/https';
 import { AnimatePresence } from 'framer-motion';
 
 const PatientDocumentationDisplay = () => {
     const documentation = useLoaderData()
-    const {child,date,first} = documentation
+    const {id,child,date,documentationFirstVisit,documentationNextVisit,first,childrenList,patientId} = documentation
     const [popupMode,setFormMode] = useState('AddingForm / DeleteConfirmation');
 
     const editFormIsVisible = useSelector((state) => state.overlayModel.isVisible)
     const dispatch = useDispatch();
 
+    const {fetchDocumentation,isSuccess,isError} = useFetchDocumentation(patientId);
+
     const ShowPopupHandler = (popupMode) => {
         dispatch(OverlayToggle(true))
         setFormMode(popupMode)
+    }
+
+    const additionalData = {
+        visitDate: date,
+        patientChildId: child.id
     }
 
     return (
@@ -31,17 +37,30 @@ const PatientDocumentationDisplay = () => {
             <AnimatePresence>
                 {/* ///////////////////////// Show first time documentation /////////////////////////////////////// */}
                 {
-                    (editFormIsVisible && popupMode === 'AddingForm'  && first === true) && <PatientDocumentationForm_FIRST toDisplayValues={documentation.documentationFirstVisit} />
+                    (editFormIsVisible && popupMode === 'AddingForm'  && first === true) && 
+                        <PatientDocumentationForm_FIRST 
+                            toDisplayValues = {{...documentationFirstVisit,...additionalData}}
+                            childrenList = {childrenList} 
+                            documentationId = {id}
+                            onFormSubmit = {fetchDocumentation}
+                            isSuccess={isSuccess} />
                 }
 
                 {/* ///////////////////////// Show next time documentation /////////////////////////////////////// */}
                 {
-                    (editFormIsVisible && popupMode === 'AddingForm' && first === false) && <PatientDocumentationForm_NEXT toDisplayValues={documentation.documentationNextVisit} />
+                    (editFormIsVisible && popupMode === 'AddingForm' && first === false) && 
+                        <PatientDocumentationForm_NEXT 
+                            toDisplayValues={{...documentationNextVisit,...additionalData}} 
+                            childrenList = {childrenList} 
+                            documentationId = {id}
+                            onFormSubmit = {fetchDocumentation} 
+                            isSuccess={isSuccess}
+                            isError={isError} />
                 }
 
                 {/* ///////////////////////// Show delete documentation confirmation ///////////////////////////// */}
                 {
-                    (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} patient={child.childFirstName} />
+                    (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} childName={`${child.childFirstName} ${child.childLastName}`} deleteAction={DeleteDocumentation} elementId={id} redirect={-1} />
                 }
             </AnimatePresence>
 
@@ -56,10 +75,10 @@ const PatientDocumentationDisplay = () => {
                     </div>
                 </div>
                 {
-                    first === true && <PatientDocumentationDisplay_FIRST formInputs={documentation.documentationFirstVisit} />
+                    first === true && <PatientDocumentationDisplay_FIRST formInputs={documentationFirstVisit} />
                 }
                 {
-                    first === false && <PatientDocumentationDisplay_NEXT formInputs={documentation.documentationNextVisit} />
+                    first === false && <PatientDocumentationDisplay_NEXT formInputs={documentationNextVisit} />
                 }
             </div>
         </>

@@ -16,7 +16,7 @@ export const loader = async ({params}) => {
     const documentId = params.documentationId;
 
     return queryClient.fetchQuery({
-        queryKey:['patients',patientId],
+        queryKey:['documentation',patientId],
         queryFn: ({signal}) => fetchDocumentationDetails({signal,patientId,documentId})                     
     })
 }

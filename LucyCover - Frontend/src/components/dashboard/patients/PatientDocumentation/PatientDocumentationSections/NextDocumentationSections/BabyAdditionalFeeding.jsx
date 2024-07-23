@@ -4,9 +4,9 @@ import SelectInput from "../../../../../utility/SelectInput";
 import style from '../css/PatientDocumentationSections.module.css'
 
 
-const BabyAdditionalFeeding = ({SetFormInputHandler,formInputs,readlOnlyMode}) => {
+const BabyAdditionalFeeding = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
 
-    const isReadonly = readlOnlyMode;
+    const isReadonly = readOnlyMode;
 
     return (
         <section className={style.PatientFormSection}>
@@ -25,36 +25,36 @@ const BabyAdditionalFeeding = ({SetFormInputHandler,formInputs,readlOnlyMode}) =
                         <tr>
                             <td>Matki</td>
                             <td>
-                                <LabelInput controlId='PatientFeedingCountPerDay_DAY1' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientFeedingCountPerDay_DAY1} />
+                                <LabelInput controlId='patientFeedingCountPerDay_DAY1' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingCountPerDay_DAY1} required maxLenght={2} />
                             </td>
                             <td>
-                                <LabelInput controlId='PatientFeedingCountPerDay_DAY2' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientFeedingCountPerDay_DAY2} />
+                                <LabelInput controlId='patientFeedingCountPerDay_DAY2' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingCountPerDay_DAY2} required maxLenght={2} />
                             </td>
                             <td>
-                                <LabelInput controlId='PatientFeedingCountPerDay_DAY3' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientFeedingCountPerDay_DAY3} />
+                                <LabelInput controlId='patientFeedingCountPerDay_DAY3' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingCountPerDay_DAY3} required maxLenght={2} />
                             </td>
                         </tr>
                         <tr>
                             <td>Mieszanka</td>
                             <td>
-                                <LabelInput controlId='PatientFeedingMIXCountPerDay_DAY1' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientFeedingMIXCountPerDay_DAY1} />
+                                <LabelInput controlId='patientFeedingMIXCountPerDay_DAY1' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingMIXCountPerDay_DAY1} required maxLenght={2} />
                             </td>
                             <td>
-                                <LabelInput controlId='PatientFeedingMIXCountPerDay_DAY2' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientFeedingMIXCountPerDay_DAY2} />
+                                <LabelInput controlId='patientFeedingMIXCountPerDay_DAY2' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingMIXCountPerDay_DAY2} required maxLenght={2} />
                             </td>
                             <td>
-                                <LabelInput controlId='PatientFeedingMIXCountPerDay_DAY3' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientFeedingMIXCountPerDay_DAY3} />
+                                <LabelInput controlId='patientFeedingMIXCountPerDay_DAY3' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingMIXCountPerDay_DAY3} required maxLenght={2} />
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <LabelInput controlId='PatientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientFeedingWay} />
+                <LabelInput controlId='patientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingWay} />
 
-                <SelectInput controlId='PatientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.PatientExpressingBreastMilk} readonly={isReadonly} />
+                <SelectInput controlId='patientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientExpressingBreastMilk} readonly={isReadonly} />
 
                 {
-                    formInputs.PatientExpressingBreastMilk === 'Tak' && <LabelInput controlId='PatientExpressingBreastMilkHowManyYesterday' label='Ile wczoraj ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.PatientExpressingBreastMilkHowManyYesterday} />
+                    formInputs.patientExpressingBreastMilk === 'Tak' && <LabelInput controlId='patientExpressingBreastMilkHowManyYesterday' label='Ile wczoraj ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientExpressingBreastMilkHowManyYesterday} />
                 }
             </span>
         </section>

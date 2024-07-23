@@ -14,21 +14,27 @@ const TextArea = ({
     defaultValue='',
     rows=3,
 }) => {
-    const [value,setValue] = useState(defaultValue)
     const [textAreaIsValid,setTextAreaIsValid] =useState(true)
+    const [value,setValue] = useState("")
 
     useEffect(()=>{
-      setValue(value)
-    },[value])
+      setValue(defaultValue)
+    },[defaultValue])
+
+    const InputChangeHandler = (event) => {
+      setValue(event.target.value)
+    }
 
     useEffect(()=>{
       const timeout = setTimeout(()=>{
+        if(readonly){
+          return;
+        }
         let isValid = true;
 
         if(required && value.trim().length === 0) {
           isValid=false;
         }
-
         const inputObject = {
           inputId: controlId,
           inputObject: {
@@ -56,7 +62,7 @@ const TextArea = ({
     return (
         <Form.Group className={className} controlId={controlId}>
             <Form.Label>{label}</Form.Label>
-            <motion.textarea rows={rows} style={stylex}  onChange={(event)=>setValue(event.target.value)} disabled={readonly} 
+            <motion.textarea rows={rows} style={stylex}  onChange={InputChangeHandler} disabled={readonly} 
                              value={value} />
             <AnimatePresence>
               {!textAreaIsValid && 

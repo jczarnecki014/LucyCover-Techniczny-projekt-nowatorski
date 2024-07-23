@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion"
 
 const PatientRecommendation = () => {
     const patientData = useLoaderData()
+    const {recommendations,patientFirstName,patientLastName} = patientData;
 
     const popupIsVisible = useSelector((state) => state.overlayModel.isVisible)
     const dispatch = useDispatch();
@@ -30,6 +31,8 @@ const PatientRecommendation = () => {
         })
     }
 
+    const patientName = `${patientFirstName} ${patientLastName}`
+
     return (
         <>
             <AnimatePresence>
@@ -41,13 +44,13 @@ const PatientRecommendation = () => {
                 }
             </AnimatePresence>
 
-            <PatientTable columns={['ID',"Data wystawienia zalecenia"]} data={patientData.recommendation} patientName={patientData.patientName} showPopup={ShowPopupHandler} >
+            <PatientTable columns={['ID',"Data wystawienia zalecenia"]} data={recommendations} patientName={patientName} showPopup={ShowPopupHandler} >
                 {(recommendation) => recommendation.map(element => {
                     return (
                         <tr key={element.id} >
                             <td>{element.id}</td>
                             <td>{element.date}</td>
-                            <TableButtons document={{...element,patient:patientData.patientName}} showPopup={ShowPopupHandler} />
+                            <TableButtons document={{...element,patient:patientName}} showPopup={ShowPopupHandler} />
                         </tr>
                     )
                 })}

@@ -19,9 +19,6 @@ namespace LucyCover_Model.Database_Entities
 
         public Guid PatientId { get; set;}
 
-        [ForeignKey("PatientId")]
-        public Patient Patient { get;set;}
-
         [Required]
         public Guid ChildId { get; set; }
 
@@ -30,9 +27,6 @@ namespace LucyCover_Model.Database_Entities
 
         [Required]
         public string Date { get; set; }
-
-        [Required]
-        public Guid DocumentId { get; set; }
 
         public DocumentationFirstVisit DocumentationFirstVisit { get; set; }
 

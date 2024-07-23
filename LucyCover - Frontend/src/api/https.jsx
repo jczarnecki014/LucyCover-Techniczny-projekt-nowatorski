@@ -3,8 +3,12 @@ import { QueryClient } from "@tanstack/react-query"; //query client invalidateQu
 
 export const queryClient = new QueryClient();
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                               GET                                                                         //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export async function fetchPatientsForSearchList({signal}) {
-    const response = await fetch('https://localhost:7014/api/patients',{signal}) //signal to abort request when left page
+    const response = await fetch('https://localhost:7014/api/patients',{signal})
     if(!response.ok){
         throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
     }
@@ -14,7 +18,7 @@ export async function fetchPatientsForSearchList({signal}) {
 }
 
 export async function fetchPatient({signal,patientId}) {
-    const response = await fetch(`https://localhost:7014/api/patients/${patientId}`,{signal}) //signal to abort request when left page
+    const response = await fetch(`https://localhost:7014/api/patients/${patientId}`,{signal}) 
     if(!response.ok){
         throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
     }
@@ -24,7 +28,7 @@ export async function fetchPatient({signal,patientId}) {
 }
 
 export async function fetchDocumentation({signal,patientId}) {
-    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}`,{signal}) //signal to abort request when left page
+    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}`,{signal}) 
     if(!response.ok){
         throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
     }
@@ -34,7 +38,7 @@ export async function fetchDocumentation({signal,patientId}) {
 }
 
 export async function fetchDocumentationDetails({signal,patientId,documentId}) {
-    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}/${documentId}`,{signal}) //signal to abort request when left page
+    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}/${documentId}`,{signal}) 
     if(!response.ok){
         throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
     }
@@ -42,6 +46,22 @@ export async function fetchDocumentationDetails({signal,patientId,documentId}) {
     
     return data;
 }
+
+
+export async function fetchRecommendation({patientId,signal}) {
+    console.log(patientId)
+    const response = await fetch(`https://localhost:7014/api/recommendation/${patientId}`,{signal}) 
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+    const data = await response.json()
+    
+    return data;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                               POST                                                                         //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export async function createNewPatient(patient) {
     const response = await fetch('https://localhost:7014/api/patients',{
@@ -55,4 +75,37 @@ export async function createNewPatient(patient) {
     if(response.status !== 201) {
         throw new Error("Error during creating patient")
     }
+}
+
+
+export async function createNewDocumentation({documentationDetails,patientId}) {
+    const response = await fetch(`https://localhost:7014/api/documentation/${patientId}`,{
+        method: 'POST',
+        body: JSON.stringify(documentationDetails),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status !== 201) {
+        throw new Error("Something went wrong during posting new documentation")
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                               DELETE                                                                         //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export async function DeleteDocumentation({documentId}) {
+    const response = await fetch(`https://localhost:7014/api/documentation/${documentId}`,{
+        method:'DELETE',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status !== 204) {
+        throw new Error("Something went wrong during deleting documentation")
+    }
+
 }
