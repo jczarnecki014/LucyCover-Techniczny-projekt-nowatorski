@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Database.Repository.IRepository
 {
-    public interface IChildrenRepository:IRepository<Children>
+    public interface IRecommendationRepository:IRepository<Recommendation>
     {
-        public void Update(Children children);
+        public void Update(Recommendation recommendation);
     }
 }

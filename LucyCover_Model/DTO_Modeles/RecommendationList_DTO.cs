@@ -12,5 +12,6 @@ namespace LucyCover_Model.DTO_Modeles
         public List<Recommendation> Recommendations { get; set;}
         public string patientFirstName { get;set; }
         public string patientLastName { get;set;}
+        public Guid patientId { get;set; }
     }
 }

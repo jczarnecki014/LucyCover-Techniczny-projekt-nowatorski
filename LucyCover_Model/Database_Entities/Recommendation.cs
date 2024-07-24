@@ -13,12 +13,21 @@ namespace LucyCover_Model.Database_Entities
     {
         [Key]
         public Guid id { get;set; }
+
         [Required]
+        [MaxLength(50)]
         public string date { get;set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string title { get;set; }
+
         [Required]
         public string text { get;set; }
+
         [Required]
         public Guid patientId { get;set; }
+
         [ForeignKey(nameof(patientId))]
         public Patient patient { get;set; }
     }

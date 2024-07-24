@@ -10,6 +10,7 @@ namespace LucyCover_Model.DTO_Modeles
 {
     public class AddPatient_DTO
     {
+        public Guid? patientId{ get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string city { get; set; }

@@ -14,33 +14,31 @@ import PatientForm from './PatientForm/PatientForm'
 import ChildrenForm from './ChildrenForm/ChildrenForm'
 import Popup from '../../../utility/Popup'
 
-import {DUMMY_CHILDREN} from '../../../../assets/DUMMY_DATA/DUMMY_CHILDREN'
-
 const PatientManageForm = ({activePatient}) => {
 
     const patientContextInputs = useSelector(state => state.addPatientForm.patientInputs)
     const getValue = useFormData();
     const dispatch = useDispatch()
 
-    const {mutate,isPending} = useMutation({
-        mutationFn: createNewPatient,
-        onSuccess: () => {
-            setFormMode("success")
-            queryClient.invalidateQueries(["patients"])
-        },
-        onError: (error) => {
-            console.error(error)
-            setFormMode("error")
-        }
-    })
-
-    const defaultChildrenList = activePatient ? DUMMY_CHILDREN.filter(child => child.patientId === activePatient.id) : []
+    const defaultChildrenList = activePatient ? activePatient.children : []
     const defaultPatientInputs = (activePatient != undefined) ? activePatient : getValue(patientContextInputs)
 
     const [formMode,setFormMode] = useState('patient')
     const [patientInputs,setPatientInputs] = useState(defaultPatientInputs)
     const [childrenList, setChildrenList] = useState(defaultChildrenList)
     const [childrenInEditMode,setChildrenInEditMode] = useState(null);
+
+    const {mutate,isPending} = useMutation({
+        mutationFn: createNewPatient,
+        onSuccess: () => {
+            setFormMode("success")
+            queryClient.invalidateQueries(["patients",defaultPatientInputs.id])
+        },
+        onError: (error) => {
+            console.error(error)
+            setFormMode("error")
+        }
+    })
 
     const formIsValid = CheckFormIsValid(patientContextInputs)
 
@@ -59,10 +57,10 @@ const PatientManageForm = ({activePatient}) => {
     const AddNewPatientHandler = () => {
 
         const patientDetails = getValue(patientContextInputs)
-        
         const newPatient = {
             ...patientDetails,
-            children:childrenList
+            children:childrenList,
+            patientId: activePatient ? activePatient.id : null
         }
         mutate(newPatient)
         dispatch(ClearForm())
@@ -99,8 +97,6 @@ const PatientManageForm = ({activePatient}) => {
         dispatch(ClearForm())
         dispatch(OverlayToggle(false))
     }
-
-
 
     return (
         <Fragment>

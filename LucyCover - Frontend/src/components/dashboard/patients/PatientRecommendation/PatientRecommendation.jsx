@@ -7,10 +7,16 @@ import PatientTable from "../PatientTable/PatientTable"
 import AddPatientRecommendation from "./AddPatientRecommendation"
 import DeleteConfirmation from '../../../utility/PatientsPopups/DeleteConfirmation'
 import { AnimatePresence } from "framer-motion"
+import { useQuery } from "@tanstack/react-query"
+import { fetchRecommendation } from "../../../../api/https"
+import { DeleteRecommendation } from "../../../../api/https"
 
 const PatientRecommendation = () => {
-    const patientData = useLoaderData()
-    const {recommendations,patientFirstName,patientLastName} = patientData;
+    const {data} = useQuery({
+        queryKey: ['recommendations'],
+        queryFn: ({signal}) => fetchRecommendation({signal,patientId:data.patientId})
+    })
+    const {recommendations,patientFirstName,patientLastName,patientId} = data;
 
     const popupIsVisible = useSelector((state) => state.overlayModel.isVisible)
     const dispatch = useDispatch();
@@ -30,17 +36,23 @@ const PatientRecommendation = () => {
             popupData
         })
     }
-
+    console.log(popupDetails)
     const patientName = `${patientFirstName} ${patientLastName}`
-
     return (
         <>
             <AnimatePresence>
                 {
-                    (popupIsVisible && popupDetails.mode === 'AddingForm') && <AddPatientRecommendation />
+                    (popupIsVisible && popupDetails.mode === 'AddingForm') && <AddPatientRecommendation patientId={patientId} />
                 }
                 {
-                    (popupIsVisible && popupDetails.mode === 'DeleteConfirmation') && <DeleteConfirmation what="zalecenia" day={popupDetails.popupData.day} patient={popupDetails.popupData.patient} />
+                    (popupIsVisible && popupDetails.mode === 'DeleteConfirmation') && 
+                    <DeleteConfirmation 
+                        what="zalecenia" 
+                        day={popupDetails.popupData.day} 
+                        patient={patientName}  // ??? not work
+                        deleteAction={DeleteRecommendation} 
+                        queries={['recommendations']} 
+                        elementId={popupDetails.popupData.elementId}/>
                 }
             </AnimatePresence>
 

@@ -42,6 +42,7 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IValidator<AddPatient_DTO>,AddPatientDTOValidator>();
 builder.Services.AddScoped<IValidator<DocumentationFirstVisitDTO>,DocumentationFirstVisitDTOValidator>();
 builder.Services.AddScoped<IValidator<DocumentationNextVisitDTO>,DocumentationNextVisitDTOValidator>();
+builder.Services.AddScoped<IValidator<RecommendationDetails_DTO>,RecommendationDetailsDTOValidator>();
 //App services
 builder.Services.AddScoped<IPatientService,PatientService>();
 builder.Services.AddScoped<IDocumentationService,DocumentationService>();

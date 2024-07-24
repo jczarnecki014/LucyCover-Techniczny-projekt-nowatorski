@@ -18,6 +18,7 @@ namespace LucyCover_Database.Repository
             documentationFirstVisit = new DocumentationFirstVisitRepository(db);
             documentationNextVisit = new DocumentationNextVisitRepository(db);
             recommendation = new RecommendationRepository(db);
+            children = new ChildrenRepository(db);
         }
 
         public IPatientRepository patient { get; private set; }
@@ -29,6 +30,8 @@ namespace LucyCover_Database.Repository
         public IDocumentationNextVisitRepository documentationNextVisit { get; private set; }
 
         public IRecommendationRepository recommendation { get; private set; }
+
+        public IChildrenRepository children {get; set;} 
 
         public void Save()
         {

@@ -79,5 +79,11 @@ namespace LucyCover_Database.Repository
         {
             dbSet.RemoveRange(entities);
         }
+
+        public bool Any(Expression<Func<T, bool>> filter)
+        {
+            return dbSet.Any(filter);
+        }
+
     }
 }

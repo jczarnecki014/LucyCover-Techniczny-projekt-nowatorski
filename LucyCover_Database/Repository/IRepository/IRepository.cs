@@ -15,5 +15,6 @@ namespace LucyCover_Database.Repository.IRepository
         T GetFirstOfDefault(Expression<Func<T,bool>>filter, string? includeProperties = null);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
+        bool Any(Expression<Func<T, bool>> filter);
     }
 }

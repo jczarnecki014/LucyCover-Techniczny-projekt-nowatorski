@@ -11,9 +11,9 @@ const PatientMenuPage = () => {
 
 export const loader = async ({params}) => {
     const patientId = params.patientId
-
+    
     return queryClient.fetchQuery({
-        queryKey:['patients',patientId],
+        queryKey:["patients",patientId],
         queryFn: ({signal}) => fetchPatient({signal,patientId})                     
     })
 }

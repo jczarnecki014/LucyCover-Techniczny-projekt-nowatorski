@@ -48,7 +48,16 @@ namespace LucyCover___Backend.Services
             {
                 throw new BadHttpRequestException("Recived paitent inputs are not valid!");
             }
-            _unitOfWork.patient.Add(patient);
+            if(formDTO.patientId != null)
+            {
+                Patient existPatient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id== formDTO.patientId,includeProperties:"children");
+                _unitOfWork.children.RemoveRange(existPatient.children);
+                _unitOfWork.patient.Update(patient);
+            }
+            else
+            {
+                _unitOfWork.patient.Add(patient);
+            }
             _unitOfWork.Save();
             return patient.id.ToString();
         }

@@ -3,6 +3,7 @@ using LucyCover_Model.Database_Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,20 @@ namespace LucyCover_Database.Repository
         }
         public void Update(Patient patient)
         {
-           _db.Patients.Update(patient);
+           Patient existPatient = _db.Patients.FirstOrDefault(patient => patient.id == patient.id);
+
+        existPatient.birthDate = patient.birthDate;
+        existPatient.birthPlace = patient.birthPlace;
+        existPatient.phoneNumber = patient.phoneNumber;
+        existPatient.address = patient.address;
+        existPatient.email = patient.email;
+        existPatient.children = patient.children;
+        existPatient.city = patient.city;
+        existPatient.firstName = patient.firstName;
+        existPatient.lastName = patient.lastName;
+        existPatient.province = patient.province;
+        existPatient.zipCode = patient.zipCode;
+        existPatient.id = patient.id;
         }
     }
 }

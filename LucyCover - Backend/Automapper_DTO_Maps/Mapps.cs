@@ -9,7 +9,8 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
     {
         public Mapps() 
         {
-            CreateMap<AddPatient_DTO,Patient>();
+            CreateMap<AddPatient_DTO,Patient>()
+                .ForMember(dest => dest.id, opt => opt.MapFrom(src=>src.patientId));
             CreateMap<Children_DTO,Children>();
             CreateMap<Children,Children_DTO>();
             CreateMap<DocumentationFirstVisit,DocumentationFirstVisitDTO>();
@@ -23,7 +24,12 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
                 .ForMember(dest => dest.Id, opt=>opt.MapFrom(src => src.DocumentationId));
             CreateMap<Patient,RecommendationList_DTO>()
                 .ForMember(dest => dest.patientFirstName, opt => opt.MapFrom(src => src.firstName))
-                .ForMember(dest => dest.patientLastName, opt => opt.MapFrom(src => src.lastName));
+                .ForMember(dest => dest.patientLastName, opt => opt.MapFrom(src => src.lastName))
+                .ForMember(dest => dest.patientId, opt => opt.MapFrom(src => src.id));
+            CreateMap<Recommendation,RecommendationDetails_DTO>()
+                .ForMember(dest=> dest.patientFirstName, opt => opt.MapFrom(src=> src.patient.firstName))
+                .ForMember(dest=> dest.patientLastName, opt => opt.MapFrom(src=> src.patient.lastName));
+            CreateMap<RecommendationDetails_DTO,Recommendation>();
         }
     }
 }

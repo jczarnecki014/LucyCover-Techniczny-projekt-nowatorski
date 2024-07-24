@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const defaultState = {
     title: {value:'', isValid: false},
     date: {value:'', isValid: false},
-    description: {value:'', isValid: false},
+    text: {value:'', isValid: false},
 }
 
 const AddPatientRecommendation = createSlice({

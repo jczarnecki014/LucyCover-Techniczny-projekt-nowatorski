@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -6,16 +5,14 @@ import { OverlayToggle } from '../../../context/slices/OverlayModel_SLICE';
 import { queryClient } from '../../../api/https';
 import Popup from '../Popup';
 
-const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect}) => {
-    const [statusX,setStatus] = useState('DeleteConfirmation');
+const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect,queries}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {mutate} = useMutation({
+    const {mutate,isSuccess,isError} = useMutation({
         mutationFn: deleteAction,
         onSuccess: () => {
-            setStatus('SuccessStatus')
-            queryClient.invalidateQueries(["documentation"])
+            queryClient.invalidateQueries(queries)
             if(redirect) {
                 setTimeout(()=>{
                     navigate(redirect)
@@ -23,14 +20,13 @@ const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect}
             }
         },
         onError: (error) => {
-            setStatus('ErrorStatus')
             console.error(error)
         }
     })
     return (
         <>
             {(
-                statusX === "DeleteConfirmation" && 
+                !isSuccess && !isError && 
                     <Popup 
                         type="warning" 
                         description={`Czy jesteś pewien, że chcesz usunąć ${what} z dnia ${day} dotyczącą ${childName} ?`}
@@ -38,7 +34,7 @@ const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect}
                         CancleAction={()=>{dispatch(OverlayToggle(false))}} />
             )}
             {(
-                statusX === "SuccessStatus" && 
+                isSuccess && 
                     <Popup 
                         type="success" 
                         description="Operacja powiodła się."
@@ -46,7 +42,7 @@ const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect}
                     />
             )}
             {(
-                statusX === "ErrorStatus" && 
+                isError && 
                     <Popup 
                         type="error" 
                         description="Usuwanie dokumentacji nie powiodło się. Proszę spróbować jeszcze raz, lub zgłosić problem administratorowi systemu." 

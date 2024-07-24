@@ -8,7 +8,7 @@ import ToPrintPage from './ToPrintPage';
 const PatientRecommendationDisplay = () => {
 
     const recommendationData = useLoaderData()
-    const {recommendation,patientName} = recommendationData;
+    const {date,patientFirstName,patientLastName,text,title} = recommendationData;
 
     const componentRef = useRef();
 
@@ -16,13 +16,14 @@ const PatientRecommendationDisplay = () => {
         content: () => componentRef.current
     })
 
+   const patientName = `${patientFirstName} ${patientLastName}`
     return (
         <div className={style.Container}>
             <div className={style.HeaderBar}>
                 <h5>{patientName}</h5>
                 <button onClick={handlePrint}>Drukuj</button>
             </div>
-            <ToPrintPage data={recommendation} ref={componentRef}/>
+            <ToPrintPage date={date} text={text} title={title} ref={componentRef}/>
         </div>
     )
 }

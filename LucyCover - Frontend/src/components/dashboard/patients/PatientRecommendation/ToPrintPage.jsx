@@ -5,7 +5,6 @@ import { forwardRef } from 'react'
 import logoImg from '../../../../assets/images/logo_graphics/logo.png'
 
 const ToPrintPage = forwardRef((props,ref) => {
-    const {date,description} = props.data;
     return (
         <div ref={ref} className={style.RecommendationContent}>
             <div className={style.ContentHeader}>
@@ -17,12 +16,13 @@ const ToPrintPage = forwardRef((props,ref) => {
                         <h6>JELENIA GÓRA</h6>
                     </span>
                 </div>
-                <h6>{date}</h6>
+                <h6>{props.date}</h6>
             </div>
             <div className={style.ContentBody}>
-                <h2>Zalecenia po wizycie z dnia {date}</h2>
+                <h2>Zalecenia po wizycie z dnia {props.date}</h2>
+                <h3>{props.title}</h3>
                 <div className={style.TextBox}>
-                    {description}
+                    {props.text}
                 </div>
             </div>
         </div>
