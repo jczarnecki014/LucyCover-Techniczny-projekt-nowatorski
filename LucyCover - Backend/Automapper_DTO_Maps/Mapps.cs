@@ -9,10 +9,12 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
     {
         public Mapps() 
         {
-            CreateMap<AddPatient_DTO,Patient>()
+            CreateMap<PatientDTO,Patient>()
                 .ForMember(dest => dest.id, opt => opt.MapFrom(src=>src.patientId));
-            CreateMap<Children_DTO,Children>();
-            CreateMap<Children,Children_DTO>();
+            CreateMap<Patient,PatientDTO>()
+                .ForMember(dest => dest.patientId, opt => opt.MapFrom(src=>src.id));
+            CreateMap<ChildrenDTO,Children>();
+            CreateMap<Children,ChildrenDTO>();
             CreateMap<DocumentationFirstVisit,DocumentationFirstVisitDTO>();
             CreateMap<DocumentationFirstVisitDTO,DocumentationFirstVisit>();
             CreateMap<DocumentationNextVisit,DocumentationNextVisitDTO>();
@@ -30,6 +32,17 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
                 .ForMember(dest=> dest.patientFirstName, opt => opt.MapFrom(src=> src.patient.firstName))
                 .ForMember(dest=> dest.patientLastName, opt => opt.MapFrom(src=> src.patient.lastName));
             CreateMap<RecommendationDetails_DTO,Recommendation>();
+            CreateMap<UpsertPatientSheduleDTO,Schedule>();
+            CreateMap<Schedule,ScheduleDTO>()
+                .ForMember(dest => dest.firstName, opt => opt.MapFrom(src=>src.patient.firstName))
+                .ForMember(dest => dest.lastName, opt => opt.MapFrom(src=>src.patient.lastName))
+                .ForMember(dest => dest.birthDate, opt => opt.MapFrom(src=>src.patient.birthDate))
+                .ForMember(dest => dest.phoneNumber, opt => opt.MapFrom(src=>src.patient.phoneNumber))
+                .ForMember(dest => dest.email, opt => opt.MapFrom(src=>src.patient.email))
+                .ForMember(dest => dest.children, opt => opt.MapFrom(src=>src.patient.children))
+                .ForMember(dest => dest.childFirstName, opt => opt.MapFrom(src=>src.child.childFirstName))
+                .ForMember(dest => dest.childLastName, opt => opt.MapFrom(src=>src.child.childLastName))
+                .ForMember(dest => dest.childBirthDate, opt => opt.MapFrom(src=>src.child.childBirthDate));
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.DTO_Modeles.Validators
 {
-    public class AddPatientDTOValidator: AbstractValidator<AddPatient_DTO>
+    public class AddPatientDTOValidator: AbstractValidator<PatientDTO>
     {
         public AddPatientDTOValidator() 
         { 

@@ -1,5 +1,6 @@
 import style from './css/AddNewVisit.module.css'
-
+import { useMutation } from '@tanstack/react-query';
+import { queryClient, upsertVisit } from '../../../../api/https';
 import {useDispatch,useSelector} from 'react-redux';
 import {SetInput} from '../../../../context/slices/AddNewVisitToScheduleForm';
 import {useFormData} from '../../../../hooks/useFormData'
@@ -15,26 +16,43 @@ import LabelInput from '../../../utility/LabelInput'
 import TextArea from '../../../utility/TextArea'
 import VisitStatusButtonSection from './VisitStatusButtonSection';
 
-const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEdit}) => {
+const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID}) => {
+
+    const {mutate} = useMutation({
+        mutationFn: upsertVisit,
+        onSuccess: () => {
+            queryClient.invalidateQueries(['schedule'])
+        },
+        onError: (error) => {
+            SetFormDisplayHandler("error");
+        }
+    })
+
+
     const dispatch = useDispatch();
-    const formTest = useSelector(state => state.addNewVisitToScheduleForm.formInputs)
+    const formInputs = useSelector(state => state.addNewVisitToScheduleForm.formInputs)
     const getValue = useFormData(); 
 
-    const generalVisitDetails = visitToEdit ? visitToEdit.details : getValue(formTest)
-    const visitState = visitToEdit && visitToEdit.visit.visitState;
+    const generalVisitDetails = getValue(formInputs)
 
     const {firstName,lastName,birthDate,phoneNumber} = activePatient
     const {childFirstName,childLastName,childBirthDate} = activeChildren;
-    const {city,street,streetNumber,zipCode,visitDate,visitClock,visitNote} = generalVisitDetails
+    const {city,street,streetNumber,zipCode,date,clock,description,status} = generalVisitDetails
 
-    const formIsValid = CheckFormIsValid(formTest)
-    
+    const formIsValid = CheckFormIsValid(formInputs) && activePatient.id && activeChildren.id
+
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
     }
-
     const FormSubmitHandler = (event) => {
-        event.preventDefault();
+        console.log("wchodze 2")
+        const visitDetails = {
+            id: visitID,
+            childId: activeChildren.id,
+            ...generalVisitDetails
+        }
+        console.log(visitDetails)
+        mutate({visitDetails,patientId:activePatient.id})
         SetFormDisplayHandler('visitNotyfication')
     }
 
@@ -44,50 +62,47 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEd
         dispatch(OverlayToggle(false))
     }
 
+
     return (
         <OverlayModel 
             title="Zaplanuj wizytę" 
             funcButton={{btnLabel:'Wybierz pacjenta',func:()=>SetFormDisplayHandler('patientsListMode')}}
             OnQuitButtonClick={FormQuitHandler}
             >
-                <form className={style.Container} onSubmit={FormSubmitHandler}>
+                <form className={style.Container}>
                     <div className={style.Section}>
                         <div className={style.Icon}>
                             <SlUserFemale size={120} color={'#fff'} />
                         </div>
                         <div className={style.Inputs}>
                             <LabelInput 
-                                controlId="firstName" 
                                 className={style.Input} 
                                 label="Imię" 
-                                onInput={SetFormInputHandler} 
                                 value={firstName}
+                                disabled
                                 required />
 
                             <LabelInput 
-                                controlId="lastName"
                                 className={style.Input} 
                                 label="Nazwisko"
-                                onInput={SetFormInputHandler} 
                                 value={lastName}
+                                disabled
                                 required />
 
                             <LabelInput 
-                                controlId="birthDate" 
                                 className={style.Input} 
                                 label="Data urodzenia" 
                                 inputType="date" 
-                                onInput={SetFormInputHandler}  
                                 value={birthDate} 
+                                disabled
                                 required />
 
                             <LabelInput 
-                                controlId="phoneNumber" 
                                 className={style.Input} 
                                 label="Telefon" 
-                                onInput={SetFormInputHandler}
                                 validationFunction={CheckPhoneIsValid} 
-                                value={phoneNumber} 
+                                value={phoneNumber}
+                                disabled
                                 required />
                         </div>
                     </div>
@@ -96,28 +111,25 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEd
                         </div>
                         <div className={style.Inputs}>
                             <LabelInput 
-                                controlId="childFirstName" 
                                 className={style.Input} 
                                 label="Imię" 
-                                onInput={SetFormInputHandler} 
                                 value={childFirstName} 
+                                disabled
                                 required />
 
                             <LabelInput 
-                                controlId="childLastName" 
                                 className={style.Input} 
                                 label="Nazwisko" 
-                                onInput={SetFormInputHandler}
                                 value={childLastName} 
+                                disabled
                                 required />
 
                             <LabelInput 
-                                controlId="childBirthDate" 
                                 className={style.Input} 
                                 label="data urodzenia" 
                                 inputType="date" 
-                                onInput={SetFormInputHandler} 
                                 value={childBirthDate} 
+                                disabled
                                 required />
 
                             <button className={style.Input} onClick={()=>{SetFormDisplayHandler('childrenListMode')}}>
@@ -129,7 +141,7 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEd
                         <div className={style.AddressDetails}>
                             <div className={style.Inputs}>
                                 <LabelInput 
-                                    controlId="patientCity" 
+                                    controlId="city" 
                                     className={style.Input} 
                                     label="Miejscowość" 
                                     onInput={SetFormInputHandler} 
@@ -137,7 +149,7 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEd
                                     value={city} />
 
                                 <LabelInput 
-                                    controlId="patientStreet" 
+                                    controlId="street" 
                                     className={style.Input} 
                                     label="Ulica" 
                                     onInput={SetFormInputHandler} 
@@ -145,7 +157,7 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEd
                                     value={street} />
 
                                 <LabelInput 
-                                    controlId="patientStreetNumber" 
+                                    controlId="streetNumber" 
                                     className={style.Input_w50} 
                                     label="Nr domu" 
                                     onInput={SetFormInputHandler} 
@@ -153,7 +165,7 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEd
                                     value={streetNumber} />
 
                                 <LabelInput 
-                                    controlId="patientZipCode"
+                                    controlId="zipCode"
                                     className={style.Input_w50} 
                                     label="kod pocztowy"
                                     validationFunction={CheckZipCodeIsValid}
@@ -165,40 +177,48 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitToEd
                         <div className={style.VisitDetails}>
                             <div className={style.Inputs}>
                                 <LabelInput 
-                                    controlId="visitDate"
+                                    controlId="date"
                                     className={style.Input_w50}
                                     label="Data"
                                     inputType='date'
                                     onInput={SetFormInputHandler} 
                                     required 
-                                    value={visitDate} />
+                                    value={date} />
 
                                 <LabelInput 
-                                    controlId="visitClock" 
+                                    controlId="clock" 
                                     className={style.Input_w50} 
                                     label="Godzina" 
                                     inputType='time'
                                     onInput={SetFormInputHandler} 
                                     required 
-                                    value={visitClock} />
+                                    value={clock} />
 
                                 <TextArea 
-                                    controlId="visitNote" 
+                                    controlId="description" 
                                     className={style.TextArea} 
                                     label="Notatka" 
                                     rows={5} 
                                     onChange={SetFormInputHandler} 
                                     required 
-                                    defaultValue={visitNote} />
+                                    defaultValue={description} />
                             </div>
                         </div>
                     </div>
                     <div className={style.ButtonSection}>
-                        <VisitStatusButtonSection visitStatus={visitState} formIsValid={formIsValid} />
-                        <button id={style.ActionButton} disabled={!formIsValid}>
-                            {
-                                visitToEdit ? "Edytuj wizytę" : "Zaplanuj wizytę" 
-                            }
+                        {
+                            visitID && 
+                                <VisitStatusButtonSection 
+                                visitStatus={status} 
+                                visitId = {visitID}
+                                formIsValid={formIsValid}
+                                SetFormDisplayHandler={SetFormDisplayHandler}
+                        />
+                        }
+                        <button id={style.ActionButton} disabled={!formIsValid} onClick={FormSubmitHandler}>
+                        {
+                            visitID ? "Edytuj wizytę" : "Zaplanuj wizytę" 
+                        }
                         </button>
                     </div>
                 </form>

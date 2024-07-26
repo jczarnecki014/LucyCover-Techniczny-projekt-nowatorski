@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.DTO_Modeles
 {
-    public class AddPatient_DTO
+    public class PatientDTO
     {
         public Guid? patientId{ get; set; }
         public string firstName { get; set; }
@@ -21,6 +21,6 @@ namespace LucyCover_Model.DTO_Modeles
         public string email { get; set; }
         public string birthDate { get; set; }
         public string BirthPlace { get;set; }
-        public List<Children_DTO> children { get; set; }
+        public List<ChildrenDTO> children { get; set; }
     }
 }

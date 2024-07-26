@@ -39,14 +39,16 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 //Autompaer configuration
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 //FluentValidator
-builder.Services.AddScoped<IValidator<AddPatient_DTO>,AddPatientDTOValidator>();
+builder.Services.AddScoped<IValidator<PatientDTO>,AddPatientDTOValidator>();
 builder.Services.AddScoped<IValidator<DocumentationFirstVisitDTO>,DocumentationFirstVisitDTOValidator>();
 builder.Services.AddScoped<IValidator<DocumentationNextVisitDTO>,DocumentationNextVisitDTOValidator>();
 builder.Services.AddScoped<IValidator<RecommendationDetails_DTO>,RecommendationDetailsDTOValidator>();
+builder.Services.AddScoped<IValidator<UpsertPatientSheduleDTO>,UpsertPatientScheduleDTOValidator>();
 //App services
 builder.Services.AddScoped<IPatientService,PatientService>();
 builder.Services.AddScoped<IDocumentationService,DocumentationService>();
 builder.Services.AddScoped<IRecommendationService,RecommendationService>();
+builder.Services.AddScoped<IScheduleService,ScheduleService>();
 
 var app = builder.Build();
 

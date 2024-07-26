@@ -15,6 +15,7 @@ const LabelInput = ({
   required=false,
   maxLenght,
   readonly,
+  disabled,
   value='',
   boxShadow,
   className,
@@ -85,7 +86,7 @@ const LabelInput = ({
           }
         }
         className={boxShadow && 'boxShadow-light'}
-        disabled={readonly}
+        disabled={readonly || disabled }
         required={required}
         value={inputValue}
         maxLength={maxLenght}
@@ -96,9 +97,14 @@ const LabelInput = ({
         onChange={InputChangeHandler}
       />
       <AnimatePresence>
-        {!isValid && 
+        {!isValid && !disabled && 
             <motion.p initial={{x:-200}} animate={{x:0, color:"#cf2f74"}} exit={{x:-200, opacity:0}}>
                 Proszę wypełnić te pole
+            </motion.p>
+        }
+        {!isValid && disabled && 
+            <motion.p initial={{x:-200}} animate={{x:0, color:"#cf2f74"}} exit={{x:-200, opacity:0}}>
+                Te pole nie może być puste 
             </motion.p>
         }
       </AnimatePresence>

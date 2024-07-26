@@ -12,15 +12,15 @@ namespace LucyCover___Backend.Services
     public interface IPatientService
     {
         public IEnumerable<Patient> GetPatients();
-        public string CreatePatient(AddPatient_DTO patient);
+        public string UpsertPatient(PatientDTO patient);
         public Patient GetPatient(Guid patientId);
     }
     public class PatientService : IPatientService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IValidator<AddPatient_DTO> _validator;
-        public PatientService(IUnitOfWork unitOfWork,IMapper mapper, IValidator<AddPatient_DTO> validator) 
+        private readonly IValidator<PatientDTO> _validator;
+        public PatientService(IUnitOfWork unitOfWork,IMapper mapper, IValidator<PatientDTO> validator) 
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -40,7 +40,7 @@ namespace LucyCover___Backend.Services
             return patient;
         }
 
-        public string CreatePatient(AddPatient_DTO formDTO)
+        public string UpsertPatient(PatientDTO formDTO)
         {
             Patient patient = _mapper.Map<Patient>(formDTO);
             bool isValid = _validator.Validate(formDTO).IsValid;
@@ -60,6 +60,18 @@ namespace LucyCover___Backend.Services
             }
             _unitOfWork.Save();
             return patient.id.ToString();
+        }
+
+         public static Patient GetPatient(Guid patientId,IUnitOfWork _unitOfWork, string? includeProperties = null) 
+        {
+            Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId,includeProperties);
+
+            if(patient == null) 
+            {
+                throw new KeyNotFoundException("Patient with this id was not found !");
+            }
+
+            return patient;
         }
     }
 }

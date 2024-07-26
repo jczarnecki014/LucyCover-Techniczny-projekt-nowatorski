@@ -1,5 +1,5 @@
 import style from './css/Wrapper.module.css'
-
+import { useSelector } from 'react-redux';
 import Avatar from '../../../assets/images/avatar.png'
 import { DUMMY_NOTYFICATIONS } from '../../../assets/DUMMY_DATA/DUMMY_NOTYFICATIONS';
 
@@ -15,6 +15,8 @@ import ActionButtons from './RightSidePanel/ActionButtons';
 
 
 const Wrapper = ({children}) => {
+    const activeMenuOption = useSelector(state => state.mainMenu.activePage)
+    console.log(activeMenuOption)
     return ( 
         <div className={style.GridContainer}>
             <TopBar />
@@ -23,7 +25,7 @@ const Wrapper = ({children}) => {
                 <MainMenu.Item title='Kalendarz wizyt'>
                     <IoCalendarNumberOutline size={40}/>
                 </MainMenu.Item>
-                <MainMenu.Item title='Pacjenci'>
+                <MainMenu.Item title='Pacjenci' activePage>
                     <FaUsers size={40}/>
                 </MainMenu.Item>
                 <MainMenu.Item title='Materiały eudkacyjne'>

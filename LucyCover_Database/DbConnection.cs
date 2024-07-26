@@ -14,5 +14,6 @@ namespace LucyCover_Database
         public DbSet<DocumentationFirstVisit> DocumentationFirstVisit{ get; set; }
         public DbSet<DocumentationNextVisit> DocumentationNextVisit{ get; set; }
         public DbSet<Recommendation> Recommendations { get; set;}
+        public DbSet<Schedule> Schedules { get; set; }
     }
 }
