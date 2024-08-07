@@ -7,6 +7,7 @@ using LucyCover_Model.DTO_Modeles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http.HttpResults;
 
+
 namespace LucyCover___Backend.Services
 {
     public interface IDocumentationService
@@ -35,7 +36,7 @@ namespace LucyCover___Backend.Services
 
         public DocumentationList_DTO GetAll(Guid patientId)
         {
-            Patient patient = GetPatient(patientId,"children");
+            Patient patient = PatientService.GetPatient(patientId,_unitOfWork,"children");;
 
             List<Documentation> documentation = _unitOfWork.documentation.GetAll(document => document.PatientId == patientId,includeProperties:"Child").ToList();
             DocumentationList_DTO documentationDTO = new DocumentationList_DTO();
@@ -76,7 +77,7 @@ namespace LucyCover___Backend.Services
         }
         public Guid UpsertFirstVisitDocumentation(Guid patientId,UpsertDocumentationDTO documentation) 
         {
-            GetPatient(patientId);
+            PatientService.GetPatient(patientId,_unitOfWork);
 
             bool isValid = _firstVisitValidator.Validate(documentation.DocumentationFirstVisit).IsValid;
 
@@ -109,7 +110,7 @@ namespace LucyCover___Backend.Services
 
         public Guid UpsertNextVisitDocumentation(Guid patientId,UpsertDocumentationDTO documentation)
         {
-            GetPatient(patientId);
+            PatientService.GetPatient(patientId,_unitOfWork);
             bool isValid = _nextVisitValidator.Validate(documentation.DocumentationNextVisit).IsValid;
 
             if(!isValid) 
@@ -143,18 +144,6 @@ namespace LucyCover___Backend.Services
             Documentation documentation = GetDocumentation(documentationId);
             _unitOfWork.documentation.Remove(documentation);
             _unitOfWork.Save();
-        }
-
-        public Patient GetPatient(Guid patientId,string? includeProperties = null) 
-        {
-            Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId,includeProperties);
-
-            if(patient == null) 
-            {
-                throw new KeyNotFoundException("Patient with this id was not found !");
-            }
-
-            return patient;
         }
 
         public Documentation GetDocumentation(Guid documentationId, string? includeProperties=null) 

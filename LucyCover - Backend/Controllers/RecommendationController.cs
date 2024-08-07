@@ -31,8 +31,8 @@ namespace LucyCover___Backend.Controllers
         [HttpPost("{patientId}")]
         public ActionResult UpsertRecommendation(Guid patientId,RecommendationDetails_DTO recommendation)
         {
-            _service.UpsertNewRecommendation(patientId, recommendation);
-            return Ok();
+            Guid recommendationId = _service.UpsertNewRecommendation(patientId, recommendation);
+            return Created(recommendationId.ToString(),null);
         }
 
         [HttpDelete("{recommendationId}")]

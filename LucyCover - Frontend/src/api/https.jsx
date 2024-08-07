@@ -68,6 +68,18 @@ export async function fetchRecommendationDetails({signal,patientId,recommendatio
     return data;
 }
 
+export async function fetchAllPatientVisits({signal,patientId}) {
+    const response = await fetch(`https://localhost:7014/api/schedule/${patientId}`,{signal}) 
+    
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+   
+    return data;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                               POST                                                                         //
@@ -112,13 +124,27 @@ export async function createNewRecommendation({recommendationDetails,patientId})
         }
     })
 
+    if(response.status !== 201) {   /// zmien na 201
+        throw new Error("Something went wrong during posting new recommendation")
+    }
+}
+
+export async function upsertVisit({visitDetails,patientId}) {
+    const response = await fetch(`https://localhost:7014/api/schedule/${patientId}`,{
+        method: 'POST',
+        body: JSON.stringify(visitDetails),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
     if(response.status !== 200) {   /// zmien na 201
-        throw new Error("Something went wrong during posting new documentation")
+        throw new Error("Something went wrong during posting new shedule")
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                               DELETE                                                                         //
+//                                               DELETE                                                                      //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export async function DeleteDocumentation({documentId}) {
@@ -144,5 +170,22 @@ export async function DeleteRecommendation({documentId}) {
 
     if(response.status !== 204) {
         throw new Error("Something went wrong during deleting recommendation")
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                               PUT                                                                         //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export async function ChangeVisitStatus({visitId,visitStatus}) {
+    const response = await fetch(`https://localhost:7014/api/schedule/${visitId}?visitStatus=${visitStatus}`,{
+        method:'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status !== 200) {
+        throw new Error("Something went wrong during updating visit status")
     }
 }

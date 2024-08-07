@@ -8,7 +8,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 
 const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => {
-    const {id,date,time,visitState} = visit;
+    const {id,date,clock,status} = visit;
 
     const [isExpanded,setIsExpanded] = useState(false)
 
@@ -19,14 +19,14 @@ const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => 
     }
 
     let className;
-    switch (visitState){
+    switch (status){
         case 'Odbyta':
             className = style.DoneVisit
         break;
         case 'Zaplanowana':
             className = style.PlanedVisit
         break;
-        case 'Odwołana':
+        case 'Odwolana':
             className = style.CanceledVisit
         break;
     }
@@ -34,14 +34,14 @@ const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => 
     return (
         <tr className={className}>
             <td>{date}</td>
-            <td>{time}</td>
+            <td>{clock}</td>
             <td>
-                <span className={style.Badge}>{visitState}</span>
+                <span className={style.Badge}>{status}</span>
             </td>
             <td>
                 <div className={style.EditButtonsCol}>
                     {
-                        visitState === 'Odbyta' && 
+                        status === 'Odbyta' && 
                         (
                             <Link to='../documentation'>
                                 <FaPlusCircle size={25} />

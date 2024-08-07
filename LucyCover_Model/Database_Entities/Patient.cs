@@ -49,5 +49,7 @@ namespace LucyCover_Model.Database_Model
 
         public ICollection<Children> children { get; set; }
 
+        public ICollection<Schedule> schedules { get; set; }
+
     }
 }

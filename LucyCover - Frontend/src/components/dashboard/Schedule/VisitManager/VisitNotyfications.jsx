@@ -2,7 +2,7 @@ import { useState } from "react"
 import PopupMenu from "../../../utility/PatientsPopups/PatientPopupMenu";
 import Popup from "../../../utility/Popup";
 
-const VisitNotyfications = (activePatient) => {
+const VisitNotyfications = ({activePatient}) => {
 
     // EmailConfirmationMenu / Success / NoEmail / Error
     const [notyficationStep,SetNotyficationStep] = useState('EmailConfirmationMenu');

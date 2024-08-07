@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useQuery } from "@tanstack/react-query"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch,useSelector } from "react-redux"
 import { SetFormDefault } from "../../../../context/slices/AddNewVisitToScheduleForm"
@@ -9,19 +10,24 @@ import PatientLayout from "../PatientLayout/PatientLayout"
 import PatientVisitsTable from "./PatientVisitsTable"
 import VisitManager from "../../Schedule/VisitManager/VisitManager"
 import DeleteConfirmation from "../../../utility/PatientsPopups/DeleteConfirmation"
-import { DUMMY_PATIENTS_VISITS_DETAILS } from "../../../../assets/DUMMY_DATA/DUMMY_PATIENTS_VISITS_DETAILS"
+import { fetchAllPatientVisits } from "../../../../api/https"
+
 
 const PatientSchedule = () => {
     const overlayDisplay = useSelector((state) => state.overlayModel.isVisible)
     const dispatch = useDispatch();
 
-    const [popupMode,setPopupMode] = useState('AddNewVisit / EditVisit / DeleteConfirmation / EmailNotyfication')
+    const [popupMode,setPopupMode] = useState('AddNewVisit / EditVisit / DeleteConfirmation')
     const [deleteConfirmationDetails,setDeleteConfirmationDetails] = useState()
     const [visitToEditId,setVisitToEditId] = useState();
 
-    const patientVisitsInfo = useLoaderData();
-    const {patientVisits} = patientVisitsInfo
-    const {firstName,lastName,city,address,zipCode,province,phoneNumber,email,children} = patientVisitsInfo.patientDetails
+    const {data} = useQuery({
+        queryKey: ['schedule'],
+        queryFn: ({signal}) => fetchAllPatientVisits({signal,patientId:data.patientDetails.patientId})
+    })
+    
+    const {patientVisits} = data
+    const {firstName,lastName,city,address,zipCode,province,phoneNumber,email,children} = data.patientDetails
 
     const AddNewVisitPopupHandler = () => {
         setPopupMode('AddNewVisit')
@@ -46,8 +52,7 @@ const PatientSchedule = () => {
 
     if(visitToEditId){
         visitToEdit = {
-            visit: patientVisits.find(visit => visit.id === visitToEditId ),
-            details: DUMMY_PATIENTS_VISITS_DETAILS.find(visit => visit.visitId === visitToEditId )
+            ...patientVisits.find(visit => visit.id === visitToEditId ),
         }
     }
 

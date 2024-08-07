@@ -19,7 +19,7 @@ const PatientDocumentationList = () => {
         refetchOnWindowFocus:true,
         queryFn: ({signal}) => fetchDocumentation({signal,patientId:data.patient.id})
     })
-    console.log(data)
+
     const popupIsVisible = useSelector((state) => state.overlayModel.isVisible)
     const [popupDetails,setPopupDetails] = useState({
         mode:'AddingForm / DeleteConfirmation',

@@ -12,7 +12,6 @@ import { AnimatePresence } from 'framer-motion'
 
 
 const PatientSearchList = ({listElements,children,closeFunc}) => {
-
     const [searchTerm,setSearchTerm] = useState("");
     const [searchList,setSearchList] = useState(listElements)
 

@@ -11,7 +11,7 @@ namespace LucyCover___Backend.Services
     public interface IRecommendationService {
         public RecommendationList_DTO GetAll(Guid patientId);
         public RecommendationDetails_DTO GetDetails(Guid patientId,Guid recommendationId);
-        public void UpsertNewRecommendation(Guid patientId,RecommendationDetails_DTO recommendation);
+        public Guid UpsertNewRecommendation(Guid patientId,RecommendationDetails_DTO recommendation);
         public void DeleteRecommendation(Guid recommendationId);
     }
     public class RecommendationService : IRecommendationService
@@ -51,7 +51,7 @@ namespace LucyCover___Backend.Services
             return recommendationDetails_DTO;
         }
 
-        public void UpsertNewRecommendation(Guid patientId,RecommendationDetails_DTO recommendationDTO) 
+        public Guid UpsertNewRecommendation(Guid patientId,RecommendationDetails_DTO recommendationDTO) 
         {
             Patient patient = GetPatient(patientId);
 
@@ -71,6 +71,8 @@ namespace LucyCover___Backend.Services
             recommendation.patientId = patientId;
             _unitOfWork.recommendation.Add(recommendation);
             _unitOfWork.Save();
+
+            return recommendation.id;
         }
 
         public void DeleteRecommendation(Guid recommendationId) 
