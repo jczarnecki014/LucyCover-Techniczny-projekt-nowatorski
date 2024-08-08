@@ -5,6 +5,7 @@ import MenuItem from './MenuItem';
 
 
 const MainMenu = ({children}) => {
+
     return (
         <nav id={style.Menu} className={style.GridElement}>
             {children}

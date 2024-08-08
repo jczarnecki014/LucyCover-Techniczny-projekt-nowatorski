@@ -1,8 +1,18 @@
 import Patients from "../../components/dashboard/patients/PatientsList/Patients";
 import { queryClient } from "../../api/https";
 import { fetchPatientsForSearchList } from "../../api/https";
+import { useDispatch } from "react-redux";
+import { SetActivePage } from "../../context/slices/MainMenuSlice";
+import { useEffect } from "react";
 
 const PatientsPage = () => {
+    const dispatch = useDispatch();
+    console.log('test')
+    useEffect(()=>{
+        console.log("test")
+        dispatch(SetActivePage("patient"))
+    },[])
+
     return <Patients />
 }
 

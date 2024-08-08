@@ -62,6 +62,21 @@
     gap:10px;
 }
 
+#Menu span:hover{
+    background-color: #a8a7a7;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+#Menu span.active {
+    background-color: #F896F5;
+}
+
+#Menu span.active:hover {
+    background-color: #F896F5;
+    transition: 0;
+}
+
 /*-------------------------------------------------------------------*/
                             /*MAIN CONTNET*/
 /*-------------------------------------------------------------------*/
