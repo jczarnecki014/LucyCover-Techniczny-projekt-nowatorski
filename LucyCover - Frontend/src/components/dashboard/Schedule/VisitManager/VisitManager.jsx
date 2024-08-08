@@ -3,7 +3,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { SetActivePatient,SetActiveChildren } from '../../../../context/slices/PatientSearch_SLICE';
 import { LoadDefaultData } from '../../../../context/slices/AddNewVisitToScheduleForm';
 import VisitForm from './VisitForm';
-import ChoosePatientList from './ChoosePatientList';
+import ChoosePatientList from '../../patients/PatientsList/PatientSearch/ChoosePatientList';
 import ChooseChildrenList from './ChooseChildrenList';
 import VisitNotyfications from './VisitNotyfications';
 import Popup from '../../../utility/Popup';
@@ -62,7 +62,7 @@ const VisitManager = ({visitToEdit}) => {
                 formMode === 'visitFormMode' && <VisitForm SetFormDisplayHandler={SetFormDisplayHandler} activePatient={activePatient} activeChildren={activeChildren} visitID={visitId} />
             }
             {
-                formMode === 'patientsListMode' && <ChoosePatientList formModeChange={SetFormDisplayHandler} />
+                formMode === 'patientsListMode' &&  <ChoosePatientList closeFunc={()=>SetFormDisplayHandler('visitFormMode')} />
             }
             {
                 formMode === 'childrenListMode' && <ChooseChildrenList activePatient={activePatient} formModeChange={SetFormDisplayHandler}  />

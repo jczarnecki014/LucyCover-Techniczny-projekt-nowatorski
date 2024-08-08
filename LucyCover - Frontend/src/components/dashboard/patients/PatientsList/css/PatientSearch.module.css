@@ -37,6 +37,7 @@
     padding-top:10px;
     padding-bottom: 10px;
     border: 3px solid #EEECEC;
+    min-height: 230px;
     border-radius: 20px;
     background-color: #EEECEC;
 }
@@ -48,9 +49,14 @@
     transition: 0.3s;
 }
 
+.PatientElement.disabled.active,
 .PatientElement.active{
     border-color: #CB60C8;
     box-shadow: 0px 4px 4px -3px rgba(224, 17, 203, 1);
+}
+
+.PatientElement.disabled{
+    border: 3px solid #6f1048;
 }
 
 .PatientElement .IconBackground{

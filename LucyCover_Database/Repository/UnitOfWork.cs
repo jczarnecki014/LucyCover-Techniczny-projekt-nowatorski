@@ -20,6 +20,8 @@ namespace LucyCover_Database.Repository
             recommendation = new RecommendationRepository(db);
             children = new ChildrenRepository(db);
             schedule = new ScheduleReposiotry(db);
+            educationMaterials = new EducationMaterialsRepository(db);
+            educationMaterialsAssignedPatients = new EducationMaterialsAssignedPatientsRepository(db);
         }
 
         public IPatientRepository patient { get; private set; }
@@ -35,6 +37,10 @@ namespace LucyCover_Database.Repository
         public IChildrenRepository children {get; private set;}
 
         public IScheduleRepository schedule {get; private set;}
+
+        public IEducationMaterialsRepository educationMaterials { get; private set;}
+
+        public IEducationMaterialsAssignedPatientsRepository educationMaterialsAssignedPatients { get; private set;}
 
         public void Save()
         {

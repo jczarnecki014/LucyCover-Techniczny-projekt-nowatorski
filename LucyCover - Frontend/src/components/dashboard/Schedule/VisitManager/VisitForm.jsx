@@ -45,13 +45,11 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID})
         dispatch(SetInput({inputId,inputObject}))
     }
     const FormSubmitHandler = (event) => {
-        console.log("wchodze 2")
         const visitDetails = {
             id: visitID,
             childId: activeChildren.id,
             ...generalVisitDetails
         }
-        console.log(visitDetails)
         mutate({visitDetails,patientId:activePatient.id})
         SetFormDisplayHandler('visitNotyfication')
     }

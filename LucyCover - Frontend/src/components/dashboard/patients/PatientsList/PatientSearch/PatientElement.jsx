@@ -10,17 +10,19 @@ const variants = {
     visible: {opacity:1, scale:1},
 }
 
-const PatientElement = ({id,firstName,lastName,city,address,birthDate,patientType,setActivePatient,activePatientId}) => {
+const PatientElement = ({id,firstName,lastName,city,address,birthDate,patientType,setActivePatient,activePatientId,disabled}) => {
     const ClickHandler = () => {
         setActivePatient(id)
     }
 
     const isActive = activePatientId === id;
-
     return (
-        <motion.div initial={'noVisible'} animate={'visible'}
-                    exit={'noVisible'} while variants={variants}  
-                    className={`${style.PatientElement} ${isActive ? style.active: ''}`} 
+        <motion.div initial={'noVisible'} 
+                    animate={'visible'}
+                    exit={'noVisible'} 
+                    while 
+                    variants={variants}  
+                    className={`${style.PatientElement} ${isActive ? style.active: ''} ${disabled ? style.disabled:''}`} 
                     onClick={ClickHandler}
         >
 

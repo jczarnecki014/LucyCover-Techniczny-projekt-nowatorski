@@ -81,6 +81,42 @@ export async function fetchAllPatientVisits({signal,patientId}) {
 }
 
 
+export async function fetchAllEducationMaterial({signal}) {
+    const response = await fetch(`https://localhost:7014/api/educationMaterials`,{signal}) 
+    
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+   
+    return data;
+}
+
+export async function fetchAllAssignedPatientsToMaterial({signal,materialId}) {
+    const response = await fetch(`https://localhost:7014/api/educationMaterials/${materialId}`,{signal}) 
+    
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+   
+    return data;
+}
+
+export async function downloadEducationMaterial({materialId}) {
+    const response = await fetch(`https://localhost:7014/api/educationMaterials/file/${materialId}`) 
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const fileName = response.headers.get("filename");
+
+    return {blob:await response.blob(),fileName};
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                               POST                                                                         //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,6 +179,37 @@ export async function upsertVisit({visitDetails,patientId}) {
     }
 }
 
+export async function assignPatientToMaterial({materialId,patientId}) {
+    const response = await fetch(`https://localhost:7014/api/educationMaterials/${materialId}/${patientId}`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status === 404){
+        throw new Error ("Użtkownik nie ma przypisanego prawidłowego adresu email do konta !")
+    }
+    if(response.status !== 200) {   /// zmien na 201
+        throw new Error("Something went wrong during assigning patient")
+    }
+}
+
+export async function AddNewMaterial({formData}) {
+    const response = await fetch(`https://localhost:7014/api/educationMaterials`,{
+        method: 'POST',
+        body: formData,
+    })
+
+    if(response.status == 409) {
+        throw new Error("Plik o takiej nazwie już istnieje. Jeżeli chcesz go nadpisać edytuj istniejący materiał")
+    }
+    if(response.status !== 201){
+        throw new Error(`Podczas operacji coś poszło nie tak`)
+    }
+    
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                               DELETE                                                                      //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,6 +240,21 @@ export async function DeleteRecommendation({documentId}) {
     }
 }
 
+export async function DeleteEducationMaterial({materialId}) {
+    const response = await fetch(`https://localhost:7014/api/educationMaterials/${materialId}`,{
+        method:'DELETE',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status == 409) {
+        throw new Error("W systemie nie znaleziono wskazanego pliku")
+    }
+    if(response.status !== 204){
+        throw new Error(`Podczas operacji coś poszło nie tak`)
+    }
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                               PUT                                                                         //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

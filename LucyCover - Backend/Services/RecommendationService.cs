@@ -28,7 +28,7 @@ namespace LucyCover___Backend.Services
 
         public RecommendationList_DTO GetAll(Guid patientId)
         {
-            Patient patient = GetPatient(patientId);
+            Patient patient = PatientService.GetPatient(patientId,_unitOfWork);;
 
             RecommendationList_DTO recommendationList_DTO = _mapper.Map<RecommendationList_DTO>(patient);
 
@@ -53,7 +53,7 @@ namespace LucyCover___Backend.Services
 
         public Guid UpsertNewRecommendation(Guid patientId,RecommendationDetails_DTO recommendationDTO) 
         {
-            Patient patient = GetPatient(patientId);
+            Patient patient = PatientService.GetPatient(patientId,_unitOfWork);
 
             bool isValid = _validator.Validate(recommendationDTO).IsValid;
 
@@ -84,17 +84,6 @@ namespace LucyCover___Backend.Services
             }
             _unitOfWork.recommendation.Remove(recommendation);
             _unitOfWork.Save();
-        }
-
-        public Patient GetPatient(Guid patientId) 
-        {
-            Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId);
-            if(patient is null) 
-            {
-                throw new KeyNotFoundException("Patient with that patientId does not exist.");
-            }
-
-            return patient;
         }
 
     }

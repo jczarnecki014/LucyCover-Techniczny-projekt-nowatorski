@@ -28,6 +28,7 @@ builder.Services.AddCors(option => {
         policyBuilder.AllowAnyHeader();
         policyBuilder.AllowAnyMethod();
         policyBuilder.WithOrigins("http://localhost:5173");
+        policyBuilder.WithExposedHeaders("filename");
     });
 });
 
@@ -44,11 +45,14 @@ builder.Services.AddScoped<IValidator<DocumentationFirstVisitDTO>,DocumentationF
 builder.Services.AddScoped<IValidator<DocumentationNextVisitDTO>,DocumentationNextVisitDTOValidator>();
 builder.Services.AddScoped<IValidator<RecommendationDetails_DTO>,RecommendationDetailsDTOValidator>();
 builder.Services.AddScoped<IValidator<UpsertPatientSheduleDTO>,UpsertPatientScheduleDTOValidator>();
+//MimeKit
+builder.Services.AddTransient<IEmailService, EmailService>();
 //App services
 builder.Services.AddScoped<IPatientService,PatientService>();
 builder.Services.AddScoped<IDocumentationService,DocumentationService>();
 builder.Services.AddScoped<IRecommendationService,RecommendationService>();
 builder.Services.AddScoped<IScheduleService,ScheduleService>();
+builder.Services.AddScoped<IEducationMaterialsService,EducationMaterialsService>();
 
 var app = builder.Build();
 

@@ -11,7 +11,7 @@ import { GetPatientsListFilteredByTerm } from '../../../../assets/main/GetPatien
 import { AnimatePresence } from 'framer-motion'
 
 
-const PatientSearchList = ({listElements,children,closeFunc}) => {
+const PatientSearchList = ({listElements,children,closeFunc, funcButton}) => {
     const [searchTerm,setSearchTerm] = useState("");
     const [searchList,setSearchList] = useState(listElements)
 
@@ -37,7 +37,11 @@ const PatientSearchList = ({listElements,children,closeFunc}) => {
     }
 
     return (
-        <OverlayModel title="Baza pacjentów" OnQuitButtonClick={closeFunc} >
+        <OverlayModel 
+            title="Baza pacjentów" 
+            OnQuitButtonClick={closeFunc} 
+            funcButton={funcButton ? funcButton : undefined} >
+
             <div className={style.Container}>
                 <div className={style.TopBar}>
                     <IconInput placeholder='Imie i nazwisko' value={searchTerm} onInput={SearchInputHandler}>

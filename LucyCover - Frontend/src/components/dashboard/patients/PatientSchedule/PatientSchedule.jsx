@@ -6,7 +6,7 @@ import { SetFormDefault } from "../../../../context/slices/AddNewVisitToSchedule
 import { ResetActivePatients } from "../../../../context/slices/PatientSearch_SLICE"
 import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE"
 import PatientDetails from "../PatientDetails/PatientDetails"
-import PatientLayout from "../PatientLayout/PatientLayout"
+import PageBreakLayout from "../../../utility/PageBreakLayout/PageBreakLayout"
 import PatientVisitsTable from "./PatientVisitsTable"
 import VisitManager from "../../Schedule/VisitManager/VisitManager"
 import DeleteConfirmation from "../../../utility/PatientsPopups/DeleteConfirmation"
@@ -27,6 +27,7 @@ const PatientSchedule = () => {
     })
     
     const {patientVisits} = data
+    console.log(data)
     const {firstName,lastName,city,address,zipCode,province,phoneNumber,email,children} = data.patientDetails
 
     const AddNewVisitPopupHandler = () => {
@@ -65,22 +66,22 @@ const PatientSchedule = () => {
             {(overlayDisplay && popupMode === 'DeleteConfirmation') && 
                 <DeleteConfirmation what="wizytę" day={deleteConfirmationDetails} patient={`${firstName} ${lastName}`} />}
 
-            <PatientLayout>
-                <PatientLayout.LeftSide overflowY>
+            <PageBreakLayout>
+                <PageBreakLayout.LeftSide overflowY>
                     <PatientDetails>
                         <PatientDetails.NameSection firstName={firstName} lastName={lastName}/>
                         <PatientDetails.ContactSection city={city} street={address} zipCode={zipCode} province={province} phone={phoneNumber} email={email} />
                         <PatientDetails.ChildrenSection children={children} />
                     </PatientDetails>
-                </PatientLayout.LeftSide>
-                <PatientLayout.RightSide>
+                </PageBreakLayout.LeftSide>
+                <PageBreakLayout.RightSide>
                     <PatientVisitsTable 
                         addNewVisitPopupInvoke={AddNewVisitPopupHandler}
                         deletePopupInvoke={DeleteConfirmationPopupHandler} 
                         editVisitPopupInvoke={EditVisitPoupHandler} 
                         visits={patientVisits} />
-                </PatientLayout.RightSide>
-            </PatientLayout>
+                </PageBreakLayout.RightSide>
+            </PageBreakLayout>
         </>
     )
 }

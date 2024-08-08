@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState = {
-    activePage: "Patient"
+    activePage: ""
 }
 
-const aviableOptions = ['Schedule,Patient,Education,Messagess']
+const aviableOptions = ['schedule','patients','education','messagess']
 
 const MainMenuSlice = createSlice({
     name: 'MainMenu',

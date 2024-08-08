@@ -3,22 +3,22 @@
     height: 100%;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'PatientLeftSide PatientRightSide'
+    grid-template-areas: 'LeftSide RightSide'
 }
 
-.Container .PatientLeftSide{
-    grid-area: PatientLeftSide;
+.Container .LeftSide{
+    grid-area: LeftSide;
     background-color: #FFF5FF;
     overflow: hidden;
     height: 100%;
 }
 
-.PatientLeftSide#Overflow_Y_auto{
-    overflow-y: scroll;
+.LeftSide#Overflow_Y_scroll{
+    overflow-y: auto;
 }
 
-.Container .PatientRightSide{
-    grid-area: PatientRightSide;
+.Container .RightSide{
+    grid-area: RightSide;
     overflow-y: auto;
     display: grid;
     grid-template-rows: 1fr;
@@ -33,7 +33,7 @@
         grid-template-rows: 0.45fr 1fr;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
-        'PatientLeftSide PatientLeftSide'
-        'PatientRightSide PatientRightSide';
+        'LeftSide LeftSide'
+        'RightSide RightSide';
     } 
 }
