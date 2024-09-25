@@ -94,6 +94,7 @@ const LabelInput = ({
         max={max}
         min={min}
         placeholder={placeholder}
+        name={controlId}
         onChange={InputChangeHandler}
       />
       <AnimatePresence>

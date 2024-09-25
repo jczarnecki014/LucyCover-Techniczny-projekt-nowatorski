@@ -51,7 +51,7 @@
     padding-bottom: 10px;
 }
 
-#Menu span{
+#Menu a{
     background-color: #BFBFBF;
     color:#fff;
     width: 20%;
@@ -60,6 +60,22 @@
     justify-content: center;
     align-items: center;
     gap:10px;
+    text-decoration: none;
+}
+
+#Menu a:hover{
+    background-color: #a8a7a7;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+#Menu a.active {
+    background-color: #F896F5;
+}
+
+#Menu a.active:hover {
+    background-color: #F896F5;
+    transition: 0;
 }
 
 /*-------------------------------------------------------------------*/
@@ -187,9 +203,10 @@
         padding-top: 10px;
         padding-bottom: 10px;
         gap:10px;
+        text-decoration: none;
     }
     
-    #Menu span{
+    #Menu a{
         width: 40%;
         display: flex;
         flex-direction: column;

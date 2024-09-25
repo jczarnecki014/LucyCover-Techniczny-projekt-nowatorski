@@ -427,6 +427,60 @@ namespace LucyCover_Database.Migrations
                     b.ToTable("DocumentationNextVisit");
                 });
 
+            modelBuilder.Entity("LucyCover_Model.Database_Entities.EducationMaterials", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("date")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("fileName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("filePath")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("fileTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EducationMaterials");
+                });
+
+            modelBuilder.Entity("LucyCover_Model.Database_Entities.EducationMaterialsAssignedPatients", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("educationMaterialsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("patientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("educationMaterialsId");
+
+                    b.HasIndex("patientId");
+
+                    b.ToTable("EducationMaterialsAssignedPatients");
+                });
+
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Recommendation", b =>
                 {
                     b.Property<Guid>("id")
@@ -510,6 +564,8 @@ namespace LucyCover_Database.Migrations
                         .HasColumnType("nvarchar(6)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("childId");
 
                     b.HasIndex("patientId");
 
@@ -621,6 +677,25 @@ namespace LucyCover_Database.Migrations
                     b.Navigation("Documentation");
                 });
 
+            modelBuilder.Entity("LucyCover_Model.Database_Entities.EducationMaterialsAssignedPatients", b =>
+                {
+                    b.HasOne("LucyCover_Model.Database_Entities.EducationMaterials", "educationMaterials")
+                        .WithMany()
+                        .HasForeignKey("educationMaterialsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LucyCover_Model.Database_Model.Patient", "patient")
+                        .WithMany()
+                        .HasForeignKey("patientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("educationMaterials");
+
+                    b.Navigation("patient");
+                });
+
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Recommendation", b =>
                 {
                     b.HasOne("LucyCover_Model.Database_Model.Patient", "patient")
@@ -634,11 +709,21 @@ namespace LucyCover_Database.Migrations
 
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Schedule", b =>
                 {
-                    b.HasOne("LucyCover_Model.Database_Model.Patient", null)
+                    b.HasOne("LucyCover_Model.Database_Entities.Children", "child")
+                        .WithMany()
+                        .HasForeignKey("childId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LucyCover_Model.Database_Model.Patient", "patient")
                         .WithMany("schedules")
                         .HasForeignKey("patientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("child");
+
+                    b.Navigation("patient");
                 });
 
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Documentation", b =>

@@ -43,6 +43,11 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
                 .ForMember(dest => dest.childFirstName, opt => opt.MapFrom(src=>src.child.childFirstName))
                 .ForMember(dest => dest.childLastName, opt => opt.MapFrom(src=>src.child.childLastName))
                 .ForMember(dest => dest.childBirthDate, opt => opt.MapFrom(src=>src.child.childBirthDate));
+            CreateMap<EducationMaterialsAssignedPatients,PatientDTO>()
+                .ForMember(dest => dest.firstName, opt => opt.MapFrom(src=>src.patient.firstName))
+                .ForMember(dest => dest.lastName, opt => opt.MapFrom(src=>src.patient.lastName))
+                .ForMember(dest => dest.city, opt => opt.MapFrom(src=>src.patient.city))
+                .ForMember(dest => dest.address, opt => opt.MapFrom(src=>src.patient.address));
         }
     }
 }

@@ -8,6 +8,7 @@ import AddNextDocumentationForm from "./slices/AddNextDocumentationForm";
 import AddPatientRecommendation from "./slices/AddPatientRecommendation";
 import AddNewVisitToScheduleForm from "./slices/AddNewVisitToScheduleForm";
 import MainMenuSlice from "./slices/MainMenuSlice";
+import AddNewEducationMaterialSlice from "./slices/AddNewEducationMaterialSlice";
 
 
 const reducers = combineReducers({
@@ -18,6 +19,7 @@ const reducers = combineReducers({
     addNextDocumentationForm: AddNextDocumentationForm.reducer,
     addPatientRecommendation: AddPatientRecommendation.reducer,
     addNewVisitToScheduleForm: AddNewVisitToScheduleForm.reducer,
+    addMaterial: AddNewEducationMaterialSlice.reducer,
     mainMenu:MainMenuSlice.reducer,
 })
 

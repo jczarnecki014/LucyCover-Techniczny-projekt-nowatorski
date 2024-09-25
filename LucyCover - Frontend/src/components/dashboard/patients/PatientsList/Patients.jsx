@@ -7,7 +7,7 @@ import PatientSearch from './PatientSearch/PatientSearch';
 import PatientDetails from '../PatientDetails/PatientDetails';
 import PatientManageForm from '../PatientManageForm/PatientManageForm';
 import { AnimatePresence } from 'framer-motion';
-import PatientLayout from '../PatientLayout/PatientLayout';
+import PatientLayout from '../../../utility/PageBreakLayout/PageBreakLayout';
 
 const Patients = () => {
 

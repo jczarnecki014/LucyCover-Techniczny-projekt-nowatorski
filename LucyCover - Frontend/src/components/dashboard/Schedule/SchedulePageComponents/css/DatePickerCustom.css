@@ -1,0 +1,41 @@
+@import url("react-day-picker/dist/style.css");
+
+.rdp-root {
+    width: 100%; /* Upewnia się, że główny kontener kalendarza zajmuje 100% */
+    --rdp-accent-color: #762D66; /* Change the accent color to indigo. */
+    --rdp-accent-background-color: #f0f0f0; /* Change the accent background color. */
+  }
+  
+  .rdp-months {
+    width: 100%; /* Ustawia szerokość dla miesięcy na 100% */
+    display: flex; /* Użycie flexboxa do rozciągnięcia miesięcy */
+    justify-content: space-between; /* Opcjonalne, aby rozłożyć miesiące równomiernie */
+  }
+
+  .rdp-weeks {
+    background-color: #FCFCFC;
+  }
+  
+  .rdp-month {
+    width: 700px;
+  }
+
+  .rdp-month_caption {
+    margin-bottom: 20px;
+  }
+
+  .rdp-month_grid {
+    width: 100%;
+    background-color: #FCFCFC;
+  }
+
+  .rdp-month_grid thead{
+    text-align: left;
+    height: 50px;
+    background-color: rgb(202,74,74,0.25);
+  }
+
+  .rdp-day.booked button {
+    background-color: #762D66; /* Kolor tła */
+    color: white; /* Kolor tekstu */
+  }

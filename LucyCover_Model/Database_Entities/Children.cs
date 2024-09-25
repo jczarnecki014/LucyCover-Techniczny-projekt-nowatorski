@@ -28,6 +28,7 @@ namespace LucyCover_Model.Database_Entities
         public string childBirthPlace { get;set;}
         
         public Guid patientId { get; set;}
+
         [ForeignKey("patientId")]
         public Patient patient { get;set;}
 

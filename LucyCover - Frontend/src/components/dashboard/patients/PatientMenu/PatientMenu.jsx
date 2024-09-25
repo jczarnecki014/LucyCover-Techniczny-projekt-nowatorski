@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
 import {AnimatePresence} from 'framer-motion'
 import PatientManageForm from '../PatientManageForm/PatientManageForm'
-import PatientLayout from '../PatientLayout/PatientLayout'
+import PatientLayout from '../../../utility/PageBreakLayout/PageBreakLayout'
 import PatientDetails from '../PatientDetails/PatientDetails'
 import { fetchPatient } from '../../../../api/https';
 
