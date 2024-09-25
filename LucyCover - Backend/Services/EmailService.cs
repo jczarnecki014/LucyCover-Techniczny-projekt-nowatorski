@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using LucyCover___Backend.Exceptions;
+using MailKit.Net.Smtp;
 using MimeKit;
 using System.Text.RegularExpressions;
 
@@ -101,7 +102,7 @@ namespace LucyCover___Backend.Services
         {
         if(!Regex.IsMatch(email,emailRegex))
         {
-            throw new InvalidOperationException("Patient does have invalid email"); 
+            throw new EmailValidationException("Patient does have invalid email"); 
         }
         this.email = email;
         this.subject = subject;

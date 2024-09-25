@@ -14,6 +14,7 @@ namespace LucyCover_Model.Database_Entities
         [Required]
         [Key]
         public Guid id { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string childFirstName { get;set;}

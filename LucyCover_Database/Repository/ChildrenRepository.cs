@@ -16,6 +16,11 @@ namespace LucyCover_Database.Repository
         {
             _db = db;
         }
+
+        public void UpdateRange(List<Children> children) 
+        {
+            _db.Children.UpdateRange(children);
+        }
         public void Update(Children children)
         {
            _db.Children.Update(children);

@@ -5,11 +5,11 @@ import { OverlayToggle } from '../../../context/slices/OverlayModel_SLICE';
 import { queryClient } from '../../../api/https';
 import Popup from '../Popup';
 
-const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect,queries}) => {
+const DeleteConfirmation = ({what,day,patient,elementId,deleteAction,redirect,queries}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {mutate,isSuccess,isError} = useMutation({
+    const {mutate,isSuccess,isError,error} = useMutation({
         mutationFn: deleteAction,
         onSuccess: () => {
             queryClient.invalidateQueries(queries)
@@ -29,8 +29,8 @@ const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect,
                 !isSuccess && !isError && 
                     <Popup 
                         type="warning" 
-                        description={`Czy jesteś pewien, że chcesz usunąć ${what} z dnia ${day} dotyczącą ${childName} ?`}
-                        AcceptAction={()=>{mutate({documentId:elementId})}} 
+                        description={`Czy jesteś pewien, że chcesz usunąć ${what} z dnia ${day} dotyczącą ${patient} ?`}
+                        AcceptAction={()=>{mutate({elementId})}} 
                         CancleAction={()=>{dispatch(OverlayToggle(false))}} />
             )}
             {(
@@ -45,7 +45,7 @@ const DeleteConfirmation = ({what,day,childName,elementId,deleteAction,redirect,
                 isError && 
                     <Popup 
                         type="error" 
-                        description="Usuwanie dokumentacji nie powiodło się. Proszę spróbować jeszcze raz, lub zgłosić problem administratorowi systemu." 
+                        description={error.message} 
                     />
             )}      
         </>

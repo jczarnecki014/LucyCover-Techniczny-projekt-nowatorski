@@ -69,20 +69,7 @@ export async function fetchRecommendationDetails({signal,patientId,recommendatio
 }
 
 export async function fetchAllPatientVisits({signal,patientId}) {
-    const response = await fetch(`https://localhost:7014/api/schedule/${patientId}`,{signal}) 
-    
-    if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
-    }
-
-    const data = await response.json()
-   
-    return data;
-}
-
-
-export async function fetchAllEducationMaterial({signal}) {
-    const response = await fetch(`https://localhost:7014/api/educationMaterials`,{signal}) 
+    const response = await fetch(`https://localhost:7014/api/schedule/patients/${patientId}`,{signal}) 
     
     if(!response.ok){
         throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
@@ -105,6 +92,18 @@ export async function fetchAllAssignedPatientsToMaterial({signal,materialId}) {
     return data;
 }
 
+export async function fetchAllEducationMaterial({signal}) {
+    const response = await fetch(`https://localhost:7014/api/educationMaterials`,{signal}) 
+    
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+   
+    return data;
+}
+
 export async function downloadEducationMaterial({materialId}) {
     const response = await fetch(`https://localhost:7014/api/educationMaterials/file/${materialId}`) 
     if(!response.ok){
@@ -116,12 +115,36 @@ export async function downloadEducationMaterial({materialId}) {
     return {blob:await response.blob(),fileName};
 }
 
+export async function getVisitsByDate({date}) {
+    const response = await fetch(`https://localhost:7014/api/schedule/${date}`) 
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+   
+    return data;
+}
+
+export async function getVisitsByMonth({month}) {
+    const response = await fetch(`https://localhost:7014/api/schedule/month/${month}`) 
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+   
+    return data;
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                               POST                                                                         //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export async function createNewPatient(patient) {
+    console.log(patient)
     const response = await fetch('https://localhost:7014/api/patients',{
         method: 'POST',
         body: JSON.stringify(patient),
@@ -174,8 +197,11 @@ export async function upsertVisit({visitDetails,patientId}) {
         }
     })
 
+    if(response.status === 422){
+        throw new Error("Błąd podczas walidowania adresu email pacjenta. Wizyta została zaplanowana jednak powiadomienie nie zostało wysłane.")
+    }
     if(response.status !== 200) {   /// zmien na 201
-        throw new Error("Something went wrong during posting new shedule")
+        throw new Error("Coś poszło nie tak podczas planowania wizyty, porszę spróbować jeszcze raz lub skontaktować się z administratorem")
     }
 }
 
@@ -214,8 +240,8 @@ export async function AddNewMaterial({formData}) {
 //                                               DELETE                                                                      //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export async function DeleteDocumentation({documentId}) {
-    const response = await fetch(`https://localhost:7014/api/documentation/${documentId}`,{
+export async function DeleteDocumentation({elementId}) {
+    const response = await fetch(`https://localhost:7014/api/documentation/${elementId}`,{
         method:'DELETE',
         headers:{
             'Content-Type': 'application/json'
@@ -223,12 +249,12 @@ export async function DeleteDocumentation({documentId}) {
     })
 
     if(response.status !== 204) {
-        throw new Error("Something went wrong during deleting documentation")
+        throw new Error("Coś poszło nie tak podczas usuwania pliku")
     }
 }
 
-export async function DeleteRecommendation({documentId}) {
-    const response = await fetch(`https://localhost:7014/api/recommendation/${documentId}`,{
+export async function DeleteRecommendation({elementId}) {
+    const response = await fetch(`https://localhost:7014/api/recommendation/${elementId}`,{
         method:'DELETE',
         headers:{
             'Content-Type': 'application/json'
@@ -236,7 +262,7 @@ export async function DeleteRecommendation({documentId}) {
     })
 
     if(response.status !== 204) {
-        throw new Error("Something went wrong during deleting recommendation")
+        throw new Error("Coś poszło nie tak podczas usuwania pliku")
     }
 }
 
@@ -253,6 +279,19 @@ export async function DeleteEducationMaterial({materialId}) {
     }
     if(response.status !== 204){
         throw new Error(`Podczas operacji coś poszło nie tak`)
+    }
+}
+
+export async function DeleteSchedule({elementId}) {
+    const response = await fetch(`https://localhost:7014/api/schedule/${elementId}`,{
+        method:'DELETE',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status !== 204) {
+        throw new Error("Coś poszło nie tak podczas usuwanie wizyty ? Czy ta wizyta istnieje ?")
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -31,7 +31,7 @@ namespace LucyCover___Backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostPatient([FromBody] PatientDTO patient) {
+        public IActionResult UpsertPatient([FromBody] PatientDTO patient) {
             string patientId = _patientService.UpsertPatient(patient);
             return Created($"/api/patients/{patientId}",null);
         }

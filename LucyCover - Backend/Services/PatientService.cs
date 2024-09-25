@@ -50,8 +50,7 @@ namespace LucyCover___Backend.Services
             }
             if(formDTO.patientId != null)
             {
-                Patient existPatient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id== formDTO.patientId,includeProperties:"children");
-                _unitOfWork.children.RemoveRange(existPatient.children);
+                
                 _unitOfWork.patient.Update(patient);
             }
             else

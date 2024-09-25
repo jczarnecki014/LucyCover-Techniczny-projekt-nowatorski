@@ -11,7 +11,7 @@ namespace LucyCover_Model.DTO_Modeles
 {
     public class ChildrenDTO
     {
-        public Guid id { get; set; }
+        public Guid? id { get; set; }
         public string childFirstName { get;set;}
         public string childLastName { get;set;}
         public string childBirthDate { get;set;}

@@ -2,29 +2,55 @@ import style from './css/Schedule.module.css'
 import { DayPicker } from "react-day-picker";
 import './css/DatePickerCustom.css'
 import { pl } from "react-day-picker/locale";
+import { useMutation } from '@tanstack/react-query';
+import { getVisitsByMonth } from '../../../../api/https';
+import { useEffect, useState } from 'react';
 
-const CustomDayPicker = () => {
+const CustomDayPicker = ({showVisits}) => {
+    const [arrangeDaysInMonth,setArrangeDaysInMonth] = useState();
+
+    const ConvertAndSetArrangeDays = (stringFormatDateList) => {
+        const dateFormatList = stringFormatDateList.map( date => {
+            let timestamp = Date.parse(date)
+            return new Date(timestamp)
+        })
+        setArrangeDaysInMonth(dateFormatList)
+    }
+
+    const {mutate} = useMutation({
+        mutationFn: getVisitsByMonth,
+        onSuccess: (date) => ConvertAndSetArrangeDays(date),
+        onError: (error) => console.log(error)
+    })
+
+    const MonthChangeHandler = (date) => {
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        mutate({month})
+    }
+
+    useEffect(()=>{
+        const today = new Date();
+        MonthChangeHandler(today)
+        showVisits(today)
+    },[])
+
     return (
         <DayPicker
             mode="single"
             locale={pl}
             className={style.DatePicker}
+            showOutsideDays
             modifiers={{
-                booked: [
-                    new Date(2024, 8, 8),
-                    new Date(2024, 8, 9),
-                    new Date(2024, 8, 10),
-                    { from: new Date(2022, 5, 15), to: new Date(2022, 5, 20) }
-                ]
+                arrangeDays: arrangeDaysInMonth
                 }}
                 modifiersClassNames={{
-                booked: 'booked'
+                    arrangeDays: 'arrangeDays'
                 }}
                 onDayClick={(date, modifiers) => {
-                if (modifiers.booked) {
-                    alert("This day is already booked.");
-                }
-                }} 
+                    showVisits(date)
+                }}
+                onMonthChange={MonthChangeHandler}
+                 
         />
     )
 }

@@ -18,17 +18,6 @@ import VisitStatusButtonSection from './VisitStatusButtonSection';
 
 const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID}) => {
 
-    const {mutate} = useMutation({
-        mutationFn: upsertVisit,
-        onSuccess: () => {
-            queryClient.invalidateQueries(['schedule'])
-        },
-        onError: (error) => {
-            SetFormDisplayHandler("error");
-        }
-    })
-
-
     const dispatch = useDispatch();
     const formInputs = useSelector(state => state.addNewVisitToScheduleForm.formInputs)
     const getValue = useFormData(); 
@@ -43,15 +32,6 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID})
 
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
-    }
-    const FormSubmitHandler = (event) => {
-        const visitDetails = {
-            id: visitID,
-            childId: activeChildren.id,
-            ...generalVisitDetails
-        }
-        mutate({visitDetails,patientId:activePatient.id})
-        SetFormDisplayHandler('visitNotyfication')
     }
 
     const FormQuitHandler = () => {
@@ -213,10 +193,13 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID})
                                 SetFormDisplayHandler={SetFormDisplayHandler}
                         />
                         }
-                        <button id={style.ActionButton} disabled={!formIsValid} onClick={FormSubmitHandler}>
-                        {
-                            visitID ? "Edytuj wizytę" : "Zaplanuj wizytę" 
-                        }
+                        <button 
+                            id={style.ActionButton} 
+                            disabled={!formIsValid} 
+                            onClick={()=>SetFormDisplayHandler('visitConfirmation')}>
+                            {
+                                visitID ? "Edytuj wizytę" : "Zaplanuj wizytę" 
+                            }
                         </button>
                     </div>
                 </form>

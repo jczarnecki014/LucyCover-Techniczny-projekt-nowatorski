@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchPatientsForSearchList } from '../../../../../api/https'
 import { useDispatch,useSelector } from 'react-redux'
 import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE'
-import PatientSearchList from "../../../Schedule/VisitManager/PatientSearchList"
+import PatientSearchList from '../../../../utility/PatientVisitManager/VisitManager/PatientSearchList'
 import PatientElement from "./PatientElement"
 
 const ChoosePatientList = ({onSelect,disabledPatients,closeFunc}) => {

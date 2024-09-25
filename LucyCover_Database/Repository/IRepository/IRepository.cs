@@ -11,7 +11,7 @@ namespace LucyCover_Database.Repository.IRepository
     {
         void Add (T entity);
         void AddRange (IEnumerable<T> entities);
-        IEnumerable<T> GetAll (Expression<Func<T,bool>>?filter = null, string? includeProperties = null);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool distinct = false);
         T GetFirstOfDefault(Expression<Func<T,bool>>filter, string? includeProperties = null);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);

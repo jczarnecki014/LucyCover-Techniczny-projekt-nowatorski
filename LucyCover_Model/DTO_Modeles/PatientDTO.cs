@@ -21,6 +21,6 @@ namespace LucyCover_Model.DTO_Modeles
         public string email { get; set; }
         public string birthDate { get; set; }
         public string BirthPlace { get;set; }
-        public List<ChildrenDTO> children { get; set; }
+        public List<ChildrenDTO>? children { get; set; }
     }
 }

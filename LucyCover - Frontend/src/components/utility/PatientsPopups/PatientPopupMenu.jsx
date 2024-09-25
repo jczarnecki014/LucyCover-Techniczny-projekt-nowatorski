@@ -2,7 +2,7 @@ import OverlayModel from "../OverlayModel"
 
 import style from '../css/PatientPopupMenu.module.css'
 
-const PopupMenu = ({menuTitle,header,leftBtn,rightBtn}) => {
+const PopupMenu = ({menuTitle,header,leftBtn,rightBtn,isPending}) => {
 
 
     return (
@@ -13,6 +13,10 @@ const PopupMenu = ({menuTitle,header,leftBtn,rightBtn}) => {
                     <button id={style.FirstOption} onClick={()=>leftBtn.func('FirstDocumentation')} >{leftBtn.desc}</button>
                     <button id={style.NextOption} onClick={()=>rightBtn.func('NextDocumentation')}>{rightBtn.desc}</button>
                 </div>
+                {
+                    isPending && 
+                        <p style={{color:"#D00"}}>Proszę czekać, trwa połączenie..</p>
+                }               
             </div>
         </OverlayModel>
     )

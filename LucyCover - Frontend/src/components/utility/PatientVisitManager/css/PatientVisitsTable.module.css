@@ -1,4 +1,6 @@
-
+.Container {
+    overflow-x: hidden;
+}
 .Container .VisitTable {
     width: 100%;
     border-collapse: collapse;
@@ -29,7 +31,6 @@
     padding-right: 20px;
 }
 
-
 .EditButtonsCol{
     display: flex;
     gap:15px;
@@ -42,6 +43,11 @@
 .Container > .VisitTable tbody tr{
     height: 100px;
     border-bottom: 2px #837F7F solid;
+}
+
+.Container > .VisitTable tbody tr.Loading {
+    border-bottom: none;
+    color: #D00000
 }
 
 .VisitTable tbody tr.DoneVisit {

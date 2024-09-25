@@ -1,6 +1,7 @@
 @import url("react-day-picker/dist/style.css");
 
 .rdp-root {
+    z-index: 0;
     width: 100%; /* Upewnia się, że główny kontener kalendarza zajmuje 100% */
     --rdp-accent-color: #762D66; /* Change the accent color to indigo. */
     --rdp-accent-background-color: #f0f0f0; /* Change the accent background color. */
@@ -32,10 +33,22 @@
   .rdp-month_grid thead{
     text-align: left;
     height: 50px;
-    background-color: rgb(202,74,74,0.25);
+    background-color: rgba(171, 18, 18, 0.25);
   }
 
-  .rdp-day.booked button {
-    background-color: #762D66; /* Kolor tła */
-    color: white; /* Kolor tekstu */
+  .rdp-day.arrangeDays button {
+    background-color: #762D66; 
+    color: white; 
+  }
+
+  .rdp-day.rdp-today:not(.arrangeDays) button{
+    border: 2px solid #27690f;
+    color: #27690f;
+    font-weight: bold;
+  }
+
+  .rdp-day.rdp-today.arrangeDays button{
+    background-color: #27690f;
+    color: #fff;
+    font-weight: bold;
   }
