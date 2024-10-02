@@ -1,91 +1,37 @@
-import PageBreakLayout from "../../../utility/PageBreakLayout/PageBreakLayout";
 import style from './css/Schedule.module.css'
 import NoticeList from "./NoticeList";
 import CustomDayPicker from "./CustomDayPicker";
-import PatientVisitsTable from "../../patients/PatientSchedule/PatientVisitsTable";
+import { useMutation } from "@tanstack/react-query";
+import { getVisitsByDate } from "../../../../api/https";
+import { useState } from "react";
+import { GetDayFullMonthDate } from "../../../../assets/main/GetDayFullMonthDate";
+import PatientVisitsWrapper from "../../../utility/PatientVisitManager/PatientVisitsWrapper"
 
 const Schedule = () => {
-    const patientVisits = [
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
-      {
-        id: 1,
-        date: "2024-08-07",
-        clock: "09:51",
-        status: "Zaplanowana"
-      },
+  const [selectedDay,setSelectedDay] = useState(new Date());
 
-      
-    ]
+  const {mutate,data,isPending} = useMutation({
+    mutationFn: getVisitsByDate,
+    onError: (error) => console.log(error)
+  })
+
+  const OnDayClickDisplayVisits = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const fullDate = `${year}-${month}-${day}`
+    mutate({date:fullDate});
+    setSelectedDay(date)
+  }
+
     return (
-        <PageBreakLayout>
-            <PageBreakLayout.LeftSide>
-                <div className={style.LeftContainer}>
-                    <CustomDayPicker />
-                    <NoticeList />
-                </div>
-            </PageBreakLayout.LeftSide>
-            <PageBreakLayout.RightSide>
-                <div className={style.RightContainer}>
-                  <div className={style.DateInfo}>
-                    <h4>11 czerwiec</h4>
-                  </div>
-                  <PatientVisitsTable visits={patientVisits} />
-                </div>
-            </PageBreakLayout.RightSide>
-        </PageBreakLayout>
+      <PatientVisitsWrapper isSchedulePage={true} selectedDay={selectedDay} visits={data ? data : []} isPending={isPending}>
+          <div className={style.LeftContainer}>
+              <CustomDayPicker showVisits={OnDayClickDisplayVisits} />
+              <NoticeList />
+          </div>
+      </PatientVisitsWrapper>
     )
 }
 

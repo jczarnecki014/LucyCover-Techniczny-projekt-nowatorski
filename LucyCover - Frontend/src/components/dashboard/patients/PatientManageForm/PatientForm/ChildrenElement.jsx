@@ -53,10 +53,10 @@ const ChildrenElement = ({childrenDetails,RemoveChildrenFromList,setChildrenForm
                                     >
                                         <RiDeleteBin2Fill 
                                             size={35} 
-                                            onClick={()=>RemoveChildrenFromList(childrenDetails.id)}/>
+                                            onClick={()=>RemoveChildrenFromList(childrenDetails.index)}/>
                                         <MdEdit 
                                             size={35}
-                                            onClick={()=>{EditChildrenMode(childrenDetails.id)}}/>
+                                            onClick={()=>{EditChildrenMode(childrenDetails.index)}}/>
                                 </motion.span>
                             }
                         </AnimatePresence>

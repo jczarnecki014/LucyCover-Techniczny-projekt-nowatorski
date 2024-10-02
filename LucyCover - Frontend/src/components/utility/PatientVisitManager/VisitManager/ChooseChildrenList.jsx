@@ -1,7 +1,7 @@
 import { useDispatch,useSelector } from 'react-redux'
 import { SetActiveChildren } from '../../../../context/slices/PatientSearch_SLICE'
 import PatientSearchList from "./PatientSearchList"
-import PatientElement from "../../patients/PatientsList/PatientSearch/PatientElement"
+import PatientElement from '../../../dashboard/patients/PatientsList/PatientSearch/PatientElement'
 
 const ChooseChildrenList = ({activePatient,formModeChange}) => {
     //Change to API request

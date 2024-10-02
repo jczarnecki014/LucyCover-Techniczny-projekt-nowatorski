@@ -1,4 +1,4 @@
-import style from './css/PatientVisitsTable.module.css'
+import style from '../css/PatientVisitsTable.module.css'
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -7,9 +7,8 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 
-const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => {
-    const {id,date,clock,status} = visit;
-
+const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke,isSchedulePage}) => {
+    const {id,date,firstName,phoneNumber,lastName,clock,status,patientId} = visit;
     const [isExpanded,setIsExpanded] = useState(false)
 
     const DropdownMenuExpandTogglerHandler = () => {
@@ -31,9 +30,21 @@ const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => 
         break;
     }
 
+    const patientNameTd = <td className={style.test}>
+        <span>{firstName} {lastName}</span>
+        <br />
+        <span>{phoneNumber}</span>
+    </td>
+
     return (
-        <tr className={className}>
-            <td>{date}</td>
+        <motion.tr 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            className={className}
+        >
+            {
+                isSchedulePage ? patientNameTd : <td>{date}</td>
+            }
             <td>{clock}</td>
             <td>
                 <span className={style.Badge}>{status}</span>
@@ -43,7 +54,7 @@ const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => 
                     {
                         status === 'Odbyta' && 
                         (
-                            <Link to='../documentation'>
+                            <Link to={`/dashboard/patients/${patientId}/documentation`}>
                                 <FaPlusCircle size={25} />
                             </Link>
                         )
@@ -64,7 +75,7 @@ const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => 
                                                 ()=> editVisitPopupInvoke(id)
                                             } />
                                         <FaRegTrashAlt size={25} onClick={
-                                                ()=> deletePopupInvoke(date)
+                                                ()=> deletePopupInvoke({id,date,firstName,lastName})
                                             } />
                                 </motion.div>
                             )
@@ -73,7 +84,7 @@ const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke}) => 
                     <IoMdMenu size={25} onClick={DropdownMenuExpandTogglerHandler} />
                 </div>
             </td>
-        </tr>
+        </motion.tr>
     )
 }
 

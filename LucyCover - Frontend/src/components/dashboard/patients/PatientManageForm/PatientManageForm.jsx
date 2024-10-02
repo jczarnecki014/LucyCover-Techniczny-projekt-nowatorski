@@ -15,17 +15,15 @@ import ChildrenForm from './ChildrenForm/ChildrenForm'
 import Popup from '../../../utility/Popup'
 
 const PatientManageForm = ({activePatient}) => {
-
     const patientContextInputs = useSelector(state => state.addPatientForm.patientInputs)
     const getValue = useFormData();
     const dispatch = useDispatch()
-
-    const defaultChildrenList = activePatient ? activePatient.children : []
+    
     const defaultPatientInputs = (activePatient != undefined) ? activePatient : getValue(patientContextInputs)
 
     const [formMode,setFormMode] = useState('patient')
     const [patientInputs,setPatientInputs] = useState(defaultPatientInputs)
-    const [childrenList, setChildrenList] = useState(defaultChildrenList)
+    const [childrenList, setChildrenList] = useState()
     const [childrenInEditMode,setChildrenInEditMode] = useState(null);
 
     const {mutate,isPending} = useMutation({
@@ -40,6 +38,20 @@ const PatientManageForm = ({activePatient}) => {
         }
     })
 
+    useEffect(()=>{
+        let defaultChildrenList = [];
+        let incrementer = 0;
+        if(activePatient){
+            defaultChildrenList = activePatient.children.map((childElement)=>{
+                return {
+                    ...childElement,
+                    index: incrementer++
+                }
+            })
+        }
+        setChildrenList(defaultChildrenList)
+    },[])
+
     const formIsValid = CheckFormIsValid(patientContextInputs)
 
     const FormModeChangeHandler = (mode) => {
@@ -48,9 +60,10 @@ const PatientManageForm = ({activePatient}) => {
         setChildrenInEditMode(null);
     }
 
-    const EditChildrenFormDisplay = (childId) => {
-        const toEditChildren = childrenList.find(child => (childId === child.id))
+    const EditChildrenFormDisplay = (childIndex) => {
+        const toEditChildren = childrenList.find(child => (childIndex === child.index))
         setChildrenInEditMode(toEditChildren)
+        console.log(toEditChildren)
         setFormMode('children')
     }
 
@@ -69,16 +82,19 @@ const PatientManageForm = ({activePatient}) => {
     const AddChildrenToListHandler = (children) => {
         const childrenToSave = {
             ...children,
-            id: childrenList.length
+            id: '00000000-0000-0000-0000-000000000000',
+            index: childrenList.length
         }
         setChildrenList(previousState => {
             return [...previousState,childrenToSave]
         })
     }
 
-    const RemoveChildrenFromListHandler = (childrenId) =>  {
+    console.log(childrenList)
+
+    const RemoveChildrenFromListHandler = (childrenIndex) =>  {
         setChildrenList((previousState) => {
-            const newChildrenList = previousState.filter(children => (childrenId !== children.id))
+            const newChildrenList = previousState.filter(children => (childrenIndex !== children.index))
             return newChildrenList
         })
     }
@@ -86,7 +102,7 @@ const PatientManageForm = ({activePatient}) => {
     const EditChildrenHandler = (updatedChildren) => {
         setChildrenList((previousState) => {
             const updatedList = previousState.map(children => {
-                return (children.id === updatedChildren.id) ? updatedChildren : children
+                return (children.index === updatedChildren.index) ? updatedChildren : children
             })
             return updatedList;
         })

@@ -41,6 +41,7 @@ const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildre
         if(updatingMode){
             EditChildren({
                 id:defaultValue.id,
+                index:defaultValue.index,
                 ...children
             })
         }

@@ -1,13 +1,16 @@
-import style from './css/PatientVisitsTable.module.css'
+import { AnimatePresence } from 'framer-motion'
+import style from '../css/PatientVisitsTable.module.css'
 import PatientVisitElement from './PatientVisitElement'
 
-const PatientVisitsTable = ({visits,deletePopupInvoke,editVisitPopupInvoke,addNewVisitPopupInvoke}) => {
+const PatientVisitsTable = ({visits,deletePopupInvoke,editVisitPopupInvoke,addNewVisitPopupInvoke,isPending,isSchedulePage}) => {
     return (
         <div className={style.Container}>
-            <table className={style.VisitTable}>
+            <table className={`${style.VisitTable}`}>
                 <thead>
                     <tr>
-                        <th>Data:</th>
+                        {
+                            isSchedulePage ? <th>Pacjent:</th> : <th>Data:</th>
+                        }
                         <th>Godz:</th>
                         <th>Stan wizyty:</th>
                         <th className={style.AddButtonCol}>
@@ -16,16 +19,20 @@ const PatientVisitsTable = ({visits,deletePopupInvoke,editVisitPopupInvoke,addNe
                     </tr>
                 </thead>
                 <tbody>
-                {visits.map((visit)=> 
+                {isPending && <tr className={style.Loading}><td><p>Trwa ładowanie...</p></td></tr> }
+                {!isPending &&
+                ( visits.map((visit)=> 
                 {
                     return (
                        <PatientVisitElement 
                             key={visit.id} 
                             visit={visit} 
+                            isSchedulePage={isSchedulePage}
                             deletePopupInvoke={deletePopupInvoke} 
                             editVisitPopupInvoke={editVisitPopupInvoke}  />
                     )
-                })}
+                }
+                ))}
                 </tbody>
             </table>
         </div>

@@ -1,0 +1,19 @@
+{
+"notice": [
+    {
+      "id": 1,
+      "status": "uwaga",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius, odio in pulvinar pretium, nisi quam rutrum massa, nec cursus eros elit ac purus"
+    },
+    {
+      "id": 2,
+      "status": "info",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius, odio in pulvinar pretium, nisi quam rutrum massa, nec cursus eros elit ac purus"
+    },
+    {
+      "id": 3,
+      "status": "info",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius, odio in pulvinar pretium, nisi quam rutrum massa, nec cursus eros elit ac purus"
+    }
+  ]
+}

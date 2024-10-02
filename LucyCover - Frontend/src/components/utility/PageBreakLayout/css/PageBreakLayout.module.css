@@ -36,4 +36,8 @@
         'LeftSide LeftSide'
         'RightSide RightSide';
     } 
+    .Container .LeftSide{
+        overflow: visible;
+        height: 400px;
+    }
 }

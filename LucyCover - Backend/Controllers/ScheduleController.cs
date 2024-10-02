@@ -1,4 +1,5 @@
-﻿using LucyCover___Backend.Services;
+﻿using LucyCover___Backend.Exceptions;
+using LucyCover___Backend.Services;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.DTO_Modeles;
 using Microsoft.AspNetCore.Mvc;
@@ -15,25 +16,55 @@ namespace LucyCover___Backend.Controllers
             _service = scheduleService;
         }
 
-        [HttpGet("{patientId}")]
+
+        [HttpGet("{date}")]
+        public IActionResult GetVisits([FromRoute] string date)
+        {
+            List<ScheduleDTO> scheduleDTOs = _service.GetVisitsByDate(date);
+            return Ok(scheduleDTOs);
+        }
+
+        [HttpGet("month/{month}")]
+        public IActionResult GetVisitsInMonth([FromRoute] string month)
+        {
+            List<string> dateList = _service.GetVisitsByMonth(month);
+            return Ok(dateList);
+        }
+
+        [HttpGet("patients/{patientId}")]
         public IActionResult GetPatientVisits([FromRoute] Guid patientId)
         {
             PatientScheduleDTO patientScheduleDTO = _service.GetPatientVisits(patientId);
             return Ok(patientScheduleDTO);
         }
+       
         
         [HttpPost("{patientId}")]
-        public IActionResult UpsertPatientVisit([FromRoute] Guid patientId,[FromBody] UpsertPatientSheduleDTO upsertPatientSheduleDTO)
+        public async Task<IActionResult> UpsertPatientVisit([FromRoute] Guid patientId,[FromBody] UpsertPatientSheduleDTO upsertPatientSheduleDTO)
         {
-            _service.UpserPatientVisit(patientId, upsertPatientSheduleDTO);
-            return Ok();
+            try
+            {
+                await _service.UpserPatientVisit(patientId, upsertPatientSheduleDTO);
+                return Ok();
+            }
+            catch (EmailValidationException)
+            {
+                return UnprocessableEntity();
+            }
         }
+
 
         [HttpPut("{visitId}")]
         public IActionResult UpsertPatientVisit([FromRoute] Guid visitId,[FromQuery] string visitStatus)
         {
             _service.ChangeVisitStatus(visitId,visitStatus);
             return Ok();
+        }
+        [HttpDelete("{visitId}")]
+        public IActionResult DeletePatientVisit([FromRoute] Guid visitId) 
+        {
+            _service.DeleteVisit(visitId);
+            return NoContent();
         }
     }
 }

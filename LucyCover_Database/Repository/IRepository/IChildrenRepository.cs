@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Database.Repository.IRepository
 {
-    public interface IEducationMaterialsAssignedPatientsRepository:IRepository<EducationMaterialsAssignedPatients>
+    public interface IChildrenRepository:IRepository<Children>
     {
-        public void Update(EducationMaterialsAssignedPatients educationMaterialsAssignedPatients);
+        public void UpdateRange(List<Children> children); 
+        public void Update(Children children);
     }
 }

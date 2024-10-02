@@ -30,7 +30,7 @@ namespace LucyCover_Database.Repository
             dbSet.AddRange(entities);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool distinct = false)
         {
             IQueryable<T> query;
 
@@ -49,6 +49,11 @@ namespace LucyCover_Database.Repository
                 {
                     query = query.Include(property);
                 }
+            }
+
+            if(distinct) 
+            {
+                query.Distinct();
             }
 
             return query.ToList();

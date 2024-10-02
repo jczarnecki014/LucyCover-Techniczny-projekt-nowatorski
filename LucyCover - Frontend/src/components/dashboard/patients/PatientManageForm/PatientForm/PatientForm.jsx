@@ -50,7 +50,7 @@ const PatientForm = (
                 <PatientFormChildrenSection>
                     <AnimatePresence>
                         {childrenList.map((children)=>(
-                            <PatientFormChildrenSection.ChildrenElement key={children.id} childrenDetails={children} RemoveChildrenFromList={RemoveChildrenFromList} EditChildrenMode={EditChildrenMode}/>
+                            <PatientFormChildrenSection.ChildrenElement key={children.index} childrenDetails={children} RemoveChildrenFromList={RemoveChildrenFromList} EditChildrenMode={EditChildrenMode}/>
                         ))}
                     </AnimatePresence>
                     <PatientFormChildrenSection.ChildrenElement setChildrenFormMode={changeFormMode}/>

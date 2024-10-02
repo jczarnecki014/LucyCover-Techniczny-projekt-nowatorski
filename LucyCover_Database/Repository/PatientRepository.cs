@@ -19,7 +19,7 @@ namespace LucyCover_Database.Repository
         }
         public void Update(Patient patient)
         {
-            Patient existPatient = _db.Patients.FirstOrDefault(patientFromDb => patientFromDb.id == patient.id);
+            Patient existPatient = _db.Patients.Include("children").FirstOrDefault(patientFromDb => patientFromDb.id == patient.id);
 
             if(existPatient != null) 
             {

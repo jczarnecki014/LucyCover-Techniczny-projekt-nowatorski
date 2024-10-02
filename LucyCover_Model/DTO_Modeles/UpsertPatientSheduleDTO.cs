@@ -19,5 +19,6 @@ namespace LucyCover_Model.DTO_Modeles
         public string clock { get;set; }
         public string description { get;set; }
         public string status { get;set; }
+        public bool? sendEmail { get;set; }
     }
 }
