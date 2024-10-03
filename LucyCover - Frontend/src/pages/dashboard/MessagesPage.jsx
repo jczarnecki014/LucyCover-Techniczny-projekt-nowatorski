@@ -1,19 +1,19 @@
 import { useDispatch } from "react-redux";
 import { SetActivePage } from "../../context/slices/MainMenuSlice";
 import { useEffect } from "react";
-import Schedule from "../../components/dashboard/Schedule/Schedule";
+import Messages from "../../components/dashboard/messages/message";
 
 
-const SchedulePage = () => {
+const MessagesPage = () => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(SetActivePage("schedule"))
+        dispatch(SetActivePage("messages"))
     },[])
 
-    return <Schedule />
+    return <Messages />
 }
 
 
 
-export default SchedulePage
+export default MessagesPage

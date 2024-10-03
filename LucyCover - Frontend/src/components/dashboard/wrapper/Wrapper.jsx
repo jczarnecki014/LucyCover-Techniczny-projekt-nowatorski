@@ -28,7 +28,7 @@ const Wrapper = ({children}) => {
                 <MainMenu.Item title='Materiały eudkacyjne' name="education">
                     <FaBookOpenReader size={40}/>
                 </MainMenu.Item>
-                <MainMenu.Item title='Korespondencja' name="message">
+                <MainMenu.Item title='Korespondencja' name="messages">
                     <MdEmail size={40}/>
                 </MainMenu.Item>
             </MainMenu>

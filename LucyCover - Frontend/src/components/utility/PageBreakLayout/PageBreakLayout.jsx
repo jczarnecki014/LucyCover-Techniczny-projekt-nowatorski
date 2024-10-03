@@ -2,9 +2,9 @@ import style from './css/PageBreakLayout.module.css'
 import LayoutLeftSide from './LayoutLeftSide'
 import LayoutRightSide from './LayoutRightSide'
 
-const PageBreakLayout = ({children}) => {
+const PageBreakLayout = ({children,narrow}) => {
     return (
-        <div className={style.Container}>
+        <div id={narrow && style.NarrowMode} className={style.Container}>
             {children}
         </div>
     )

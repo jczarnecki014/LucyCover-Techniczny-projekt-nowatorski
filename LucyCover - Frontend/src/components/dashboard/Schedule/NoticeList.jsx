@@ -1,6 +1,6 @@
 import style from './css/Schedule.module.css'
 import NoticeListElement from './NoticeListElement'
-import DUMMY_NOTES from './../../../../assets/DUMMY_DATA/DUMMY_NOTES.json';
+import DUMMY_NOTES from '../../../assets/DUMMY_DATA/DUMMY_NOTES.json';
 import { Alert } from 'react-bootstrap';
 
 

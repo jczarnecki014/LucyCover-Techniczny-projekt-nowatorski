@@ -3,7 +3,7 @@ import { DayPicker } from "react-day-picker";
 import './css/DatePickerCustom.css'
 import { pl } from "react-day-picker/locale";
 import { useMutation } from '@tanstack/react-query';
-import { getVisitsByMonth } from '../../../../api/https';
+import { getVisitsByMonth } from '../../../api/https';
 import { useEffect, useState } from 'react';
 
 const CustomDayPicker = ({showVisits}) => {

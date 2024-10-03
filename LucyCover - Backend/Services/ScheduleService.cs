@@ -78,7 +78,7 @@ namespace LucyCover___Backend.Services
             {
                 IEmailMessage newMessage = new EmailMessage(
                     email: patient.email,
-                    subject: "Masz nową zaplanowaną wizytę położniczą",
+                    subject: upsertPatientSheduleDTO.id == Guid.Empty ? "Masz nową zaplanowaną wizytę położniczą" : "Uwaga ! Nastąpiły zmiany w twojej zaplanowanej wizycie położniczej",
                     message: @$"Szanowny pacjencie, w dniu ,{schedule.date} o godzinie {schedule.clock} na adresie {schedule.city} {schedule.street} {schedule.streetNumber} 
                     odbędzie się wizyta położnicza związana z twoim nowonarodzonym dzieckiem uprzejmie prosimy o obecność w tym terminie lub o zgłoszenie swojej nieobecności położnej środowiskowej. Pozdrawiamy"
                 );

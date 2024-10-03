@@ -4,7 +4,7 @@ const defaultState = {
     activePage: ""
 }
 
-const aviableOptions = ['schedule','patients','education','messagess']
+const aviableOptions = ['schedule','patients','education','messages']
 
 const MainMenuSlice = createSlice({
     name: 'MainMenu',

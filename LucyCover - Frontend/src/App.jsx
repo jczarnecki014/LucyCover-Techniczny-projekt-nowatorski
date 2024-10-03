@@ -16,6 +16,7 @@ import PatientRecommendationDisplayPage,{loader as PatientRecommendationDisplayL
 import PatientSchedulePage, {loader as PatientSchedulePageLoader} from './pages/dashboard/PatientShedulePage'
 import EducationalMaterialsPage,{loader as EducationMaterialsPageLoader} from './pages/dashboard/EducationalMaterialsPage'
 import SchedulePage from './pages/dashboard/SchedulePage'
+import MessagesPage from './pages/dashboard/MessagesPage'
 
 const router = createBrowserRouter([
   {
@@ -97,7 +98,11 @@ const router = createBrowserRouter([
           {
             path: 'schedule',
             element: <SchedulePage />
-          }
+          },
+          {
+            path: 'messages',
+            element: <MessagesPage />
+          },
         ]
       },
       {
