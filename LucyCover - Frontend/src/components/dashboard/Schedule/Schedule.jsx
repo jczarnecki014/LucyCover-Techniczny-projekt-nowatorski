@@ -2,10 +2,9 @@ import style from './css/Schedule.module.css'
 import NoticeList from "./NoticeList";
 import CustomDayPicker from "./CustomDayPicker";
 import { useMutation } from "@tanstack/react-query";
-import { getVisitsByDate } from "../../../../api/https";
+import { getVisitsByDate } from "../../../api/https";
 import { useState } from "react";
-import { GetDayFullMonthDate } from "../../../../assets/main/GetDayFullMonthDate";
-import PatientVisitsWrapper from "../../../utility/PatientVisitManager/PatientVisitsWrapper"
+import PatientVisitsWrapper from "../../utility/PatientVisitManager/PatientVisitsWrapper"
 
 const Schedule = () => {
   const [selectedDay,setSelectedDay] = useState(new Date());

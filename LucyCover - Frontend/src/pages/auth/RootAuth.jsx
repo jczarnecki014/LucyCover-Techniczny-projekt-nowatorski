@@ -1,16 +1,13 @@
 import { Outlet } from "react-router-dom";
 
-import ModelWrapper from "../../components/auth/ModelWrapper";
+import AuthWrapper from "../../components/auth/AuthWrapper";
 
 const RootAuth = () => {
     return (
-           <ModelWrapper>
+           <AuthWrapper>
                 <Outlet />
-           </ModelWrapper>
+           </AuthWrapper>
     )
 }
 
 export default RootAuth;
-
-
-// Dodaj outlet

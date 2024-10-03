@@ -1,0 +1,11 @@
+.Input{
+    display: block;
+    width: 100%;
+    padding: 10px 30px 10px 30px;
+    border: 1px solid #777;
+    border-radius: 5px;
+}
+/* Czy można usunąć ? */
+.button:first-of-type{
+    margin-top: 0px; 
+}

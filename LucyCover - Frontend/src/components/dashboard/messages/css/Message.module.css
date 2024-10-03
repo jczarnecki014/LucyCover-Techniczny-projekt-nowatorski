@@ -1,0 +1,130 @@
+.PatientList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.PatientList h5 {
+    margin: 0;
+    padding: 0;
+}
+
+.PatientList .SearchPatient {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #FFFAFA;
+    border-bottom: 1px solid #5C5C5C;
+}
+.PatientList .PatientElementsList {
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+}
+
+.PatientList .PatientElementsList#NoContent {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #5C5C5C;
+}
+
+.PatientList .PatientElement {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px 15px 10px;
+    background-color: #E6E6E6;
+    border-bottom: 1px solid #5C5C5C;
+}
+
+.PatientList .PatientElement:hover {
+    background-color: #C4C4C4;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.PatientList .PatientElement#IsActive
+{
+    background-color: #b3b3b3;
+}
+
+.MessagesContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.3fr;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.MessageList {
+    display: flex;
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    overflow-y: auto;
+    flex-direction: column-reverse;
+}
+
+.MessageList#isLoading {
+    justify-content: center;
+    align-items: center;
+}
+
+.MessagesContainer .MessageList .MessageElement {
+    display: flex;
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.MessagesContainer .MessageList .MessageElement#SystemMessage {
+    justify-content: left;
+}
+
+.MessagesContainer .MessageList .MessageElement#PatientMessage {
+    justify-content: right;
+}
+
+.MessagesContainer .MessageList .MessageElement .Message {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 15px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 7px -4px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 7px -4px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 7px -4px rgba(66, 68, 90, 1);
+}
+
+.MessagesContainer .MessageList .MessageElement#SystemMessage .Message {
+    color: #706F6F;
+    background-color: #FFE3F9;
+ }
+
+.MessagesContainer .MessageList .MessageElement#PatientMessage .Message {
+    color: #5C5C5C;
+    background-color: #E6E6E6;
+}
+
+.MessagesContainer .MessageList .MessageElement .Message .MessageTime {
+    display: flex;
+    justify-content: right;
+}
+
+.MessagesContainer .NewMessage {
+    border-radius: 15px;
+    border: 1px solid #AAAAAA;
+    color: #706F6F;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+
+.MessagesContainer .NewMessage textarea{
+    width: 100%;
+    border: none;
+}
+
+.MessagesContainer .NewMessage textarea:focus {
+    outline: none;
+}

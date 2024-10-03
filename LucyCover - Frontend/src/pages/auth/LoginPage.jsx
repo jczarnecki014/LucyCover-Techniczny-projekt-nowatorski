@@ -1,10 +1,8 @@
-import LoginModel from "../../components/auth/LoginModel"
-
-
+import LoginComponent from '../../components/auth/LoginComponent'
 
 const LoginPage = () => {
     return (
-        <LoginModel />
+        <LoginComponent />
     )
 }
 

@@ -2,12 +2,14 @@
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
+using MimeKit;
+using System.Net.Mail;
 
 namespace LucyCover___Backend.Automapper_DTO_Maps
 {
     public class Mapps:Profile
     {
-        public Mapps() 
+        public Mapps(IConfiguration configuration) 
         {
             CreateMap<PatientDTO,Patient>()
                 .ForMember(dest => dest.id, opt => opt.MapFrom(src=>src.patientId));
@@ -48,6 +50,11 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
                 .ForMember(dest => dest.lastName, opt => opt.MapFrom(src=>src.patient.lastName))
                 .ForMember(dest => dest.city, opt => opt.MapFrom(src=>src.patient.city))
                 .ForMember(dest => dest.address, opt => opt.MapFrom(src=>src.patient.address));
+            CreateMap<Patient,PatientMessageListElementDTO>();
+            CreateMap<MimeMessage,EmailMessageDTO>()
+                .ForMember(dest => dest.message, opt => opt.MapFrom(src => src.TextBody))
+                .ForMember(dest => dest.reciveDate, opt => opt.MapFrom(src => src.Date.UtcDateTime))
+                .ForMember(dest => dest.fromSystem, opt => opt.MapFrom(src => src.From.Mailboxes.Any(m => m.Address.Equals(configuration["DefaultEmail"]))));
         }
     }
 }
