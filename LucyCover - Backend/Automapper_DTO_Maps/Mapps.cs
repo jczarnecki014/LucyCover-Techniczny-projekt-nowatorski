@@ -48,6 +48,7 @@ namespace LucyCover___Backend.Automapper_DTO_Maps
                 .ForMember(dest => dest.lastName, opt => opt.MapFrom(src=>src.patient.lastName))
                 .ForMember(dest => dest.city, opt => opt.MapFrom(src=>src.patient.city))
                 .ForMember(dest => dest.address, opt => opt.MapFrom(src=>src.patient.address));
+            CreateMap<Patient,PatientMessageListElementDTO>();
         }
     }
 }

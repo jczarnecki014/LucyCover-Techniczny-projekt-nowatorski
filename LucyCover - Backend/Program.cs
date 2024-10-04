@@ -53,6 +53,7 @@ builder.Services.AddScoped<IDocumentationService,DocumentationService>();
 builder.Services.AddScoped<IRecommendationService,RecommendationService>();
 builder.Services.AddScoped<IScheduleService,ScheduleService>();
 builder.Services.AddScoped<IEducationMaterialsService,EducationMaterialsService>();
+builder.Services.AddScoped<IMessagesService,MessagesService>();
 
 var app = builder.Build();
 

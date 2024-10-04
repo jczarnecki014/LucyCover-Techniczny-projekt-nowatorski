@@ -137,6 +137,16 @@ export async function getVisitsByMonth({month}) {
     return data;
 }
 
+export async function GetPatientsForPatientsListInMessages({signal}) {
+    const response = await fetch(`https://localhost:7014/api/messages/patientsList`,{signal}) 
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+   
+    return data;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
