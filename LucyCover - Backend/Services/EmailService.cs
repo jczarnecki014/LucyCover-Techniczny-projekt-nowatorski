@@ -1,4 +1,5 @@
 ﻿using LucyCover___Backend.Exceptions;
+using MailKit.Net.Imap;
 using MailKit.Net.Smtp;
 using MimeKit;
 using System.Text.RegularExpressions;
@@ -8,6 +9,7 @@ namespace LucyCover___Backend.Services
     public interface IEmailService 
     {
           public Task SendEmailAsync(IEmailMessage toSendEmail, string? fileName=null);
+          public Task<List<MimeMessage>> ReciveEmailsAsync(string? fromAddress = null); 
     }
     public interface IEmailMessage 
     {
@@ -65,6 +67,55 @@ namespace LucyCover___Backend.Services
                 await smtp.DisconnectAsync(true);
                 
            }
+        }
+
+        public async Task<List<MimeMessage>> ReciveEmailsAsync(string? fromAddress = null) 
+        {
+            string folderName = "INBOX";
+            int maxEmails = 50;
+
+            using(var client = new ImapClient())
+            {
+                var imapHost = _configuration["Imap:Host"];
+                var imapPort = int.Parse(_configuration["Imap:Port"]);
+                var imapUsername = _configuration["Imap:Username"];
+                var imapPassword = _configuration["Imap:Password"];
+
+                await client.ConnectAsync(imapHost,imapPort,MailKit.Security.SecureSocketOptions.SslOnConnect);
+                await client.AuthenticateAsync(imapUsername, imapPassword);
+
+                var inbox = client.Inbox;
+                await inbox.OpenAsync(MailKit.FolderAccess.ReadOnly);
+
+                var messages = new List<MimeMessage>();
+                int count = inbox.Count;
+
+                for(int i = count-1; i >= Math.Max(count- maxEmails,0); i--)
+                {
+                    var message = await inbox.GetMessageAsync(i);
+                    if(fromAddress == null || message.From.Mailboxes.Any(m => m.Address.Equals(fromAddress,StringComparison.OrdinalIgnoreCase)))
+                    {
+                        messages.Add(message);
+                    }
+                }
+
+                //EKSPERYMENTALNY nalezy sprawdzic pod kontem czytelnosci i optymalizacji
+
+                var outbox = client.GetFolder(MailKit.SpecialFolder.Sent);
+                await outbox.OpenAsync(MailKit.FolderAccess.ReadOnly);
+                var oCount = outbox.Count;
+
+                for(int i = oCount-1; i >= Math.Max(oCount- maxEmails,0); i--)
+                {
+                    var message = await outbox.GetMessageAsync(i);
+                    if(fromAddress == null || message.To.Mailboxes.Any(m => m.Address.Equals(fromAddress,StringComparison.OrdinalIgnoreCase)))
+                    {
+                        messages.Add(message);
+                    }
+                }
+                await client.DisconnectAsync(true);
+                return messages;
+            }
         }
 
         private MimePart LoadAttachment(string fileName)

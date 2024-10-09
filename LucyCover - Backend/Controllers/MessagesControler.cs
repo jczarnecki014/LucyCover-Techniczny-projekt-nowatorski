@@ -8,17 +8,24 @@ namespace LucyCover___Backend.Controllers
     [Route("api/messages")]
     public class MessagesControler : Controller
     {
-        private readonly IMessagesService _messagesService;
+        private readonly IMessagesService _service;
         public MessagesControler(IMessagesService messagesService)
         {
-            _messagesService = messagesService;
+            _service = messagesService;
         }
 
         [HttpGet("patientsList")]
         public ActionResult<List<PatientMessageListElementDTO>> GetPatientList()
         {
-            List<PatientMessageListElementDTO> patientsList = _messagesService.GetPatientsForMessageList();
+            List<PatientMessageListElementDTO> patientsList = _service.GetPatientsForMessageList();
             return Ok(patientsList);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<EmailMessageDTO>>> GetPatientEmails([FromQuery] string patientEmail)
+        {
+           List<EmailMessageDTO> patientEmails = await _service.GetEmailsForPatients(patientEmail);
+           return Ok(patientEmails);
         }
     }
 }
