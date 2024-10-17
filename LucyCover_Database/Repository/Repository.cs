@@ -1,4 +1,5 @@
 ﻿using LucyCover_Database.Repository.IRepository;
+using LucyCover_Model.Database_Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Database.Repository
 {
+
     public class Repository<T>:IRepository<T> where T:class 
     {
         private readonly DbConnection _db;
@@ -17,7 +19,7 @@ namespace LucyCover_Database.Repository
         public Repository(DbConnection db) 
         {
             _db= db;
-            dbSet= db.Set<T>();
+            dbSet = db.Set<T>();
         }
 
         public void Add(T entity)
@@ -89,6 +91,5 @@ namespace LucyCover_Database.Repository
         {
             return dbSet.Any(filter);
         }
-
     }
 }

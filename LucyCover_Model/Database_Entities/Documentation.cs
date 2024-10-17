@@ -9,27 +9,30 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.Database_Entities
 {
-    public class Documentation
+    public class Documentation: ICurrentUserDependentEntity
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid id { get; set; }
 
         [Required]
-        public bool First { get; set; }
+        public bool first { get; set; }
 
-        public Guid PatientId { get; set;}
+        public Guid patientId { get; set;}
 
-        [Required]
-        public Guid ChildId { get; set; }
-
-        [ForeignKey(nameof(ChildId))]
-        public Children Child { get; set; }
+        [ForeignKey(nameof(patientId))]
+        public Patient patient { get; set;}
 
         [Required]
-        public string Date { get; set; }
+        public Guid childId { get; set; }
 
-        public DocumentationFirstVisit DocumentationFirstVisit { get; set; }
+        [ForeignKey(nameof(childId))]
+        public Children child { get; set; }
 
-        public DocumentationNextVisit DocumentationNextVisit { get;set; }
+        [Required]
+        public string date { get; set; }
+
+        public DocumentationFirstVisit documentationFirstVisit { get; set; }
+
+        public DocumentationNextVisit documentationNextVisit { get;set; }
     }
 }

@@ -24,6 +24,7 @@
     "framer-motion": "^10.18.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
+    "react-cookie": "^7.2.1",
     "react-day-picker": "^9.1.2",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
@@ -42,6 +43,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-mkcert": "^1.17.6"
   }
 }

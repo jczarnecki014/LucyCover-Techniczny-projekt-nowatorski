@@ -9,6 +9,7 @@ import AddPatientRecommendation from "./slices/AddPatientRecommendation";
 import AddNewVisitToScheduleForm from "./slices/AddNewVisitToScheduleForm";
 import MainMenuSlice from "./slices/MainMenuSlice";
 import AddNewEducationMaterialSlice from "./slices/AddNewEducationMaterialSlice";
+import AuthFormSlice from "./slices/AuthForm";
 
 
 const reducers = combineReducers({
@@ -21,6 +22,7 @@ const reducers = combineReducers({
     addNewVisitToScheduleForm: AddNewVisitToScheduleForm.reducer,
     addMaterial: AddNewEducationMaterialSlice.reducer,
     mainMenu:MainMenuSlice.reducer,
+    authForm: AuthFormSlice.reducer,
 })
 
 const store = configureStore({

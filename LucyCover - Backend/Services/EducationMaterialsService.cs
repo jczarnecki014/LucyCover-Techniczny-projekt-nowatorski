@@ -25,17 +25,19 @@ namespace LucyCover___Backend.Services
         private IMapper _mapper { get; set; }
         private IWebHostEnvironment _webHostEnvironment { get; set; }
         private IEmailService _emailService { get;set;}
-        public EducationMaterialsService(IUnitOfWork unitOfWork,IMapper mapper,IWebHostEnvironment webHostEnvironment, IEmailService emailService)
+        private readonly Guid _loggedUser;
+        public EducationMaterialsService(IUnitOfWork unitOfWork,IMapper mapper,IWebHostEnvironment webHostEnvironment, IEmailService emailService,IAuthenticationService authenticationService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
             _emailService = emailService;
+            _loggedUser = authenticationService.GetCurrentUserId();
         }
 
         public List<EducationMaterials> GetAll() 
         {
-            List<EducationMaterials> materials = _unitOfWork.educationMaterials.GetAll().ToList();
+            List<EducationMaterials> materials = _unitOfWork.educationMaterials.GetAll(m => m.userId == _loggedUser).ToList();
             return materials;
         }
 
@@ -49,44 +51,36 @@ namespace LucyCover___Backend.Services
         {
             Patient patient = PatientService.GetPatient(patientId,_unitOfWork); //patient exisit checking
 
+            if(patient.userId != _loggedUser) throw new UnauthorizedAccessException("You can't access to this resources");
+
+
             EducationMaterials material = _unitOfWork.educationMaterials.GetFirstOfDefault(material => material.Id== materialId);
-            if(material is null)
+
+            if(material is null || material.userId != _loggedUser)
             {
-                throw new KeyNotFoundException("Material with that id doesn't exist");
+                throw new EntityNotFoundException("Material with that id doesn't exist or you have not permissions to it");
             }
 
             if(patient.email.Trim().Length<=0 || patient.email is null) 
             {
-                throw new InvalidOperationException("Patient does not have email assigned"); 
+                throw new EmailValidationException("Patient does not have email assigned"); 
             }
 
-            bool materialAssignmentPatients = _unitOfWork.educationMaterialsAssignedPatients.Any(entity => entity.patientId == patientId && entity.educationMaterialsId == materialId);
+            bool materialAssignmentPatient = _unitOfWork.educationMaterialsAssignedPatients.Any(entity => entity.patientId == patientId && entity.educationMaterialsId == materialId);
 
-            try
+            IEmailMessage newMessage = new EmailMessage(
+                email: patient.email,
+                subject: "Otrzymałeś materiały edukacyjne od twojego opiekuna ciąży ! - LucyCover",
+                message: "Drogi pacjencie, w załączniku przygotowaliśmy dla ciebie materiały, które pomogą Ci lepiej przygotować się do macierzyństwa"
+            );
+
+            await _emailService.SendEmailAsync(newMessage,material.fileName);
+            if(!materialAssignmentPatient)
             {
-                IEmailMessage newMessage = new EmailMessage(
-                    email: patient.email,
-                    subject: "Otrzymałeś materiały edukacyjne od twojego opiekuna ciąży ! - LucyCover",
-                    message: "Drogi pacjencie, w załączniku przygotowaliśmy dla ciebie materiały, które pomogą Ci lepiej przygotować się do macierzyństwa"
-                );
-
-                await _emailService.SendEmailAsync(newMessage,material.fileName);
-                if(!materialAssignmentPatients)
-                {
-                    EducationMaterialsAssignedPatients newAssign = new EducationMaterialsAssignedPatients(){patientId=patientId,educationMaterialsId=materialId };
-                    _unitOfWork.educationMaterialsAssignedPatients.Add(newAssign);
-                    _unitOfWork.Save();
-                }
+                EducationMaterialsAssignedPatients newAssign = new EducationMaterialsAssignedPatients(){patientId=patientId,educationMaterialsId=materialId };
+                _unitOfWork.educationMaterialsAssignedPatients.Add(newAssign);
+                _unitOfWork.Save();
             }
-            catch (InvalidOperationException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new BadHttpRequestException(ex.Message);
-            }
-
 
         }
 
@@ -104,7 +98,12 @@ namespace LucyCover___Backend.Services
 
         public EducationMaterials DownloadMaterial(Guid educationMaterialId)
         {
-            EducationMaterials material = _unitOfWork.educationMaterials.GetFirstOfDefault(material => material.Id == educationMaterialId);
+            EducationMaterials material = _unitOfWork.educationMaterials.GetFirstOfDefault(m => m.Id == educationMaterialId && m.userId == _loggedUser);
+
+            if(material is null)
+            {
+                throw new EntityNotFoundException("Material with that id does not exist or you have not permissions to edit it");
+            }
 
             if(!File.Exists(material.filePath)) 
             {
@@ -116,11 +115,11 @@ namespace LucyCover___Backend.Services
 
         public void DeleteMaterial(Guid materialId) 
         {
-            EducationMaterials material = _unitOfWork.educationMaterials.GetFirstOfDefault(material => material.Id == materialId);
+            EducationMaterials material = _unitOfWork.educationMaterials.GetFirstOfDefault(m => m.Id == materialId && m.userId == _loggedUser);
 
             if(material is null)
             {
-                throw new KeyNotFoundException("Material does not exist");
+                throw new EntityNotFoundException("Material with that id does not exist or you have not permissions to edit it");
             }
 
             if(!File.Exists(material.filePath))
@@ -131,7 +130,6 @@ namespace LucyCover___Backend.Services
             File.Delete(material.filePath);
             _unitOfWork.educationMaterials.Remove(material);
             _unitOfWork.Save();
-
         }
 
         private async Task AddNewMaterial(EducationMaterialDTO educationMaterialDTO)
@@ -146,6 +144,7 @@ namespace LucyCover___Backend.Services
                             fileTitle = educationMaterialDTO.title,
                             date = DateTime.Now.ToString("dd.MM.yyyy"),
                             filePath = filePath,
+                            userId = _loggedUser,
                         };
 
                    _unitOfWork.educationMaterials.Add(newMaterial);
@@ -160,11 +159,17 @@ namespace LucyCover___Backend.Services
 
         private async Task EditMaterial(EducationMaterialDTO educationMaterialDTO)
         {
-            EducationMaterials material = _unitOfWork.educationMaterials.GetFirstOfDefault(material => material.Id == educationMaterialDTO.id);
-            if(educationMaterialDTO.file!= null) 
+            EducationMaterials material = _unitOfWork.educationMaterials.GetFirstOfDefault(m => m.Id == educationMaterialDTO.id && m.userId == _loggedUser);
+
+            if(material is null)
             {
-                File.Delete(material.filePath);
+                throw new EntityNotFoundException("Material with that id does not exist or you have not permissions to edit it");
+            }
+
+            if(educationMaterialDTO.file != null) 
+            {
                 string filePath = await SaveFile(educationMaterialDTO.file);
+                File.Delete(material.filePath);
                 material.fileName = educationMaterialDTO.file.FileName;
                 material.filePath = filePath;
             }
@@ -187,8 +192,10 @@ namespace LucyCover___Backend.Services
                 {
                     Directory.CreateDirectory(uploadsFolder);
                 }
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
 
-                string filePath = Path.Combine(uploadsFolder,file.FileName);
+                string filePath = Path.Combine(uploadsFolder,$"{fileName}-{_loggedUser}.{extension}");
 
                 if(File.Exists(filePath)) throw new FileAlreadyExistException("This file already exist");
 
@@ -201,10 +208,9 @@ namespace LucyCover___Backend.Services
             }
             else 
             {
-                throw new BadHttpRequestException("File can not be empty");
+                throw new ArgumentException("File can not be empty !");
             }
         }
-
 
     }
   

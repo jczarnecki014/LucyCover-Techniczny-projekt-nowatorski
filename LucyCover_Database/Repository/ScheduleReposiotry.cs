@@ -19,7 +19,7 @@ namespace LucyCover_Database.Repository
             _db = db;
         }
 
-        public List<T> GetSpecificColumns<T>(Expression<Func<Schedule,bool>> condition, Expression<Func<Schedule,T>> selector, bool distinct = false ) 
+        public IEnumerable<T> GetSpecificColumns<T>(Expression<Func<Schedule,bool>> condition, Expression<Func<Schedule,T>> selector, bool distinct = false ) 
         {
             IQueryable<T> result = _db.Schedules.Where(condition)
                                                .Select(selector)

@@ -2,12 +2,15 @@
 using LucyCover___Backend.Services;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.DTO_Modeles;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 
 namespace LucyCover___Backend.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/educationMaterials")]
     public class EducationMaterialsController : Controller
     {
@@ -51,47 +54,23 @@ namespace LucyCover___Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewMaterial([FromForm] EducationMaterialDTO educationMaterialDTO)
         {
-            try 
-            {
-                await _service.UpsertEducationMaterial(educationMaterialDTO);
-                return Created("Element was created",null);
-            }
-            catch (FileAlreadyExistException exception)
-            {
-                return Conflict(exception);
-            }
+            await _service.UpsertEducationMaterial(educationMaterialDTO);
+            return Created("Element was created",null);
         }
 
         [HttpPost("{materialId}/{patientId}")]
         public async Task<ActionResult> SendMaterialToPatient([FromRoute] Guid materialId,[FromRoute] Guid patientId)
         {
-            try
-            {
-                await _service.AddNewPatientToMaterial(materialId, patientId);
-                return Ok();
-            }
-            catch(InvalidOperationException ex)
-            {
-                return NotFound(ex);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            await _service.AddNewPatientToMaterial(materialId, patientId);
+            return Ok();
         }
 
         [HttpDelete("{materialId}")]
         public ActionResult DeleteMaterial([FromRoute] Guid materialId) 
         {
-            try
-            {
-                _service.DeleteMaterial(materialId);
-                return NoContent();
-            }
-            catch (Exception exception) when (exception is KeyNotFoundException || exception is FileNotFoundException)
-            {
-                return Conflict(exception);
-            }
+           
+            _service.DeleteMaterial(materialId);
+            return NoContent();
 
         }
 

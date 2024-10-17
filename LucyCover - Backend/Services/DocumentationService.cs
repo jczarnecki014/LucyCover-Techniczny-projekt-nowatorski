@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using LucyCover___Backend.Exceptions;
 using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
@@ -24,21 +25,24 @@ namespace LucyCover___Backend.Services
         private IMapper _mapper { get;set; }
         private IValidator<DocumentationFirstVisitDTO> _firstVisitValidator;
         private IValidator<DocumentationNextVisitDTO> _nextVisitValidator; 
+        private readonly Guid _loggedUser;
         public DocumentationService(IUnitOfWork unitOfWork,
                                     IMapper mapper,IValidator<DocumentationFirstVisitDTO>firstVisitValidator, 
-                                    IValidator<DocumentationNextVisitDTO> nextVisitValidator) 
+                                    IValidator<DocumentationNextVisitDTO> nextVisitValidator, IAuthenticationService authenticationService) 
         {
             _unitOfWork= unitOfWork;
             _mapper= mapper;
             _firstVisitValidator = firstVisitValidator;
             _nextVisitValidator = nextVisitValidator;
+            _loggedUser = authenticationService.GetCurrentUserId();
         }
 
         public DocumentationList_DTO GetAll(Guid patientId)
         {
-            Patient patient = PatientService.GetPatient(patientId,_unitOfWork,"children");;
+            Patient patient = PatientService.GetPatient(patientId,_unitOfWork,"children");
+            if(patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not acces to this resources");
 
-            List<Documentation> documentation = _unitOfWork.documentation.GetAll(document => document.PatientId == patientId,includeProperties:"Child").ToList();
+            List<Documentation> documentation = _unitOfWork.documentation.GetAll(document => document.patientId == patient.id,includeProperties:"child").ToList();
             DocumentationList_DTO documentationDTO = new DocumentationList_DTO();
             documentationDTO.patient= patient;
 
@@ -57,16 +61,17 @@ namespace LucyCover___Backend.Services
 
         public DocumentationDTO GetDocumentationDetails(Guid documentationId,Guid patientId)
         {
-            Documentation documentation = GetDocumentation(documentationId,includeProperties:"DocumentationNextVisit,DocumentationFirstVisit,Child");
+            Documentation documentation = GetDocumentation(documentationId,includeProperties:"documentationNextVisit,documentationFirstVisit,child,patient");
+            if(documentation.patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not acces to this resources");
 
-            if(documentation.DocumentationFirstVisit == null && documentation.DocumentationNextVisit== null) 
+            if(documentation.documentationFirstVisit == null && documentation.documentationNextVisit== null) 
             {
-                throw new KeyNotFoundException("Document details for this user id were not found !");
+                throw new EntityNotFoundException("Document details for this user id were not found !");
             }
 
-            if(documentation.PatientId != patientId)
+            if(documentation.patientId != patientId)
             {
-                throw new KeyNotFoundException("Document for this patient was not found");
+                throw new EntityNotFoundException("Document for this patient was not found");
             }
 
             Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId,includeProperties:"children");
@@ -77,13 +82,14 @@ namespace LucyCover___Backend.Services
         }
         public Guid UpsertFirstVisitDocumentation(Guid patientId,UpsertDocumentationDTO documentation) 
         {
-            PatientService.GetPatient(patientId,_unitOfWork);
+            Patient patient = PatientService.GetPatient(patientId,_unitOfWork);
+            if(patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not acces to this resources");
 
             bool isValid = _firstVisitValidator.Validate(documentation.DocumentationFirstVisit).IsValid;
 
             if(!isValid) 
             {
-               throw new ValidationException("Documentation details are not correct");
+               throw new BadHttpRequestException("Documentation details are not correct");
             }
 
             Documentation newDocumentation = _mapper.Map<Documentation>(documentation);
@@ -91,26 +97,28 @@ namespace LucyCover___Backend.Services
 
             if(documentation.DocumentationId != Guid.Empty) 
             {
-                Documentation currentDocumentation = _unitOfWork.documentation.GetFirstOfDefault(prop => prop.Id == documentation.DocumentationId,includeProperties:"DocumentationFirstVisit");
-                currentDocumentation.DocumentationFirstVisit = newFirstVistDocumentation;
-                currentDocumentation.Date = documentation.Date;
-                currentDocumentation.ChildId = Guid.Parse(documentation.ChildId);
+                Documentation currentDocumentation = _unitOfWork.documentation.GetFirstOfDefault(prop => prop.id == documentation.DocumentationId,includeProperties:"documentationFirstVisit");
+                currentDocumentation.documentationFirstVisit = newFirstVistDocumentation;
+                currentDocumentation.date = documentation.Date;
+                currentDocumentation.childId = Guid.Parse(documentation.ChildId);
             }
             else 
             {
-                newDocumentation.PatientId = patientId;
+                newDocumentation.patientId = patientId;
                 newFirstVistDocumentation.Documentation = newDocumentation;
                 _unitOfWork.documentationFirstVisit.Add(newFirstVistDocumentation);
             }
 
             _unitOfWork.Save();
 
-            return newDocumentation.Id;
+            return newDocumentation.id;
         }
 
         public Guid UpsertNextVisitDocumentation(Guid patientId,UpsertDocumentationDTO documentation)
         {
-            PatientService.GetPatient(patientId,_unitOfWork);
+            Patient patient = PatientService.GetPatient(patientId,_unitOfWork);
+            if(patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not acces to this resources");
+
             bool isValid = _nextVisitValidator.Validate(documentation.DocumentationNextVisit).IsValid;
 
             if(!isValid) 
@@ -123,14 +131,14 @@ namespace LucyCover___Backend.Services
 
             if(documentation.DocumentationId != Guid.Empty) 
             {
-                Documentation currentDocumentation = _unitOfWork.documentation.GetFirstOfDefault(prop => prop.Id == documentation.DocumentationId,includeProperties:"DocumentationNextVisit");
-                currentDocumentation.DocumentationNextVisit = newNextVisitDocumentation;
-                currentDocumentation.Date = documentation.Date;
-                currentDocumentation.ChildId = Guid.Parse(documentation.ChildId);
+                Documentation currentDocumentation = _unitOfWork.documentation.GetFirstOfDefault(prop => prop.id == documentation.DocumentationId,includeProperties:"documentationNextVisit");
+                currentDocumentation.documentationNextVisit = newNextVisitDocumentation;
+                currentDocumentation.date = documentation.Date;
+                currentDocumentation.childId = Guid.Parse(documentation.ChildId);
             }
             else 
             {
-                newDocumentation.PatientId = patientId;
+                newDocumentation.patientId = patientId;
                 newNextVisitDocumentation.Documentation = newDocumentation;
                 _unitOfWork.documentationNextVisit.Add(newNextVisitDocumentation);
             }
@@ -141,16 +149,17 @@ namespace LucyCover___Backend.Services
         }
 
         public void DeleteDocumentation(Guid documentationId) {
-            Documentation documentation = GetDocumentation(documentationId);
+            Documentation documentation = GetDocumentation(documentationId,includeProperties:"patient");
+            if(documentation.patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not acces to this resources");
             _unitOfWork.documentation.Remove(documentation);
             _unitOfWork.Save();
         }
 
         public Documentation GetDocumentation(Guid documentationId, string? includeProperties=null) 
         {
-             Documentation documentation = _unitOfWork.documentation.GetFirstOfDefault(doc => doc.Id == documentationId,includeProperties:includeProperties);
+             Documentation documentation = _unitOfWork.documentation.GetFirstOfDefault(doc => doc.id == documentationId,includeProperties:includeProperties);
              if(documentation == null) {
-                throw new KeyNotFoundException("Document for this user id was not found !");
+                throw new EntityNotFoundException("Document for this user id was not found !");
              }
 
              return documentation;

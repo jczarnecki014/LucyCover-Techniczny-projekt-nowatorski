@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.Database_Entities
 {
-    public class Schedule
+    public class Schedule:ICurrentUserDependentEntity
     {
         [Key]
         public Guid id { get; set; }

@@ -2,11 +2,14 @@
 using LucyCover___Backend.Services;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.DTO_Modeles;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LucyCover___Backend.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/schedule")]
     public class ScheduleController : Controller
     {
@@ -42,20 +45,13 @@ namespace LucyCover___Backend.Controllers
         [HttpPost("{patientId}")]
         public async Task<IActionResult> UpsertPatientVisit([FromRoute] Guid patientId,[FromBody] UpsertPatientSheduleDTO upsertPatientSheduleDTO)
         {
-            try
-            {
-                await _service.UpserPatientVisit(patientId, upsertPatientSheduleDTO);
-                return Ok();
-            }
-            catch (EmailValidationException)
-            {
-                return UnprocessableEntity();
-            }
+            await _service.UpserPatientVisit(patientId, upsertPatientSheduleDTO);
+            return Created("Visit is created",null);
         }
 
 
         [HttpPut("{visitId}")]
-        public IActionResult UpsertPatientVisit([FromRoute] Guid visitId,[FromQuery] string visitStatus)
+        public IActionResult ChageVisitStatus([FromRoute] Guid visitId,[FromQuery] string visitStatus)
         {
             _service.ChangeVisitStatus(visitId,visitStatus);
             return Ok();

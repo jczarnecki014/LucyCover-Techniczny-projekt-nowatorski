@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.Database_Entities
 {
-    public class Recommendation
+    public class Recommendation:ICurrentUserDependentEntity
     {
         [Key]
         public Guid id { get;set; }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.Database_Entities
 {
-    public class EducationMaterialsAssignedPatients
+    public class EducationMaterialsAssignedPatients:ICurrentUserDependentEntity
     {
         [Key]
         public int Id { get; set; }
