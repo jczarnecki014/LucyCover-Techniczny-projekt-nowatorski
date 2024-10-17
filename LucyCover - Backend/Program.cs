@@ -1,5 +1,7 @@
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using LucyCover___Backend.Automapper_DTO_Maps;
 using LucyCover___Backend.Services;
 using LucyCover_Database;
 using LucyCover_Database.Repository;
@@ -38,7 +40,14 @@ builder.Services.AddDbContext<DbConnection>(option => {
 });
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 //Autompaer configuration
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+/*builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());*/
+builder.Services.AddAutoMapper(cfg => 
+{
+    var serviceProvider = builder.Services.BuildServiceProvider();
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+
+    cfg.AddProfile(new Mapps(configuration));
+});
 //FluentValidator
 builder.Services.AddScoped<IValidator<PatientDTO>,AddPatientDTOValidator>();
 builder.Services.AddScoped<IValidator<DocumentationFirstVisitDTO>,DocumentationFirstVisitDTOValidator>();
@@ -53,6 +62,7 @@ builder.Services.AddScoped<IDocumentationService,DocumentationService>();
 builder.Services.AddScoped<IRecommendationService,RecommendationService>();
 builder.Services.AddScoped<IScheduleService,ScheduleService>();
 builder.Services.AddScoped<IEducationMaterialsService,EducationMaterialsService>();
+builder.Services.AddScoped<IMessagesService,MessagesService>();
 
 var app = builder.Build();
 

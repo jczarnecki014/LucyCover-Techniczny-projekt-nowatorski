@@ -137,7 +137,26 @@ export async function getVisitsByMonth({month}) {
     return data;
 }
 
+export async function GetPatientsForPatientsListInMessages({signal}) {
+    const response = await fetch(`https://localhost:7014/api/messages/patientsList`,{signal}) 
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
 
+    const data = await response.json()
+   
+    return data;
+}
+
+export async function GetMessagesForEmailAddress({signal,email}) {
+    const response = await fetch(`https://localhost:7014/api/messages?patientEmail=${email}`,{signal}) 
+    if(!response.ok){
+        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+    }
+
+    const data = await response.json()
+    return data;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                               POST                                                                         //
@@ -234,6 +253,24 @@ export async function AddNewMaterial({formData}) {
         throw new Error(`Podczas operacji coś poszło nie tak`)
     }
     
+}
+
+export async function SendNewMessage({message,patientEmail}) {
+    console.log(message)
+    const response = await fetch(`https://localhost:7014/api/messages?patientEmail=${patientEmail}`,{
+        method: 'POST',
+        body: JSON.stringify(message),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status !== 200){
+        throw new Error(`Podczas operacji coś poszło nie tak`)
+    }
+    
+    const data = await response.json()
+    return data;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

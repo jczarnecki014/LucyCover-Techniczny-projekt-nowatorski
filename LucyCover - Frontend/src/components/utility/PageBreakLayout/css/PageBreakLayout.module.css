@@ -6,6 +6,10 @@
     grid-template-areas: 'LeftSide RightSide'
 }
 
+.Container#NarrowMode{
+    grid-template-columns: 0.3fr 1fr;
+}
+
 .Container .LeftSide{
     grid-area: LeftSide;
     background-color: #FFF5FF;

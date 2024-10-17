@@ -1,6 +1,10 @@
 ﻿using LucyCover___Backend.Exceptions;
+using MailKit;
+using MailKit.Net.Imap;
 using MailKit.Net.Smtp;
+using MailKit.Search;
 using MimeKit;
+using Org.BouncyCastle.Pqc.Crypto.Frodo;
 using System.Text.RegularExpressions;
 
 namespace LucyCover___Backend.Services
@@ -8,6 +12,7 @@ namespace LucyCover___Backend.Services
     public interface IEmailService 
     {
           public Task SendEmailAsync(IEmailMessage toSendEmail, string? fileName=null);
+          public Task<List<MimeMessage>> ReciveEmailsAsync(string fromAddress = null); 
     }
     public interface IEmailMessage 
     {
@@ -67,6 +72,28 @@ namespace LucyCover___Backend.Services
            }
         }
 
+        public async Task<List<MimeMessage>> ReciveEmailsAsync(string fromAddress) 
+        {
+            using(var client = new ImapClient())
+            {
+                var imapHost = _configuration["Imap:Host"];
+                var imapPort = int.Parse(_configuration["Imap:Port"]);
+                var imapUsername = _configuration["Imap:Username"];
+                var imapPassword = _configuration["Imap:Password"];
+
+                await client.ConnectAsync(imapHost,imapPort,MailKit.Security.SecureSocketOptions.SslOnConnect);
+                await client.AuthenticateAsync(imapUsername, imapPassword);
+
+                List<MimeMessage> inboxMessages = await GetMessagesByQuery(client.Inbox, SearchQuery.FromContains(fromAddress.ToLower()));
+                List<MimeMessage> outboxMessages = await GetMessagesByQuery(client.GetFolder(SpecialFolder.Sent), SearchQuery.ToContains(fromAddress.ToLower()));
+
+                List<MimeMessage> messages = inboxMessages.Concat(outboxMessages).ToList();
+
+                await client.DisconnectAsync(true);
+                return messages;
+            }
+        }
+
         private MimePart LoadAttachment(string fileName)
         {
             string wwwrootPath = _webHostEnvironment.WebRootPath;
@@ -87,6 +114,23 @@ namespace LucyCover___Backend.Services
             }
             else throw new FileNotFoundException("File was not found");
 
+        }
+
+        private async Task<List<MimeMessage>> GetMessagesByQuery(IMailFolder folder,TextSearchQuery query)
+        {
+            ArgumentNullException.ThrowIfNull(query, nameof(query));
+            await folder.OpenAsync(MailKit.FolderAccess.ReadOnly);
+
+            IList<UniqueId> uids = await folder.SearchAsync(query);
+
+            List<MimeMessage> messages = new List<MimeMessage>();
+
+            foreach(var uid in uids)
+            {
+                var message = await folder.GetMessageAsync(uid);
+                messages.Add(message);
+            }
+            return messages;
         }
     }
 
@@ -111,5 +155,4 @@ namespace LucyCover___Backend.Services
     }
 
 }
-
 

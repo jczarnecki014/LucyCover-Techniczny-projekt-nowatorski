@@ -8,6 +8,10 @@
     padding: 20px 0px 20px 0px;
 }
 
+/*-------------------------------------------------------------------*/
+                            /*NOTYFICATIONS*/
+/*-------------------------------------------------------------------*/
+
 .LeftContainer .NoticeSection {
     display: flex;
     padding: 0px 35px 0px 35px;
@@ -76,6 +80,10 @@
     gap: 10px;
     justify-content: end;
 }
+
+/*-------------------------------------------------------------------*/
+                            /*SMALL DEVICES - MEDIA QUERY*/
+/*-------------------------------------------------------------------*/
 
 @media only screen and (max-width:1200px){
     .LeftContainer .NoticeSection {

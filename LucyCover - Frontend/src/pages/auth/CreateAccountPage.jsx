@@ -1,9 +1,9 @@
-import CreateAccountModel from "../../components/auth/CreateAccountModel"
+
 
 
 const CreateAccountPage = () => {
     return (
-       <CreateAccountModel />
+       <h2>Test</h2>
     )
 }
 

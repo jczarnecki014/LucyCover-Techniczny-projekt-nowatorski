@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-
+import style from "./css/LabelInput.module.css"
+import { useState, useEffect } from "react";
 import { motion,AnimatePresence } from "framer-motion";
-
 import { Form } from "react-bootstrap";
 
 const LabelInput = ({
@@ -85,7 +84,7 @@ const LabelInput = ({
             color: "#cf2f74",
           }
         }
-        className={boxShadow && 'boxShadow-light'}
+        className={`${boxShadow && 'boxShadow-light'} ${style.Input}`}
         disabled={readonly || disabled }
         required={required}
         value={inputValue}
