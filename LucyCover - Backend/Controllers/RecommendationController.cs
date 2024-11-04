@@ -1,10 +1,12 @@
 ﻿using LucyCover___Backend.Services;
 using LucyCover_Model.DTO_Modeles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LucyCover___Backend.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/recommendation")]
     public class RecommendationController : Controller
     {

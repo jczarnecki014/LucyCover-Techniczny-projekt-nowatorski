@@ -18,5 +18,6 @@ namespace LucyCover_Database.Repository.IRepository
         public IScheduleRepository schedule { get; }
         public IEducationMaterialsRepository educationMaterials{ get; }
         public IEducationMaterialsAssignedPatientsRepository educationMaterialsAssignedPatients { get; }
+        public IUserRepository users { get; }
     }
 }

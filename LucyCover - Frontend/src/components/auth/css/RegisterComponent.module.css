@@ -1,0 +1,101 @@
+.Container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.Container .LogoSection {
+    display: flex;
+    height: 15%;
+}
+
+.Container .LogoSection img {
+    width: 20%;
+}
+
+.Container form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 85%;
+}
+
+.Container form .InputSection {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 70%;
+}
+
+.Container form .InputSection .Input {
+    width: 85%;
+}
+
+.Container form .InputSection small {
+    color: #d00000;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.Container form .ButtonSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 15%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.Container  button {
+    width: 85%;
+    font-size: 20px;
+    font-weight: bold;;
+    border-radius: 5px;
+    padding: 10px 30px 10px 30px;
+}
+
+.Container button#ActionButton{
+    background-color: #CB60C8;
+    border: solid 2px #692267;
+    margin-bottom: 20px;
+}
+
+.Container form .ButtonSection button#SwitchModeButton{
+    border: solid 2px #CB60C8;
+    background-color: #fff;
+    color: #692267;
+}
+
+.Container .RegisterSuccessBox {
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    flex-direction: column;
+    padding: 20px;
+
+}
+
+.Container .RegisterSuccessBox .Header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+
+.Container .RegisterSuccessBox .Header img {
+    width: 100px;
+}
+
+.Container .RegisterSuccessBox .Content
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    text-align: justify;
+}
+
+.Container .RegisterSuccessBox .Content h6{
+    text-align: center;
+}

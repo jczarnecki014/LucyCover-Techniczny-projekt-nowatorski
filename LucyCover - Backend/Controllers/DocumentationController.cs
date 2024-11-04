@@ -2,11 +2,13 @@
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LucyCover___Backend.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/documentation")]
     public class DocumentationController : Controller
     {

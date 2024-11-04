@@ -146,7 +146,7 @@ namespace LucyCover___Backend.Services
         {
         if(!Regex.IsMatch(email,emailRegex))
         {
-            throw new EmailValidationException("Patient does have invalid email"); 
+            throw new EmailValidationException("Patient has not assigned valid email"); 
         }
         this.email = email;
         this.subject = subject;

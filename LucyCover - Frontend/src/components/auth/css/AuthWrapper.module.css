@@ -4,7 +4,7 @@
     grid-template-columns: 0.8fr 1fr;
     width: 100%;
     height: 100%;
-    background-color: red;
+    overflow: hidden
 }
 
 .Container .LeftSide {
@@ -25,12 +25,34 @@
 .Container .RightSide .AuthBox {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    height: 85%;
+    height: 90%;
     width: 50%;
     border-radius: 10px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 29px -1px rgba(66, 68, 90, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/*ErrorNotyfication**/
+
+.ErrorNotyficationBox {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    color:#fefefe;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0px 15px 15px 0px;
+    top: 2%;
+    left: 0;
+    width: 30%;
+    padding: 10px 10px 10px 0px;
+    gap:20px;
+}
+.ErrorNotyficationBox .Error{
+    background-color: rgb(208, 0, 0,0.6);
+    border-radius: 0px 15px 15px 0px;
+    padding: 20px;
 }
 
 @media only screen and (max-width: 900px){
@@ -46,5 +68,15 @@
 
     .Container .LeftSide {
         display: none;
+    }
+
+    .ErrorNotyficationBox {
+        width: 100%;
+    }
+    .ErrorNotyficationBox .Error{
+        display: none;
+    }
+    .ErrorNotyficationBox .Error:first-child{
+        display: block;
     }
 }

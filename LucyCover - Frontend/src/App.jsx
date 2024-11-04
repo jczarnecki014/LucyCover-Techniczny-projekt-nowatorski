@@ -3,9 +3,6 @@ import {QueryClientProvider} from '@tanstack/react-query'
 import { queryClient } from './api/https'
 
 import DashboardRoot from './pages/dashboard/DashboardRoot'
-import RootAuth from './pages/auth/RootAuth'
-import LoginPage from './pages/auth/LoginPage'
-import CreateAccountPage from './pages/auth/CreateAccountPage'
 import PatientsPage,{loader as PatientsPageLoader} from './pages/dashboard/PatientsPage'
 import PatientMenuPage, {loader as PatientMenuLoader} from './pages/dashboard/PatientMenuPage'
 import PatientDocumentationPage,{loader as PatientDocumentationLoader} from './pages/dashboard/PatientDocumentationPage'
@@ -17,6 +14,7 @@ import PatientSchedulePage, {loader as PatientSchedulePageLoader} from './pages/
 import EducationalMaterialsPage,{loader as EducationMaterialsPageLoader} from './pages/dashboard/EducationalMaterialsPage'
 import SchedulePage from './pages/dashboard/SchedulePage'
 import MessagesPage,{loader as MessagesPageLoader} from './pages/dashboard/MessagesPage'
+import AuthPage from './pages/auth/AuthPage'
 
 const router = createBrowserRouter([
   {
@@ -108,14 +106,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'auth',
-        element: <RootAuth />,
-        children:[
-          {index:true, element: <LoginPage />},
-          {
-            path:'create-account', 
-            element: <CreateAccountPage />
-          },
-        ]
+        element: <AuthPage />,
       },
     ]
   }

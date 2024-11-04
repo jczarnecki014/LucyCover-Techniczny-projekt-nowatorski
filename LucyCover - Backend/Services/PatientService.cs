@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using LucyCover___Backend.Exceptions;
 using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
 using LucyCover_Model.DTO_Modeles.Validators;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
 namespace LucyCover___Backend.Services
@@ -20,23 +23,26 @@ namespace LucyCover___Backend.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IValidator<PatientDTO> _validator;
-        public PatientService(IUnitOfWork unitOfWork,IMapper mapper, IValidator<PatientDTO> validator) 
+        private readonly Guid _loggedUser;
+        public PatientService(IUnitOfWork unitOfWork,IMapper mapper, IValidator<PatientDTO> validator,IAuthenticationService authenticationService) 
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _validator = validator;
+            _loggedUser = authenticationService.GetCurrentUserId();
         }
         public IEnumerable<Patient> GetPatients()
         {
-          IEnumerable<Patient> patients = _unitOfWork.patient.GetAll(includeProperties:"children");
+          IEnumerable<Patient> patients = _unitOfWork.patient.GetAll(patient => patient.userId == _loggedUser ,includeProperties:"children");
           return patients;
         }
 
         public Patient GetPatient(Guid patientId) {
-            Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id== patientId,includeProperties:"children");
-            if(patient == null) {
-                throw new KeyNotFoundException("User with this ID does not exist");
-            }
+        Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId && patient.userId == _loggedUser, includeProperties: "children");
+        if (patient == null) 
+        {
+            throw new EntityNotFoundException("User with this ID does not exist");
+        }
             return patient;
         }
 
@@ -48,9 +54,11 @@ namespace LucyCover___Backend.Services
             {
                 throw new BadHttpRequestException("Recived paitent inputs are not valid!");
             }
+
+            patient.userId = _loggedUser;
+
             if(formDTO.patientId != null)
             {
-                
                 _unitOfWork.patient.Update(patient);
             }
             else
@@ -62,15 +70,15 @@ namespace LucyCover___Backend.Services
         }
 
          public static Patient GetPatient(Guid patientId,IUnitOfWork _unitOfWork, string? includeProperties = null) 
-        {
+         {
             Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId,includeProperties);
 
             if(patient == null) 
             {
-                throw new KeyNotFoundException("Patient with this id was not found !");
+                throw new EntityNotFoundException("Patient with this id was not found !");
             }
 
             return patient;
-        }
+         }
     }
 }

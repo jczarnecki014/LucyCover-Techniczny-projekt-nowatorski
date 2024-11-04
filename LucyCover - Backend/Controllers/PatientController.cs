@@ -3,17 +3,19 @@ using LucyCover_Model;
 using LucyCover_Model.Database_Model;
 using LucyCover___Backend.Services;
 using LucyCover_Model.DTO_Modeles;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LucyCover___Backend.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/patients")]
     public class PatientController : Controller
     {
         private IPatientService _patientService;
         public PatientController(IPatientService patientService)
         {
-        _patientService = patientService;
+            _patientService = patientService;
         }
 
         [HttpGet]
