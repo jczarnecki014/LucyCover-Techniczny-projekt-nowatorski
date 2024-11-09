@@ -1,11 +1,27 @@
-import style from '../css/PatientVisitsTable.module.css'
-import { useState } from 'react';
+//Components
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { IoMdMenu } from "react-icons/io";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
+//Style
+import style from '../css/PatientVisitsTable.module.css'
+//Hooks
+import { useState } from 'react';
+
+
+/**
+ * PatientVisitElement - Component as PatientVisitsTable children to display single element
+ * 
+ * Props:
+ * 
+ * @param {Array} visits - Visits to display 
+ * @param {Function} deletePopupInvoke - function which will be invoke when user click on trash icon
+ * @param {Function} editVisitPopupInvoke -function which will be invoke when user click on edit icon
+ * @param {boolean} isSchedulePage - if isSchedulePage is true first column displays information about patient if false it displays date
+ * @returns 
+ */
 
 const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke,isSchedulePage}) => {
     const {id,date,firstName,phoneNumber,lastName,clock,status,patientId} = visit;
@@ -30,7 +46,7 @@ const PatientVisitElement = ({visit,editVisitPopupInvoke,deletePopupInvoke,isSch
         break;
     }
 
-    const patientNameTd = <td className={style.test}>
+    const patientNameTd = <td>
         <span>{firstName} {lastName}</span>
         <br />
         <span>{phoneNumber}</span>

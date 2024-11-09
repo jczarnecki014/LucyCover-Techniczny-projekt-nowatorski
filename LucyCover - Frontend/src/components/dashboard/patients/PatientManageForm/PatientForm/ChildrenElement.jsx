@@ -1,13 +1,19 @@
-import { useState } from 'react';
-
-import style from '../css/PatientAddingForm.module.css'
-
-import {AnimatePresence, motion} from 'framer-motion'
-
+//Components
 import { PiBabyBold } from "react-icons/pi";
 import { FaPlus } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
+import {AnimatePresence, motion} from 'framer-motion'
+//Style
+import style from '../css/PatientAddingForm.module.css'
+//Hooks
+import { useState } from 'react';
+
+/**
+ * ChildrenElement - component to display patient children element in list
+ * 
+ *  Parrent component : <PatientFormChildrenSection />
+ */
 
 const ChildrenElement = ({childrenDetails,RemoveChildrenFromList,setChildrenFormMode,EditChildrenMode}) => {
 

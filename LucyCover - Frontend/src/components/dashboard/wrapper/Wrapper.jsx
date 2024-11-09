@@ -1,17 +1,28 @@
-import style from './css/Wrapper.module.css'
-import Avatar from '../../../assets/images/avatar.png'
-import { DUMMY_NOTYFICATIONS } from '../../../assets/DUMMY_DATA/DUMMY_NOTYFICATIONS';
-
+//Components
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
 import { FaBookOpenReader } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
-
 import MainMenu from './MainMenu/MainMenu';
 import TopBar from './TopBar/TopBar'
 import RightSidePanel from './RightSidePanel/RightSidePanel';
-import ActionButtons from './RightSidePanel/ActionButtons';
+//Style
+import style from './css/Wrapper.module.css'
+//Assets
+import Avatar from '../../../assets/images/avatar.png'
+import { DUMMY_NOTYFICATIONS } from '../../../assets/DUMMY_DATA/DUMMY_NOTYFICATIONS';
+import NotyficationsList from "./RightSidePanel/NotyficationsList";
 
+/** 
+* Wrapper - Component work as a wrapper for every pages. This component defines elements as main top bar, main menu, right side panel
+* 
+* Functionality:
+*
+* [1] - Keeping app pages in specified template
+*
+* [2] - Displaying notyfication
+*
+*/
 
 const Wrapper = ({children}) => {
     return ( 
@@ -41,10 +52,10 @@ const Wrapper = ({children}) => {
                 <RightSidePanel.UserDetails userName='USER_NAME' userRole='USER_ROLE' avatarSRC={Avatar} />
                 <RightSidePanel.NotyficationsList>
                     {DUMMY_NOTYFICATIONS.map((notyfication,index) => (
-                        <RightSidePanel.NotyficationElement key={index} title={notyfication.title} description={notyfication.description} />
+                        <NotyficationsList.NotyficationElement key={index} title={notyfication.title} description={notyfication.description} />
                     ))}
                 </RightSidePanel.NotyficationsList>
-                <ActionButtons />
+                <RightSidePanel.ActionButtons />
             </RightSidePanel>
 
         </div>

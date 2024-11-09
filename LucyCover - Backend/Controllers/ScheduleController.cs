@@ -51,9 +51,9 @@ namespace LucyCover___Backend.Controllers
 
 
         [HttpPut("{visitId}")]
-        public IActionResult ChageVisitStatus([FromRoute] Guid visitId,[FromQuery] string visitStatus)
+        public async Task<IActionResult> ChageVisitStatus([FromRoute] Guid visitId,[FromQuery] string visitStatus)
         {
-            _service.ChangeVisitStatus(visitId,visitStatus);
+            await _service.ChangeVisitStatus(visitId,visitStatus);
             return Ok();
         }
         [HttpDelete("{visitId}")]

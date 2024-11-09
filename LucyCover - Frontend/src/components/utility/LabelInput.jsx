@@ -1,7 +1,54 @@
-import style from "./css/LabelInput.module.css"
-import { useState, useEffect } from "react";
+//Components
 import { motion,AnimatePresence } from "framer-motion";
 import { Form } from "react-bootstrap";
+//Style
+import style from "./css/LabelInput.module.css"
+//Hooks
+import { useState, useEffect } from "react";
+
+/** 
+* LabelInput - component provide input block element with label, input, and validation information
+*
+* Functionality:
+*
+* [1] - Displaying full input block which contain label, input and validation information
+*
+* [2] - Manipulating state of assigned slice via special inputDetails object
+*
+*
+* Params:
+* @param {string} className - styling for input group
+*
+* @param {string} label - label value (it will be displayed)
+*
+* @param {string} controlId - identifier of textArea, this value indicates property in specific state of slice. 
+* Input with specific controlId will be edit property in state of slice with same name
+*
+* @param {Function} onInput(inputObject) - function which will be invoke when state of input change. Suplied function should take a argument as 
+* object (inputId: "ControlId",inputObject:{value:"", isValid:boolean})
+*
+* @param {string} value - Value which will be displayed by default
+*
+* @param {boolean} readonly - boolen which block editing input
+*
+* @param {boolean} required - boolen which indicates that value can not be null
+*
+* @param {string} inputType - There is type of input
+*
+* @param {int} max - if inputType = "number" this property specify number of maximal value in input
+*
+* @param {int} min - if inputType = "number" this property specify number of minimal value in input
+*
+* @param {int} placeholder - it set a placeholder of input
+*
+* @param {function} validateFunction - Predicate to custom validating of input
+*
+* @param {int} maxLength - value to specify max number of characters in input
+*
+* @param {boolean} disabled - input is anavaiable to click
+*
+* @param {boolean} boxShadow - boolean which set boxshadow arround input
+*/
 
 const LabelInput = ({
   controlId,

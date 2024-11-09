@@ -1,14 +1,34 @@
-import { useEffect, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { useSelector,useDispatch } from 'react-redux';
-import { SetActivePatient,SetActiveChildren } from '../../../../context/slices/PatientSearch_SLICE';
-import { LoadDefaultData } from '../../../../context/slices/AddNewVisitToScheduleForm';
-import { queryClient, upsertVisit } from '../../../../api/https';
+//Components
 import VisitForm from './VisitForm';
 import ChoosePatientList from '../../../dashboard/patients/PatientsList/PatientSearch/ChoosePatientList'
 import ChooseChildrenList from './ChooseChildrenList';
 import VisitConfirmation from './VisitConfirmation';
 import Popup from '../../../utility/Popup';
+//Hooks
+import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useSelector,useDispatch } from 'react-redux';
+//Store
+import { SetActivePatient,SetActiveChildren } from '../../../../context/slices/PatientSearch_SLICE';
+import { LoadDefaultData } from '../../../../context/slices/AddNewVisitToScheduleForm';
+//Api
+import { queryClient, upsertVisit } from '../../../../api/https'
+
+/**
+ * VisitManager - Component to control new vist form. It adjustment displayed overlay to specific phase of form filling
+ * 
+ *  [1] - Displaying visit form
+ *  
+ *  [2] - Display patient search box
+ * 
+ *  [3] - Display children search box
+ * 
+ *  [4] - Displach confirmations and state popups (error/succes)
+ * 
+ * Props:
+ * 
+ * @param {object} visitToEdit - an object to fill inputs with default values
+ */
 
 const VisitManager = ({visitToEdit}) => {
     const [formMode,setFormMode] = useState('visitFormMode');//visitFormMode/patientsListMode/childrenListMode/visitNotyfication/error
@@ -27,7 +47,7 @@ const VisitManager = ({visitToEdit}) => {
         }
     })
 
-    const SetFormDisplayHandler = (mode) => {
+    const ChangeFormMode = (mode) => {
         setFormMode(mode)
     }
 
@@ -74,13 +94,13 @@ const VisitManager = ({visitToEdit}) => {
     return (
         <>
             {
-                formMode === 'visitFormMode' && <VisitForm SetFormDisplayHandler={SetFormDisplayHandler} activePatient={activePatient} activeChildren={activeChildren} visitID={visitId} />
+                formMode === 'visitFormMode' && <VisitForm ChangeFormMode={ChangeFormMode} activePatient={activePatient} activeChildren={activeChildren} visitID={visitId} />
             }
             {
-                formMode === 'patientsListMode' &&  <ChoosePatientList closeFunc={()=>SetFormDisplayHandler('visitFormMode')} />
+                formMode === 'patientsListMode' &&  <ChoosePatientList closeFunc={()=>ChangeFormMode('visitFormMode')} />
             }
             {
-                formMode === 'childrenListMode' && <ChooseChildrenList activePatient={activePatient} formModeChange={SetFormDisplayHandler}  />
+                formMode === 'childrenListMode' && <ChooseChildrenList activePatient={activePatient} FormModeChange={ChangeFormMode}  />
             }
             {
                 formMode === 'visitConfirmation' && <VisitConfirmation activePatient={activePatient} mutate={mutate} visitId={visitId} activeChildren={activeChildren} isPending={isPending} />

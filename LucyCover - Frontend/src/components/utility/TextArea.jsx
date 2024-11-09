@@ -1,8 +1,36 @@
+//Components
 import { Form } from "react-bootstrap"
-
 import { AnimatePresence,motion } from "framer-motion"
-
+//Hooks
 import { useState,useEffect } from "react"
+
+/** 
+* TextArea - component provide textArea block element with label, text area, and validation information
+*
+* Functionality:
+*
+* [1] - Displaying full textArea block which contain label, text area and validation information
+*
+* [2] - Manipulating state of assigned slice via special inputDetails object
+*
+*
+* Params:
+* @param {string} className - styling for input group
+*
+* @param {string} label - label value (it will be displayed)
+*
+* @param {string} controlId - identifier of textArea, this value indicates property in specific state of slice. 
+* Input with specific controlId will be edit property in state of slice with same name
+*
+* @param {Function} onChange(inputObject) - function which will be invoke when state of input change. Suplied function should take a argument as 
+* object (inputId: "ControlId",inputObject:{value:"", isValid:boolean})
+*
+* @param {string} defaultValue - Value which will be displayed by default
+*
+* @param {boolean} readonly - boolen which block editing input
+*
+* @param {boolean} required - boolen which indicates that value can not be null
+*/
 
 const TextArea = ({
     label,

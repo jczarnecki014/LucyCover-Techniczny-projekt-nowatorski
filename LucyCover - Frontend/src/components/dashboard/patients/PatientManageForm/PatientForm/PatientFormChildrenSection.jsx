@@ -1,14 +1,16 @@
-
+//Components
+import ChildrenElement from './ChildrenElement'
+import {motion} from 'framer-motion'
+//Style
 import style from '../css/PatientAddingForm.module.css'
 
-import ChildrenElement from './ChildrenElement'
-
-import {motion} from 'framer-motion'
-
+/**
+ * PatientFormChildrenSection - component to display children list
+ * 
+ *  Parrent component : <PatientForm />
+ */
 
 const PatientFormChildrenSection = ({children}) => {
-
-
     return (
         <motion.div className={style.Children} layout>
             <h2>Dzieci objęte opieką położnej</h2>

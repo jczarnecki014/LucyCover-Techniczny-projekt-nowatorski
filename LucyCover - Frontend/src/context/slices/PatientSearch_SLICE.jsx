@@ -23,6 +23,10 @@ const activeChildren_DEFAULT = {
     childBirthPlace:'',
 }
 
+/**
+ * PatientSearchSlice - State keep information about selected patient and children. It is use by many forms which dependece on selected patient
+ */
+
 const PatientSearchSlice = createSlice({
     name: 'PatientSearch',
     initialState:{

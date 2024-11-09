@@ -74,7 +74,7 @@ namespace LucyCover___Backend.Services
                 message: "Drogi pacjencie, w załączniku przygotowaliśmy dla ciebie materiały, które pomogą Ci lepiej przygotować się do macierzyństwa"
             );
 
-            await _emailService.SendEmailAsync(newMessage,material.fileName);
+            await _emailService.SendEmailAsync(newMessage,material.filePath);
             if(!materialAssignmentPatient)
             {
                 EducationMaterialsAssignedPatients newAssign = new EducationMaterialsAssignedPatients(){patientId=patientId,educationMaterialsId=materialId };

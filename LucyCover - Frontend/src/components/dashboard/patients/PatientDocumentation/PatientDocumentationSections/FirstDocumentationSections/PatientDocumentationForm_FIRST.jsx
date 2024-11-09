@@ -1,35 +1,42 @@
-import { useState,useEffect } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { SetInput,LoadDefaultData,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
-import { useFormData } from "../../../../../../hooks/useFormData";
-
-import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE";
-
-import { MdKeyboardArrowRight } from "react-icons/md";
-
-import OverlayModel from "../../../../../utility/OverlayModel"
-
-import style from '../css/PatientDocumentation_FORMS.module.css'
-import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsValid";
-
+//Components
 import PatientDetailsSection from "./PatientDetailsSection";
 import BabyDetailsSection from "./BabyDetailsSection";
 import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
 import BaseInformation from "../BaseInformation";
 import Popup from "../../../../../utility/Popup";
+import OverlayModel from "../../../../../utility/OverlayModel"
+import { MdKeyboardArrowRight } from "react-icons/md";
+//Style
+import style from '../css/PatientDocumentation_FORMS.module.css'
+//Hooks
+import useFetchDocumentation from "../../../../../../hooks/useFetchDocumentation";
+import { useState,useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { useFormData } from "../../../../../../hooks/useFormData";
+//Slice
+import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE";
+import { SetInput,LoadDefaultData,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
+//Assets
+import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsValid";
 
 
 
+/**
+ * PatientDocumentationForm_FIRST - component to merge and form every section of first documentation and display it in correct order
+ * 
+ * Functionality:
+ * 
+ *  Displaying all first documentation sections component in order
+ * 
+ *  Form management
+ * 
+ *  Fetching documentation to backend
+ */
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                    UWAGA                                                //
-//          Inputy z FIRST różnią się troche od NEXT - DEFAULT W SELECT NIE SĄ SILNIE POWIĄZANE Z CONTEXT //
-//                                                                                                       //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit,isSuccess,childrenList,documentationId}) => {
+const PatientDocumentationForm_FIRST = ({toDisplayValues,patientId,childrenList,documentationId}) => {
     const [firstRun,setFirstRun] = useState(true)
     const dispatch = useDispatch();
+    const {fetchDocumentation,isSuccess} = useFetchDocumentation(patientId);
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
 
     useEffect(()=>{
@@ -62,7 +69,7 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues,onFormSubmit,isSuccess,
 
     const FormSumbitHandler = (event) => {
         event.preventDefault();
-        onFormSubmit(true,formValue,documentationId)
+        fetchDocumentation(true,formValue,documentationId)
         dispatch(SetFormDefault())
     }
 

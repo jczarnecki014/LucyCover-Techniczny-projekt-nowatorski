@@ -1,11 +1,16 @@
-import style from '../css/Wrapper.module.css'
-
-import Avatar from '../../../../assets/images/avatar.png'
-
+//Componets
 import UserDetails from './UserDetails'
 import NotyficationsList from './NotyficationsList'
-import NotyficationElement from './NotyficationElement'
+import ActionButtons from './ActionButtons'
+//Style
+import style from '../css/Wrapper.module.css'
 
+/** 
+* RightSidePanel - Component display right panel with user information, notyfications lisit and action button (manage/logout)
+* Components:
+* [1] - UserDetails - information about user as user name, role, avatar
+* [2] - NotyficationsList - List with notyfication from system for example new message or required backup
+*/
 
 const RightSidePanel = ({children}) => {
     return ( 
@@ -14,7 +19,9 @@ const RightSidePanel = ({children}) => {
         </section>
     )
 }
+
 RightSidePanel.UserDetails = UserDetails
 RightSidePanel.NotyficationsList = NotyficationsList
-RightSidePanel.NotyficationElement = NotyficationElement
+RightSidePanel.ActionButtons = ActionButtons
+
 export default RightSidePanel

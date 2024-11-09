@@ -1,24 +1,41 @@
+//Components
 import PageBreakLayout from "../../utility/PageBreakLayout/PageBreakLayout"
-import style from './css/Education.module.css'
 import MaterialsList from "./MaterialsList/MaterialsList";
 import FileInfo from "./FileInfo/FileInfo";
 import AssignedPatients from "./AssignedPatients/AssignedPatients";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { OverlayToggle } from "../../../context/slices/OverlayModel_SLICE";
-import { fetchAllEducationMaterial,fetchAllAssignedPatientsToMaterial,queryClient } from "../../../api/https";
-import { assignPatientToMaterial } from "../../../api/https";
 import ChoosePatientList from "../patients/PatientsList/PatientSearch/ChoosePatientList";
-import GetPatientsId from "../../../assets/main/GetPatientsId";
 import Popup from "../../utility/Popup";
 import AddMaterial from "./AddMaterial/AddMaterial";
+//Style
+import style from './css/Education.module.css'
+//hooks
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+//assets
+import GetPatientsId from "../../../assets/main/GetPatientsId";
+//api
+import { fetchAllEducationMaterial,fetchAllAssignedPatientsToMaterial,queryClient } from "../../../api/https";
+import { assignPatientToMaterial } from "../../../api/https";
+
+/**
+ * Education - component to storing and scharing education materials
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Work as wrapper to other education components
+ * 
+ *  [2] - Controling overlay displaying as form overlay, success or error popup
+ * 
+ *  [3] - This component fetch material list, push new assigment to material and fetch every patients assigned to material
+ * 
+ */
 
 const Education = () => {
-    const [activeMaterial,setActiveMaterial] = useState({id:null});
-    const [assignedPatients,setAssignedPatients] = useState([])
-    const [overlayDisplay,setOverlayMode] = useState() //patientSearch // success // error // addMaterial
-    const [errorMessage,setErrorMessage] = useState();
+    const [activeMaterial,SetActiveMaterial] = useState({id:null});
+    const [assignedPatients,SetAssignedPatients] = useState([])
+    const [overlayDisplay,SetOverlayMode] = useState() //patientSearch // success // error // addMaterial
+    const [errorMessage,SetErrorMessage] = useState();
     const overlayMode = useSelector(state => state.overlayModel.isVisible)
     const selectedPatient = useSelector(state=>state.patientSearch.activePatient)
 
@@ -31,13 +48,12 @@ const Education = () => {
     const {mutate} = useMutation({
         mutationFn: assignPatientToMaterial,
         onError: (error) => {
-            console.log(error)
-            setOverlayMode("error")
-            setErrorMessage(error.message)
+            SetOverlayMode("error")
+            SetErrorMessage(error.message)
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['educationMaterials',"assignedPatients"])
-            setOverlayMode("success")
+            SetOverlayMode("success")
         }
     })
 
@@ -47,12 +63,12 @@ const Education = () => {
                 queryKey:['educationMaterials',"assignedPatients"],
                 queryFn: ({signal}) => fetchAllAssignedPatientsToMaterial({signal,materialId:activeMaterial.id})                     
             })
-            setAssignedPatients(assignedPatients)
+            SetAssignedPatients(assignedPatients)
         }
 
         if(activeMaterial.id !== null) fetchData();
 
-    },[activeMaterial,overlayDisplay,setAssignedPatients])
+    },[activeMaterial,overlayDisplay,SetAssignedPatients])
 
     const AssignPatientToMaterial = () => {
         mutate({materialId:activeMaterial.id,patientId:selectedPatient.id})
@@ -62,11 +78,9 @@ const Education = () => {
     return (
         <>
             {
-                overlayMode && overlayDisplay == "patientSearch"  && 
-                                    <ChoosePatientList 
-                                        disabledPatients={GetPatientsId(assignedPatients,"patientId")} 
-                                        onSelect={{btnLabel:"wybierz",func:AssignPatientToMaterial}}
-                                        />
+                overlayMode && overlayDisplay == "patientSearch"  && <ChoosePatientList 
+                                                                        disabledPatients={GetPatientsId(assignedPatients,"patientId")} 
+                                                                        onSelect={{btnLabel:"wybierz",func:AssignPatientToMaterial}} />
             }
             {
                 overlayMode && overlayDisplay == "error"  && <Popup 
@@ -82,27 +96,27 @@ const Education = () => {
                                                                     description="Operacja zakończona pomyślnie" />
             }
             {
-                overlayMode && overlayDisplay == "addMaterial"  && <AddMaterial title="Dodaj plik" 
-                                                                                setOverlayMode={setOverlayMode}
-                                                                                setErrorMessage={setErrorMessage} />
+                overlayMode && overlayDisplay == "addMaterial"  && <AddMaterial
+                                                                                SetOverlayMode={SetOverlayMode}
+                                                                                SetErrorMessage={SetErrorMessage} />
             }
             <PageBreakLayout>
                 <PageBreakLayout.LeftSide overflowY>
                     <MaterialsList
                         materials={data} 
-                        setActiveMaterial={setActiveMaterial} 
+                        SetActiveMaterial={SetActiveMaterial} 
                         activeElement={activeMaterial} 
-                        setNewMaterialCreatorMode={()=>setOverlayMode("addMaterial")} />
+                        SetNewMaterialCreatorMode={()=>SetOverlayMode("addMaterial")} />
                 </PageBreakLayout.LeftSide>
                 <PageBreakLayout.RightSide>
                     <div className={style.container}>
                         <FileInfo 
                             file={activeMaterial} 
-                            setOverlayMode={setOverlayMode}
-                            setErrorMessage={setErrorMessage} />
+                            SetOverlayMode={SetOverlayMode}
+                            SetErrorMessage={SetErrorMessage} />
                         <AssignedPatients 
                             patients={assignedPatients} 
-                            setPatientSearchMode ={()=>setOverlayMode("patientSearch")} 
+                            SetPatientSearchMode ={()=>SetOverlayMode("patientSearch")} 
                             activeMaterial={activeMaterial}/>
                     </div>
                 </PageBreakLayout.RightSide>

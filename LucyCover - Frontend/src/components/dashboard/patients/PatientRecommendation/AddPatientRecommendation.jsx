@@ -1,22 +1,38 @@
-import style from './css/AddPatientRecommendation.module.css'
-import { useMutation } from '@tanstack/react-query'
-import { useDispatch,useSelector } from 'react-redux'
-import { SetInput } from '../../../../context/slices/AddPatientRecommendation'
-import {useFormData} from '../../../../hooks/useFormData'
+//Components
 import OverlayModel from "../../../utility/OverlayModel"
 import LabelInput from '../../../utility/LabelInput'
 import TextArea from '../../../utility/TextArea'
 import { MdKeyboardArrowRight } from "react-icons/md";
-import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
+import Popup from '../../../utility/Popup'
+//Style
+import style from './css/AddPatientRecommendation.module.css'
+//Hooks
+import { useMutation } from '@tanstack/react-query'
+import { useDispatch,useSelector } from 'react-redux'
+import {useFormData} from '../../../../hooks/useFormData'
+//Slice
+import { SetInput } from '../../../../context/slices/AddPatientRecommendation'
+//Api
 import { createNewRecommendation } from '../../../../api/https'
 import { queryClient } from '../../../../api/https'
-import Popup from '../../../utility/Popup'
+//Assets
+import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
+
+
+/**
+ * AddPatientRecommendation - component to display patient recommendations form.
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaing recommendation form
+ * 
+ *  [2] - Component take details from user
+ */
 
 const AddPatientRecommendation = ({patientId}) => {
-    const {mutate,isPending,isError,isSuccess} = useMutation({
+    const {mutate,isError,isSuccess} = useMutation({
         mutationFn: createNewRecommendation,
         onSuccess: () => {
-            console.log("sukces")
             queryClient.invalidateQueries(['recommendations'])
         },
         onError: (error) => {
@@ -31,7 +47,7 @@ const AddPatientRecommendation = ({patientId}) => {
 
     const formInputs = useSelector(state => state.addPatientRecommendation.formInputs)
     const formIsValid = CheckFormIsValid(formInputs)
-    
+
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
     }

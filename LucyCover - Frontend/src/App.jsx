@@ -1,25 +1,33 @@
-import {RouterProvider,createBrowserRouter} from 'react-router-dom'
-import {QueryClientProvider} from '@tanstack/react-query'
-import { queryClient } from './api/https'
-
+/////////////////// pages /////////////////////////////////
 import DashboardRoot from './pages/dashboard/DashboardRoot'
 import PatientsPage,{loader as PatientsPageLoader} from './pages/dashboard/PatientsPage'
 import PatientMenuPage, {loader as PatientMenuLoader} from './pages/dashboard/PatientMenuPage'
 import PatientDocumentationPage,{loader as PatientDocumentationLoader} from './pages/dashboard/PatientDocumentationPage'
 import PatientRecommendationPage,{loader as PatientRecommendationLoader} from './pages/dashboard/PatientRecommendationPage'
 import PatientDocumentationDisplayPage,{loader as PatientDocumentationDisplayLoader} from './pages/dashboard/PatientDocumentationDisplayPage'
-import PatientDocumentationEdit from './pages/dashboard/PatientDocumentationEdit'
 import PatientRecommendationDisplayPage,{loader as PatientRecommendationDisplayLoader} from './pages/dashboard/PatientRecommendationDisplayPage'
 import PatientSchedulePage, {loader as PatientSchedulePageLoader} from './pages/dashboard/PatientShedulePage'
 import EducationalMaterialsPage,{loader as EducationMaterialsPageLoader} from './pages/dashboard/EducationalMaterialsPage'
 import SchedulePage from './pages/dashboard/SchedulePage'
 import MessagesPage,{loader as MessagesPageLoader} from './pages/dashboard/MessagesPage'
 import AuthPage from './pages/auth/AuthPage'
+import ErrorPage from './pages/ErrorPage'
+//////////////// hooks /////////////////////////////////
+import {Navigate, RouterProvider,createBrowserRouter} from 'react-router-dom'
+import {QueryClientProvider} from '@tanstack/react-query'
+import { queryClient } from './api/https'
+
+
 
 const router = createBrowserRouter([
   {
     path: '/',
+    errorElement: <ErrorPage />,
     children:[
+      {
+        index: true,
+        element: <Navigate to="/dashboard/schedule" replace />
+      },
       {
         path:'dashboard',
         element: <DashboardRoot />,
@@ -55,10 +63,6 @@ const router = createBrowserRouter([
                             index: true,
                             loader: PatientDocumentationDisplayLoader,
                             element: <PatientDocumentationDisplayPage />
-                          },
-                          {
-                            path: 'edit',
-                            element: <PatientDocumentationEdit />
                           },
                         ]
                       }
@@ -111,6 +115,12 @@ const router = createBrowserRouter([
     ]
   }
 ])
+
+/**
+ * App component - supply page router and tanstackQuery configuration
+ *
+ * @component
+ */
 
 function App() {
   return (

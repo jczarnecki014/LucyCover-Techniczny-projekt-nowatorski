@@ -48,6 +48,10 @@ const defaultState = {
     visitDate: {value:'',isValid:false},
 }
 
+/**
+ * AddNextDocumentationForm - Main form state for next visit documentation 
+ */
+
 const AddNextDocumentationForm = createSlice({
     name: 'AddNextDocumentationForm',
     initialState:{

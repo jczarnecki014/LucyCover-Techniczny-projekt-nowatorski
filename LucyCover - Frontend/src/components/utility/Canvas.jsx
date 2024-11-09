@@ -1,6 +1,8 @@
 import style from './css/Canvas.module.css'
 import {useEffect, useRef, useState} from 'react';
 
+//It is still develop (not use in production)
+
 const Canvas = () => {
     const canvasRef = useRef(null);
     const contextRef = useRef(null);

@@ -1,5 +1,9 @@
 import style from './css/PatientTable.module.css'
 
+/**
+ * PatientTable - component to display tale/list of patient resources. (documentation list, recommendation list)
+ */
+
 const PatientTable = ({columns,data,patientName,children,showPopup}) => {
     return (
         <div className={style.Container}>

@@ -1,7 +1,8 @@
-import style from './css/PatientDetails.module.css'
-
+//Components
 import { FaUser } from "react-icons/fa";
 import LabelInput from '../../../utility/LabelInput'
+//Style
+import style from './css/PatientDetails.module.css'
 
 const PatientName = ({firstName,lastName}) => {
     return (

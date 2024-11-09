@@ -1,15 +1,37 @@
-import style from '../css/Education.module.css'
-import { FaCirclePlus } from "react-icons/fa6";
+//Components
 import PatientTail from './PatientTail';
-import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE";
+import { FaCirclePlus } from "react-icons/fa6";
+//style
+import style from '../css/Education.module.css'
+//Hooks
 import { useDispatch } from 'react-redux';
+//Store
+import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE";
 
-const AssignedPatients = ({patients,setPatientSearchMode,activeMaterial}) => {
+/**
+ * AssignedPatients - Component to displaying assigned patients to material
+ * 
+ * Education <- Parent component
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying patients as PatientTail.jsx
+ * 
+ *  Params:
+ * 
+ *  @param {Array} patients - Collection of patients to display
+ * 
+ *  @param {function} SetPatientSearchMode - Function to invoke when adding tail is clicked
+ * 
+ * @param {object} activeMaterial - object contain selected material object
+ */
+
+const AssignedPatients = ({patients,SetPatientSearchMode,activeMaterial}) => {
     const dispatch = useDispatch();
 
     const OnClickHandler = () => {
         dispatch(OverlayToggle(true))
-        setPatientSearchMode()
+        SetPatientSearchMode()
     }
 
     return (
@@ -29,8 +51,6 @@ const AssignedPatients = ({patients,setPatientSearchMode,activeMaterial}) => {
                     </div>
                 )
             }
-    
-            
         </div>
     )
 }

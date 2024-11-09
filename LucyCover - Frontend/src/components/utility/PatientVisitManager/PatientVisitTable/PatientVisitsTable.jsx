@@ -1,6 +1,22 @@
-import { AnimatePresence } from 'framer-motion'
-import style from '../css/PatientVisitsTable.module.css'
+//Components
 import PatientVisitElement from './PatientVisitElement'
+//Style
+import style from '../css/PatientVisitsTable.module.css'
+
+
+/**
+ * PatientVisitsTable - Component as PatientVisitWrapper children. It displays table with scheduled visits
+ * 
+ * Props:
+ * 
+ * @param {Array} visits - Visits to display 
+ * @param {Function} deletePopupInvoke - function which will be invoke when user click on trash icon
+ * @param {Function} editVisitPopupInvoke -function which will be invoke when user click on edit icon
+ * @param {Function} addNewVisitPopupInvoke - function which will be invoke when user click "dodaj" button
+ * @param {boolean} isPending - display information when isPending = true (when some request is proccessing)
+ * @param {boolean} isSchedulePage - if isSchedulePage is true first column displays information about patient if false it displays date
+ * @returns 
+ */
 
 const PatientVisitsTable = ({visits,deletePopupInvoke,editVisitPopupInvoke,addNewVisitPopupInvoke,isPending,isSchedulePage}) => {
     return (

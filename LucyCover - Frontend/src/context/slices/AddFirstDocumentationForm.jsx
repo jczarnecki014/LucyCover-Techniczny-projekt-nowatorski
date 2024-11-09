@@ -16,13 +16,17 @@ let defaultState = {
     babyBirthType: {value:'Naturalny', isValid: true},
     babyBirthTypeReason: {value:'', isValid: true},
     babyBirthMedicine: {value:'', isValid: false},
-    documentationReason: {value:'test2', isValid: true},
+    documentationReason: {value:'', isValid: true},
     motherBreastfeedBefore: {value:'Pierwsze dziecko', isValid: true},
     motherBreastfeedBefore_HowLong: {value:'', isValid: true},
     motherBreastfeedBefore_Why: {value:'', isValid: true},
     patientChildId: {value:'',isValid:false},
     visitDate: {value:'',isValid:false},
 }
+
+/**
+ * AddFirstDocumentationForm - Main form state for first visit documentation (validation and value)
+ */
 
 const AddFirstDocumentationForm = createSlice({
     name: 'AddFirstDocumentationForm',

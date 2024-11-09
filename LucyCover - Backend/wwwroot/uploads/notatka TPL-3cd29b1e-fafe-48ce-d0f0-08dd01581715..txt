@@ -1,0 +1,15 @@
+task.factory.StartNew jest lepszy poniewaz zanjmuje sie konsturowaniem taska i jego schedulingiem
+
+podczas korzystania z taskow za pomoca konstruktora musimy sami zarzadzac synchronizacja taskow zeby nie doszlo do problemu multiThredingu
+
+Opisz na czym polega problem z race condition podczas uzywania new factory i automatycznej synchronizacji
+
+Task.Run() robi tak naprawde to samo co Task.Factory.StartNew() tylko zawiera pewien zestaw juz skonfigurowanej konfiguracji ponieważ StartNew() daje nam opcje konfigurowania mnostwa rzeczy takich jak schedul, opcje kreowania itp. Task.Run() jest wstepnie skonfigurowany i uzywany w wiekszosci przypadkow podczas tworzenia taskow
+
+pytania
+1) czy musze awaitowac taska i czy musze robic metode main jako async 
+2) Opisz roznice miedzy task.Run a task.factoryNew() i na czym polega unWrap w task.run oraz task.dalay w tasku
+
+zadania
+1) Napisz problem z continue with z task.factory ktory zwroci problem race condition oraz zamien go potem na new Task
+2) Napisz specjalnie kilka watkow ktore beda jednoczesnie pracowaly na tej samej zmiennej,kolekcji, zmiennej flagowej zarowno przy task.factory oraz new task aby wywolac i odpowiednio naprawic race condition zauwaz te problemy

@@ -1,9 +1,14 @@
-import { useState } from "react"
+//Components
 import AuthWrapper from "./AuthWrapper"
 import LoginComponent from "./LoginComponent"
 import RegisterComponent from "./RegisterComponent"
+//Hooks
 import { AnimatePresence } from "framer-motion"
-import { BsNutFill } from "react-icons/bs"
+import { useState } from "react"
+
+/**
+ * variant - declare entering and leaving animation for LoginComponent and RegisterComponent
+ */
 
 const variants = {
     hidden: {
@@ -29,13 +34,18 @@ const variants = {
     }
 }
 
+/**
+ * AuthPageComponent - component to manage authentication phase
+ * 
+ *  [1] - fluently switching between Login / Register mode
+ * 
+ *  [2] - Storing authentication error for botch login and register mode
+ */
 
 const AuthPageComponent = () => {
-    const [isLogin,setIsLogin] = useState(true) //[login/register]
-    const [pageIsChanging,setPageIsChanging] = useState(false);
+    const [isLogin,setIsLogin] = useState(true) //[loginMod => true | registerMod => false]
+    const [pageIsChanging,setPageIsChanging] = useState(false); // condition to complete mode switching
     const [authError,SetAuthError] = useState(null)
-
-    console.log(authError)
 
     const SwitchModeButtonClick = () => {
         setPageIsChanging(true)
@@ -43,7 +53,7 @@ const AuthPageComponent = () => {
 
         setTimeout(()=>{
             setIsLogin(!isLogin)
-            setPageIsChanging(false) // [{inputName:"errorMessage"}]
+            setPageIsChanging(false)
         },300)
 
     }

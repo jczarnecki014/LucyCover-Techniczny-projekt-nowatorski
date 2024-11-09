@@ -1,14 +1,40 @@
+//Components
 import { FaRegFilePdf } from "react-icons/fa6";
-import style from '../css/Education.module.css'
 import LabelInput from '../../../utility/LabelInput'
+//Style
+import style from '../css/Education.module.css'
+//Hooks
 import { useMutation } from "@tanstack/react-query";
-import { downloadEducationMaterial,DeleteEducationMaterial,queryClient } from "../../../../api/https";
 import { useDispatch } from "react-redux";
+//Store
 import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE";
 import { LoadDefaultData } from "../../../../context/slices/AddNewEducationMaterialSlice";
+//Assets
 import DownloadFileInBrowser from "../../../../assets/main/DownloadFileInBrowser";
+//Api
+import { downloadEducationMaterial,DeleteEducationMaterial } from "../../../../api/https";
 
-const FileInfo = ({file,setOverlayMode,setErrorMessage}) => {
+/**
+ * FileInfo - Component to displaying information about file as file name or fil title
+ * 
+ * Education <- Parent component
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying information about file/material
+ * 
+ *  [2] - Contain buttons to edit existing file/material
+ * 
+ *  Params:
+ * 
+ *  @param {object} file - Object contain info about file
+ * 
+ *  @param {function} SetOverlayMode - Function to toggle overlay mode
+ * 
+ *  @param {function} SetErrorMessage - Function to set error overlay
+ */
+
+const FileInfo = ({file,SetOverlayMode,SetErrorMessage}) => {
     const {id,fileName,fileTitle} = file;
     const dispatch = useDispatch();
 
@@ -23,17 +49,16 @@ const FileInfo = ({file,setOverlayMode,setErrorMessage}) => {
     const deleteMutation = useMutation({
         mutationFn: DeleteEducationMaterial,
         onSuccess: () => {
-            setOverlayMode('success')
+            SetOverlayMode('success')
         },
         onError: (error) => {
-            setOverlayMode('error')
-            setErrorMessage(error.message)
+            SetOverlayMode('error')
+            SetErrorMessage(error.message)
         },
         onSettled: () => {
             dispatch(OverlayToggle(true))
         }
     })
-
 
     const DownloadClickHandler = () => {
         downloadMutation.mutate({materialId:id})
@@ -47,7 +72,7 @@ const FileInfo = ({file,setOverlayMode,setErrorMessage}) => {
         try {
             dispatch(LoadDefaultData(file))
             dispatch(OverlayToggle(true))
-            setOverlayMode("addMaterial");
+            SetOverlayMode("addMaterial");
         }
         catch (error) {
             console.error(error)

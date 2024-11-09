@@ -1,11 +1,16 @@
+//Components
 import LabelInput from "../../../../../utility/LabelInput";
 import SelectInput from "../../../../../utility/SelectInput";
-
+//Style
 import style from '../css/PatientDocumentationSections.module.css'
 
+/**
+ * BabyAdditionalFeeding - component to display baby feeding information
+ * 
+ * Parent component: NextDocumentation
+ */
 
 const BabyAdditionalFeeding = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
-
     const isReadonly = readOnlyMode;
 
     return (

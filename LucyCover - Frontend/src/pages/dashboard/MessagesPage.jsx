@@ -4,6 +4,12 @@ import { useEffect } from "react";
 import Messages from "../../components/dashboard/messages/message";
 import { GetPatientsForPatientsListInMessages, queryClient } from "../../api/https";
 
+/**
+ * MessagesPage - Page to display mail correspondence between patient and user.
+ * This page also provide option to post email messages via this application
+ *
+ * @component
+ */
 
 const MessagesPage = () => {
     const dispatch = useDispatch();
@@ -14,6 +20,13 @@ const MessagesPage = () => {
 
     return <Messages />
 }
+
+/**
+ * loader - function to fetch available patient list before page load
+ * 
+ *
+ * @function
+ */
 
 export const loader = () => {
     return queryClient.fetchQuery({

@@ -1,13 +1,6 @@
-import { useSelector, useDispatch } from "react-redux"
-import { useFormData } from "../../../../../../hooks/useFormData"
-import { useState,useEffect } from "react"
-import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddNextDocumentationForm"
-import { LoadDefaultData } from "../../../../../../context/slices/AddNextDocumentationForm"
+//Components
 import OverlayModel from "../../../../../utility/OverlayModel"
-import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE"
 import Popup from "../../../../../utility/Popup"
-import style from '../css/PatientDocumentation_FORMS.module.css'
-import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsValid"
 import BabyFeedingSection from "./BabyFeedingSection"
 import BabyAdditionalFeeding from "./BabyAdditionalFeeding"
 import PatientBreastExaminationSection from "./PatientBreastExaminationSection"
@@ -16,9 +9,35 @@ import PatientMedicineSection from "./PatientMedicineSection"
 import PatientRecommendationSection from "./PatientRecommendationSection"
 import { MdKeyboardArrowRight } from "react-icons/md";
 import BaseInformation from "../BaseInformation"
+//Style
+import style from '../css/PatientDocumentation_FORMS.module.css'
+//Hooks
+import { useSelector, useDispatch } from "react-redux"
+import { useFormData } from "../../../../../../hooks/useFormData"
+import { useState,useEffect } from "react"
+import useFetchDocumentation from "../../../../../../hooks/useFetchDocumentation"
+//Slice
+import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddNextDocumentationForm"
+import { LoadDefaultData } from "../../../../../../context/slices/AddNextDocumentationForm"
+import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE"
+//Assets
+import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsValid"
 
-const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,onFormSubmit,documentationId,isSuccess,isError}) => {
 
+/**
+ * PatientDocumentationForm_NEXT - component to merge and form every section of next documentation and display it in correct order
+ * 
+ * Functionality:
+ * 
+ *  Displaying all next documentation sections component in order
+ * 
+ *  Form management
+ * 
+ *  Fetching documentation to backend
+ */
+
+const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,patientId,documentationId,isError}) => {
+    const {fetchDocumentation,isSuccess} = useFetchDocumentation(patientId);
     const dispatch = useDispatch();
     const [firstRun,setFirstRun] = useState(true)
 
@@ -54,7 +73,7 @@ const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,onFormSubmi
 
     const FormSumbitHandler = (event) => {
         event.preventDefault();
-        onFormSubmit(false,formValue,documentationId)
+        fetchDocumentation(false,formValue,documentationId)
     }
     return (
         <>

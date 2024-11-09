@@ -1,16 +1,22 @@
-import style from '../css/PatientDocumentationSections.module.css'
-
+//Components
 import LabelInput from '../../../../../utility/LabelInput'
 import SelectInput from '../../../../../utility/SelectInput'
-
 import TextArea from '../../../../../utility/TextArea'
+//Style
+import style from '../css/PatientDocumentationSections.module.css'
+
+
+/**
+ * PatientFamilyInterviewSection - component to display baby exctraction information
+ * 
+ * Parent component: NextDocumentation
+ */
 
 const PatientFamilyInterviewSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
     const isReadonly = readOnlyMode;
     return (
         <section className={style.PatientFormSection}>
-            
-            <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler} defaultValue={formInputs.motherFirstName} readonly={isReadonly} />
+            <TextArea controlId='documentationReason' label="Powód zgłoszenia" className={style.FullInput} onChange={SetFormInputHandler} defaultValue={formInputs.documentationReason} readonly={isReadonly} />
 
             <h6>Wywiad rodzinny</h6>
             <hr />

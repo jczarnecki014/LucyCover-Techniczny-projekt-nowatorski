@@ -2,6 +2,17 @@ import { useMutation } from "@tanstack/react-query"
 import { createNewDocumentation } from "../api/https/"
 import { queryClient } from "../api/https"
 
+/**
+ * useFetchDocumentation - Function to fetching patient visit documentation to api 
+
+ * @returns 
+        fetchDocumentation, - function to mutate action
+        isPending, - info about processing mutation
+        isError, - true if processing failed
+        isSuccess, - true if processing ok
+
+ */
+
 const useFetchDocumentation = (patientId) => {
 
     const {mutate,isPending,isError,isSuccess} = useMutation({
@@ -25,6 +36,7 @@ const useFetchDocumentation = (patientId) => {
             DocumentationFirstVisit: firstVisitDocumentation ? formInputs : undefined,
             DocumentationNextVisit: !firstVisitDocumentation ? formInputs : undefined
         }
+        console.log(patientId)
         mutate({documentationDetails:dataToFetch,patientId:patientId})
     }
 

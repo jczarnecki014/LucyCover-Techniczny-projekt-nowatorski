@@ -1,19 +1,45 @@
-import { useState } from "react"
-import { useDispatch,useSelector } from "react-redux"
-import { LoadDefaultData, SetFormDefault } from "../../../context/slices/AddNewVisitToScheduleForm"
-import { ResetActivePatients } from "../../../context/slices/PatientSearch_SLICE"
-import { OverlayToggle } from "../../../context/slices/OverlayModel_SLICE"
+//Components
 import PageBreakLayout from "../PageBreakLayout/PageBreakLayout"
 import PatientVisitsTable from "../PatientVisitManager/PatientVisitTable/PatientVisitsTable"
 import VisitManager from "./VisitManager/VisitManager"
 import DeleteConfirmation from "../PatientsPopups/DeleteConfirmation"
-import { DeleteSchedule } from "../../../api/https"
-import { GetDayFullMonthDate } from "../../../assets/main/GetDayFullMonthDate"
+//Style
 import style from "./css/PatientVisitsWrapper.module.css"
+//Hooks
+import { useState } from "react"
+import { useDispatch,useSelector } from "react-redux"
+//Store
+import { LoadDefaultData, SetFormDefault } from "../../../context/slices/AddNewVisitToScheduleForm"
+import { ResetActivePatients } from "../../../context/slices/PatientSearch_SLICE"
+import { OverlayToggle } from "../../../context/slices/OverlayModel_SLICE"
+//Api
+import { DeleteSchedule } from "../../../api/https"
+//Assets
+import { GetDayFullMonthDate } from "../../../assets/main/GetDayFullMonthDate"
 import {format} from 'date-fns'
 
+/**
+ * PatientVisitsWrapper - Component provide:
+ * 
+ *  [1] - Displaying visit table
+ *  
+ *  [2] - Visit creator / edit form
+ * 
+ *  [3] - Visit status modifier
+ * 
+ * Props:
+ * 
+ * @param {string} selectedDay - Date of displaying visits (it is displayed on top of table)
+ * @param {Array} visits - Visits to display 
+ * @param {boolean} isSchedulePage - boolean which indicates if displayed PatientVisitsWrapper is used by schedule page. 
+ * For schedule page displaying is slighly diffrent
+ * @param {string} rightBtn - object to config [2] button - it takes object as {func: Function, desc:"btn description"}
+ * @param {boolean} isPending - boolen to pass information about some processing. 
+ * @param {React.Component} children - additional component which will be wrapped by PatientVisitsWrapper
+ * @returns 
+ */
 
-const PatientVisitsWrapper = (props) => {
+const PatientVisitsWrapper = ({selectedDay,visits,isSchedulePage,isPending,children}) => {
     const overlayDisplay = useSelector((state) => state.overlayModel.isVisible)
     const dispatch = useDispatch();
 
@@ -25,8 +51,8 @@ const PatientVisitsWrapper = (props) => {
         setPopupMode('AddNewVisit')
         dispatch(SetFormDefault())
         dispatch(ResetActivePatients())
-        if(props.selectedDay) {
-            const dateForInput = format(props.selectedDay,'yyyy-MM-dd');
+        if(selectedDay) {
+            const dateForInput = format(selectedDay,'yyyy-MM-dd');
             dispatch(LoadDefaultData({date:dateForInput}))
         }
         dispatch(OverlayToggle(true))
@@ -48,7 +74,7 @@ const PatientVisitsWrapper = (props) => {
 
     if(visitToEditId){
         visitToEdit = {
-            ...props.visits.find(visit => visit.id === visitToEditId ),
+            ...visits.find(visit => visit.id === visitToEditId ),
         }
     }
     return (
@@ -67,23 +93,23 @@ const PatientVisitsWrapper = (props) => {
                     patient={`${deleteConfirmationDetails.firstName} ${deleteConfirmationDetails.lastName}`} />}
 
             <PageBreakLayout>
-                <PageBreakLayout.LeftSide>
-                    {props.children}
+                <PageBreakLayout.LeftSide overflowY>
+                    {children}
                 </PageBreakLayout.LeftSide>
                 <PageBreakLayout.RightSide>
                     <div>
-                        {props.isSchedulePage && (
+                        {isSchedulePage && (
                             <div className={style.DateInfo}>
-                                <h4>{GetDayFullMonthDate(props.selectedDay)}</h4>
+                                <h4>{GetDayFullMonthDate(selectedDay)}</h4>
                             </div>
                         )}
                         <PatientVisitsTable
-                            isSchedulePage={props.isSchedulePage} 
+                            isSchedulePage={isSchedulePage} 
                             addNewVisitPopupInvoke={AddNewVisitPopupHandler}
                             deletePopupInvoke={DeleteConfirmationPopupHandler} 
                             editVisitPopupInvoke={EditVisitPoupHandler} 
-                            visits={props.visits} 
-                            isPending={props.isPending != null && props.isPending}/>
+                            visits={visits} 
+                            isPending={isPending != null && isPending}/>
                     </div>
                 </PageBreakLayout.RightSide>
             </PageBreakLayout>

@@ -21,6 +21,10 @@ const defaultState = {
     }
 }
 
+/**
+ * AddPatientForm - Main state for patient form
+ */
+
 const AddPatientForm = createSlice({
     name: 'AddPatientForm',
     initialState: defaultState,

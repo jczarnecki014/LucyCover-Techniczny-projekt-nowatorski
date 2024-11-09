@@ -1,9 +1,27 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchPatientsForSearchList } from '../../../../../api/https'
-import { useDispatch,useSelector } from 'react-redux'
-import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE'
+//Components
 import PatientSearchList from '../../../../utility/PatientVisitManager/VisitManager/PatientSearchList'
 import PatientElement from "./PatientElement"
+//Hooks
+import { useQuery } from '@tanstack/react-query'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+//Store
+import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE'
+//Api
+import { fetchPatientsForSearchList } from '../../../../../api/https'
+
+/**
+ * ChoosePatientList - component to display other list of patients. It displays patient as a block. It is use in some forms where patient should be choosen from list
+ * 
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaying list of patients
+ * 
+ *  [2] - Sekecting patient option.
+ * 
+ */
+
 
 const ChoosePatientList = ({onSelect,disabledPatients,closeFunc}) => {
     const dispatch = useDispatch();

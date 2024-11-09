@@ -1,6 +1,13 @@
+//Components
+import LabelInput from '../../../../../utility/LabelInput'
+//Style
 import style from '../css/PatientDocumentationSections.module.css'
 
-import LabelInput from '../../../../../utility/LabelInput'
+/**
+ * PatientDetailsSection - component to display patient details information
+ * 
+ * Parent component: NextDocumentation
+ */
 
 const PatientDetailsSection = ({SetFormInputHandler,readOnlyMode,formInputs}) => {
     const isReadonly = readOnlyMode;

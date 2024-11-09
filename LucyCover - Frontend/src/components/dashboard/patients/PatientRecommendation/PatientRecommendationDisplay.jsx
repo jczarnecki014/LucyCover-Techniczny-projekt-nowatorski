@@ -1,12 +1,25 @@
+//Components
+import ToPrintPage from './ToPrintPage';
+//Style
 import style from './css/PatientRecommendationDisplay.module.css'
-
+//Hooks
 import { useRef } from 'react';
 import {useLoaderData} from 'react-router-dom'
 import { useReactToPrint } from 'react-to-print';
-import ToPrintPage from './ToPrintPage';
+
+
+/**
+ * PatientRecommendationDisplay - component to display choosen documentation, and print option
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaing recommendation details
+ * 
+ *  [2] - Print option display
+ * 
+ */
 
 const PatientRecommendationDisplay = () => {
-
     const recommendationData = useLoaderData()
     const {date,patientFirstName,patientLastName,text,title} = recommendationData;
 

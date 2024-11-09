@@ -31,7 +31,7 @@ namespace LucyCover___Backend.Services
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task SendEmailAsync(IEmailMessage toSendEmail, string? fileName=null)
+        public async Task SendEmailAsync(IEmailMessage toSendEmail, string? filePath=null)
         {
            MimeMessage email = new MimeMessage();
            email.From.Add(new MailboxAddress("LucyCover",_configuration["Smtp:Username"]));
@@ -49,9 +49,9 @@ namespace LucyCover___Backend.Services
            using(var smtp = new SmtpClient())
            {
                 
-               if(!string.IsNullOrEmpty(fileName))
+               if(!string.IsNullOrEmpty(filePath))
                {
-                    MimePart attachment = LoadAttachment(fileName);
+                    MimePart attachment = LoadAttachment(filePath);
                     multipart.Add(attachment);
                }
 
@@ -94,21 +94,18 @@ namespace LucyCover___Backend.Services
             }
         }
 
-        private MimePart LoadAttachment(string fileName)
+        private MimePart LoadAttachment(string filePath)
         {
-            string wwwrootPath = _webHostEnvironment.WebRootPath;
-            string attachmentPath = Path.Combine(wwwrootPath,"uploads",fileName);
-
-            if (File.Exists(attachmentPath))
+            if (File.Exists(filePath))
             {
-                byte[] fileBytes = File.ReadAllBytes(attachmentPath);
+                byte[] fileBytes = File.ReadAllBytes(filePath);
                 
                     var mimeAttachment = new MimePart("application", "octet-stream")
                     {
                         Content = new MimeContent(new MemoryStream(fileBytes), ContentEncoding.Default),
                         ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
                         ContentTransferEncoding = ContentEncoding.Base64,
-                        FileName = Path.GetFileName(fileName)
+                        FileName = Path.GetFileName(filePath)
                     };
                     return mimeAttachment;
             }

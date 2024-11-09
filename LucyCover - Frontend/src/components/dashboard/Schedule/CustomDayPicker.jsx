@@ -1,12 +1,34 @@
-import style from './css/Schedule.module.css'
+//Componets
 import { DayPicker } from "react-day-picker";
-import './css/DatePickerCustom.css'
 import { pl } from "react-day-picker/locale";
+//Style
+import style from './css/Schedule.module.css'
+import './css/DatePickerCustom.css'
+//Hooks
 import { useMutation } from '@tanstack/react-query';
-import { getVisitsByMonth } from '../../../api/https';
 import { useEffect, useState } from 'react';
+//Api
+import { getVisitsByMonth } from '../../../api/https';
 
-const CustomDayPicker = ({showVisits}) => {
+/** 
+* CustomDayPicker - calendar to pick date
+*
+* Functionality:
+*
+* [1] - Calendar to pick specific date
+*
+* [2] - Invoking supllied function when user change a date
+*
+* [3] - Calendar fetch all visits for selected month and mark every day of the month when some visits are
+*
+* Params:
+* @param
+* ShowVisits - function which will be invoke when user pick a date. By default CustomDatePicker invoke this function when
+* component first run to set first date as today 
+*
+*/
+
+const CustomDayPicker = ({onDayChange}) => {
     const [arrangeDaysInMonth,setArrangeDaysInMonth] = useState();
 
     const ConvertAndSetArrangeDays = (stringFormatDateList) => {
@@ -31,8 +53,8 @@ const CustomDayPicker = ({showVisits}) => {
     useEffect(()=>{
         const today = new Date();
         MonthChangeHandler(today)
-        showVisits(today)
     },[])
+
 
     return (
         <DayPicker
@@ -47,10 +69,9 @@ const CustomDayPicker = ({showVisits}) => {
                     arrangeDays: 'arrangeDays'
                 }}
                 onDayClick={(date, modifiers) => {
-                    showVisits(date)
+                    onDayChange(date)
                 }}
                 onMonthChange={MonthChangeHandler}
-                 
         />
     )
 }

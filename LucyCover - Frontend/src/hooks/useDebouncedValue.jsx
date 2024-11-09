@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 
+/**
+ * useDebouncedValue - hooks which take value and delay time and return this same value affter passing delay
+ */
 
 const useDebouncedValue = (value,delay) => {
     const [debouncedValue,SetdebouncedValue] = useState();

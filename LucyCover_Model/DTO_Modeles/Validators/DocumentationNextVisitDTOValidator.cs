@@ -30,7 +30,7 @@ namespace LucyCover_Model.DTO_Modeles.Validators
             RuleFor(x => x.PatientBreastNipple).NotEmpty().NotNull().MaximumLength(60);
             RuleFor(x => x.PatientBreastNippleAfterFeeding).NotEmpty().NotNull().MaximumLength(50);
             RuleFor(x => x.PatientMentalState).NotEmpty().NotNull().MaximumLength(50);
-            RuleFor(x => x.ResearchObservationBabyBehaviour).NotEmpty().NotNull().MaximumLength(50);
+            RuleFor(x => x.ResearchObservationBabyBehaviour).NotEmpty().NotNull().MaximumLength(250);
 
             RuleFor(x => x.BabyPeeingADay).NotEmpty().NotNull().MaximumLength(50);
             RuleFor(x => x.BabyExcretionADay).NotEmpty().NotNull().MaximumLength(50);

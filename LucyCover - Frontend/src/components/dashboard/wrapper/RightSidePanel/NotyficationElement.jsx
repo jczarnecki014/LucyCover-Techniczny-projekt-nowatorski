@@ -1,8 +1,8 @@
-import style from '../css/Wrapper.module.css'
-
+//Componetns
 import { FaEye } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
-import { useSelector } from 'react-redux';
+//Style
+import style from '../css/Wrapper.module.css'
 
 const NotyficationElement = ({title,description}) => {
     return ( 
