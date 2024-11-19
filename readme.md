@@ -111,5 +111,18 @@ Aby uruchomić aplikację serwerową (backend) w pierwszej kolejności należy s
     ```
     
 Jeżeli aplikacja urchomiła się prawidłowo, możesz teraz zacząć korzystać z aplikacji klienckiej. Połączenia między aplikacjami będą wykonywały się automatycznie.
-    
+
+## Informacja dodatkowa
+`Uwaga ! Jeżeli testujesz aplikacje uruchamiaj ją w trybie symulacji`
+
+    appsetting.json
+    ```
+    "Mode": "simulation"
+    ```
+W trybie symulacji aplikacja udostępnia do testów specjalnego użytkownika z wstępnie wygenerowanymi danymi. 
+Dane logowania:
+```
+email: testuser@lucycover.com
+hasło: test
+```
     
