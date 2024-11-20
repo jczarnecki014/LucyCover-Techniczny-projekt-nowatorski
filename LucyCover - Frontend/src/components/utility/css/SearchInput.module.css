@@ -1,0 +1,10 @@
+.SearchInput_Box{
+    display: flex;
+    padding: 0px 10px 0px 10px;
+    background-color: #fff;
+}
+.SearchInput_Box input{
+    border: none;
+    outline: none;
+    max-width: 100%;
+}

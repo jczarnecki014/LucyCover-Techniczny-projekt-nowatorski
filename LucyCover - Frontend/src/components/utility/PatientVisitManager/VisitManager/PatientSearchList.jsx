@@ -1,15 +1,13 @@
 //Components
 import OverlayModel from "../../../utility/OverlayModel"
-import IconInput from '../../../utility/IconInput'
-import { IoClose } from "react-icons/io5";
-import { CiSearch } from "react-icons/ci";
+import SearchInput from "../../SearchInput"
 import { AnimatePresence } from 'framer-motion'
 //Style
 import style from './css/PatientSearchList.module.css'
 //Hooks
-import { useState,useEffect } from 'react'
-//Assets
-import { GetPatientsListFilteredByTerm } from '../../../../assets/main/GetPatientsListFilteredByTerm'
+import { useState } from 'react'
+import useSearchList from "../../../../hooks/useSearchList";
+
 
 
 /**
@@ -26,29 +24,11 @@ import { GetPatientsListFilteredByTerm } from '../../../../assets/main/GetPatien
  */
 
 const PatientSearchList = ({listElements,children,closeFunc, funcButton}) => {
-    const [searchTerm,setSearchTerm] = useState("");
-    const [searchList,setSearchList] = useState(listElements)
-
-    let timeout
-    //USE HOOK // przenieisnie funkcjonalnosci do IconInput ?
-    useEffect(()=>{
-        timeout = setTimeout(()=>{
-            const filteredSearchList = GetPatientsListFilteredByTerm(listElements,searchTerm)
-            setSearchList(filteredSearchList)
-        },300)
-
-        return () => {
-            clearTimeout(timeout)
-        }
-    },[searchTerm])
-
-    const SearchInputHandler = (event) => {
-        setSearchTerm(event.target.value)
-    }
-
-    const ClearInputClickHandler = () => {
-        setSearchTerm('')
-    }
+    const [searchPhrase,SetSearchPhrase] = useState("");
+    const patientList = useSearchList({
+        list:listElements,
+        searchPhrase
+    });
 
     return (
         <OverlayModel 
@@ -58,24 +38,22 @@ const PatientSearchList = ({listElements,children,closeFunc, funcButton}) => {
 
             <div className={style.Container}>
                 <div className={style.TopBar}>
-                    <IconInput placeholder='Imie i nazwisko' value={searchTerm} onInput={SearchInputHandler}>
-                        {searchTerm.length === 0 ? <CiSearch /> : <IoClose onClick={ClearInputClickHandler} /> }
-                    </IconInput>
+                    <SearchInput placeholder='Imie i nazwisko' value={searchPhrase} SetSearchPhrase={SetSearchPhrase} />
                 </div>
                     {
-                        (searchList != null && searchList.length > 0) &&  
+                        (patientList != null && patientList.length > 0) &&  
                         (
                             <div className={style.PatientList}>
                                 <AnimatePresence>
                                     {
-                                    searchList.map(searchElement => children(searchElement))  
+                                    patientList.map(searchElement => children(searchElement))  
                                     }
                                 </AnimatePresence>
                             </div>
                         )
                     }
                     {
-                        (searchList == null || searchList.length == 0) && (
+                        (patientList == null || patientList.length == 0) && (
                             <div className={style.ErrorInfo}> 
                                 <h2>Brak elementów do wyświetlenia</h2>
                             </div>

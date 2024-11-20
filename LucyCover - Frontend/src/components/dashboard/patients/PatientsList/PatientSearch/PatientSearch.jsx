@@ -1,18 +1,15 @@
 //Components
-import IconInput from '../../../../utility/IconInput';
+import SearchInput from '../../../../utility/SearchInput';
 import PatientElement from './PatientElement';
-import { IoClose } from "react-icons/io5";
-import { CiSearch } from "react-icons/ci";
 import { AnimatePresence } from 'framer-motion';
 //Style
 import style from '../css/PatientSearch.module.css'
 //Hooks
 import { useDispatch,useSelector } from 'react-redux';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
+import useSearchList from '../../../../../hooks/useSearchList'
 //Store
 import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE';
-//Assets
-import { GetPatientsListFilteredByTerm } from '../../../../../assets/main/GetPatientsListFilteredByTerm';
 
 
 /**
@@ -27,32 +24,14 @@ import { GetPatientsListFilteredByTerm } from '../../../../../assets/main/GetPat
  */
 
 const PatientSearch = ({patients,showNewPatientForm}) => {
-    const [searchTerm,setSearchTerm] = useState("");
-    const [patientList,setPatientList] = useState(patients)
+    const [searchPhrase,SetSearchPhrase] = useState("");
+    const patientList = useSearchList({
+        list:patients,
+        searchPhrase
+    });
 
     const dispatch = useDispatch()
     const activePatientId = useSelector(state => state.patientSearch.activePatient.id);
-
-    let timeout
-
-    useEffect(()=>{
-        timeout = setTimeout(()=>{
-            const filteredPatients = GetPatientsListFilteredByTerm(patients,searchTerm)
-            setPatientList(filteredPatients)
-        },300)
-
-        return () => {
-            clearTimeout(timeout)
-        }
-    },[searchTerm,patients])
-
-    const SearchInputHandler = (event) => {
-        setSearchTerm(event.target.value)
-    }
-
-    const ClearInputClickHandler = () => {
-        setSearchTerm('')
-    }
 
     const NewPatietntButtonClickHandler = () => {
         showNewPatientForm({display: true, mode:'content'})
@@ -67,9 +46,7 @@ const PatientSearch = ({patients,showNewPatientForm}) => {
         <>
             <div className={style.Header}>
                 <button onClick={NewPatietntButtonClickHandler}>Dodaj</button>
-                <IconInput placeholder='Imie i nazwisko' value={searchTerm} onInput={SearchInputHandler}>
-                    {searchTerm.length === 0 ? <CiSearch /> : <IoClose onClick={ClearInputClickHandler} /> }
-                </IconInput>
+                <SearchInput placeholder='Imie i nazwisko' value={searchPhrase} SetSearchPhrase={SetSearchPhrase} />
             </div>
             <div className={style.PatientsList}>
                 <AnimatePresence mode='wait'>
