@@ -3,10 +3,11 @@ import { AnimatePresence } from "framer-motion";
 import {motion} from "framer-motion";
 import PatientMessageElement from "./PatientMessageSearchListElement"
 import PatientMessageSearchListElement from "../PatientMessageSearchList/PatientMessageSearchListElement";
+import SearchInput from '../../../utility/SearchInput'
 //Style
 import style from '../css/Message.module.css'
 //Hooks
-import useSearchList from "../../../../hooks/useSeachList";
+import useSearchList from "../../../../hooks/useSearchList";
 import { useState } from "react";
 
 /**
@@ -33,17 +34,13 @@ const PatientMessageSearchList = ({patientsList,activePatientEmail,SetActivePati
         searchPhrase
     });
 
-    const SearchInputChangeHandler = (event) => {
-        SetSearchPhrase(event.target.value)
-    }
-
     const isNoContent = searchList.length == 0
     
     return (
         <div className={style.PatientList}>
             <div className={style.SearchPatient}>
                 <h5>Wyszukaj</h5>
-                <input onChange={SearchInputChangeHandler}/>
+                <SearchInput placeholder='Imie i nazwisko' value={searchPhrase} SetSearchPhrase={SetSearchPhrase} />
             </div>
             <div id={isNoContent && style.NoContent} className={style.PatientElementsList}>
                 {isNoContent && <motion.h4 >Brak wyników</motion.h4>}
