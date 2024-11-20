@@ -1,6 +1,7 @@
-import style from './css/TableButtons.module.css'
-
+//Components
 import { Link } from 'react-router-dom'
+//Style
+import style from './css/TableButtons.module.css'
 
 const TableButtons = ({showPopup,document}) => {
 

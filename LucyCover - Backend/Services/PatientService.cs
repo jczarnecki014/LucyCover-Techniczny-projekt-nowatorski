@@ -7,8 +7,10 @@ using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
 using LucyCover_Model.DTO_Modeles.Validators;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using System.Linq;
 
 namespace LucyCover___Backend.Services
 {
@@ -48,24 +50,41 @@ namespace LucyCover___Backend.Services
 
         public string UpsertPatient(PatientDTO formDTO)
         {
-            Patient patient = _mapper.Map<Patient>(formDTO);
             bool isValid = _validator.Validate(formDTO).IsValid;
             if(!isValid)
             {
                 throw new BadHttpRequestException("Recived paitent inputs are not valid!");
             }
 
+            Patient patient = _mapper.Map<Patient>(formDTO);
+
             patient.userId = _loggedUser;
 
             if(formDTO.patientId != null)
             {
-                _unitOfWork.patient.Update(patient);
+                //If user try to remove children, system delete existing visits for this children also
+                var childrenInDb = _unitOfWork.patient.GetFirstOfDefault(p => p.id == formDTO.patientId,includeProperties:"children").children.ToList();
+                var childrenToDelete = childrenInDb.Where(c => !formDTO.children.Any(p => p.id == c.id)).ToList(); //Get children in db which are not in formDTO (They will delete)
+                var schedulesForChildrenToDelete = _unitOfWork.schedule.GetAll(s => childrenToDelete.Select(p => p.id).Contains(s.childId)).ToList(); //Get visits/schedules for this children
+                 _unitOfWork.schedule.RemoveRange(schedulesForChildrenToDelete);
+                //
+                 _unitOfWork.patient.Update(patient);
             }
             else
             {
                 _unitOfWork.patient.Add(patient);
             }
-            _unitOfWork.Save();
+
+            try
+            {
+                _unitOfWork.Save();
+            }
+            catch (DbUpdateException ex) 
+            {
+                throw new RelationBetweenEntityException("You can not delete childrens which have exiting documentation in system. " +
+                                        "Firstly you should delete every documentation for delating childrens.");
+            }
+
             return patient.id.ToString();
         }
 

@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * OverlayModelSlice - Slice keep state of displaing overlay on application
+ */
 
 const OverlayModelSlice = createSlice({
     name: 'overlayModel',

@@ -145,8 +145,9 @@ export async function downloadEducationMaterial({signal,materialId}) {
     return {blob:await response.blob(),fileName};
 }
 
-export async function getVisitsByDate({date}) {
+export async function getVisitsByDate({date,signal}) {
     const response = await fetch(`https://localhost:7014/api/schedule/${date}`,{
+        signal,
         credentials: "include"
     }) 
     if(!response.ok){
@@ -216,7 +217,10 @@ export async function createNewPatient(patient) {
         },
         credentials:"include"
     })
-    r
+    if(response.status == 409)
+    {
+        throw new Error("Wystąpił konflikt ! Najprawdopodobniej próbujesz usunać dziecko lub pacjenta dla, którego wciąż istnieje dokumentacja. Pamiętaj a by w pierwszej kolejności usunąć dokumentację przypisaną do dziecka !")
+    }
     if(response.status !== 201) {
         throw new Error("Podczas dodwania pacjenta coś poszło nie tak")
     }
@@ -265,6 +269,10 @@ export async function upsertVisit({visitDetails,patientId}) {
 
     if(response.status === 422){
         throw new Error("Błąd podczas walidowania adresu email pacjenta. Wizyta została zaplanowana jednak powiadomienie nie zostało wysłane.")
+    }
+    if(response.status == 400)
+    {
+        throw new Error("Wysłano nieprawidłowy formularz proszę upewnić się, że wszystkie pola wypełnione są prawidłowo")
     }
     if(response.status !== 201) { 
         throw new Error("Coś poszło nie tak podczas planowania wizyty, porszę spróbować jeszcze raz lub skontaktować się z administratorem")

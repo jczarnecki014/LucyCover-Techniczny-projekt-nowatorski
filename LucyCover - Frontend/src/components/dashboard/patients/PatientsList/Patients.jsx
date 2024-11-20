@@ -1,13 +1,29 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { fetchPatientsForSearchList } from '../../../../api/https';
-import { useSelector, useDispatch } from 'react-redux';
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
+//Components
 import PatientSearch from './PatientSearch/PatientSearch';
 import PatientDetails from '../PatientDetails/PatientDetails';
 import PatientManageForm from '../PatientManageForm/PatientManageForm';
 import { AnimatePresence } from 'framer-motion';
 import PatientLayout from '../../../utility/PageBreakLayout/PageBreakLayout';
+//Hooks
+import { useQuery } from '@tanstack/react-query';
+import { useSelector, useDispatch } from 'react-redux';
+//Store
+import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
+//Api
+import { fetchPatientsForSearchList } from '../../../../api/https';
+
+/**
+ * Patients - component to display list of available patients for users. 
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaying list of patients
+ * 
+ *  [2] - Displaying option to create new patient
+ * 
+ *  [3] - Displaying details of selected patient
+ */
 
 const Patients = () => {
 
@@ -30,7 +46,6 @@ const Patients = () => {
     }
     
     return (
-
         <>
             <AnimatePresence>
                 {patientAddingMode && <PatientManageForm />}

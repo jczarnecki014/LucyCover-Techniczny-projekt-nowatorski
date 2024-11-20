@@ -1,11 +1,18 @@
+//Components
 import LabelInput from "../../../../../utility/LabelInput";
 import SelectInput from "../../../../../utility/SelectInput";
-
+//Style
 import style from '../css/PatientDocumentationSections.module.css'
 
-const BabyFeedingSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
+/**
+ * BabyFeedingSection - component to display baby feeding information
+ * 
+ * Parent component: NextDocumentation
+ */
 
+const BabyFeedingSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
     const isReadonly = readOnlyMode;
+
     return (
         <section className={style.PatientFormSection}>
             <h6>Karmienie obecnie</h6>
@@ -17,7 +24,7 @@ const BabyFeedingSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
 
                 <SelectInput controlId='patientFeedingInNight' label="Czy w tym karmienia nocne" className={style.StandardInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientFeedingInNight} value={formInputs.patientFeedingInNight}  readonly={isReadonly} />
 
-                <LabelInput controlId='patientFeedingHowMuchTime' label='Jak długo trwa jedno karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} value={formInputs.patientFeedingHowMuchTime} readonly={isReadonly} />
+                <LabelInput controlId='patientFeedingHowMuchTime' label='Ile trwa jedno karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} value={formInputs.patientFeedingHowMuchTime} readonly={isReadonly} />
 
                 <SelectInput controlId='patientBreastFeedingWithHood' label="Czy również karmienie z Kapturkiem" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastFeedingWithHood} readonly={isReadonly} />
 

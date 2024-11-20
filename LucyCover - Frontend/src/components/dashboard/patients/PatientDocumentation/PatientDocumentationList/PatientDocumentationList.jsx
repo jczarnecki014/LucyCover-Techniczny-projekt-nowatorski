@@ -1,16 +1,33 @@
+//Components
 import { AnimatePresence } from "framer-motion"
 import PatientTable from "../../PatientTable/PatientTable"
 import TableButtons from "../../PatientTable/TableButtons"
 import AddPatientDocumentation from "../AddPatientDocumentation/AddPatientDocumentation"
 import DeleteConfirmation from "../../../../utility/PatientsPopups/DeleteConfirmation"
+//Style
 import style from './css/PatientDocumentation.module.css'
+//Hooks
 import { useSelector,useDispatch} from "react-redux"
-import { useLoaderData } from "react-router-dom"
-import { OverlayToggle } from "../../../../../context/slices/OverlayModel_SLICE"
 import { useState } from "react"
-import { DeleteDocumentation } from "../../../../../api/https"
 import { useQuery } from "@tanstack/react-query"
+//Store
+import { OverlayToggle } from "../../../../../context/slices/OverlayModel_SLICE"
+//Api
+import { DeleteDocumentation } from "../../../../../api/https"
 import { fetchDocumentation } from "../../../../../api/https"
+
+/**
+ * PatientDocumentationList - component to display list of all patients visit. From this place use can select which one he would display
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying list of visits
+ * 
+ *  [2] - Custom styling for first and next documentation
+ * 
+ *  [3] - Buttons to delate and add new documentation
+ * 
+ */
 
 const PatientDocumentationList = () => {
     //Take data from cache by tanstack query
@@ -19,8 +36,8 @@ const PatientDocumentationList = () => {
         refetchOnWindowFocus:true,
         queryFn: ({signal}) => fetchDocumentation({signal,patientId:data.patient.id})
     })
-
     const popupIsVisible = useSelector((state) => state.overlayModel.isVisible)
+
     const [popupDetails,setPopupDetails] = useState({
         mode:'AddingForm / DeleteConfirmation',
         popupData: {
@@ -49,7 +66,7 @@ const PatientDocumentationList = () => {
                     <DeleteConfirmation 
                         what='dokumentacje' 
                         day={popupDetails.popupData.day} 
-                        childName={`${popupDetails.popupData.patient.childFirstName} ${popupDetails.popupData.patient.childLastName}`}
+                        patient={`${popupDetails.popupData.patient.childFirstName} ${popupDetails.popupData.patient.childLastName}`}
                         elementId={popupDetails.popupData.elementId} 
                         deleteAction={DeleteDocumentation} 
                     />

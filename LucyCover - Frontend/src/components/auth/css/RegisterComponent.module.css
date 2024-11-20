@@ -6,26 +6,29 @@
 
 .Container .LogoSection {
     display: flex;
-    height: 15%;
+    height: 10%;
 }
 
 .Container .LogoSection img {
-    width: 20%;
+    width: 15%;
 }
 
 .Container form {
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 85%;
+    height: 90%;
+    /* background-color: blue; */
 }
 
 .Container form .InputSection {
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow-y: auto;
     width: 100%;
     height: 70%;
+    /* background-color: yellow; */
 }
 
 .Container form .InputSection .Input {
@@ -42,9 +45,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 15%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30%;
     width: 100%;
-    margin-top: 20px;
 }
 
 .Container  button {
@@ -73,7 +79,7 @@
     height: 80%;
     flex-direction: column;
     padding: 20px;
-
+    margin-top: 50px;
 }
 
 .Container .RegisterSuccessBox .Header {

@@ -1,7 +1,14 @@
-import style from '../css/PatientDocumentationSections.module.css'
-
+//Components
 import LabelInput from '../../../../../utility/LabelInput'
 import SelectInput from '../../../../../utility/SelectInput'
+//Style
+import style from '../css/PatientDocumentationSections.module.css'
+
+/**
+ * BabyDetailsSection - component to display baby details information
+ * 
+ * Parent component: NextDocumentation
+ */
 
 const BabyDetailsSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
 

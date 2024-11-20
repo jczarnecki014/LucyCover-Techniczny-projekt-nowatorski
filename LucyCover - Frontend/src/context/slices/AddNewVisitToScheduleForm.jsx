@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
 
 const defaultState = {
     city: {value:'', isValid: false},
@@ -11,6 +10,10 @@ const defaultState = {
     description: {value:'', isValid: false},
     status: {value:'Zaplanowana', isValid: true}
 }
+
+/**
+ * AddNewVisitToScheduleForm - Main form state for new visit (schedule form) (validation and value)
+ */
 
 const AddNewVisitToScheduleForm = createSlice({
     name: 'AddNewVisitToScheduleForm',

@@ -1,15 +1,31 @@
-import { useState } from "react"
-import { useLoaderData } from "react-router-dom"
-import { useDispatch,useSelector } from "react-redux"
-import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE"
+//Components
 import TableButtons from "../PatientTable/TableButtons"
 import PatientTable from "../PatientTable/PatientTable"
 import AddPatientRecommendation from "./AddPatientRecommendation"
 import DeleteConfirmation from '../../../utility/PatientsPopups/DeleteConfirmation'
 import { AnimatePresence } from "framer-motion"
+//Hooks
+import { useState } from "react"
+import { useDispatch,useSelector } from "react-redux"
 import { useQuery } from "@tanstack/react-query"
+//Store
+import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE"
+//Api
 import { fetchRecommendation } from "../../../../api/https"
 import { DeleteRecommendation } from "../../../../api/https"
+
+
+/**
+ * PatientRecommendation - component to display patient recommendations functions
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaing recommendation list
+ * 
+ *  [2] - Add / edit / delete - documentaiton
+ * 
+ *  [3] - Display documentation list 
+ */
 
 const PatientRecommendation = () => {
     const {data} = useQuery({
@@ -36,7 +52,6 @@ const PatientRecommendation = () => {
             popupData
         })
     }
-    console.log(popupDetails)
     const patientName = `${patientFirstName} ${patientLastName}`
     return (
         <>

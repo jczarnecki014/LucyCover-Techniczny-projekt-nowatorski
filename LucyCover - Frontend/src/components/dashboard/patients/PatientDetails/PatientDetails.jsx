@@ -1,12 +1,18 @@
-import style from './css/PatientDetails.module.css'
-
-import {motion,AnimatePresence} from 'framer-motion'
-
+//Components
 import PatientHeader from './PatientHeader';
 import PatientName from './PatientName';
 import PatientContact from './PatientContact';
 import PatientChildrens from './PatientChildrens';
+//Style
+import style from './css/PatientDetails.module.css'
 
+/**
+ * PatientDetails - component to display patient basis personal details
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying patient bassis
+ */
 
 const PatientDetails = ({children}) => {
     

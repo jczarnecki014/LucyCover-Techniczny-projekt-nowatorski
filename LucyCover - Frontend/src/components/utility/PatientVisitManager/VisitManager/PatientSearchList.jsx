@@ -1,15 +1,29 @@
-import style from './css/PatientSearchList.module.css'
-
-import { useState,useEffect } from 'react'
-
+//Components
 import OverlayModel from "../../../utility/OverlayModel"
 import IconInput from '../../../utility/IconInput'
 import { IoClose } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
-
-import { GetPatientsListFilteredByTerm } from '../../../../assets/main/GetPatientsListFilteredByTerm'
 import { AnimatePresence } from 'framer-motion'
+//Style
+import style from './css/PatientSearchList.module.css'
+//Hooks
+import { useState,useEffect } from 'react'
+//Assets
+import { GetPatientsListFilteredByTerm } from '../../../../assets/main/GetPatientsListFilteredByTerm'
 
+
+/**
+ * PatientSearchList - Component to search patient alloted to user 
+ * 
+ *  This is children componenent for VisitManager
+ * 
+ * Props:
+ * 
+ * @param {Array} listElements - List of avaiable patients
+ * @param {Function} children - -||-
+ * @param {Function} closeFunc - Function which will be invoke after component close
+ * @param {Function} funcButton - Function which will be invoke when user click additional button
+ */
 
 const PatientSearchList = ({listElements,children,closeFunc, funcButton}) => {
     const [searchTerm,setSearchTerm] = useState("");

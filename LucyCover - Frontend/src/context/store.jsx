@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-
+//Slices
 import PatientSearchSlice from "./slices/PatientSearch_SLICE";
 import OverlayModelSlice from "./slices/OverlayModel_SLICE";
 import AddPatientForm from "./slices/AddPatientForm";

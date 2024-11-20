@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react"
 
+/**
+ * useSearchList - It supply search list mechanism.
+ * @param {Array} list  - List which will be search
+ * @param {string} searchPhrase  - searchPhrase which will be use as key words
+ * @returns searchList
+ */
 
 const useSearchList = ({list,searchPhrase}) => {
     const [searchList,SetSearchList] = useState([]);

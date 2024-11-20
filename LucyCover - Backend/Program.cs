@@ -33,12 +33,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //CORSE Settings
-
+string allowedOrigin = builder.Configuration["AllowedOrigin"];
 builder.Services.AddCors(option => {
     option.AddPolicy("LucyCoverFrontend",policyBuilder => {
         policyBuilder.AllowAnyHeader();
         policyBuilder.AllowAnyMethod();
-        policyBuilder.WithOrigins("https://localhost:5173");
+        policyBuilder.WithOrigins(allowedOrigin);
         policyBuilder.WithExposedHeaders("filename");
         policyBuilder.AllowCredentials();
     });
@@ -49,8 +49,11 @@ builder.Services.AddDbContext<DbConnection>(option => {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
-//Autompaer configuration
 
+//Database seeder
+builder.Services.AddScoped<DbSeeder>();
+
+//Autompaer configuration
 builder.Services.AddAutoMapper(cfg => 
 {
     var serviceProvider = builder.Services.BuildServiceProvider();
@@ -131,7 +134,16 @@ builder.Services.AddScoped<ExceptionHandler>();
 
 var app = builder.Build();
 
-
+//Prepare database when app start
+/**
+ * Preparing of database depend on mode configiguration in appseting.json
+ * Mode = "simulation" - There is generate some default random content to display application functionalities
+ * Mode = "default" - It is default behavior of application. Empyty database prepared to start work with application on production
+ */
+var appMode = builder.Configuration["Mode"];
+var scope = app.Services.CreateScope();
+var dbSeeder = scope.ServiceProvider.GetService<DbSeeder>();
+dbSeeder.PrepareDatabaseStructure(appMode);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

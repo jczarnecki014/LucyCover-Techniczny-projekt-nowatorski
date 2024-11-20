@@ -13,6 +13,10 @@ const defaultState = {
     }
 }
 
+/**
+ * AuthFormSlice - Main state for Login and register forms 
+ */
+
 const AuthFormSlice = createSlice({
     name: 'AuthFormSlice',
     initialState: defaultState,

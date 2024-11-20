@@ -1,22 +1,41 @@
-import style from './css/AddNewVisit.module.css'
-import { useMutation } from '@tanstack/react-query';
-import { queryClient, upsertVisit } from '../../../../api/https';
-import {useDispatch,useSelector} from 'react-redux';
-import {SetInput} from '../../../../context/slices/AddNewVisitToScheduleForm';
-import {useFormData} from '../../../../hooks/useFormData'
-import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
-import { ResetActivePatients } from '../../../../context/slices/PatientSearch_SLICE';
-import { SetFormDefault } from '../../../../context/slices/AddNewVisitToScheduleForm';
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
-import { CheckPhoneIsValid } from '../../../../assets/Validation/PersonalData';
-import { CheckZipCodeIsValid } from '../../../../assets/Validation/PersonalData';
+//Components
 import { SlUserFemale } from "react-icons/sl";
 import OverlayModel from '../../../utility/OverlayModel'
 import LabelInput from '../../../utility/LabelInput'
 import TextArea from '../../../utility/TextArea'
 import VisitStatusButtonSection from './VisitStatusButtonSection';
+//Style
+import style from './css/AddNewVisit.module.css'
+//Hooks
+import {useDispatch,useSelector} from 'react-redux';
+import {useFormData} from '../../../../hooks/useFormData'
+//Store
+import {SetInput} from '../../../../context/slices/AddNewVisitToScheduleForm';
+import { ResetActivePatients } from '../../../../context/slices/PatientSearch_SLICE';
+import { SetFormDefault } from '../../../../context/slices/AddNewVisitToScheduleForm';
+import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
+//Assets
+import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
+import { CheckPhoneIsValid } from '../../../../assets/Validation/PersonalData';
+import { CheckZipCodeIsValid } from '../../../../assets/Validation/PersonalData';
 
-const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID}) => {
+/**
+ * VisitForm - Form to schedule new vistis for patient or edit existing
+ * 
+ *  This is children componenent for VisitManager
+ * 
+ * Props:
+ * 
+ * @param {Function} ChangeFormMode - Function to switch form display mode on patient browser
+ * 
+ * @param {object} activePatient - Details of patient which was selected by user
+ * 
+ * @param {object} activeChildren - Details of patient children which was selected by user
+ * 
+ * @param {string} visitId - If visitId was passed form will work in edit visit mode. In this mode form change slightly
+ */
+
+const VisitForm = ({ChangeFormMode,activePatient,activeChildren,visitID}) => {
 
     const dispatch = useDispatch();
     const formInputs = useSelector(state => state.addNewVisitToScheduleForm.formInputs)
@@ -28,7 +47,7 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID})
     const {childFirstName,childLastName,childBirthDate} = activeChildren;
     const {city,street,streetNumber,zipCode,date,clock,description,status} = generalVisitDetails
 
-    const formIsValid = CheckFormIsValid(formInputs) && activePatient.id && activeChildren.id
+    const formIsValid = (CheckFormIsValid(formInputs) && activePatient.id && activeChildren.id) ? true : false
 
     const SetFormInputHandler = ({inputId,inputObject}) => {
         dispatch(SetInput({inputId,inputObject}))
@@ -40,11 +59,10 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID})
         dispatch(OverlayToggle(false))
     }
 
-
     return (
         <OverlayModel 
             title="Zaplanuj wizytę" 
-            funcButton={{btnLabel:'Wybierz pacjenta',func:()=>SetFormDisplayHandler('patientsListMode')}}
+            funcButton={{btnLabel:'Wybierz pacjenta',func:()=>ChangeFormMode('patientsListMode')}}
             OnQuitButtonClick={FormQuitHandler}
             >
                 <form className={style.Container}>
@@ -110,7 +128,7 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID})
                                 disabled
                                 required />
 
-                            <button className={style.Input} onClick={()=>{SetFormDisplayHandler('childrenListMode')}}>
+                            <button className={style.Input} onClick={()=>{ChangeFormMode('childrenListMode')}}>
                                 Wybierz dziecko
                             </button>
                         </div>
@@ -190,13 +208,13 @@ const VisitForm = ({SetFormDisplayHandler,activePatient,activeChildren,visitID})
                                 visitStatus={status} 
                                 visitId = {visitID}
                                 formIsValid={formIsValid}
-                                SetFormDisplayHandler={SetFormDisplayHandler}
+                                ChangeFormMode={ChangeFormMode}
                         />
                         }
                         <button 
                             id={style.ActionButton} 
                             disabled={!formIsValid} 
-                            onClick={()=>SetFormDisplayHandler('visitConfirmation')}>
+                            onClick={()=>ChangeFormMode('visitConfirmation')}>
                             {
                                 visitID ? "Edytuj wizytę" : "Zaplanuj wizytę" 
                             }

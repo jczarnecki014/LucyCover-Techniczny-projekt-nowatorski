@@ -1,21 +1,32 @@
-import { useState,useEffect } from 'react';
-
-import { useDispatch,useSelector } from 'react-redux';
-import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE';
-
-import style from '../css/PatientSearch.module.css'
-
+//Components
 import IconInput from '../../../../utility/IconInput';
 import PatientElement from './PatientElement';
-
 import { IoClose } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
-
-import { GetPatientsListFilteredByTerm } from '../../../../../assets/main/GetPatientsListFilteredByTerm';
 import { AnimatePresence } from 'framer-motion';
+//Style
+import style from '../css/PatientSearch.module.css'
+//Hooks
+import { useDispatch,useSelector } from 'react-redux';
+import { useState,useEffect } from 'react';
+//Store
+import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE';
+//Assets
+import { GetPatientsListFilteredByTerm } from '../../../../../assets/main/GetPatientsListFilteredByTerm';
 
-const PatientSearch = ({patients,className,showNewPatientForm}) => {
 
+/**
+ * PatientSearch - component to display and filter list of patients
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaying list of patients
+ * 
+ *  [2] - Filter patients
+ * 
+ */
+
+const PatientSearch = ({patients,showNewPatientForm}) => {
     const [searchTerm,setSearchTerm] = useState("");
     const [patientList,setPatientList] = useState(patients)
 

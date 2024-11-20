@@ -17,7 +17,7 @@ namespace LucyCover_Model.DTO_Modeles.Validators
             RuleFor(x => x.streetNumber).NotEmpty().WithMessage("streetNumber cannot be empty");
             RuleFor(x => x.childId).NotEmpty().WithMessage("childId cannot be empty");
             RuleFor(x => x.city).NotEmpty().WithMessage("city cannot be empty");
-            RuleFor(x => x.zipCode).NotEmpty().WithMessage("zipCode cannot be empty");
+            RuleFor(x => x.zipCode).NotEmpty().MaximumLength(6).WithMessage("zipCode length has to be 6");
             RuleFor(x => x.description).NotEmpty().WithMessage("description cannot be empty");
         }
     }

@@ -33,5 +33,7 @@ namespace LucyCover_Model.Database_Entities
         [ForeignKey("patientId")]
         public Patient patient { get;set;}
 
+        public ICollection<Schedule> Schedules { get; set; }
+
     }
 }

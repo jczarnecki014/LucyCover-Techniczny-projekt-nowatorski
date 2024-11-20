@@ -1,8 +1,25 @@
+//Style
 import style from '../css/Message.module.css'
 
-const MessageElement = ({message,date,fromSystem}) => {
+/**
+ * MessageElement - component to display message details
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying message details
+ * 
+ *  [2] - Displaying message in appropriate way depending on message sender
+ * 
+ * Params:
+ * 
+ *  @param {string} message - string with message information
+ * 
+ *  @param {string} date - string with message date information
+ * 
+ *  @param {boolean} fromSystem - boolean with information about sender (system / patient)
+ */
 
-    // const test = message && new TextEncoder().encode(message)
+const MessageElement = ({message,date,fromSystem}) => {
 
     return (
         <div id={fromSystem ? style.SystemMessage : style.PatientMessage} className={style.MessageElement}>

@@ -5,6 +5,13 @@ import { useDispatch } from "react-redux";
 import { SetActivePage } from "../../context/slices/MainMenuSlice";
 import { useEffect } from "react";
 
+/**
+ * PatientsPage - Page to display available patient list and basic info about them
+ * 
+ *
+ * @component
+ */
+
 const PatientsPage = () => {
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -14,6 +21,12 @@ const PatientsPage = () => {
     return <Patients />
 }
 
+
+/**
+ * loader - function using to pre-loaded available patients list before display page
+ *
+ * @function
+ */
 export const loader = async () => {
     return queryClient.fetchQuery({
         queryKey: ['patients'],

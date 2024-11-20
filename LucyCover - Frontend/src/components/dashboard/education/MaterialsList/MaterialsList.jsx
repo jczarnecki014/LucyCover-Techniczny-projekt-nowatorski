@@ -1,14 +1,38 @@
-import style from '../css/Education.module.css'
+//Components
 import MaterialElement from './MaterialElement'
+//Style
+import style from '../css/Education.module.css'
+//Hooks
 import { useDispatch } from "react-redux";
+//Store
 import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE";
 
-const MaterialsList = ({materials,setActiveMaterial,activeElement,setNewMaterialCreatorMode}) => {
+/**
+ * MaterialsList - Component to displaying list of stored materials by user
+ * 
+ * Education <- Parent component
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying list of materials
+ * 
+ *  [2] - Button to add new material/file
+ * 
+ *  Params:
+ * 
+ *  @param {Array} materials - array of materials object. Items witch will be displayed in list
+ * 
+ *  @param {function} SetActiveMaterial - Function to set selected material as active. (Currently selected)
+ * 
+ *  @param {function} SetNewMaterialCreatorMode - Function to open form to sending file
+ */
+
+const MaterialsList = ({materials,SetActiveMaterial,activeElement,SetNewMaterialCreatorMode}) => {
     const dispatch = useDispatch();
 
     const AddNewMaterialPopupInvoke = () => {
         dispatch(OverlayToggle(true))
-        setNewMaterialCreatorMode();
+        SetNewMaterialCreatorMode();
     }
 
     return (
@@ -30,7 +54,7 @@ const MaterialsList = ({materials,setActiveMaterial,activeElement,setNewMaterial
                             active={activeElement.id == material.id} 
                             title={material.fileName} 
                             date={material.date} 
-                            onClick={()=>setActiveMaterial(material)} />
+                            onClick={()=>SetActiveMaterial(material)} />
                     ))
                 }
             </tbody>

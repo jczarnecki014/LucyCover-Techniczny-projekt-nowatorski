@@ -5,6 +5,13 @@ import Education from "../../components/dashboard/education/Education";
 import {queryClient} from '../../api/https'
 import { fetchAllEducationMaterial } from "../../api/https";
 
+/**
+ * EducationalMaterialsPage - Page to display every educational material / files stored by user on his netwoork disk space.
+ * 
+ *
+ * @component
+ */
+
 const EducationalMaterialsPage = () => {
     const dispatch = useDispatch();
 
@@ -14,6 +21,13 @@ const EducationalMaterialsPage = () => {
 
     return <Education />
 }
+
+/**
+ * loader - function to fetch every stored material list to display before page load
+ * 
+ *
+ * @function
+ */
 
 export const loader = () => {
     return queryClient.fetchQuery({

@@ -1,14 +1,27 @@
-import style from '../css/PatientSearch.module.css'
-import { useSelector } from 'react-redux';
-
+//Components
 import {motion} from 'framer-motion'
-
 import { FaUser } from "react-icons/fa";
+//Style
+import style from '../css/PatientSearch.module.css'
+
 
 const variants = {
     noVisible: {opacity:0, scale:0.3},
     visible: {opacity:1, scale:1},
 }
+
+/**
+ * PatientElement - component to display single patient element in list
+ * 
+ *  Parent component: PatientSearch
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaying list of patients
+ * 
+ *  [2] - Filter patients
+ * 
+ */
 
 const PatientElement = ({id,firstName,lastName,city,address,birthDate,patientType,setActivePatient,activePatientId,disabled}) => {
     const ClickHandler = () => {

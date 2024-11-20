@@ -4,9 +4,13 @@ import TextArea from "../../../../../utility/TextArea";
 
 import style from '../css/PatientDocumentationSections.module.css'
 
+/**
+ * PatientRecommendationSection - component to display recommendation section
+ * 
+ * Parent component: NextDocumentation
+ */
 
 const PatientRecommendationSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
-
     const isReadonly = readOnlyMode;
 
     return (

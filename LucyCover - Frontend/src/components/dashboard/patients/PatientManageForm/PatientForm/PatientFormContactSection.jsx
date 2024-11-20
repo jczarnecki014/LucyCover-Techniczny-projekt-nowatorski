@@ -1,10 +1,10 @@
+//Components
 import { Fragment } from "react"
-
-import style from '../css/PatientAddingForm.module.css'
-
 import { FaUser } from "react-icons/fa";
 import LabelInput from "../../../../utility/LabelInput";
-
+//Style
+import style from '../css/PatientAddingForm.module.css'
+//Assets
 import { CheckEmailIsValid,CheckPhoneIsValid } from "../../../../../assets/Validation/PersonalData";
 
 
@@ -12,6 +12,12 @@ const currentDate = new Date();
 const tenYearsAgo = currentDate.getFullYear() - 10;
 
 const datePickerMax = new Date(tenYearsAgo,currentDate.getMonth(), currentDate.getDate()).toLocaleDateString('fr-ca')
+
+/**
+ * PatientFormContactSection - component to display patient contact details inputs
+ * 
+ *  Parrent component : <PatientForm />
+ */
 
 const PatientFormContactSection = ({setPatientInput,patientInputs}) => {
     const {firstName,lastName,birthDate,birthPlace,phoneNumber,email} = patientInputs

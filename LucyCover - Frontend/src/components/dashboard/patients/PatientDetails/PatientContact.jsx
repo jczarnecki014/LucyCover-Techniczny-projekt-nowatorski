@@ -1,6 +1,7 @@
-import style from './css/PatientDetails.module.css'
-
+//Components
 import LabelInput from '../../../utility/LabelInput'
+//Style
+import style from './css/PatientDetails.module.css'
 
 const PatientContact = ({city,street,zipCode,province,phone,email}) => {
     return (

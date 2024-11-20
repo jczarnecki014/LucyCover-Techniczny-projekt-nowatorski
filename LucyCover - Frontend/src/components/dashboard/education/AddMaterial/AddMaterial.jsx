@@ -1,27 +1,52 @@
+//Components
 import LabelInput from "../../../utility/LabelInput"
 import OverlayModel from "../../../utility/OverlayModel"
-import style from "../css/Education.module.css"
-import { FaCloudUploadAlt } from "react-icons/fa";
 import  {motion}  from "framer-motion";
+import { FaCloudUploadAlt } from "react-icons/fa";
+//Style
+import style from "../css/Education.module.css"
+//hooks
 import { useDispatch,useSelector } from "react-redux";
-import { SetInput,SetFormDefault } from "../../../../context/slices/AddNewEducationMaterialSlice";
-import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
 import { useRef } from "react";
-import { AcceptedFileUploadFormat } from "../../../../assets/Validation/AcceptedFileUploadFormat";
 import { useMutation } from "@tanstack/react-query";
+//store
+import { SetInput,SetFormDefault } from "../../../../context/slices/AddNewEducationMaterialSlice";
+//assets
+import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
+import { AcceptedFileUploadFormat } from "../../../../assets/Validation/AcceptedFileUploadFormat";
+//api
 import { AddNewMaterial,queryClient } from "../../../../api/https";
 
-const AddMaterial = ({title,setOverlayMode,setErrorMessage}) => {
+/**
+ * AddMaterial - Component to adding material.
+ * 
+ * Education <- Parent component
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying and validating form to sending new file
+ * 
+ *  [2] - Posting new material on server
+ * 
+ *  Params:
+ * 
+ *  @param {function} SetOverlayMode - This function define mode of overlay display
+ * 
+ *  @param {function} SetErrorMessage - Function to set error message as state which update error overlay
+ * 
+ */
+
+const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
     const {mutate} = useMutation({
         mutationFn: AddNewMaterial,
         onError: (error) => {
-            console.log(error.message)
-            setOverlayMode("error")
-            setErrorMessage(error.message)
+            console.error(error.message)
+            SetOverlayMode("error")
+            SetErrorMessage(error.message)
             dispatch(SetFormDefault())
         },
         onSuccess: () => {
-            setOverlayMode("success")
+            SetOverlayMode("success")
             queryClient.invalidateQueries(['educationMaterials'])
             dispatch(SetFormDefault())
         }
@@ -58,7 +83,7 @@ const AddMaterial = ({title,setOverlayMode,setErrorMessage}) => {
     }
 
     return (
-        <OverlayModel title={title} smallSize>
+        <OverlayModel title="Dodaj plik" smallSize>
             <div className={style.addMaterialContainer}>
                 <motion.div 
                     whileHover={{ scale: 1.1 }} 

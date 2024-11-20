@@ -1,9 +1,28 @@
+//Components
+import Popup from '../Popup';
+//Hooks
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+//Store
 import { OverlayToggle } from '../../../context/slices/OverlayModel_SLICE';
+//Api
 import { queryClient } from '../../../api/https';
-import Popup from '../Popup';
+
+/**
+ * DeleteConfirmation - preconfigured popup component to display delete confirmation and status of processing and fetching delete request
+ * 
+ * Props:
+ * 
+ * @param {string} what - information what will be deleted (documentation / recommendation etc. )
+ * @param {string} day - information about adding date of deleting item
+ * @param {string} patient - value information about owner of deleting item
+ * @param {string} elementId - deleting item identifier which will be used when specify resource will be searching on server
+ * @param {Function} deleteAction - api endpoint connection function to backend resource which will be invoke after success confirmation
+ * @param {string} redirect - addres (route / url) to redirect after deleteAction proccessing 
+ * @param {string} queries - queries which should be updated in cache after deleteAction processing
+ * @returns 
+ */
 
 const DeleteConfirmation = ({what,day,patient,elementId,deleteAction,redirect,queries}) => {
     const dispatch = useDispatch();

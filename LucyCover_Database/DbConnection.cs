@@ -18,5 +18,6 @@ namespace LucyCover_Database
         public DbSet<EducationMaterials> EducationMaterials { get; set;}
         public DbSet<EducationMaterialsAssignedPatients> EducationMaterialsAssignedPatients{ get; set; }
         public DbSet<User> User { get; set; }
+
     }
 }

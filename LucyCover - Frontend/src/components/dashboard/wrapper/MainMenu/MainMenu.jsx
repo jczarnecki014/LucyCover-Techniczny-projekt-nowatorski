@@ -1,8 +1,15 @@
+//Componets
+import MenuItem from './MenuItem';
+//Style
 import style from '../css/Wrapper.module.css'
 
-import MenuItem from './MenuItem';
-
-
+/** 
+* MainMenu - Component to displaying  main menu
+* 
+* @param
+* children - menuItem components 
+*
+*/
 
 const MainMenu = ({children}) => {
 

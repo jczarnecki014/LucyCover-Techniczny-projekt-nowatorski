@@ -1,18 +1,31 @@
-import { Fragment, useState,useEffect } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
-import { useMutation } from '@tanstack/react-query'
-import { createNewPatient } from '../../../../api/https'
-import { queryClient } from '../../../../api/https'
-
-import {useFormData} from '../../../../hooks/useFormData'
-import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
-
-import { ClearForm } from '../../../../context/slices/AddPatientForm'
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE'
-
+//Components
 import PatientForm from './PatientForm/PatientForm'
 import ChildrenForm from './ChildrenForm/ChildrenForm'
 import Popup from '../../../utility/Popup'
+//Hooks
+import { Fragment, useState,useEffect } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import { useMutation } from '@tanstack/react-query'
+import {useFormData} from '../../../../hooks/useFormData'
+//Slice
+import { ClearForm } from '../../../../context/slices/AddPatientForm'
+import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE'
+//Api
+import { createNewPatient } from '../../../../api/https'
+import { queryClient } from '../../../../api/https'
+//Assets
+import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
+
+/**
+ * PatientManageForm - component to display add / edit patient form and children
+ * 
+ * Functionality:
+ * 
+ *  Displaying add patient form
+ * 
+ *  Form management
+ * 
+ */
 
 const PatientManageForm = ({activePatient}) => {
     const patientContextInputs = useSelector(state => state.addPatientForm.patientInputs)
@@ -26,7 +39,7 @@ const PatientManageForm = ({activePatient}) => {
     const [childrenList, setChildrenList] = useState()
     const [childrenInEditMode,setChildrenInEditMode] = useState(null);
 
-    const {mutate,isPending} = useMutation({
+    const {mutate,isPending,isError,error} = useMutation({
         mutationFn: createNewPatient,
         onSuccess: () => {
             setFormMode("success")
@@ -63,7 +76,6 @@ const PatientManageForm = ({activePatient}) => {
     const EditChildrenFormDisplay = (childIndex) => {
         const toEditChildren = childrenList.find(child => (childIndex === child.index))
         setChildrenInEditMode(toEditChildren)
-        console.log(toEditChildren)
         setFormMode('children')
     }
 
@@ -89,8 +101,6 @@ const PatientManageForm = ({activePatient}) => {
             return [...previousState,childrenToSave]
         })
     }
-
-    console.log(childrenList)
 
     const RemoveChildrenFromListHandler = (childrenIndex) =>  {
         setChildrenList((previousState) => {
@@ -134,7 +144,7 @@ const PatientManageForm = ({activePatient}) => {
 
             {formMode === 'success' && <Popup type='success' description="Pacjent został dodany pomyślnie"  AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
 
-            {formMode === 'error' && <Popup type='error' title="Coś poszło nie tak.." description="Pacjent nie został zapisany w systemie"  AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
+            {isError && <Popup type='error' title="Coś poszło nie tak.." description={error.message} AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
 
         </Fragment>
     )

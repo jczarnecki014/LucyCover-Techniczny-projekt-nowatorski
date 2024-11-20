@@ -34,7 +34,7 @@ namespace LucyCover___Backend.MIddleware
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync(ex.Message);
             }
-            catch (Exception ex) when (ex is EntityAlreadyExistException || ex is FileAlreadyExistException) {
+            catch (Exception ex) when (ex is EntityAlreadyExistException || ex is FileAlreadyExistException || ex is RelationBetweenEntityException) {
                 context.Response.StatusCode = 409;
                 await context.Response.WriteAsync(ex.Message);
             }

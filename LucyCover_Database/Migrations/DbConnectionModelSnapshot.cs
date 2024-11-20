@@ -771,7 +771,7 @@ namespace LucyCover_Database.Migrations
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Schedule", b =>
                 {
                     b.HasOne("LucyCover_Model.Database_Entities.Children", "child")
-                        .WithMany()
+                        .WithMany("Schedules")
                         .HasForeignKey("childId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -796,6 +796,11 @@ namespace LucyCover_Database.Migrations
                         .IsRequired();
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("LucyCover_Model.Database_Entities.Children", b =>
+                {
+                    b.Navigation("Schedules");
                 });
 
             modelBuilder.Entity("LucyCover_Model.Database_Entities.Documentation", b =>

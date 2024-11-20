@@ -6,6 +6,10 @@ const defaultState = {
 
 const aviableOptions = ['schedule','patients','education','messages']
 
+/**
+ * MainMenuSlice - State for main menu ( this slice keep information about current selected page in menu and highlight it)
+ */
+
 const MainMenuSlice = createSlice({
     name: 'MainMenu',
     initialState: defaultState,

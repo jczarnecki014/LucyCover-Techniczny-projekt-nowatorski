@@ -1,8 +1,21 @@
-import style from './css/Schedule.module.css'
+//Components 
 import NoticeListElement from './NoticeListElement'
+//Style
+import style from './css/Schedule.module.css'
+//Dumydata
 import DUMMY_NOTES from '../../../assets/DUMMY_DATA/DUMMY_NOTES.json';
-import { Alert } from 'react-bootstrap';
 
+/** 
+* NoticeList - component to controll user notice (anavaiable yet)
+*
+* 
+* Functionality:
+*
+* [1] - Displaying user notice list
+*
+* [2] - Making new notes
+*
+*/
 
 const NoticeList = () => {
     const info = "Przepraszamy, ta funkcja nie jest jeszcze dostępna"

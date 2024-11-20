@@ -1,10 +1,30 @@
+//Components
+import MessageElement from './MessageElement'
+import LoadingSpinner from '../../../utility/LoadingSpinner'
+//Style
+import style from '../css/Message.module.css'
+//Hooks
 import { useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import style from '../css/Message.module.css'
-import MessageElement from './MessageElement'
-import { GetMessagesForEmailAddress, SendNewMessage } from '../../../../api/https'
-import LoadingSpinner from '../../../utility/LoadingSpinner'
 import useDebouncedValue from '../../../../hooks/useDebouncedValue'
+//Api
+import { GetMessagesForEmailAddress, SendNewMessage } from '../../../../api/https'
+
+/**
+ * MessagesContainer - component to display fetched messages between patient and user
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying messages
+ * 
+ *  [2] - Fetching messages witch patient
+ * 
+ *  [3] - Sending new message to patient
+ * Params:
+ * 
+ *  @param {object} activeEmail - object contain patient email which is use for sending
+ * 
+ */
 
 const MessagesContainer = ({activeEmail}) => {
     const messageArea = useRef();
@@ -30,13 +50,13 @@ const MessagesContainer = ({activeEmail}) => {
         }
     });
 
-
     const OnKeyDownHandler = (event) => {
         if(event.keyCode == 13 && !event.shiftKey){
             const requestObject = {
                 message: messageArea.current.value,
                 patientEmail: activeEmail
             }
+            messageArea.current.value = ""
             mutate(requestObject)
         }
     }

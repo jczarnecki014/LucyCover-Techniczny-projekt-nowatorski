@@ -1,26 +1,40 @@
-import style from './css/PatientDocumentationDisplay.module.css'
-import { useSelector,useDispatch } from 'react-redux';
-import { useLoaderData } from 'react-router-dom';
-import { useState } from 'react';
-import useFetchDocumentation from '../../../../../hooks/useFetchDocumentation';
-import { OverlayToggle } from '../../../../../context/slices/OverlayModel_SLICE';
+//Components
 import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIRST';
 import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT';
 import PatientDocumentationForm_FIRST from '../PatientDocumentationSections/FirstDocumentationSections/PatientDocumentationForm_FIRST';
 import PatientDocumentationForm_NEXT from '../PatientDocumentationSections/NextDocumentationSections/PatientDocumentationForm_NEXT';
 import DeleteConfirmation from '../../../../utility/PatientsPopups/DeleteConfirmation';
-import { DeleteDocumentation } from '../../../../../api/https';
 import { AnimatePresence } from 'framer-motion';
+//Style
+import style from './css/PatientDocumentationDisplay.module.css'
+//Hooks
+import { useSelector,useDispatch } from 'react-redux';
+import { useLoaderData } from 'react-router-dom';
+import { useState } from 'react';
+//Store
+import { OverlayToggle } from '../../../../../context/slices/OverlayModel_SLICE';
+//Api
+import { DeleteDocumentation } from '../../../../../api/https';
+
+/**
+ * PatientDocumentationDisplay - component to displaying first and next documentation of specific patient
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying documentation
+ * 
+ *  [2] - Modify and delete option provider
+ * 
+ */
 
 const PatientDocumentationDisplay = () => {
-    const documentation = useLoaderData()
+    const documentation = useLoaderData();
     const {id,child,date,documentationFirstVisit,documentationNextVisit,first,childrenList,patientId} = documentation
-    const [popupMode,setFormMode] = useState('AddingForm / DeleteConfirmation');
 
-    const editFormIsVisible = useSelector((state) => state.overlayModel.isVisible)
     const dispatch = useDispatch();
 
-    const {fetchDocumentation,isSuccess,isError} = useFetchDocumentation(patientId);
+    const [popupMode,setFormMode] = useState('AddingForm / DeleteConfirmation');
+    const editFormIsVisible = useSelector((state) => state.overlayModel.isVisible)
 
     const ShowPopupHandler = (popupMode) => {
         dispatch(OverlayToggle(true))
@@ -42,8 +56,7 @@ const PatientDocumentationDisplay = () => {
                             toDisplayValues = {{...documentationFirstVisit,...additionalData}}
                             childrenList = {childrenList} 
                             documentationId = {id}
-                            onFormSubmit = {fetchDocumentation}
-                            isSuccess={isSuccess} />
+                            patientId = {patientId} />
                 }
 
                 {/* ///////////////////////// Show next time documentation /////////////////////////////////////// */}
@@ -53,14 +66,12 @@ const PatientDocumentationDisplay = () => {
                             toDisplayValues={{...documentationNextVisit,...additionalData}} 
                             childrenList = {childrenList} 
                             documentationId = {id}
-                            onFormSubmit = {fetchDocumentation} 
-                            isSuccess={isSuccess}
-                            isError={isError} />
+                            patientId = {patientId} />
                 }
 
                 {/* ///////////////////////// Show delete documentation confirmation ///////////////////////////// */}
                 {
-                    (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} childName={`${child.childFirstName} ${child.childLastName}`} deleteAction={DeleteDocumentation} elementId={id} redirect={-1} />
+                    (editFormIsVisible && popupMode === 'DeleteConfirmation') && <DeleteConfirmation what="dokumentacje" day={date} patient={`${child.childFirstName} ${child.childLastName}`} deleteAction={DeleteDocumentation} elementId={id} redirect={-1} />
                 }
             </AnimatePresence>
 

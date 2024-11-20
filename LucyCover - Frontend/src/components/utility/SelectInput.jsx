@@ -1,6 +1,40 @@
+//Components
 import Form from 'react-bootstrap/Form';
+//Hooks
 import { useState,useEffect } from 'react';
 import { AnimatePresence,motion } from 'framer-motion';
+
+/** 
+* SelectInput - component provide SelectInput block element with label, selectInput, and validation information
+*
+* Functionality:
+*
+* [1] - Displaying full SelectInput block which contain label, select input and validation information
+*
+* [2] - Manipulating state of assigned slice via special inputDetails object
+*
+*
+* Params:
+* @param {string} className - styling for input group
+*
+* @param {string} label - label value (it will be displayed)
+*
+* @param {string} controlId - identifier of textArea, this value indicates property in specific state of slice. 
+* Input with specific controlId will be edit property in state of slice with same name
+*
+* @param {Function} onChange(inputObject) - function which will be invoke when state of input change. Suplied function should take a argument as 
+* object (inputId: "ControlId",inputObject:{value:"", isValid:boolean})
+*
+* @param {string} defaultOption - Value which will be displayed by default
+*
+* @param {boolean} readonly - boolen which block editing input
+*
+* @param {boolean} required - boolen which indicates that value can not be null ( if this option is selected you have to supply default option)
+*
+* @param {Array} options - Array of options which will be listed
+*
+* @param {boolean} multiple - boolen indicated that select list should take multiple options as selected
+*/
 
 function SelectInput({
     className,
@@ -12,9 +46,10 @@ function SelectInput({
     multiple,
     readonly,
     required
-}) {
-  const [isValid,setIsValid] = useState(true);
-    console.log(defaultOption)
+}) 
+{
+    const [isValid,setIsValid] = useState(true);
+
     useEffect(()=>{
       if(required && defaultOption.length <= 0){
         setIsValid(false)

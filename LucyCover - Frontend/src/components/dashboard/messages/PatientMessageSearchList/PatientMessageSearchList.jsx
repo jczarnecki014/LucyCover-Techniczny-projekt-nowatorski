@@ -1,10 +1,30 @@
-import PatientMessageElement from "./PatientMessageSearchListElement"
-import PatientMessageSearchListElement from "../PatientMessageSearchList/PatientMessageSearchListElement";
-import style from '../css/Message.module.css'
-import useSearchList from "../../../../hooks/useSeachList";
-import { useState } from "react";
+//Components
 import { AnimatePresence } from "framer-motion";
 import {motion} from "framer-motion";
+import PatientMessageElement from "./PatientMessageSearchListElement"
+import PatientMessageSearchListElement from "../PatientMessageSearchList/PatientMessageSearchListElement";
+//Style
+import style from '../css/Message.module.css'
+//Hooks
+import useSearchList from "../../../../hooks/useSeachList";
+import { useState } from "react";
+
+/**
+ * PatientMessageSearchList - component to display list of patients which can be clicke to display messages between patient and system
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying patient list
+ * 
+ *  [2] - Searching specific patient by its details
+ * Params:
+ * 
+ *  @param {Array} patientsList - full searchable list of patient
+ * 
+ *  @param {string} activePatientEmail - string with current selected patient email (special style)
+ *  @param {function} SetActivePatientHandler - Function to setting patient as active / selected )
+ * 
+ */
 
 const PatientMessageSearchList = ({patientsList,activePatientEmail,SetActivePatientHandler}) => {
     const [searchPhrase,SetSearchPhrase] = useState("");
@@ -33,7 +53,7 @@ const PatientMessageSearchList = ({patientsList,activePatientEmail,SetActivePati
                             key={index} 
                             patient={patient} 
                             activePatientEmail={activePatientEmail} 
-                            onPatientClick={SetActivePatientHandler} />)}
+                            OnPatientClick={SetActivePatientHandler} />)}
                 </AnimatePresence>
             </div>
         </div>

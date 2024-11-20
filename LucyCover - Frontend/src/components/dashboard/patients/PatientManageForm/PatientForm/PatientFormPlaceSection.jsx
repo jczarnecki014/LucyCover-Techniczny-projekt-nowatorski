@@ -1,11 +1,19 @@
+//Components
 import { Fragment } from "react"
-import style from '../css/PatientAddingForm.module.css'
 import { BiSolidHomeHeart } from "react-icons/bi";
 import LabelInput from "../../../../utility/LabelInput";
-
+//Style
+import style from '../css/PatientAddingForm.module.css'
+//Assets
 import { CheckZipCodeIsValid } from "../../../../../assets/Validation/PersonalData";
 
-const PatientFormPlaceSection = ({setPatientInput,FormSubmit,formIsValid,patientInputs,isPending}) => {
+/**
+ * PatientFormPlaceSection - component to display patient address details inputs
+ * 
+ *  Parrent component : <PatientForm />
+ */
+
+const PatientFormPlaceSection = ({setPatientInput,formIsValid,patientInputs,isPending}) => {
 
     const {province,city,address,zipCode} = patientInputs
 

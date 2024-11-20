@@ -1,10 +1,15 @@
-import { createPortal } from "react-dom";
-import style from './css/OverlayModel.module.css'
-
-import { useDispatch } from "react-redux";
-import { OverlayToggle } from "../../context/slices/OverlayModel_SLICE";
-
+//Componet
 import {motion} from 'framer-motion'
+//Style
+import style from './css/OverlayModel.module.css'
+//Hooks
+import { useDispatch } from "react-redux";
+//Slice
+import { OverlayToggle } from "../../context/slices/OverlayModel_SLICE";
+//Additional
+import { createPortal } from "react-dom";
+
+
 
 const BackDrop = ({onQuit}) => {
     return (
@@ -14,7 +19,6 @@ const BackDrop = ({onQuit}) => {
     )
 
 }
-
 
 const Model = ({children,title,onQuit,smallSize=false,funcButton}) => {
     return (

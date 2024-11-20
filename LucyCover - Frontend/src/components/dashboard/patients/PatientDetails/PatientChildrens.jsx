@@ -1,6 +1,8 @@
+//Components
+import { FaUser } from "react-icons/fa";
+//Style
 import style from './css/PatientDetails.module.css'
 
-import { FaUser } from "react-icons/fa";
 
 const PatientChildrens = ({children=[]}) => {
     return (

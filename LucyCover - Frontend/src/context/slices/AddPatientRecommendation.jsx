@@ -6,6 +6,10 @@ const defaultState = {
     text: {value:'', isValid: false},
 }
 
+/**
+ * AddPatientRecommendation - Main state for recommendation form
+ */
+
 const AddPatientRecommendation = createSlice({
     name: 'AddPatientRecommendation',
     initialState:{

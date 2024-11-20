@@ -2,6 +2,12 @@ import PatientDocumentationDisplay from "../../components/dashboard/patients/Pat
 import { queryClient } from "../../api/https";
 import { fetchDocumentationDetails } from "../../api/https";
 
+/**
+ * PatientDocumentationDisplayPage - Page to display chosen documentation details
+ * 
+ *
+ * @component
+ */
 
 const PatientDocumentationDisplayPage = () => {
     return  (
@@ -9,9 +15,15 @@ const PatientDocumentationDisplayPage = () => {
     )
 }
 
-export const loader = async ({params}) => {
 
-    //it need refactor because of from backend we won't fetch botch first and next documentation list!!!!
+/**
+ * loader - function to fetch chosen documentation details before page load
+ * 
+ *
+ * @function
+ */
+
+export const loader = async ({params}) => {
     const patientId = params.patientId;
     const documentId = params.documentationId;
 

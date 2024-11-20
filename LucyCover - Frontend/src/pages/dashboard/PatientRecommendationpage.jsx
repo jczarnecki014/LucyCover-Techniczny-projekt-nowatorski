@@ -2,12 +2,25 @@ import PatientRecommendation from "../../components/dashboard/patients/PatientRe
 import { queryClient } from "../../api/https";
 import { fetchRecommendation } from "../../api/https";
 
+/**
+ * PatientRecommendationPage - Page to display recommendation available list 
+ * 
+ *
+ * @component
+ */
+
 const PatientRecommendationPage = () => {
     return  (
         <PatientRecommendation />
     )
 }
 
+/**
+ * loader - Function used for fetch available recommendation list before page load
+ * 
+ *
+ * @function
+ */
 
 export const loader = async ({params}) => {
     const patientId = params.patientId;
@@ -16,14 +29,5 @@ export const loader = async ({params}) => {
         queryFn: ({signal}) => fetchRecommendation({signal,patientId})
     })
 }
-
-// export const loader = async ({params}) => {
-//     const recommendation = DUMMY_RECOMMENDATION.filter(recommendation => recommendation.patientId === params.patientId)
-//     const patient = DUMMY_PATIENTS.find(patient => patient.id === params.patientId)
-//     return {
-//         recommendation,
-//         patientName: `${patient.firstName} ${patient.lastName}`
-//     };
-// }
 
 export default PatientRecommendationPage;

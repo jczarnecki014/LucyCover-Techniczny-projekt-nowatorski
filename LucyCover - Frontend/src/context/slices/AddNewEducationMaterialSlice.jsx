@@ -8,6 +8,9 @@ const defaultState = {
         file: {value:'', isValid: false},
     }
 }
+/**
+ * AddNewEducationMaterialSlice - Main form state for education material form (validation and value)
+ */
 
 const AddNewEducationMaterialSlice = createSlice({
     name: 'AddNewEducationMaterial',

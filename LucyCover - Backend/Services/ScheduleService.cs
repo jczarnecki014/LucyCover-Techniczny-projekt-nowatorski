@@ -17,7 +17,7 @@ namespace LucyCover___Backend.Services
     {
         public PatientScheduleDTO GetPatientVisits(Guid patientId);
         public Task UpserPatientVisit(Guid patientId,[FromBody] UpsertPatientSheduleDTO upsertPatientSheduleDTO);
-        public void ChangeVisitStatus(Guid visitId, string visitStatus);
+        public Task ChangeVisitStatus(Guid visitId, string visitStatus);
         public List<ScheduleDTO> GetVisitsByDate(string date); 
         public List<string> GetVisitsByMonth(string month);
         public void DeleteVisit(Guid visitId);
@@ -27,15 +27,16 @@ namespace LucyCover___Backend.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IValidator<UpsertPatientSheduleDTO> _validator;
         private readonly Guid _loggedUser;
 
-        public ScheduleService(IUnitOfWork unitOfWork,IMapper mapper,IEmailService emailService,IAuthenticationService authenticationService) 
+        public ScheduleService(IUnitOfWork unitOfWork,IMapper mapper,IEmailService emailService,IAuthenticationService authenticationService,IValidator<UpsertPatientSheduleDTO> validator) 
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _emailService = emailService;
             _loggedUser = authenticationService.GetCurrentUserId();
+            _validator = validator;
         }
        
         public PatientScheduleDTO GetPatientVisits(Guid patientId)
@@ -80,6 +81,13 @@ namespace LucyCover___Backend.Services
                 throw new UnauthorizedAccessException("Currently logged user can not add visits for this user");
             }
 
+            bool isValid = _validator.Validate(upsertPatientSheduleDTO).IsValid;
+
+            if(!isValid) 
+            {
+                throw new ArgumentException("upsertPatientSheduleDTO is not valid");
+            }
+
             Schedule schedule = _mapper.Map<Schedule>(upsertPatientSheduleDTO);
             schedule.patientId = patientId;
 
@@ -106,7 +114,7 @@ namespace LucyCover___Backend.Services
             }
         }
 
-        public void ChangeVisitStatus(Guid visitId, string visitStatus) 
+        public async Task ChangeVisitStatus(Guid visitId, string visitStatus) 
         {
             Schedule existVisit = _unitOfWork.schedule.GetFirstOfDefault(schedule => schedule.id == visitId,includeProperties:"patient");
 
@@ -126,6 +134,14 @@ namespace LucyCover___Backend.Services
             {
                 throw new UnauthorizedAccessException("Currently logged user can not change status for this visit");
             }
+
+            IEmailMessage newMessage = new EmailMessage(
+                email: existVisit.patient.email,
+                subject: "Uwaga ! Nastąpiły zmiany w twojej zaplanowanej wizycie położniczej",
+                message: @$"Szanowny pacjencie, status twojej wizyta z dnia ,{existVisit.date} o godzinie {existVisit.clock} został zmieniony na - {visitStatus} "
+            );
+
+            await _emailService.SendEmailAsync(newMessage);
 
             existVisit.status = visitStatus;
 

@@ -1,8 +1,24 @@
-import { useState } from "react"
+//Components
 import PopupMenu from "../../PatientsPopups/PatientPopupMenu";
 import Popup from "../../Popup";
 import { useSelector } from "react-redux";
+//Hooks
+import { useState } from "react"
 import { useFormData } from "../../../../hooks/useFormData";
+
+/**
+ * VisitConfirmation - Component with e-mail confirmation
+ * 
+ *  This is children componenent for VisitManager
+ * 
+ * Props:
+ * 
+ * @param {boolean} isPending - booleand which information about some processing. If true loading info will display
+ * @param {object} activePatient - Details of patient which was selected by user
+ * @param {object} activeChildren - Details of patient children which was selected by user
+ * @param {string} visitId - If visitId was passed form will work in edit visit mode. In this mode form change slightly
+ * @param {Function} mutate - Mutate function invoke when user submit form
+ */
 
 const VisitConfirmation = ({activePatient,mutate,visitId,activeChildren,isPending}) => {
     // EmailConfirmationMenu / Success / NoEmail / Error

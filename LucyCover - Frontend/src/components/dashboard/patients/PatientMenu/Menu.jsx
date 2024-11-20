@@ -1,11 +1,28 @@
-import style from './css/PatientMenu.module.css'
-
+//Components
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { MdRecommend } from "react-icons/md";
 import { IoCalendar } from "react-icons/io5";
 import { RiUserSettingsLine } from "react-icons/ri";
-
+//Style
+import style from './css/PatientMenu.module.css'
+//Hooks
 import { Link } from 'react-router-dom';
+
+/**
+ * Menu - component to display patient menu tails
+ * 
+ * Functionality: 
+ * 
+ *  [1] - Displaying menu options
+ * 
+ *  [2] - Navigation between pages
+ * 
+ *  [3] - Toggling form to edit patient details
+ * 
+ *  Params:
+ * 
+ *  @param {function} ShowPatientFormToggler - function to dipslay patient add/edit form
+ */
 
 const Menu = ({ShowPatientFormToggler}) => {
     return (

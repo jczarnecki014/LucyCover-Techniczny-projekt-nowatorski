@@ -1,7 +1,23 @@
-import { useQuery } from "@tanstack/react-query"
-import { fetchAllPatientVisits } from "../../../../api/https"
+//Components
 import PatientDetails from "../PatientDetails/PatientDetails"
 import PatientVisitsWrapper from "../../../utility/PatientVisitManager/PatientVisitsWrapper"
+//Hooks
+import { useQuery } from "@tanstack/react-query"
+//Api
+import { fetchAllPatientVisits } from "../../../../api/https"
+
+
+/**
+ * PatientSchedule - component to display specific patient schedule page
+ * 
+ * Functionality:
+ * 
+ *  [1] - Displaing schedules for only specific patient
+ * 
+ *  [2] - Creating new visits for patient
+ */
+
+
 const PatientSchedule = () => {
     const {data} = useQuery({
         queryKey: ['schedule'],
