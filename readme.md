@@ -78,8 +78,8 @@ Aby uruchomić aplikację serwerową (backend) w pierwszej kolejności należy s
     ```
 4) Po zalogowaniu się do SQL Server, możesz wykonać zapytanie SQL, aby utworzyć bazę danych:
     ```
-    CREATE DATABASE LucyCover;
-    GO
+    1> CREATE DATABASE LucyCover;
+    2> GO
     ```
 5) Jeżeli wykonałeś wszystkie operacje zgodnie z instrukcją powinieneś mieć wstępnie utworzoną bazę danych gotową do pracy.
 
@@ -100,14 +100,14 @@ Aby uruchomić aplikację serwerową (backend) w pierwszej kolejności należy s
     W tym miejscu skonfigurujesz zasady połączenia dla twojej bazy danych. Domyślnie ustawiono podstawową konfigurację dla MS SQl Express. Jeżeli twój serwer nazywa sie `localhost\SQLEXPRESS` a baza danych `LucyCover` możesz pozostawić tą konfigurację bez zmian. W przeciwnym razie musisz prawidłowo skonfigurowac connection string.
     ```
     "ConnectionStrings": {
-        "DefaultConnection": "Server=localhost\SQLEXPRESS;Database=LucyCover;Trusted_Connection=True;TrustServerCertificate=True"
+        "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=LucyCover;Trusted_Connection=True;TrustServerCertificate=True"
       },
     ```
     Pozostałe konfiguracje dotyczą poczty elektronicznej czy mechanizmów autentykacji. Nie powinieneś ich edytować.
     
 4) Jeżeli przeprowadziłeś prawidłową konfigurację pliku appsetings.json możesz uruchomić aplikację wykonując polecenie w terminalu w katalogu ./LucyCover - Backend:
     ```
-    dotnet run
+    dotnet run --launch-profile "https"
     ```
     
 Jeżeli aplikacja urchomiła się prawidłowo, możesz teraz zacząć korzystać z aplikacji klienckiej. Połączenia między aplikacjami będą wykonywały się automatycznie.
