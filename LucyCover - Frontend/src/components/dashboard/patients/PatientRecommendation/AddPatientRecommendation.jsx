@@ -8,7 +8,7 @@ import Popup from '../../../utility/Popup'
 import style from './css/AddPatientRecommendation.module.css'
 //Hooks
 import { useMutation } from '@tanstack/react-query'
-import { useDispatch,useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {useFormData} from '../../../../hooks/useFormData'
 //Slice
 import { SetInput } from '../../../../context/slices/AddPatientRecommendation'
@@ -17,6 +17,7 @@ import { createNewRecommendation } from '../../../../api/https'
 import { queryClient } from '../../../../api/https'
 //Assets
 import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
+import useInputsSilce from "../../../../hooks/useInputsSlice";
 
 
 /**
@@ -42,15 +43,11 @@ const AddPatientRecommendation = ({patientId}) => {
 
     const todayDate = new Date().toISOString().split('T')[0];
     
-    const dispatch = useDispatch()
     const getValue = useFormData();
+    const SetFormInputHandler = useInputsSilce(SetInput)
 
     const formInputs = useSelector(state => state.addPatientRecommendation.formInputs)
     const formIsValid = CheckFormIsValid(formInputs)
-
-    const SetFormInputHandler = ({inputId,inputObject}) => {
-        dispatch(SetInput({inputId,inputObject}))
-    }
 
     const FormSubmitHandler = (event) => {
         event.preventDefault();

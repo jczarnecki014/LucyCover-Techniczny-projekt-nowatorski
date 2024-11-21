@@ -18,6 +18,7 @@ import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
 import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
 import { CheckPhoneIsValid } from '../../../../assets/Validation/PersonalData';
 import { CheckZipCodeIsValid } from '../../../../assets/Validation/PersonalData';
+import useInputsSilce from "../../../../hooks/useInputsSlice";
 
 /**
  * VisitForm - Form to schedule new vistis for patient or edit existing
@@ -38,6 +39,7 @@ import { CheckZipCodeIsValid } from '../../../../assets/Validation/PersonalData'
 const VisitForm = ({ChangeFormMode,activePatient,activeChildren,visitID}) => {
 
     const dispatch = useDispatch();
+    const SetFormInputHandler = useInputsSilce(SetInput)
     const formInputs = useSelector(state => state.addNewVisitToScheduleForm.formInputs)
     const getValue = useFormData(); 
 
@@ -48,10 +50,6 @@ const VisitForm = ({ChangeFormMode,activePatient,activeChildren,visitID}) => {
     const {city,street,streetNumber,zipCode,date,clock,description,status} = generalVisitDetails
 
     const formIsValid = (CheckFormIsValid(formInputs) && activePatient.id && activeChildren.id) ? true : false
-
-    const SetFormInputHandler = ({inputId,inputObject}) => {
-        dispatch(SetInput({inputId,inputObject}))
-    }
 
     const FormQuitHandler = () => {
         dispatch(ResetActivePatients())

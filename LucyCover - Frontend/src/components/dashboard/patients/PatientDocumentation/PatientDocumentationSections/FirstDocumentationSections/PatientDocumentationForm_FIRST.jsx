@@ -18,6 +18,7 @@ import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLI
 import { SetInput,LoadDefaultData,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
 //Assets
 import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsValid";
+import useInputsSilce from "../../../../../../hooks/useInputsSlice";
 
 
 
@@ -35,9 +36,10 @@ import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsVal
 
 const PatientDocumentationForm_FIRST = ({toDisplayValues,patientId,childrenList,documentationId}) => {
     const [firstRun,setFirstRun] = useState(true)
-    const dispatch = useDispatch();
     const {fetchDocumentation,isSuccess} = useFetchDocumentation(patientId);
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
+    const SetFormInputHandler = useInputsSilce(SetInput);
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         if(firstRun && toDisplayValues != undefined){
@@ -57,10 +59,6 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues,patientId,childrenList,
     const getValue = useFormData();
     const formValue = getValue(formInputs);
     const formIsValid = CheckFormIsValid(formInputs)
-
-    const SetFormInputHandler = ({inputId,inputObject}) => {
-        dispatch(SetInput({inputId,inputObject}))
-    }
 
     const OnCloseClearFormHandler = () => {
         dispatch(SetFormDefault())
