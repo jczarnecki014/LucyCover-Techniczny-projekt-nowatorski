@@ -22,6 +22,7 @@ import { LoadDefaultData } from "../../../../../../context/slices/AddNextDocumen
 import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE"
 //Assets
 import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsValid"
+import useInputsSilce from "../../../../../../hooks/useInputsSlice"
 
 
 /**
@@ -38,6 +39,7 @@ import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsVal
 
 const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,patientId,documentationId,isError}) => {
     const {fetchDocumentation,isSuccess} = useFetchDocumentation(patientId);
+    const SetFormInputHandler = useInputsSilce(SetInput);
     const dispatch = useDispatch();
     const [firstRun,setFirstRun] = useState(true)
 
@@ -61,10 +63,6 @@ const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,patientId,d
 
     const getValue = useFormData();
     const formValue = getValue(formInputs);
-
-    const SetFormInputHandler = ({inputId,inputObject}) => {
-        dispatch(SetInput({inputId,inputObject}))
-    }
 
     const OnCloseClearFormHandler = () => {
         dispatch(SetFormDefault())

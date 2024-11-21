@@ -16,6 +16,7 @@ import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
 import { AcceptedFileUploadFormat } from "../../../../assets/Validation/AcceptedFileUploadFormat";
 //api
 import { AddNewMaterial,queryClient } from "../../../../api/https";
+import useInputsSilce from "../../../../hooks/useInputsSlice";
 
 /**
  * AddMaterial - Component to adding material.
@@ -37,6 +38,13 @@ import { AddNewMaterial,queryClient } from "../../../../api/https";
  */
 
 const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
+    const dispatch = useDispatch()
+    const fileInputRef = useRef();
+    const formInputs = useSelector(state => state.addMaterial.formInputs)
+    const formIsValid = CheckFormIsValid(formInputs)
+    const fileIsUploaded = formInputs.file.isValid;
+    const InputChangeHandler = useInputsSilce(SetInput)
+
     const {mutate} = useMutation({
         mutationFn: AddNewMaterial,
         onError: (error) => {
@@ -52,12 +60,6 @@ const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
         }
     })
 
-    const dispatch = useDispatch()
-    const fileInputRef = useRef();
-    const formInputs = useSelector(state => state.addMaterial.formInputs)
-    const formIsValid = CheckFormIsValid(formInputs)
-    const fileIsUploaded = formInputs.file.isValid;
-
     const handleFileUploadClick = () => {
         fileInputRef.current.click(); // Kliknięcie na ukryty input
     };
@@ -68,10 +70,6 @@ const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
             InputChangeHandler({ inputId: "file", inputObject: {value: file.name, isValid: true} });
         }
     };
-
-    const InputChangeHandler = (object) => {
-        dispatch(SetInput(object))
-    }
 
     const HandleSubmit = (event) => {
         event.preventDefault()
