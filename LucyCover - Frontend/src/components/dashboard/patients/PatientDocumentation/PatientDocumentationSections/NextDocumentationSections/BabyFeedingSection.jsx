@@ -22,17 +22,17 @@ const BabyFeedingSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => {
 
                 <LabelInput controlId='patientFeedingBreastNumber' label='Z ilu piersi' className={style.FullInput} required onInput={SetFormInputHandler} value={formInputs.patientFeedingBreastNumber} readonly={isReadonly} />
 
-                <SelectInput controlId='patientFeedingInNight' label="Czy w tym karmienia nocne" className={style.StandardInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientFeedingInNight} value={formInputs.patientFeedingInNight}  readonly={isReadonly} />
+                <SelectInput controlId='patientFeedingInNight' label="Czy w tym karmienia nocne" className={style.StandardInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientFeedingInNight} value={formInputs.patientFeedingInNight} readonly={isReadonly} />
 
                 <LabelInput controlId='patientFeedingHowMuchTime' label='Ile trwa jedno karmienie' className={style.StandardInput} required onInput={SetFormInputHandler} value={formInputs.patientFeedingHowMuchTime} readonly={isReadonly} />
 
-                <SelectInput controlId='patientBreastFeedingWithHood' label="Czy również karmienie z Kapturkiem" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastFeedingWithHood} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastFeedingWithHood' label="Czy również karmienie z Kapturkiem" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastFeedingWithHood} readonly={isReadonly} related={{controlId:["patientBreastFeedingWithHood_HowLong"],resetValue:["Nie"]}} />
 
                 {
                     formInputs.patientBreastFeedingWithHood === 'Tak' &&  <LabelInput controlId='patientBreastFeedingWithHood_HowLong' label='Jak długo trwa jedno karmienie' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.patientBreastFeedingWithHood_HowLong} readonly={isReadonly} />
                 }
 
-                <SelectInput controlId='patientBreastFeedingAsNeeded' label="Karmienie według potrzeb" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastFeedingAsNeeded} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastFeedingAsNeeded' label="Karmienie według potrzeb" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastFeedingAsNeeded} readonly={isReadonly} related={{controlId:["patientBreastFeedingAsNeeded_How"],resetValue:["Nie"]}} />
                 
                 {
                     formInputs.patientBreastFeedingAsNeeded === 'Tak' && <LabelInput controlId='patientBreastFeedingAsNeeded_How' label='Jak wygląda to karmienie' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.patientBreastFeedingAsNeeded_How} readonly={isReadonly} />
