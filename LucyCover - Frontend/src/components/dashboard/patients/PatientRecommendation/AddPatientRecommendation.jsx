@@ -31,13 +31,10 @@ import useInputsSilce from "../../../../hooks/useInputsSlice";
  */
 
 const AddPatientRecommendation = ({patientId}) => {
-    const {mutate,isError,isSuccess} = useMutation({
+    const {mutate,isError,error,isSuccess} = useMutation({
         mutationFn: createNewRecommendation,
         onSuccess: () => {
             queryClient.invalidateQueries(['recommendations'])
-        },
-        onError: (error) => {
-            console.error(error)
         }
     })
 
@@ -64,7 +61,7 @@ const AddPatientRecommendation = ({patientId}) => {
             <Popup type="success" title="Udało się !" description="Dodawanie rokomendacji zakończyło się pomyślnie." />
         )}
         {isError && (
-            <Popup type="Error" title="Błąd" description="Coś poszło nie tak podczas dodawania zaleceń" />
+            <Popup type="Error" title="Błąd" description={error.message} />
         )}
         {!isSuccess && !isError && (
             <OverlayModel title="Dodaj nowe zalecenie">

@@ -15,7 +15,7 @@ import { queryClient } from "../api/https"
 
 const useFetchDocumentation = (patientId) => {
 
-    const {mutate,isPending,isError,isSuccess} = useMutation({
+    const {mutate,isPending,isError,error,isSuccess} = useMutation({
         mutationFn: createNewDocumentation,
         onMutate: () => {
         },
@@ -44,6 +44,7 @@ const useFetchDocumentation = (patientId) => {
         fetchDocumentation,
         isPending,
         isError,
+        error,
         isSuccess,
     }
 }

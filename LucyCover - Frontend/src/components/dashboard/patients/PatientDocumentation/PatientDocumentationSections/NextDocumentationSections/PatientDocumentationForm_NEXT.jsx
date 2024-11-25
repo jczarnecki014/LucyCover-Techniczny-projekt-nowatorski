@@ -37,8 +37,8 @@ import useInputsSilce from "../../../../../../hooks/useInputsSlice"
  *  Fetching documentation to backend
  */
 
-const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,patientId,documentationId,isError}) => {
-    const {fetchDocumentation,isSuccess} = useFetchDocumentation(patientId);
+const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,patientId,documentationId}) => {
+    const {fetchDocumentation,isSuccess,isError,error} = useFetchDocumentation(patientId);
     const SetFormInputHandler = useInputsSilce(SetInput);
     const dispatch = useDispatch();
     const [firstRun,setFirstRun] = useState(true)
@@ -85,7 +85,7 @@ const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,patientId,d
             )
         }
         {isError && (
-            <Popup type="error" title="Błąd !" description="Coś poszło nie tak podczas zapisu dokumentacji w systemie." additionalInfo="Zgłoś problem administratorowi systemu." />
+            <Popup type="error" title="Błąd !" description={error.message} additionalInfo="Zgłoś problem administratorowi systemu." />
         )}
         {!isSuccess && !isError && (
             <OverlayModel title="Dodaj nową dokumentacje (domowa)" OnQuitButtonClick={OnCloseClearFormHandler}>

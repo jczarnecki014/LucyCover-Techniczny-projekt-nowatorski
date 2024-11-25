@@ -13,7 +13,7 @@ export async function fetchPatientsForSearchList({signal}) {
         credentials:"include"
     })
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas pobierania listy pacjentów`)
     }
     const data = await response.json()
     
@@ -26,7 +26,7 @@ export async function fetchPatient({signal,patientId}) {
         credentials:"include"
     }) 
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas wyświetlania profilu pacjenta`)
     }
     const data = await response.json()
     
@@ -39,7 +39,7 @@ export async function fetchDocumentation({signal,patientId}) {
         credentials:"include"
     }) 
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas pobierania dokumentacji`)
     }
     const data = await response.json()
     
@@ -52,7 +52,7 @@ export async function fetchDocumentationDetails({signal,patientId,documentId}) {
         credentials:"include"
     }) 
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas pobierania dokumentacji`)
     }
     const data = await response.json()
     
@@ -66,7 +66,7 @@ export async function fetchRecommendation({patientId,signal}) {
         credentials: "include"
     },) 
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas pobierania zalecenia`)
     }
     const data = await response.json()
     
@@ -79,7 +79,7 @@ export async function fetchRecommendationDetails({signal,patientId,recommendatio
         credentials: 'include'
     }) 
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas wyświetlania zaleceń`)
     }
     const data = await response.json()
     
@@ -108,7 +108,7 @@ export async function fetchAllAssignedPatientsToMaterial({signal,materialId}) {
     }) 
     
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Wystąpił poroblem podczas pobierania listy pacjentów`)
     }
 
     const data = await response.json()
@@ -123,7 +123,7 @@ export async function fetchAllEducationMaterial({signal}) {
     }) 
     
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Nie można pobrać listy materiałów edukacyjnych.`)
     }
 
     const data = await response.json()
@@ -183,7 +183,7 @@ export async function GetPatientsForPatientsListInMessages({signal}) {
         credentials:"include"
     }) 
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas pobierania listy pacjentów`)
     }
 
     const data = await response.json()
@@ -197,7 +197,7 @@ export async function GetMessagesForEmailAddress({signal,email}) {
         credentials:"include"
     }) 
     if(!response.ok){
-        throw new Error(`Request failed with status ${response.status}: ${response.statusText}`)
+        throw new Error(`Coś poszło nie tak podczas pobierania wiadomości`)
     }
 
     const data = await response.json()
@@ -238,7 +238,7 @@ export async function createNewDocumentation({documentationDetails,patientId}) {
     })
 
     if(response.status !== 201) {
-        throw new Error("Something went wrong during posting new documentation")
+        throw new Error("Coś poszło nie tak podczas dodawania dokumentacji")
     }
 }
 
@@ -477,6 +477,6 @@ export async function ChangeVisitStatus({visitId,visitStatus}) {
     })
 
     if(!response.ok) {
-        throw new Error("Something went wrong during updating visit status")
+        throw new Error("Coś poszło nie tak podczas aktualizacji wizyty")
     }
 }

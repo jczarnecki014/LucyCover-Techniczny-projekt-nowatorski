@@ -44,10 +44,6 @@ const PatientManageForm = ({activePatient}) => {
         onSuccess: () => {
             setFormMode("success")
             queryClient.invalidateQueries(["patients",defaultPatientInputs.id])
-        },
-        onError: (error) => {
-            console.error(error)
-            setFormMode("error")
         }
     })
 
