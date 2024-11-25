@@ -37,9 +37,6 @@ const DeleteConfirmation = ({what,day,patient,elementId,deleteAction,redirect,qu
                     navigate(redirect)
                 },2000)
             }
-        },
-        onError: (error) => {
-            console.error(error)
         }
     })
     return (

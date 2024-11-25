@@ -36,7 +36,7 @@ import useInputsSilce from "../../../../../../hooks/useInputsSlice";
 
 const PatientDocumentationForm_FIRST = ({toDisplayValues,patientId,childrenList,documentationId}) => {
     const [firstRun,setFirstRun] = useState(true)
-    const {fetchDocumentation,isSuccess} = useFetchDocumentation(patientId);
+    const {fetchDocumentation,isSuccess,isError,error} = useFetchDocumentation(patientId);
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
     const SetFormInputHandler = useInputsSilce(SetInput);
     const dispatch = useDispatch();
@@ -83,7 +83,12 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues,patientId,childrenList,
             )
         }
 
-        {!isSuccess && (
+        {isError && (
+            <Popup type="error" title="Błąd !" description={error.message} additionalInfo="Spróbuj ponownie później lub zgłoś problem." />
+            )
+        }
+
+        {(!isSuccess && !isError) && (
             <OverlayModel title="Dodaj nową dokumentacje (pierwsza)" OnQuitButtonClick={OnCloseClearFormHandler}>
                 <form className={style.Container} onSubmit={FormSumbitHandler}>
                     <div className={style.LeftSide}>

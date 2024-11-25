@@ -48,7 +48,6 @@ const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
     const {mutate} = useMutation({
         mutationFn: AddNewMaterial,
         onError: (error) => {
-            console.error(error.message)
             SetOverlayMode("error")
             SetErrorMessage(error.message)
             dispatch(SetFormDefault())

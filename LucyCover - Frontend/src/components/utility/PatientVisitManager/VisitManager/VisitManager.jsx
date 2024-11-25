@@ -31,19 +31,16 @@ import { queryClient, upsertVisit } from '../../../../api/https'
  */
 
 const VisitManager = ({visitToEdit}) => {
-    const [formMode,setFormMode] = useState('visitFormMode');//visitFormMode/patientsListMode/childrenListMode/visitNotyfication/error
+    const [formMode,setFormMode] = useState('visitFormMode');//visitFormMode/patientsListMode/childrenListMode/visitNotyfication
     const activePatient = useSelector(state => state.patientSearch.activePatient);
     const activeChildren = useSelector(state => state.patientSearch.activeChildren);
     const dispatch = useDispatch()
 
-    const {mutate,error,isPending} = useMutation({
+    const {mutate,isError,error,isPending} = useMutation({
         mutationFn: upsertVisit,
         onSuccess: () => {
             queryClient.invalidateQueries(['schedule'])
             setFormMode("success")
-        },
-        onError: (error) => {
-            setFormMode("error");
         }
     })
 
@@ -106,7 +103,7 @@ const VisitManager = ({visitToEdit}) => {
                 formMode === 'visitConfirmation' && <VisitConfirmation activePatient={activePatient} mutate={mutate} visitId={visitId} activeChildren={activeChildren} isPending={isPending} />
             }
             {
-                formMode === 'error' && <Popup type="error" title="Wystąpił błąd !" description={error.message} />
+                isError && <Popup type="error" title="Wystąpił błąd !" description={error.message} />
             }
                         {
                 formMode === 'success' && (
