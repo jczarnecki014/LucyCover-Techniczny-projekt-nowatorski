@@ -21,7 +21,7 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs,readOnl
             <h6>Badanie piersi / wywiad/ obserwacja</h6>
             <hr />
             <span>
-                <SelectInput controlId='patientBreastGrowingDuringPregnacy' label="Wzrost piersi w ciąży" className={style.FullInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastGrowingDuringPregnacy} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastGrowingDuringPregnacy' label="Wzrost piersi w ciąży" className={style.FullInput} options={["Tak", "Nie"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastGrowingDuringPregnacy} readonly={isReadonly} related={{controlId:["patientBreastGrowingDuringPregnacy_DAY"],resetValue:["Nie"]}} />
                 
                 {
                     formInputs.patientBreastGrowingDuringPregnacy === 'Tak' && <LabelInput controlId='patientBreastGrowingDuringPregnacy_DAY' label='W której dobie' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.patientBreastGrowingDuringPregnacy_DAY} readonly={isReadonly} />
@@ -31,8 +31,8 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs,readOnl
 
                 <SelectInput controlId='patientBreastSize' label="Rozmiar piersi" className={style.FullInput} options={["Mała", "Średnia", "Duża"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastSize} readonly={isReadonly} />
 
-                <SelectInput controlId='patientBreastChanges' label="Pierś - zmiany" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastChanges} readonly={isReadonly} />
-                    
+                <SelectInput controlId='patientBreastChanges' label="Pierś - zmiany" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastChanges} readonly={isReadonly}
+                related={{controlId:["patientBreastChanges_WHAT"],resetValue:["Nie"]}} />
                 {
                     formInputs.patientBreastChanges === 'Tak' && <LabelInput controlId='patientBreastChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.patientBreastChanges_WHAT}  readonly={isReadonly} />
                 }
@@ -51,7 +51,7 @@ const PatientBreastExaminationSection = ({SetFormInputHandler,formInputs,readOnl
 
                 <LabelInput controlId='patientBreastNippleAfterFeeding' label='Po karmieniu' className={style.FullInput} required onInput={SetFormInputHandler} value={formInputs.patientBreastNippleAfterFeeding} readonly={isReadonly} />
 
-                <SelectInput controlId='patientBreastNippleChanges' label="Brodawki zmianny" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastNippleChanges} readonly={isReadonly} />
+                <SelectInput controlId='patientBreastNippleChanges' label="Brodawki zmianny" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientBreastNippleChanges} readonly={isReadonly} related={{controlId:["patientBreastNippleChanges_WHAT"],resetValue:["Nie"]}} />
                     
                 {
                     formInputs.patientBreastNippleChanges == 'Tak' && <LabelInput controlId='patientBreastNippleChanges_WHAT' label='Jakie zmiany ?' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.patientBreastNippleChanges_WHAT} readonly={isReadonly} />

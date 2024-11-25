@@ -34,6 +34,12 @@ import { AnimatePresence,motion } from 'framer-motion';
 * @param {Array} options - Array of options which will be listed
 *
 * @param {boolean} multiple - boolen indicated that select list should take multiple options as selected
+*
+* @param {Object} related - Object as {controlId:"",resetValue:""}. It is use when some select input is related with other inupt. And when selectInput value is set as default related input value with additional information also shoul be reseted. 
+*
+* related.controlId --> controlId additional inputs as array of string
+*
+* related.resetValue --> option values that reset additional input as  array of string
 */
 
 function SelectInput({
@@ -45,7 +51,8 @@ function SelectInput({
     onChange,
     multiple,
     readonly,
-    required
+    required,
+    related, //{controlId:"",resetValue:""}
 }) 
 {
     const [isValid,setIsValid] = useState(true);
@@ -68,7 +75,24 @@ function SelectInput({
           isValid:true
         }
       }
-       onChange(inputObject)
+
+      onChange(inputObject)
+
+      //If user set selet input value on default, system should delete additional information from related input
+      if(related == undefined || !related.resetValue.includes(event.target.value)) return;
+
+      related.controlId.forEach(controlId => {
+        const relatedInputObject = {
+          inputId: controlId,
+          inputObject: {
+            value: "",
+            isValid:true
+          }
+        }
+  
+        onChange(relatedInputObject)
+      })
+    
     }
 
     const MultipleChangeHandler = (event) => {

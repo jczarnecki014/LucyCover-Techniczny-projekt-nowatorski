@@ -23,14 +23,14 @@ const BabyExcretionSection = ({SetFormInputHandler,formInputs,readOnlyMode}) => 
 
                 <LabelInput controlId='babyExcretionADay' label='Oddawanie stolca (na dobe)' className={style.StandardInput} onInput={SetFormInputHandler} value={formInputs.babyExcretionADay} readonly={isReadonly} required />
 
-                <SelectInput controlId='babyColic' label="Objawy kolki" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.babyColic} readonly={isReadonly} />
+                <SelectInput controlId='babyColic' label="Objawy kolki" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.babyColic} readonly={isReadonly} related={{controlId:["babyColicSinceWhen"],resetValue:["Nie"]}} />
 
 
                 {
                     formInputs.babyColic === 'Tak' && <LabelInput controlId='babyColicSinceWhen' label='Od kiedy ? (kolka)' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.babyColicSinceWhen} readonly={isReadonly} />
                 }
 
-                <SelectInput controlId='babyNipple' label="Smoczek uspokajaczek" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.babyNipple} readonly={isReadonly} />
+                <SelectInput controlId='babyNipple' label="Smoczek uspokajaczek" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.babyNipple} readonly={isReadonly} related={{controlId:["babyNippleSinceWhen"],resetValue:["Nie"]}} />
 
                 {
                     formInputs.babyNipple === 'Tak' && <LabelInput controlId='babyNippleSinceWhen' label='Od kiedy ? (smoczek)' className={style.FullInput} onInput={SetFormInputHandler} value={formInputs.babyNippleSinceWhen} readonly={isReadonly} />

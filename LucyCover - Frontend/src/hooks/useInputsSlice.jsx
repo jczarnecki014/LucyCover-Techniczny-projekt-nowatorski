@@ -26,8 +26,8 @@ const useInputsSilce = (SliceEditFunction) => {
         const {inputId,inputObject} = inputValueObject
         if(inputObject.value == undefined || inputObject.isValid == undefined ) 
             throw new Error("inputObject has to contain value and isValid property")
-
-        if(inputObject.isValid == null || typeof(inputObject.isValid) == "boolean")
+        
+        if(inputObject.isValid == null || !typeof(inputObject.isValid) == "boolean")
             throw new Error("inputObject.isValid can not be null and has to be boolean")
         dispatch(SliceEditFunction({inputId,inputObject}))
     }

@@ -56,7 +56,7 @@ const BabyAdditionalFeeding = ({SetFormInputHandler,formInputs,readOnlyMode}) =>
 
                 <LabelInput controlId='patientFeedingWay' label='Sposób dokarmiania' className={style.FullInput} required onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientFeedingWay} />
 
-                <SelectInput controlId='patientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientExpressingBreastMilk} readonly={isReadonly} />
+                <SelectInput controlId='patientExpressingBreastMilk' label="Odciąganie pokarmu" className={style.FullInput} options={["Nie", "Tak"]} onChange={SetFormInputHandler} defaultOption={formInputs.patientExpressingBreastMilk} readonly={isReadonly} related={{controlId:["patientExpressingBreastMilkHowManyYesterday"],resetValue:["Nie"]}} />
 
                 {
                     formInputs.patientExpressingBreastMilk === 'Tak' && <LabelInput controlId='patientExpressingBreastMilkHowManyYesterday' label='Ile wczoraj ?' className={style.FullInput} onInput={SetFormInputHandler} readonly={isReadonly} value={formInputs.patientExpressingBreastMilkHowManyYesterday} />
