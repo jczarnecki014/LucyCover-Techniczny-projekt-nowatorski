@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query"
 //Store
 import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE"
 //Api
-import { fetchRecommendation } from "../../../../api/https"
+import { FetchRecommendation } from "../../../../api/https"
 import { DeleteRecommendation } from "../../../../api/https"
 
 
@@ -30,7 +30,7 @@ import { DeleteRecommendation } from "../../../../api/https"
 const PatientRecommendation = () => {
     const {data} = useQuery({
         queryKey: ['recommendations'],
-        queryFn: ({signal}) => fetchRecommendation({signal,patientId:data.patientId})
+        queryFn: ({signal}) => FetchRecommendation({signal,patientId:data.patientId})
     })
     const {recommendations,patientFirstName,patientLastName,patientId} = data;
 

@@ -15,9 +15,9 @@ import { ResetActivePatients } from '../../../../context/slices/PatientSearch_SL
 import { SetFormDefault } from '../../../../context/slices/AddNewVisitToScheduleForm';
 import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
 //Assets
-import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
-import { CheckPhoneIsValid } from '../../../../assets/Validation/PersonalData';
-import { CheckZipCodeIsValid } from '../../../../assets/Validation/PersonalData';
+import CheckFormIsValid from '../../../../assets/validation/CheckFormIsValid'
+import { CheckPhoneIsValid } from '../../../../assets/validation/PersonalData';
+import { CheckZipCodeIsValid } from '../../../../assets/validation/PersonalData';
 import useInputsSilce from "../../../../hooks/useInputsSlice";
 
 /**

@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 //Store
 import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
 //Api
-import { fetchPatient } from '../../../../api/https';
+import { FetchPatient } from '../../../../api/https';
 
 
 /**
@@ -34,7 +34,7 @@ const PatientMenu = () => {
 
     const {data} = useQuery({
         queryKey:["patients",params.patientId],
-        queryFn: ({signal}) => fetchPatient({signal,patientId:data.id})  
+        queryFn: ({signal}) => FetchPatient({signal,patientId:data.id})  
     })
 
     const {firstName,lastName,city,address,province,zipCode,children,phoneNumber,email} = data

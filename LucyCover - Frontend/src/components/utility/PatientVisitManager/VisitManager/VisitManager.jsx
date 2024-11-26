@@ -1,7 +1,7 @@
 //Components
 import VisitForm from './VisitForm';
-import ChoosePatientList from '../../../dashboard/patients/PatientsList/PatientSearch/ChoosePatientList'
-import ChooseChildrenList from './ChooseChildrenList';
+import ChoosePatientList from '../../PatientSearchList/ChoosePatientList'
+import ChooseChildrenList from '../../PatientSearchList/ChooseChildrenList'
 import VisitConfirmation from './VisitConfirmation';
 import Popup from '../../../utility/Popup';
 //Hooks
@@ -12,7 +12,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { SetActivePatient,SetActiveChildren } from '../../../../context/slices/PatientSearch_SLICE';
 import { LoadDefaultData } from '../../../../context/slices/AddNewVisitToScheduleForm';
 //Api
-import { queryClient, upsertVisit } from '../../../../api/https'
+import { queryClient, UpsertVisit } from '../../../../api/https'
 
 /**
  * VisitManager - Component to control new vist form. It adjustment displayed overlay to specific phase of form filling
@@ -37,7 +37,7 @@ const VisitManager = ({visitToEdit}) => {
     const dispatch = useDispatch()
 
     const {mutate,isError,error,isPending} = useMutation({
-        mutationFn: upsertVisit,
+        mutationFn: UpsertVisit,
         onSuccess: () => {
             queryClient.invalidateQueries(['schedule'])
             setFormMode("success")

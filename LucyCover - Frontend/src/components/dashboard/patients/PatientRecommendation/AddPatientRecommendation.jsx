@@ -13,10 +13,10 @@ import {useFormData} from '../../../../hooks/useFormData'
 //Slice
 import { SetInput } from '../../../../context/slices/AddPatientRecommendation'
 //Api
-import { createNewRecommendation } from '../../../../api/https'
+import { CreateNewRecommendation } from '../../../../api/https'
 import { queryClient } from '../../../../api/https'
 //Assets
-import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
+import CheckFormIsValid from '../../../../assets/validation/CheckFormIsValid'
 import useInputsSilce from "../../../../hooks/useInputsSlice";
 
 
@@ -32,7 +32,7 @@ import useInputsSilce from "../../../../hooks/useInputsSlice";
 
 const AddPatientRecommendation = ({patientId}) => {
     const {mutate,isError,error,isSuccess} = useMutation({
-        mutationFn: createNewRecommendation,
+        mutationFn: CreateNewRecommendation,
         onSuccess: () => {
             queryClient.invalidateQueries(['recommendations'])
         }

@@ -1,6 +1,6 @@
 import PatientRecommendation from "../../components/dashboard/patients/PatientRecommendation/PatientRecommendation";
 import { queryClient } from "../../api/https";
-import { fetchRecommendation } from "../../api/https";
+import { FetchRecommendation } from "../../api/https";
 
 /**
  * PatientRecommendationPage - Page to display recommendation available list 
@@ -26,7 +26,7 @@ export const loader = async ({params}) => {
     const patientId = params.patientId;
     return queryClient.fetchQuery({
         queryKey: ['recommendations'],
-        queryFn: ({signal}) => fetchRecommendation({signal,patientId})
+        queryFn: ({signal}) => FetchRecommendation({signal,patientId})
     })
 }
 

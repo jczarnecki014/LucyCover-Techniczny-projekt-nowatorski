@@ -7,7 +7,7 @@ import style from '../css/ChildrenAddingForm.module.css'
 import OverlayModel from "../../../../utility/OverlayModel";
 import { PiBabyBold } from "react-icons/pi";
 import LabelInput from '../../../../utility/LabelInput';
-import CheckFormIsValid from '../../../../../assets/Validation/CheckFormIsValid';
+import CheckFormIsValid from '../../../../../assets/validation/CheckFormIsValid';
 
 const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildren}) => {
 

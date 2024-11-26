@@ -1,6 +1,6 @@
 import PatientDocumentationDisplay from "../../components/dashboard/patients/PatientDocumentation/PatientDocumentationDisplay/PatientDocumentationDisplay";
 import { queryClient } from "../../api/https";
-import { fetchDocumentationDetails } from "../../api/https";
+import { FetchDocumentationDetails } from "../../api/https";
 
 /**
  * PatientDocumentationDisplayPage - Page to display chosen documentation details
@@ -29,7 +29,7 @@ export const loader = async ({params}) => {
 
     return queryClient.fetchQuery({
         queryKey:['documentation',patientId],
-        queryFn: ({signal}) => fetchDocumentationDetails({signal,patientId,documentId})                     
+        queryFn: ({signal}) => FetchDocumentationDetails({signal,patientId,documentId})                     
     })
 }
 

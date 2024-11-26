@@ -12,7 +12,7 @@ import { LoadDefaultData } from "../../../../context/slices/AddNewEducationMater
 //Assets
 import DownloadFileInBrowser from "../../../../assets/main/DownloadFileInBrowser";
 //Api
-import { downloadEducationMaterial,DeleteEducationMaterial } from "../../../../api/https";
+import { DownloadEducationMaterial,DeleteEducationMaterial } from "../../../../api/https";
 
 /**
  * FileInfo - Component to displaying information about file as file name or fil title
@@ -39,7 +39,7 @@ const FileInfo = ({file,SetOverlayMode,SetErrorMessage}) => {
     const dispatch = useDispatch();
 
     const downloadMutation = useMutation({
-        mutationFn: downloadEducationMaterial,
+        mutationFn: DownloadEducationMaterial,
         onSuccess: ({blob,fileName}) => {
             DownloadFileInBrowser(blob,fileName)
         },

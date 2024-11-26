@@ -4,7 +4,7 @@ import PatientVisitsWrapper from "../../../utility/PatientVisitManager/PatientVi
 //Hooks
 import { useQuery } from "@tanstack/react-query"
 //Api
-import { fetchAllPatientVisits } from "../../../../api/https"
+import { FetchAllPatientVisits } from "../../../../api/https"
 
 
 /**
@@ -21,7 +21,7 @@ import { fetchAllPatientVisits } from "../../../../api/https"
 const PatientSchedule = () => {
     const {data} = useQuery({
         queryKey: ['schedule'],
-        queryFn: ({signal}) => fetchAllPatientVisits({signal,patientId:data.patientDetails.patientId})
+        queryFn: ({signal}) => FetchAllPatientVisits({signal,patientId:data.patientDetails.patientId})
     })
     const {firstName,lastName,city,address,zipCode,province,phoneNumber,email,children} = data.patientDetails
 

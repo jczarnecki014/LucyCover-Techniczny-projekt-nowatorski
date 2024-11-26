@@ -5,7 +5,7 @@ import LabelInput from "../../../../utility/LabelInput";
 //Style
 import style from '../css/PatientAddingForm.module.css'
 //Assets
-import { CheckZipCodeIsValid } from "../../../../../assets/Validation/PersonalData";
+import { CheckZipCodeIsValid } from "../../../../../assets/validation/PersonalData";
 
 /**
  * PatientFormPlaceSection - component to display patient address details inputs
@@ -13,8 +13,7 @@ import { CheckZipCodeIsValid } from "../../../../../assets/Validation/PersonalDa
  *  Parrent component : <PatientForm />
  */
 
-const PatientFormPlaceSection = ({setPatientInput,formIsValid,patientInputs,isPending}) => {
-
+const PatientFormPlaceSection = ({setPatientInput,formIsValid,patientInputs,inEditMode,isPending}) => {
     const {province,city,address,zipCode} = patientInputs
 
     return (
@@ -29,7 +28,9 @@ const PatientFormPlaceSection = ({setPatientInput,formIsValid,patientInputs,isPe
                 <LabelInput className={style.Input} controlId="address" label="Adres" required onInput={setPatientInput} value={address} />
                 <LabelInput className={style.Input} controlId="zipCode" label="Kod pocztowy" required onInput={setPatientInput} value={zipCode} validationFunction={CheckZipCodeIsValid} />
                 <button id={style.DesktopVersion} className={style.SubmitButton} disabled={!formIsValid}>
-                    {!isPending ? "Dodaj" : 'Zapisywanie' }
+                    {isPending && 'Zapisywanie' }
+                    {(!isPending && !inEditMode) && "Dodaj" }
+                    {(!isPending && inEditMode) && "Edytuj" }
                 </button>
             </div>
         </Fragment>

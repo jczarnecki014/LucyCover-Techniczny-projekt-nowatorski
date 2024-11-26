@@ -3,7 +3,7 @@ import PageBreakLayout from "../../utility/PageBreakLayout/PageBreakLayout"
 import MaterialsList from "./MaterialsList/MaterialsList";
 import FileInfo from "./FileInfo/FileInfo";
 import AssignedPatients from "./AssignedPatients/AssignedPatients";
-import ChoosePatientList from "../patients/PatientsList/PatientSearch/ChoosePatientList";
+import ChoosePatientList from "../../utility/PatientSearchList/ChoosePatientList";
 import Popup from "../../utility/Popup";
 import AddMaterial from "./AddMaterial/AddMaterial";
 //Style
@@ -15,8 +15,8 @@ import { useSelector } from "react-redux";
 //assets
 import GetPatientsId from "../../../assets/main/GetPatientsId";
 //api
-import { fetchAllEducationMaterial,fetchAllAssignedPatientsToMaterial,queryClient } from "../../../api/https";
-import { assignPatientToMaterial } from "../../../api/https";
+import { FetchAllEducationMaterial,FetchAllAssignedPatientsToMaterial,queryClient } from "../../../api/https";
+import { AssignPatientToMaterial } from "../../../api/https";
 
 /**
  * Education - component to storing and scharing education materials
@@ -41,12 +41,12 @@ const Education = () => {
 
     const {data} = useQuery({
         queryKey: ['educationMaterials'],
-        queryFn: ({signal}) => fetchAllEducationMaterial({signal}),
+        queryFn: ({signal}) => FetchAllEducationMaterial({signal}),
         refetchInterval: 5000,
     })
 
     const {mutate} = useMutation({
-        mutationFn: assignPatientToMaterial,
+        mutationFn: AssignPatientToMaterial,
         onError: (error) => {
             SetOverlayMode("error")
             SetErrorMessage(error.message)
@@ -61,7 +61,7 @@ const Education = () => {
         const fetchData = async () => {
             const assignedPatients = await queryClient.fetchQuery({
                 queryKey:['educationMaterials',"assignedPatients"],
-                queryFn: ({signal}) => fetchAllAssignedPatientsToMaterial({signal,materialId:activeMaterial.id})                     
+                queryFn: ({signal}) => FetchAllAssignedPatientsToMaterial({signal,materialId:activeMaterial.id})                     
             })
             SetAssignedPatients(assignedPatients)
         }
@@ -70,7 +70,7 @@ const Education = () => {
 
     },[activeMaterial,overlayDisplay,SetAssignedPatients])
 
-    const AssignPatientToMaterial = () => {
+    const AssignPatientHandler = () => {
         mutate({materialId:activeMaterial.id,patientId:selectedPatient.id})
     }
 
@@ -80,7 +80,7 @@ const Education = () => {
             {
                 overlayMode && overlayDisplay == "patientSearch"  && <ChoosePatientList 
                                                                         disabledPatients={GetPatientsId(assignedPatients,"patientId")} 
-                                                                        onSelect={{btnLabel:"wybierz",func:AssignPatientToMaterial}} />
+                                                                        onSelect={{btnLabel:"wybierz",func:AssignPatientHandler}} />
             }
             {
                 overlayMode && overlayDisplay == "error"  && <Popup 
