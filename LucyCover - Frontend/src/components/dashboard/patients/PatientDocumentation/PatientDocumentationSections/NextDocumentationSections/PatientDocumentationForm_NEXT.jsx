@@ -21,7 +21,7 @@ import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddNex
 import { LoadDefaultData } from "../../../../../../context/slices/AddNextDocumentationForm"
 import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE"
 //Assets
-import CheckFormIsValid from "../../../../../../assets/Validation/CheckFormIsValid"
+import CheckFormIsValid from "../../../../../../assets/validation/CheckFormIsValid"
 import useInputsSilce from "../../../../../../hooks/useInputsSlice"
 
 

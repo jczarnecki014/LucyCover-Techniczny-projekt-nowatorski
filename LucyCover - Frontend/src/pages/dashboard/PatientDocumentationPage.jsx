@@ -1,4 +1,4 @@
-import {fetchDocumentation, queryClient} from '../../api/https'
+import {FetchDocumentation, queryClient} from '../../api/https'
 import PatientDocumentationList from "../../components/dashboard/patients/PatientDocumentation/PatientDocumentationList/PatientDocumentationList";
 
 /**
@@ -26,7 +26,7 @@ export const loader = async ({params}) => {
 
     return queryClient.fetchQuery({
         queryKey:['documentation'],
-        queryFn: ({signal}) => fetchDocumentation({signal,patientId})
+        queryFn: ({signal}) => FetchDocumentation({signal,patientId})
     })
 }
 

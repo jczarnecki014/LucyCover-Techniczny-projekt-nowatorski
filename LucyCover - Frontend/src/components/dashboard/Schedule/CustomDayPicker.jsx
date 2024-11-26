@@ -8,7 +8,7 @@ import './css/DatePickerCustom.css'
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 //Api
-import { getVisitsByMonth } from '../../../api/https';
+import { GetVisitsByMonth } from '../../../api/https';
 
 /** 
 * CustomDayPicker - calendar to pick date
@@ -40,7 +40,7 @@ const CustomDayPicker = ({onDayChange}) => {
     }
 
     const {mutate} = useMutation({
-        mutationFn: getVisitsByMonth,
+        mutationFn: GetVisitsByMonth,
         onSuccess: (date) => ConvertAndSetArrangeDays(date),
         onError: (error) => console.log(error)
     })

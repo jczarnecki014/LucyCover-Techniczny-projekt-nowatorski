@@ -1,6 +1,6 @@
 import PatientMenu from "../../components/dashboard/patients/PatientMenu/PatientMenu";
 import { queryClient } from "../../api/https";
-import { fetchPatient } from "../../api/https";
+import { FetchPatient } from "../../api/https";
 
 /**
  * PatientMenuPage - Page to display menu for patient maintain options
@@ -27,7 +27,7 @@ export const loader = async ({params}) => {
     
     return queryClient.fetchQuery({
         queryKey:["patients",patientId],
-        queryFn: ({signal}) => fetchPatient({signal,patientId})                     
+        queryFn: ({signal}) => FetchPatient({signal,patientId})                     
     })
 }
 

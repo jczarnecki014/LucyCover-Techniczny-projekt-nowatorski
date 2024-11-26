@@ -5,7 +5,7 @@ import LabelInput from "../../../../utility/LabelInput";
 //Style
 import style from '../css/PatientAddingForm.module.css'
 //Assets
-import { CheckEmailIsValid,CheckPhoneIsValid } from "../../../../../assets/Validation/PersonalData";
+import { CheckEmailIsValid,CheckPhoneIsValid } from "../../../../../assets/validation/PersonalData";
 
 
 const currentDate = new Date();

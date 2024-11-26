@@ -1,12 +1,12 @@
 //Components
-import OverlayModel from "../../../utility/OverlayModel"
-import SearchInput from "../../SearchInput"
+import OverlayModel from "../OverlayModel"
+import SearchInput from "../SearchInput"
 import { AnimatePresence } from 'framer-motion'
 //Style
 import style from './css/PatientSearchList.module.css'
 //Hooks
 import { useState } from 'react'
-import useSearchList from "../../../../hooks/useSearchList";
+import useSearchList from "../../../hooks/useSearchList";
 
 
 
@@ -23,7 +23,7 @@ import useSearchList from "../../../../hooks/useSearchList";
  * @param {Function} funcButton - Function which will be invoke when user click additional button
  */
 
-const PatientSearchList = ({listElements,children,closeFunc, funcButton}) => {
+const PatientSearchList = ({listElements,children,closeFunc,funcButton}) => {
     const [searchPhrase,SetSearchPhrase] = useState("");
     const patientList = useSearchList({
         list:listElements,

@@ -1,6 +1,6 @@
 import Patients from "../../components/dashboard/patients/PatientsList/Patients";
 import { queryClient } from "../../api/https";
-import { fetchPatientsForSearchList } from "../../api/https";
+import { FetchPatientsForSearchList } from "../../api/https";
 import { useDispatch } from "react-redux";
 import { SetActivePage } from "../../context/slices/MainMenuSlice";
 import { useEffect } from "react";
@@ -30,7 +30,7 @@ const PatientsPage = () => {
 export const loader = async () => {
     return queryClient.fetchQuery({
         queryKey: ['patients'],
-        queryFn: ({signal}) => fetchPatientsForSearchList(signal)
+        queryFn: ({signal}) => FetchPatientsForSearchList(signal)
     })
 }
 

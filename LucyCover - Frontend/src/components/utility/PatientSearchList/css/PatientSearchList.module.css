@@ -1,0 +1,36 @@
+.Container {
+    display: grid;
+    grid-template-rows: 0.07fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+.TopBar {
+    display: flex;
+    justify-content: end;
+    padding: 5px 25px 5px 20px;
+    background-color: #473947;
+}
+.PatientList {
+    padding: 15px 25px 15px 25px;
+    align-items:flex-start;
+    height: 95%;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 50px;
+}
+
+.ErrorInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 25px 15px 25px;
+    color: #dbe0e0;
+    text-align: center;
+}
+
+@media only screen and (max-width:1200px){
+    .PatientList {
+        grid-template-columns: 1fr 1fr;
+    }
+}

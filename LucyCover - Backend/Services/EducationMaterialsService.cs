@@ -186,7 +186,7 @@ namespace LucyCover___Backend.Services
         {
             if(file is not null && file.Length > 0) 
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath,"uploads");
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath,"Uploads");
 
                 if(!Directory.Exists(uploadsFolder))
                 {

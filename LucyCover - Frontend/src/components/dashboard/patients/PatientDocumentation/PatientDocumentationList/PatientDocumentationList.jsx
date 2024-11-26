@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query"
 import { OverlayToggle } from "../../../../../context/slices/OverlayModel_SLICE"
 //Api
 import { DeleteDocumentation } from "../../../../../api/https"
-import { fetchDocumentation } from "../../../../../api/https"
+import { FetchDocumentation } from "../../../../../api/https"
 
 /**
  * PatientDocumentationList - component to display list of all patients visit. From this place use can select which one he would display
@@ -34,7 +34,7 @@ const PatientDocumentationList = () => {
     const {data}  = useQuery({
         queryKey: ['documentation'],
         refetchOnWindowFocus:true,
-        queryFn: ({signal}) => fetchDocumentation({signal,patientId:data.patient.id})
+        queryFn: ({signal}) => FetchDocumentation({signal,patientId:data.patient.id})
     })
     const popupIsVisible = useSelector((state) => state.overlayModel.isVisible)
 

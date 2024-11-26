@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 //Store
 import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
 //Api
-import { fetchPatientsForSearchList } from '../../../../api/https';
+import { FetchPatientsForSearchList } from '../../../../api/https';
 
 /**
  * Patients - component to display list of available patients for users. 
@@ -31,7 +31,7 @@ const Patients = () => {
     const {data} = useQuery({
         queryKey:['patients'],
         refetchOnWindowFocus:true,
-        queryFn: ({signal}) => fetchPatientsForSearchList(signal)                     
+        queryFn: ({signal}) => FetchPatientsForSearchList(signal)                     
     })
     
     const activePatient = useSelector((state) => state.patientSearch.activePatient)

@@ -12,8 +12,8 @@ import { useMutation } from "@tanstack/react-query";
 //store
 import { SetInput,SetFormDefault } from "../../../../context/slices/AddNewEducationMaterialSlice";
 //assets
-import CheckFormIsValid from '../../../../assets/Validation/CheckFormIsValid'
-import { AcceptedFileUploadFormat } from "../../../../assets/Validation/AcceptedFileUploadFormat";
+import CheckFormIsValid from '../../../../assets/validation/CheckFormIsValid'
+import { AcceptedFileUploadFormat } from "../../../../assets/validation/AcceptedFileUploadFormat";
 //api
 import { AddNewMaterial,queryClient } from "../../../../api/https";
 import useInputsSilce from "../../../../hooks/useInputsSlice";

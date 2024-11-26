@@ -1,6 +1,6 @@
 import PatientSchedule from "../../components/dashboard/patients/PatientSchedule/PatientSchedule";
 import { queryClient } from "../../api/https";
-import { fetchAllPatientVisits } from "../../api/https";
+import { FetchAllPatientVisits } from "../../api/https";
 
 /**
  * PatientSchedulePage - Page to display scheduled visist for specific patient
@@ -26,7 +26,7 @@ export const loader = async ({params}) => {
     const patientId = params.patientId;
     return queryClient.fetchQuery({
         queryKey: ['schedule'],
-        queryFn: ({signal}) => fetchAllPatientVisits({signal,patientId})
+        queryFn: ({signal}) => FetchAllPatientVisits({signal,patientId})
     })
 }
 

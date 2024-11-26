@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { createNewDocumentation } from "../api/https/"
+import { CreateNewDocumentation } from "../api/https/"
 import { queryClient } from "../api/https"
 
 /**
@@ -16,9 +16,7 @@ import { queryClient } from "../api/https"
 const useFetchDocumentation = (patientId) => {
 
     const {mutate,isPending,isError,error,isSuccess} = useMutation({
-        mutationFn: createNewDocumentation,
-        onMutate: () => {
-        },
+        mutationFn: CreateNewDocumentation,
         onSuccess: () => {
             queryClient.invalidateQueries(['Documentation'])
         },

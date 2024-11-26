@@ -7,7 +7,7 @@ export const queryClient = new QueryClient();
 //                                               GET                                                                         //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export async function fetchPatientsForSearchList({signal}) {
+export async function FetchPatientsForSearchList({signal}) {
     const response = await fetch('https://localhost:7014/api/patients',{
         signal,
         credentials:"include"
@@ -20,7 +20,7 @@ export async function fetchPatientsForSearchList({signal}) {
     return data;
 }
 
-export async function fetchPatient({signal,patientId}) {
+export async function FetchPatient({signal,patientId}) {
     const response = await fetch(`https://localhost:7014/api/patients/${patientId}`,{
         signal,
         credentials:"include"
@@ -33,7 +33,7 @@ export async function fetchPatient({signal,patientId}) {
     return data;
 }
 
-export async function fetchDocumentation({signal,patientId}) {
+export async function FetchDocumentation({signal,patientId}) {
     const response = await fetch(`https://localhost:7014/api/documentation/${patientId}`,{
         signal,
         credentials:"include"
@@ -46,7 +46,7 @@ export async function fetchDocumentation({signal,patientId}) {
     return data;
 }
 
-export async function fetchDocumentationDetails({signal,patientId,documentId}) {
+export async function FetchDocumentationDetails({signal,patientId,documentId}) {
     const response = await fetch(`https://localhost:7014/api/documentation/${patientId}/${documentId}`,{
         signal,
         credentials:"include"
@@ -60,7 +60,7 @@ export async function fetchDocumentationDetails({signal,patientId,documentId}) {
 }
 
 
-export async function fetchRecommendation({patientId,signal}) {
+export async function FetchRecommendation({patientId,signal}) {
     const response = await fetch(`https://localhost:7014/api/recommendation/${patientId}`,{
         signal,
         credentials: "include"
@@ -73,7 +73,7 @@ export async function fetchRecommendation({patientId,signal}) {
     return data;
 }
 
-export async function fetchRecommendationDetails({signal,patientId,recommendationId}) {
+export async function FetchRecommendationDetails({signal,patientId,recommendationId}) {
     const response = await fetch(`https://localhost:7014/api/recommendation/${patientId}/${recommendationId}`,{
         signal,
         credentials: 'include'
@@ -86,7 +86,7 @@ export async function fetchRecommendationDetails({signal,patientId,recommendatio
     return data;
 }
 
-export async function fetchAllPatientVisits({signal,patientId}) {
+export async function FetchAllPatientVisits({signal,patientId}) {
     const response = await fetch(`https://localhost:7014/api/schedule/patients/${patientId}`,{
         signal: signal,
         credentials: "include"
@@ -101,7 +101,7 @@ export async function fetchAllPatientVisits({signal,patientId}) {
     return data;
 }
 
-export async function fetchAllAssignedPatientsToMaterial({signal,materialId}) {
+export async function FetchAllAssignedPatientsToMaterial({signal,materialId}) {
     const response = await fetch(`https://localhost:7014/api/educationMaterials/${materialId}`,{
         signal,
         credentials: 'include',
@@ -116,7 +116,7 @@ export async function fetchAllAssignedPatientsToMaterial({signal,materialId}) {
     return data;
 }
 
-export async function fetchAllEducationMaterial({signal}) {
+export async function FetchAllEducationMaterial({signal}) {
     const response = await fetch(`https://localhost:7014/api/educationMaterials`,{
         signal,
         credentials: 'include',
@@ -131,7 +131,7 @@ export async function fetchAllEducationMaterial({signal}) {
     return data;
 }
 
-export async function downloadEducationMaterial({signal,materialId}) {
+export async function DownloadEducationMaterial({materialId}) {
     const response = await fetch(`https://localhost:7014/api/educationMaterials/file/${materialId}`,{
         signal,
         credentials: 'include',
@@ -145,7 +145,7 @@ export async function downloadEducationMaterial({signal,materialId}) {
     return {blob:await response.blob(),fileName};
 }
 
-export async function getVisitsByDate({date,signal}) {
+export async function GetVisitsByDate({date,signal}) {
     const response = await fetch(`https://localhost:7014/api/schedule/${date}`,{
         signal,
         credentials: "include"
@@ -158,7 +158,7 @@ export async function getVisitsByDate({date,signal}) {
     return data;
 }
 
-export async function getVisitsByMonth({month}) {
+export async function GetVisitsByMonth({month}) {
     const response = await fetch(`https://localhost:7014/api/schedule/month/${month}`,
     {
         method:'GET',
@@ -208,7 +208,7 @@ export async function GetMessagesForEmailAddress({signal,email}) {
 //                                               POST                                                                         //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export async function createNewPatient(patient) {
+export async function CreateNewPatient(patient) {
     const response = await fetch('https://localhost:7014/api/patients',{
         method: 'POST',
         body: JSON.stringify(patient),
@@ -227,7 +227,7 @@ export async function createNewPatient(patient) {
 }
 
 
-export async function createNewDocumentation({documentationDetails,patientId}) {
+export async function CreateNewDocumentation({documentationDetails,patientId}) {
     const response = await fetch(`https://localhost:7014/api/documentation/${patientId}`,{
         method: 'POST',
         body: JSON.stringify(documentationDetails),
@@ -242,7 +242,7 @@ export async function createNewDocumentation({documentationDetails,patientId}) {
     }
 }
 
-export async function createNewRecommendation({recommendationDetails,patientId}) {
+export async function CreateNewRecommendation({recommendationDetails,patientId}) {
     const response = await fetch(`https://localhost:7014/api/recommendation/${patientId}`,{
         method: 'POST',
         body: JSON.stringify(recommendationDetails),
@@ -257,7 +257,7 @@ export async function createNewRecommendation({recommendationDetails,patientId})
     }
 }
 
-export async function upsertVisit({visitDetails,patientId}) {
+export async function UpsertVisit({visitDetails,patientId}) {
     const response = await fetch(`https://localhost:7014/api/schedule/${patientId}`,{
         method: 'POST',
         body: JSON.stringify(visitDetails),
@@ -279,7 +279,7 @@ export async function upsertVisit({visitDetails,patientId}) {
     }
 }
 
-export async function assignPatientToMaterial({materialId,patientId}) {
+export async function AssignPatientToMaterial({materialId,patientId}) {
     const response = await fetch(`https://localhost:7014/api/educationMaterials/${materialId}/${patientId}`,{
         method: 'POST',
         headers:{

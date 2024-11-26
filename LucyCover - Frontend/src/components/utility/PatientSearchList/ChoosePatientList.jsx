@@ -1,14 +1,14 @@
 //Components
-import PatientSearchList from '../../../../utility/PatientVisitManager/VisitManager/PatientSearchList'
-import PatientElement from "./PatientElement"
+import PatientSearchList from './PatientSearchList'
+import PatientElement from "../../dashboard/patients/PatientsList/PatientSearch/PatientElement"
 //Hooks
 import { useQuery } from '@tanstack/react-query'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 //Store
-import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE'
+import { SetActivePatient } from '../../../context/slices/PatientSearch_SLICE'
 //Api
-import { fetchPatientsForSearchList } from '../../../../../api/https'
+import { FetchPatientsForSearchList } from '../../../api/https'
 
 /**
  * ChoosePatientList - component to display other list of patients. It displays patient as a block. It is use in some forms where patient should be choosen from list
@@ -28,7 +28,7 @@ const ChoosePatientList = ({onSelect,disabledPatients,closeFunc}) => {
     const activePatientId = useSelector(state => state.patientSearch.activePatient.id);
     const {data,isPending} = useQuery({
         queryKey: ['patients'],
-        queryFn: ({signal}) => fetchPatientsForSearchList(signal)
+        queryFn: ({signal}) => FetchPatientsForSearchList(signal)
     })
 
     const PatientElementClickHandler = (id) => {

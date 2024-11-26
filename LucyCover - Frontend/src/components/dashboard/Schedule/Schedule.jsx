@@ -8,7 +8,7 @@ import style from './css/Schedule.module.css'
 import {useQuery } from "@tanstack/react-query";
 import { useState,useEffect } from "react";
 //Api
-import { getVisitsByDate } from "../../../api/https";
+import { GetVisitsByDate } from "../../../api/https";
 import { queryClient } from "../../../api/https";
 //Assets
 import { ConvertDateToLocalString } from "../../../assets/main/ConvertDateToLocalString";
@@ -32,7 +32,7 @@ const Schedule = () => {
   const localStringDate = ConvertDateToLocalString(selectedDay)
 
   const {data,isPending} = useQuery({
-    queryFn: ({signal}) => getVisitsByDate({date:localStringDate,signal:signal}),
+    queryFn: ({signal}) => GetVisitsByDate({date:localStringDate,signal:signal}),
     queryKey: ["schedule",{localStringDate}]
   })
 
