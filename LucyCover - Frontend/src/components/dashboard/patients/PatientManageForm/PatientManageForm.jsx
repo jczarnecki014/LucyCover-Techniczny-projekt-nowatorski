@@ -34,15 +34,15 @@ const PatientManageForm = ({activePatient}) => {
     
     const defaultPatientInputs = (activePatient != undefined) ? activePatient : getValue(patientContextInputs)
 
-    const [formMode,setFormMode] = useState('patient')
-    const [patientInputs,setPatientInputs] = useState(defaultPatientInputs)
-    const [childrenList, setChildrenList] = useState()
-    const [childrenInEditMode,setChildrenInEditMode] = useState(null);
+    const [formMode,SetFormMode] = useState('patient')
+    const [patientInputs,SetPatientInputs] = useState(defaultPatientInputs)
+    const [childrenList, SetChildrenList] = useState()
+    const [childrenInEditMode,SetChildrenInEditMode] = useState(null);
 
     const {mutate,isPending,isError,error} = useMutation({
         mutationFn: CreateNewPatient,
         onSuccess: () => {
-            setFormMode("success")
+            SetFormMode("success")
             queryClient.invalidateQueries(["patients",defaultPatientInputs.id])
         }
     })
@@ -58,21 +58,21 @@ const PatientManageForm = ({activePatient}) => {
                 }
             })
         }
-        setChildrenList(defaultChildrenList)
+        SetChildrenList(defaultChildrenList)
     },[])
 
     const formIsValid = CheckFormIsValid(patientContextInputs)
 
     const FormModeChangeHandler = (mode) => {
-        setFormMode(mode)
-        setPatientInputs(getValue(patientContextInputs))
-        setChildrenInEditMode(null);
+        SetFormMode(mode)
+        SetPatientInputs(getValue(patientContextInputs))
+        SetChildrenInEditMode(null);
     }
 
     const EditChildrenFormDisplay = (childIndex) => {
         const toEditChildren = childrenList.find(child => (childIndex === child.index))
-        setChildrenInEditMode(toEditChildren)
-        setFormMode('children')
+        SetChildrenInEditMode(toEditChildren)
+        SetFormMode('children')
     }
 
     const AddNewPatientHandler = () => {
@@ -93,26 +93,26 @@ const PatientManageForm = ({activePatient}) => {
             id: '00000000-0000-0000-0000-000000000000',
             index: childrenList.length
         }
-        setChildrenList(previousState => {
+        SetChildrenList(previousState => {
             return [...previousState,childrenToSave]
         })
     }
 
     const RemoveChildrenFromListHandler = (childrenIndex) =>  {
-        setChildrenList((previousState) => {
+        SetChildrenList((previousState) => {
             const newChildrenList = previousState.filter(children => (childrenIndex !== children.index))
             return newChildrenList
         })
     }
 
     const EditChildrenHandler = (updatedChildren) => {
-        setChildrenList((previousState) => {
+        SetChildrenList((previousState) => {
             const updatedList = previousState.map(children => {
                 return (children.index === updatedChildren.index) ? updatedChildren : children
             })
             return updatedList;
         })
-        setChildrenInEditMode(null);
+        SetChildrenInEditMode(null);
     }
 
     const FormClearHandler = () => {
@@ -137,7 +137,7 @@ const PatientManageForm = ({activePatient}) => {
                                                     
             {formMode === 'children' && <ChildrenForm changeFormMode={FormModeChangeHandler} AddChildrenToList={AddChildrenToListHandler} EditChildren={EditChildrenHandler} defaultValue={childrenInEditMode} />}
 
-            {formMode === 'childrenWarning' && <Popup type='warning' description="Czy napewno chcesz dodać pacjenta z pustą listą przypisanych noworodków ?" CancleAction={()=>setFormMode('children')} AcceptAction={()=>AddNewPatientHandler()} /> }
+            {formMode === 'childrenWarning' && <Popup type='warning' description="Czy napewno chcesz dodać pacjenta z pustą listą przypisanych noworodków ?" CancleAction={()=>SetFormMode('children')} AcceptAction={()=>AddNewPatientHandler()} /> }
 
             {formMode === 'success' && <Popup type='success' description="Pacjent został dodany pomyślnie"  AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
 

@@ -43,17 +43,17 @@ const variants = {
  */
 
 const AuthPageComponent = () => {
-    const [isLogin,setIsLogin] = useState(true) //[loginMod => true | registerMod => false]
-    const [pageIsChanging,setPageIsChanging] = useState(false); // condition to complete mode switching
+    const [isLogin,SetIsLogin] = useState(true) //[loginMod => true | registerMod => false]
+    const [pageIsChanging,SetPageIsChanging] = useState(false); // condition to complete mode switching
     const [authError,SetAuthError] = useState(null)
 
     const SwitchModeButtonClick = () => {
-        setPageIsChanging(true)
+        SetPageIsChanging(true)
         SetAuthError(null)
 
         setTimeout(()=>{
-            setIsLogin(!isLogin)
-            setPageIsChanging(false)
+            SetIsLogin(!isLogin)
+            SetPageIsChanging(false)
         },300)
 
     }

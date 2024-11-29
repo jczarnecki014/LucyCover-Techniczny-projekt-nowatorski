@@ -38,7 +38,7 @@ const PatientDocumentationList = () => {
     })
     const popupIsVisible = useSelector((state) => state.overlayModel.isVisible)
 
-    const [popupDetails,setPopupDetails] = useState({
+    const [popupDetails,SetPopupDetails] = useState({
         mode:'AddingForm / DeleteConfirmation',
         popupData: {
             day:'',
@@ -49,9 +49,9 @@ const PatientDocumentationList = () => {
 
     const dispatch = useDispatch();
 
-    const showPopupHandler = (popupMode,popupData={}) => {
+    const ShowPopupHandler = (popupMode,popupData={}) => {
         dispatch(OverlayToggle(true))
-        setPopupDetails({
+        SetPopupDetails({
             mode:popupMode,
             popupData
         })
@@ -73,14 +73,14 @@ const PatientDocumentationList = () => {
                 }
             </AnimatePresence>
             
-            <PatientTable columns={['ID','Data wizyty','Dziecko']} data={data.documentation} patientName={`${data.patient.firstName} ${data.patient.lastName}`} showPopup={showPopupHandler}>
+            <PatientTable columns={['ID','Data wizyty','Dziecko']} data={data.documentation} patientName={`${data.patient.firstName} ${data.patient.lastName}`} showPopup={ShowPopupHandler}>
                 {(documentation) => documentation.map(document => {
                     return (
                         <tr id={document.first ? style.First : ''} key={document.id}>
                             <td>{document.id}</td>
                             <td>{document.date}</td>
                             <td>{document.child.childFirstName} {document.child.childLastName}</td>
-                            <TableButtons document={{...document,patient:document.baby}} showPopup={showPopupHandler} />
+                            <TableButtons document={{...document,patient:document.baby}} showPopup={ShowPopupHandler} />
                         </tr>
                     )
                 })}

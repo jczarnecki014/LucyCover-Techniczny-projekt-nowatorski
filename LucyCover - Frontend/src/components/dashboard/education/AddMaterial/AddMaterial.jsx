@@ -59,11 +59,11 @@ const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
         }
     })
 
-    const handleFileUploadClick = () => {
+    const HandleFileUploadClick = () => {
         fileInputRef.current.click(); // Kliknięcie na ukryty input
     };
 
-    const handleFileChange = (event) => {
+    const HandleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             InputChangeHandler({ inputId: "file", inputObject: {value: file.name, isValid: true} });
@@ -86,7 +86,7 @@ const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
                     whileHover={{ scale: 1.1 }} 
                     transition={{ type: "spring", stiffness: 300 }} 
                     className={`${style.fileUploadBox} ${fileIsUploaded && style.fileUploaded}`}
-                    onClick={handleFileUploadClick}
+                    onClick={HandleFileUploadClick}
                 >
                     <FaCloudUploadAlt size={100} />
                     {
@@ -108,7 +108,7 @@ const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
                         style={{display:'none'}} 
                         ref={fileInputRef} 
                         accept={AcceptedFileUploadFormat} 
-                        onChange={handleFileChange} />
+                        onChange={HandleFileChange} />
                     {
                         formIsValid && (
                             <div className={style.buttonSection}>

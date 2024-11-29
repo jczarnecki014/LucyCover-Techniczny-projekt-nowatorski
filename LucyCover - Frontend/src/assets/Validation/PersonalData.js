@@ -1,6 +1,6 @@
 const emailREGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 const phoneREGEX = /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/
-const zipCodeRegex = /\d{2}-\d{3}$/
+const zipCodeREGEX = /\d{2}-\d{3}$/
 
 
 export const CheckEmailIsValid = (email) => {
@@ -12,6 +12,6 @@ export const CheckPhoneIsValid = (phone) => {
 };
 
 export const CheckZipCodeIsValid = (zipCode) => {
-  return zipCodeRegex.test(zipCode);
+  return zipCodeREGEX.test(zipCode);
 };
 
