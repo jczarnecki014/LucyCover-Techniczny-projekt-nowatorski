@@ -17,14 +17,14 @@ import { useState } from 'react';
 
 const ChildrenElement = ({childrenDetails,RemoveChildrenFromList,setChildrenFormMode,EditChildrenMode}) => {
 
-    const [addChildrenIsHovered,setAddChildrenIsHovered] = useState(false)
-    const [actionIconsAreHoverd, setActionIconsAreHoverd] = useState(false);
+    const [addChildrenIsHovered,SetAddChildrenIsHovered] = useState(false)
+    const [actionIconsAreHoverd, SetActionIconsAreHoverd] = useState(false);
     
     const GetChildrenElement = () => {
         
         if(childrenDetails === undefined){
             return (
-                <motion.span className={style.ChildrenElement} onHoverStart={()=>setAddChildrenIsHovered(true)} onHoverEnd={()=>setAddChildrenIsHovered(false)} onClick={()=>setChildrenFormMode('children')}> 
+                <motion.span className={style.ChildrenElement} onHoverStart={()=>SetAddChildrenIsHovered(true)} onHoverEnd={()=>SetAddChildrenIsHovered(false)} onClick={()=>setChildrenFormMode('children')}> 
 
                     <motion.div animate={{opacity: addChildrenIsHovered ? 1:0.1, scale: addChildrenIsHovered ? 1 : 0.7, color: (addChildrenIsHovered ? '#692267' : "#000"), cursor:'pointer'}} transition={{duration:0.3}}
                     >
@@ -45,8 +45,8 @@ const ChildrenElement = ({childrenDetails,RemoveChildrenFromList,setChildrenForm
                     animate={{scale:[0.5,1,1.2,1]}} 
                     exit={{y:-30, opacity:0}} 
                     transition={{duration:0.3}} 
-                    onHoverStart={()=>setActionIconsAreHoverd(true)} 
-                    onHoverEnd={()=>setActionIconsAreHoverd(false)} 
+                    onHoverStart={()=>SetActionIconsAreHoverd(true)} 
+                    onHoverEnd={()=>SetActionIconsAreHoverd(false)} 
                     >
                         <AnimatePresence>
                             {actionIconsAreHoverd &&

@@ -1,5 +1,3 @@
-
-
 export const GetNotyficationDetails = (notyficationType,notyficationDescription) => {
     switch(notyficationType){
         case 'newMessage':

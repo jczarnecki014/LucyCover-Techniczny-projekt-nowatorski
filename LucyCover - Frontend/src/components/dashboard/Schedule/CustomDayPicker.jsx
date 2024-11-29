@@ -29,14 +29,14 @@ import { GetVisitsByMonth } from '../../../api/https';
 */
 
 const CustomDayPicker = ({onDayChange}) => {
-    const [arrangeDaysInMonth,setArrangeDaysInMonth] = useState();
+    const [arrangeDaysInMonth,SetArrangeDaysInMonth] = useState();
 
     const ConvertAndSetArrangeDays = (stringFormatDateList) => {
         const dateFormatList = stringFormatDateList.map( date => {
             let timestamp = Date.parse(date)
             return new Date(timestamp)
         })
-        setArrangeDaysInMonth(dateFormatList)
+        SetArrangeDaysInMonth(dateFormatList)
     }
 
     const {mutate} = useMutation({

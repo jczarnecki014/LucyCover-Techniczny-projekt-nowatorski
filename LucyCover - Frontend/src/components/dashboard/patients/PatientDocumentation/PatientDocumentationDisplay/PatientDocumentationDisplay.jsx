@@ -33,12 +33,12 @@ const PatientDocumentationDisplay = () => {
 
     const dispatch = useDispatch();
 
-    const [popupMode,setFormMode] = useState('AddingForm / DeleteConfirmation');
+    const [popupMode,SetFormMode] = useState('AddingForm / DeleteConfirmation');
     const editFormIsVisible = useSelector((state) => state.overlayModel.isVisible)
 
     const ShowPopupHandler = (popupMode) => {
         dispatch(OverlayToggle(true))
-        setFormMode(popupMode)
+        SetFormMode(popupMode)
     }
 
     const additionalData = {
