@@ -133,7 +133,6 @@ export async function FetchAllEducationMaterial({signal}) {
 
 export async function DownloadEducationMaterial({materialId}) {
     const response = await fetch(`https://localhost:7014/api/educationMaterials/file/${materialId}`,{
-        signal,
         credentials: 'include',
     }) 
     if(!response.ok){
