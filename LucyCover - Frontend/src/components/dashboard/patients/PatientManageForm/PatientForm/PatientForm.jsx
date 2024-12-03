@@ -6,7 +6,8 @@ import PatientFormPlaceSection from './PatientFormPlaceSection'
 import PatientFormChildrenSection from './PatientFormChildrenSection'
 import { AnimatePresence } from 'framer-motion'
 //Hooks
-import { useDispatch } from 'react-redux'
+import { useCallback } from "react";
+import useInputsSilce from "../../../../../hooks/useInputsSlice";
 //Context
 import { SetPatientInput } from '../../../../../context/slices/AddPatientForm'
 
@@ -30,10 +31,7 @@ const PatientForm = (
         isPending
     }
 ) => {
-    const dispach = useDispatch()
-    const SetPatientInputHandler = ({inputId,inputObject}) => {
-        dispach(SetPatientInput({inputId,inputObject}))
-    }
+    const SetPatientInputHandler = useCallback(useInputsSilce(SetPatientInput),[SetPatientInput])
 
     const FormSubmitHandler = (event) => {
         event.preventDefault();

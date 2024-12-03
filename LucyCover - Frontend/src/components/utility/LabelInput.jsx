@@ -1,3 +1,4 @@
+import React from 'react';
 //Components
 import { motion,AnimatePresence } from "framer-motion";
 import { Form } from "react-bootstrap";
@@ -50,7 +51,7 @@ import { useState, useEffect } from "react";
 * @param {boolean} boxShadow - boolean which set boxshadow arround input
 */
 
-const LabelInput = ({
+const LabelInput = React.memo(({
   controlId,
   label,
   inputType,
@@ -68,10 +69,9 @@ const LabelInput = ({
   id,
   onInput,
 }) => {
-  
   const [isValid,setIsValid] = useState(true)
   const [inputValue,setInputValue] = useState('')
-
+  console.log(`${controlId} - zaladowanie`)
   const InputChangeHandler = (event) => {
     setInputValue(event.target.value)
   }
@@ -157,6 +157,6 @@ const LabelInput = ({
       </AnimatePresence>
     </Form.Group>
   );
-};
+});
 
 export default LabelInput;

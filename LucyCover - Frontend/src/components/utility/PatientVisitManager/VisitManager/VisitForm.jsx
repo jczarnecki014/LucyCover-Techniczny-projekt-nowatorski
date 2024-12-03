@@ -9,6 +9,7 @@ import style from './css/AddNewVisit.module.css'
 //Hooks
 import {useDispatch,useSelector} from 'react-redux';
 import {useFormData} from '../../../../hooks/useFormData'
+import { useCallback } from "react";
 //Store
 import {SetInput} from '../../../../context/slices/AddNewVisitToScheduleForm';
 import { ResetActivePatients } from '../../../../context/slices/PatientSearch_SLICE';
@@ -39,7 +40,7 @@ import useInputsSilce from "../../../../hooks/useInputsSlice";
 const VisitForm = ({ChangeFormMode,activePatient,activeChildren,visitID}) => {
 
     const dispatch = useDispatch();
-    const SetFormInputHandler = useInputsSilce(SetInput)
+    const SetFormInputHandler = useCallback(useInputsSilce(SetInput),[SetInput])
     const formInputs = useSelector(state => state.addNewVisitToScheduleForm.formInputs)
     const getValue = useFormData(); 
 
