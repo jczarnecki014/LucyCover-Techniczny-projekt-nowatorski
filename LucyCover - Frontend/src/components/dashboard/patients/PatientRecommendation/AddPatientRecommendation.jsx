@@ -10,6 +10,7 @@ import style from './css/AddPatientRecommendation.module.css'
 import { useMutation } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
 import {useFormData} from '../../../../hooks/useFormData'
+import { useCallback } from "react";
 //Slice
 import { SetInput } from '../../../../context/slices/AddPatientRecommendation'
 //Api
@@ -41,7 +42,7 @@ const AddPatientRecommendation = ({patientId}) => {
     const todayDate = new Date().toISOString().split('T')[0];
     
     const getValue = useFormData();
-    const SetFormInputHandler = useInputsSilce(SetInput)
+    const SetFormInputHandler = useCallback(useInputsSilce(SetInput),[SetInput])
 
     const formInputs = useSelector(state => state.addPatientRecommendation.formInputs)
     const formIsValid = CheckFormIsValid(formInputs)

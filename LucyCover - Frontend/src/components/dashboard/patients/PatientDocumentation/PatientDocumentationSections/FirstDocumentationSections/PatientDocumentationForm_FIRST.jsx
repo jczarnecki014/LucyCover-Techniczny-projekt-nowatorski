@@ -13,12 +13,14 @@ import useFetchDocumentation from "../../../../../../hooks/useFetchDocumentation
 import { useState,useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { useFormData } from "../../../../../../hooks/useFormData";
+import { useCallback } from "react";
+import useInputsSilce from "../../../../../../hooks/useInputsSlice";
 //Slice
 import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE";
 import { SetInput,LoadDefaultData,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
 //Assets
 import CheckFormIsValid from "../../../../../../assets/validation/CheckFormIsValid";
-import useInputsSilce from "../../../../../../hooks/useInputsSlice";
+
 
 
 
@@ -38,7 +40,7 @@ const PatientDocumentationForm_FIRST = ({toDisplayValues,patientId,childrenList,
     const [firstRun,setFirstRun] = useState(true)
     const {fetchDocumentation,isSuccess,isError,error} = useFetchDocumentation(patientId);
     const formInputs = useSelector(state => state.addFirstDocumentationForm.formInputs)
-    const SetFormInputHandler = useInputsSilce(SetInput);
+    const SetFormInputHandler = useCallback(useInputsSilce(SetInput),[SetInput])
     const dispatch = useDispatch();
 
     useEffect(()=>{

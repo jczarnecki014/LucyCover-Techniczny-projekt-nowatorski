@@ -9,6 +9,7 @@ import style from "../css/Education.module.css"
 import { useDispatch,useSelector } from "react-redux";
 import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { useCallback } from "react";
 //store
 import { SetInput,SetFormDefault } from "../../../../context/slices/AddNewEducationMaterialSlice";
 //assets
@@ -43,7 +44,7 @@ const AddMaterial = ({SetOverlayMode,SetErrorMessage}) => {
     const formInputs = useSelector(state => state.addMaterial.formInputs)
     const formIsValid = CheckFormIsValid(formInputs)
     const fileIsUploaded = formInputs.file.isValid;
-    const InputChangeHandler = useInputsSilce(SetInput)
+    const InputChangeHandler = useCallback(useInputsSilce(SetInput),[SetInput])
 
     const {mutate} = useMutation({
         mutationFn: AddNewMaterial,

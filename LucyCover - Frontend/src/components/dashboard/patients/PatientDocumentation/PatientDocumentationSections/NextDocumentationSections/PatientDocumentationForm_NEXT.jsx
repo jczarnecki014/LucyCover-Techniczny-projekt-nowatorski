@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useFormData } from "../../../../../../hooks/useFormData"
 import { useState,useEffect } from "react"
 import useFetchDocumentation from "../../../../../../hooks/useFetchDocumentation"
+import { useCallback } from "react"
 //Slice
 import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddNextDocumentationForm"
 import { LoadDefaultData } from "../../../../../../context/slices/AddNextDocumentationForm"
@@ -39,7 +40,7 @@ import useInputsSilce from "../../../../../../hooks/useInputsSlice"
 
 const PatientDocumentationForm_NEXT = ({toDisplayValues,childrenList,patientId,documentationId}) => {
     const {fetchDocumentation,isSuccess,isError,error} = useFetchDocumentation(patientId);
-    const SetFormInputHandler = useInputsSilce(SetInput);
+    const SetFormInputHandler = useCallback(useInputsSilce(SetInput),[SetInput])
     const dispatch = useDispatch();
     const [firstRun,setFirstRun] = useState(true)
 

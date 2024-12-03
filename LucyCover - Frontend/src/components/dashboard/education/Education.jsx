@@ -34,7 +34,7 @@ import { AssignPatientToMaterial } from "../../../api/https";
 const Education = () => {
     const [activeMaterial,SetActiveMaterial] = useState({id:null});
     const [assignedPatients,SetAssignedPatients] = useState([])
-    const [overlayDisplay,SetOverlayMode] = useState() //patientSearch // success // error // addMaterial
+    const [overlayDisplay,SetOverlayMode] = useState() //patientSearch, addMaterial
     const [errorMessage,SetErrorMessage] = useState();
     const overlayMode = useSelector(state => state.overlayModel.isVisible)
     const selectedPatient = useSelector(state=>state.patientSearch.activePatient)
@@ -45,15 +45,18 @@ const Education = () => {
         refetchInterval: 5000,
     })
 
-    const {mutate} = useMutation({
+    const {mutate,isPending} = useMutation({
         mutationFn: AssignPatientToMaterial,
         onError: (error) => {
             SetOverlayMode("error")
             SetErrorMessage(error.message)
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['educationMaterials',"assignedPatients"])
             SetOverlayMode("success")
+            queryClient.invalidateQueries(['educationMaterials',"assignedPatients"])
+        },
+        onMutate: () => {
+            SetOverlayMode("pending");
         }
     })
 
@@ -83,22 +86,28 @@ const Education = () => {
                                                                         onSelect={{btnLabel:"wybierz",func:AssignPatientHandler}} />
             }
             {
+                overlayMode && overlayDisplay == "addMaterial"  && <AddMaterial
+                                                                            SetOverlayMode={SetOverlayMode}
+                                                                            SetErrorMessage={SetErrorMessage} />
+            }
+            {
                 overlayMode && overlayDisplay == "error"  && <Popup 
-                                                                type="error" 
-                                                                title="Wystąpił błąd" 
-                                                                description="Podczas wykonywania operacji coś poszło nie tak. Proszę spróbować ponownie" 
-                                                                additionalInfo={errorMessage}  />
+                                                type="error" 
+                                                title="Wystąpił błąd" 
+                                                description="Podczas wykonywania operacji coś poszło nie tak. Proszę spróbować ponownie" 
+                                                additionalInfo={errorMessage}  />
             }
             {
                 overlayMode && overlayDisplay == "success"  && <Popup 
-                                                                    type="success" 
-                                                                    title="Sukces !!" 
-                                                                    description="Operacja zakończona pomyślnie" />
+                                                    type="success" 
+                                                    title="Sukces !!" 
+                                                    description="Operacja zakończona pomyślnie" />
             }
             {
-                overlayMode && overlayDisplay == "addMaterial"  && <AddMaterial
-                                                                                SetOverlayMode={SetOverlayMode}
-                                                                                SetErrorMessage={SetErrorMessage} />
+                overlayMode && overlayDisplay == "pending"  && <Popup 
+                                                    type="warning" 
+                                                    title="Wysyłanie" 
+                                                    description="Zaczekaj ! Trwa wysyłanie materiałów do pacjenta" />
             }
             <PageBreakLayout>
                 <PageBreakLayout.LeftSide overflowY>

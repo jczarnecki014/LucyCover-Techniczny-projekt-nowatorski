@@ -1,33 +1,48 @@
-import { useSelector,useDispatch } from 'react-redux';
-import { SetChildrenInput,ResetChildrenInputs } from '../../../../../context/slices/AddPatientForm';
-import { useFormData } from '../../../../../hooks/useFormData';
-
-import style from '../css/ChildrenAddingForm.module.css'
-
+//Components
 import OverlayModel from "../../../../utility/OverlayModel";
 import { PiBabyBold } from "react-icons/pi";
 import LabelInput from '../../../../utility/LabelInput';
+//Style
+import style from '../css/ChildrenAddingForm.module.css'
+//Hooks
+import { useSelector,useDispatch } from 'react-redux';
+import { useFormData } from '../../../../../hooks/useFormData';
+import { useCallback } from "react";
+import useInputsSilce from "../../../../../hooks/useInputsSlice";
+//Context
+import { SetChildrenInput,ResetChildrenInputs } from '../../../../../context/slices/AddPatientForm';
+//Assets
 import CheckFormIsValid from '../../../../../assets/validation/CheckFormIsValid';
 
+
+/**
+ * ChildrenForm - Component to display children manage form
+ * 
+ *  Parrent component : <PatientManageForm />
+ * 
+ * Params:
+ * 
+ * @param {} changeFormMode - Function to change PatientManageForm when "close" click
+ * 
+ * @param {} AddChildrenToList - Function will call when "Add" button click (on new child mode adding)
+ * 
+ * @param {} EditChildren - Function will call when "Edit" button click (on edit mode)
+ * 
+ * @param {} defaultValue - Default form inputs value when child is updating
+ */
+
 const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildren}) => {
-
     const currentDate = new Date().toISOString().split('T')[0];
-
     const updatingMode = defaultValue ? true:false;
+    const dispatch = useDispatch();
 
     const getValue = useFormData();
-
     const ChildrenInputs = useSelector(state => state.addPatientForm.childrenInputs)
     const defaultChildrenInputs = updatingMode ? defaultValue : getValue(ChildrenInputs);
 
     let FormIsValid = CheckFormIsValid(ChildrenInputs);
 
-
-    const dispach = useDispatch()
-
-    const SetChildrenInputHandler = ({inputId,inputObject}) => {
-        dispach(SetChildrenInput({inputId,inputObject}))
-    }
+    const SetChildrenInputHandler = useCallback(useInputsSilce(SetChildrenInput),[SetChildrenInput])
 
     const FormSubmitHandler = (event) => {
         event.preventDefault();
@@ -49,12 +64,12 @@ const ChildrenForm = ({changeFormMode,AddChildrenToList,defaultValue,EditChildre
             AddChildrenToList(children)
         }
         
-        dispach(ResetChildrenInputs())
+        dispatch(ResetChildrenInputs())
         changeFormMode('patient');
     }
 
     const QuitButtonClickHandler = () => {
-        dispach(ResetChildrenInputs())
+        dispatch(ResetChildrenInputs())
         changeFormMode('patient')
     }
 
