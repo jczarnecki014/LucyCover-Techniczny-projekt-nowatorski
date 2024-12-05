@@ -8,7 +8,7 @@ import './css/DatePickerCustom.css'
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 //Api
-import { GetVisitsByMonth } from '../../../api/https';
+import { GetVisitsByMonth } from '@api/https';
 
 /** 
 * CustomDayPicker - calendar to pick date

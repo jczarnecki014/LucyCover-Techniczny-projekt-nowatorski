@@ -5,7 +5,7 @@ import style from './css/OverlayModel.module.css'
 //Hooks
 import { useDispatch } from "react-redux";
 //Slice
-import { OverlayToggle } from "../../context/slices/OverlayModel_SLICE";
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE";
 //Additional
 import { createPortal } from "react-dom";
 

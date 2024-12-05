@@ -1,4 +1,4 @@
-import Wrapper from "../../components/dashboard/wrapper/Wrapper";
+import Wrapper from "@components/dashboard/wrapper/Wrapper";
 import { Outlet } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { Navigate } from "react-router-dom";

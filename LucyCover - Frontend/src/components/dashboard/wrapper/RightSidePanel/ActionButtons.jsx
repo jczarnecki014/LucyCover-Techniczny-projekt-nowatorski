@@ -2,7 +2,7 @@
 import style from '../css/Wrapper.module.css'
 //Hooks
 import { useMutation } from '@tanstack/react-query';
-import { Logout } from '../../../../api/https';
+import { Logout } from '@api/https';
 import { useCookies } from 'react-cookie'
 
 const ActionButtons = () => {

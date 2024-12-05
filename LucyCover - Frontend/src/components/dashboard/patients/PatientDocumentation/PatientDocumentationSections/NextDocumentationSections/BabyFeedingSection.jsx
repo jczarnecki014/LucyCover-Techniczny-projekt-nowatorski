@@ -1,6 +1,6 @@
 //Components
-import LabelInput from "../../../../../utility/LabelInput";
-import SelectInput from "../../../../../utility/SelectInput";
+import LabelInput from "@components/utility/LabelInput";
+import SelectInput from "@components/utility/SelectInput";
 //Style
 import style from '../css/PatientDocumentationSections.module.css'
 

@@ -1,6 +1,6 @@
-import PatientDocumentationDisplay from "../../components/dashboard/patients/PatientDocumentation/PatientDocumentationDisplay/PatientDocumentationDisplay";
-import { queryClient } from "../../api/https";
-import { FetchDocumentationDetails } from "../../api/https";
+import PatientDocumentationDisplay from "@components/dashboard/patients/PatientDocumentation/PatientDocumentationDisplay/PatientDocumentationDisplay";
+import { queryClient } from "@api/https";
+import { FetchDocumentationDetails } from "@api/https";
 
 /**
  * PatientDocumentationDisplayPage - Page to display chosen documentation details

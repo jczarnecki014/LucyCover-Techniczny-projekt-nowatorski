@@ -1,8 +1,8 @@
-import Patients from "../../components/dashboard/patients/PatientsList/Patients";
-import { queryClient } from "../../api/https";
-import { FetchPatientsForSearchList } from "../../api/https";
+import Patients from "@components/dashboard/patients/PatientsList/Patients";
+import { queryClient } from "@api/https";
+import { FetchPatientsForSearchList } from "@api/https";
 import { useDispatch } from "react-redux";
-import { SetActivePage } from "../../context/slices/MainMenuSlice";
+import { SetActivePage } from "@context/slices/MainMenuSlice";
 import { useEffect } from "react";
 
 /**

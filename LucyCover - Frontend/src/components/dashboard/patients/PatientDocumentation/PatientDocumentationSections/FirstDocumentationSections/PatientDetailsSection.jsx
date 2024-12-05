@@ -1,5 +1,5 @@
 //Components
-import LabelInput from '../../../../../utility/LabelInput'
+import LabelInput from '@components/utility/LabelInput'
 //Style
 import style from '../css/PatientDocumentationSections.module.css'
 

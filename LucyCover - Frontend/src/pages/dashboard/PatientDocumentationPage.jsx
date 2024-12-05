@@ -1,5 +1,5 @@
-import {FetchDocumentation, queryClient} from '../../api/https'
-import PatientDocumentationList from "../../components/dashboard/patients/PatientDocumentation/PatientDocumentationList/PatientDocumentationList";
+import {FetchDocumentation, queryClient} from '@api/https'
+import PatientDocumentationList from "@components/dashboard/patients/PatientDocumentation/PatientDocumentationList/PatientDocumentationList";
 
 /**
  * PatientDocumentationPage - Page to maintain medical documentation of chosen patient

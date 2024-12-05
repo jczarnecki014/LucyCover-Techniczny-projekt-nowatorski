@@ -1,6 +1,6 @@
-import PatientSchedule from "../../components/dashboard/patients/PatientSchedule/PatientSchedule";
-import { queryClient } from "../../api/https";
-import { FetchAllPatientVisits } from "../../api/https";
+import PatientSchedule from "@components/dashboard/patients/PatientSchedule/PatientSchedule";
+import { queryClient } from "@api/https";
+import { FetchAllPatientVisits } from "@api/https";
 
 /**
  * PatientSchedulePage - Page to display scheduled visist for specific patient

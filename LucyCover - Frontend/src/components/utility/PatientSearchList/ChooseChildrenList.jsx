@@ -4,7 +4,7 @@ import PatientElement from '../../dashboard/patients/PatientsList/PatientSearch/
 //Hooks
 import { useDispatch,useSelector } from 'react-redux'
 //Store
-import { SetActiveChildren } from '../../../context/slices/PatientSearch_SLICE'
+import { SetActiveChildren } from '@context/slices/PatientSearch_SLICE'
 
 /**
  * ChooseChildrenList - Component to display patient children search box

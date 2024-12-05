@@ -1,10 +1,10 @@
 //Components
 import PatientDetails from "../PatientDetails/PatientDetails"
-import PatientVisitsWrapper from "../../../utility/PatientVisitManager/PatientVisitsWrapper"
+import PatientVisitsWrapper from "@components/utility/PatientVisitManager/PatientVisitsWrapper"
 //Hooks
 import { useQuery } from "@tanstack/react-query"
 //Api
-import { FetchAllPatientVisits } from "../../../../api/https"
+import { FetchAllPatientVisits } from "@api/https"
 
 
 /**

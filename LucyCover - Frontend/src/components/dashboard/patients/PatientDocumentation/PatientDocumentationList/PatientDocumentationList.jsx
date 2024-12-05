@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion"
 import PatientTable from "../../PatientTable/PatientTable"
 import TableButtons from "../../PatientTable/TableButtons"
 import AddPatientDocumentation from "../AddPatientDocumentation/AddPatientDocumentation"
-import DeleteConfirmation from "../../../../utility/PatientsPopups/DeleteConfirmation"
+import DeleteConfirmation from "@components/utility/PatientsPopups/DeleteConfirmation"
 //Style
 import style from './css/PatientDocumentation.module.css'
 //Hooks
@@ -11,10 +11,10 @@ import { useSelector,useDispatch} from "react-redux"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 //Store
-import { OverlayToggle } from "../../../../../context/slices/OverlayModel_SLICE"
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE"
 //Api
-import { DeleteDocumentation } from "../../../../../api/https"
-import { FetchDocumentation } from "../../../../../api/https"
+import { DeleteDocumentation } from "@api/https"
+import { FetchDocumentation } from "@api/https"
 
 /**
  * PatientDocumentationList - component to display list of all patients visit. From this place use can select which one he would display

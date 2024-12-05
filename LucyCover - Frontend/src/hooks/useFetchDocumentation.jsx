@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { CreateNewDocumentation } from "../api/https/"
-import { queryClient } from "../api/https"
+import { queryClient } from "@api/https"
 
 /**
  * useFetchDocumentation - Function to fetching patient visit documentation to api 

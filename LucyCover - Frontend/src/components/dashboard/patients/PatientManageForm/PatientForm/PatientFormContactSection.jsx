@@ -1,11 +1,11 @@
 //Components
 import { Fragment } from "react"
 import { FaUser } from "react-icons/fa";
-import LabelInput from "../../../../utility/LabelInput";
+import LabelInput from "@components/utility/LabelInput";
 //Style
 import style from '../css/PatientAddingForm.module.css'
 //Assets
-import { CheckEmailIsValid,CheckPhoneIsValid } from "../../../../../assets/validation/PersonalData";
+import { CheckEmailIsValid,CheckPhoneIsValid } from "@assets/validation/PersonalData";
 
 
 const currentDate = new Date();

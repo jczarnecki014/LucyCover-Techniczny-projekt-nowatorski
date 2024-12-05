@@ -1,6 +1,6 @@
 //components
-import LabelInput from "../utility/LabelInput"
-import LoadingSpinner from '../utility/LoadingSpinner'
+import LabelInput from "@components/utility/LabelInput"
+import LoadingSpinner from '@components/utility/LoadingSpinner'
 import {motion} from "framer-motion"
 //style
 import style from "./css/LoginComponent.module.css"
@@ -8,14 +8,14 @@ import style from "./css/LoginComponent.module.css"
 import { useMutation } from "@tanstack/react-query"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
-import {useFormData} from '../../hooks/useFormData'
+import {useFormData} from '@hooks/useFormData'
 import { useCookies } from "react-cookie";
 //Redux
-import { SetLoginInputs } from "../../context/slices/AuthForm"
+import { SetLoginInputs } from "@context/slices/AuthForm"
 //assets
-import logo from "../../assets/images/logo_graphics/logo.png"
+import logo from "@assets/images/logo_graphics/logo.png"
 //api
-import { LogIn } from "../../api/https"
+import { LogIn } from "@api/https"
 
 /**
  * LoginComponent - component to manage login mode

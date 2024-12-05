@@ -71,7 +71,6 @@ const LabelInput = React.memo(({
 }) => {
   const [isValid,setIsValid] = useState(true)
   const [inputValue,setInputValue] = useState('')
-  console.log(`${controlId} - zaladowanie`)
   const InputChangeHandler = (event) => {
     setInputValue(event.target.value)
   }

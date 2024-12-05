@@ -1,14 +1,14 @@
 //Components
 import MessageElement from './MessageElement'
-import LoadingSpinner from '../../../utility/LoadingSpinner'
+import LoadingSpinner from '@components/utility/LoadingSpinner'
 //Style
 import style from '../css/Message.module.css'
 //Hooks
 import { useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import useDebouncedValue from '../../../../hooks/useDebouncedValue'
+import useDebouncedValue from '@hooks/useDebouncedValue'
 //Api
-import { GetMessagesForEmailAddress, SendNewMessage } from '../../../../api/https'
+import { GetMessagesForEmailAddress, SendNewMessage } from '@api/https'
 
 /**
  * MessagesContainer - component to display fetched messages between patient and user

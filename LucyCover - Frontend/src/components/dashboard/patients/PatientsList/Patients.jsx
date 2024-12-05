@@ -4,14 +4,14 @@ import PatientSearch from './PatientSearch/PatientSearch';
 import PatientDetails from '../PatientDetails/PatientDetails';
 import PatientManageForm from '../PatientManageForm/PatientManageForm';
 import { AnimatePresence } from 'framer-motion';
-import PatientLayout from '../../../utility/PageBreakLayout/PageBreakLayout';
+import PatientLayout from '@components/utility/PageBreakLayout/PageBreakLayout';
 //Hooks
 import { useQuery } from '@tanstack/react-query';
 import { useSelector, useDispatch } from 'react-redux';
 //Store
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
+import { OverlayToggle } from '@context/slices/OverlayModel_SLICE';
 //Api
-import { FetchPatientsForSearchList } from '../../../../api/https';
+import { FetchPatientsForSearchList } from '@api/https';
 
 /**
  * Patients - component to display list of available patients for users. 

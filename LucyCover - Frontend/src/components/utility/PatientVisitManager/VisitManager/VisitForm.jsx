@@ -1,25 +1,25 @@
 //Components
 import { SlUserFemale } from "react-icons/sl";
-import OverlayModel from '../../../utility/OverlayModel'
-import LabelInput from '../../../utility/LabelInput'
-import TextArea from '../../../utility/TextArea'
+import OverlayModel from '@components/utility/OverlayModel'
+import LabelInput from '@components/utility/LabelInput'
+import TextArea from '@components/utility/TextArea'
 import VisitStatusButtonSection from './VisitStatusButtonSection';
 //Style
 import style from './css/AddNewVisit.module.css'
 //Hooks
 import {useDispatch,useSelector} from 'react-redux';
-import {useFormData} from '../../../../hooks/useFormData'
+import {useFormData} from '@hooks/useFormData'
 import { useCallback } from "react";
 //Store
-import {SetInput} from '../../../../context/slices/AddNewVisitToScheduleForm';
-import { ResetActivePatients } from '../../../../context/slices/PatientSearch_SLICE';
-import { SetFormDefault } from '../../../../context/slices/AddNewVisitToScheduleForm';
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
+import {SetInput} from '@context/slices/AddNewVisitToScheduleForm';
+import { ResetActivePatients } from '@context/slices/PatientSearch_SLICE';
+import { SetFormDefault } from '@context/slices/AddNewVisitToScheduleForm';
+import { OverlayToggle } from '@context/slices/OverlayModel_SLICE';
 //Assets
-import CheckFormIsValid from '../../../../assets/validation/CheckFormIsValid'
-import { CheckPhoneIsValid } from '../../../../assets/validation/PersonalData';
-import { CheckZipCodeIsValid } from '../../../../assets/validation/PersonalData';
-import useInputsSilce from "../../../../hooks/useInputsSlice";
+import CheckFormIsValid from '@assets/validation/CheckFormIsValid'
+import { CheckPhoneIsValid } from '@assets/validation/PersonalData';
+import { CheckZipCodeIsValid } from '@assets/validation/PersonalData';
+import useInputsSilce from "@hooks/useInputsSlice";
 
 /**
  * VisitForm - Form to schedule new vistis for patient or edit existing

@@ -1,6 +1,6 @@
 //Components
-import OverlayModel from "../../../../../utility/OverlayModel"
-import Popup from "../../../../../utility/Popup"
+import OverlayModel from "@components/utility/OverlayModel"
+import Popup from "@components/utility/Popup"
 import BabyFeedingSection from "./BabyFeedingSection"
 import BabyAdditionalFeeding from "./BabyAdditionalFeeding"
 import PatientBreastExaminationSection from "./PatientBreastExaminationSection"
@@ -13,17 +13,17 @@ import BaseInformation from "../BaseInformation"
 import style from '../css/PatientDocumentation_FORMS.module.css'
 //Hooks
 import { useSelector, useDispatch } from "react-redux"
-import { useFormData } from "../../../../../../hooks/useFormData"
+import { useFormData } from "@hooks/useFormData"
 import { useState,useEffect } from "react"
-import useFetchDocumentation from "../../../../../../hooks/useFetchDocumentation"
+import useFetchDocumentation from "@hooks/useFetchDocumentation"
 import { useCallback } from "react"
 //Slice
-import { SetInput,SetFormDefault } from "../../../../../../context/slices/AddNextDocumentationForm"
-import { LoadDefaultData } from "../../../../../../context/slices/AddNextDocumentationForm"
-import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE"
+import { SetInput,SetFormDefault } from "@context/slices/AddNextDocumentationForm"
+import { LoadDefaultData } from "@context/slices/AddNextDocumentationForm"
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE"
 //Assets
-import CheckFormIsValid from "../../../../../../assets/validation/CheckFormIsValid"
-import useInputsSilce from "../../../../../../hooks/useInputsSlice"
+import CheckFormIsValid from "@assets/validation/CheckFormIsValid"
+import useInputsSilce from "@hooks/useInputsSlice"
 
 
 /**

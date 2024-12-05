@@ -1,5 +1,5 @@
 //Coponents
-import PopupMenu from "../../../../utility/PatientsPopups/PatientPopupMenu"
+import PopupMenu from "@components/utility/PatientsPopups/PatientPopupMenu"
 import PatientDocumentationForm_FIRST from "../PatientDocumentationSections/FirstDocumentationSections/PatientDocumentationForm_FIRST"
 import PatientDocumentationForm_NEXT from "../PatientDocumentationSections/NextDocumentationSections/PatientDocumentationForm_NEXT"
 //Hooks

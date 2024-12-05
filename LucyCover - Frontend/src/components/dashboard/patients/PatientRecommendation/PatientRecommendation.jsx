@@ -2,17 +2,17 @@
 import TableButtons from "../PatientTable/TableButtons"
 import PatientTable from "../PatientTable/PatientTable"
 import AddPatientRecommendation from "./AddPatientRecommendation"
-import DeleteConfirmation from '../../../utility/PatientsPopups/DeleteConfirmation'
+import DeleteConfirmation from '@components/utility/PatientsPopups/DeleteConfirmation'
 import { AnimatePresence } from "framer-motion"
 //Hooks
 import { useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 import { useQuery } from "@tanstack/react-query"
 //Store
-import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE"
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE"
 //Api
-import { FetchRecommendation } from "../../../../api/https"
-import { DeleteRecommendation } from "../../../../api/https"
+import { FetchRecommendation } from "@api/https"
+import { DeleteRecommendation } from "@api/https"
 
 
 /**

@@ -5,7 +5,7 @@ import style from '../css/Education.module.css'
 //Hooks
 import { useDispatch } from "react-redux";
 //Store
-import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE";
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE";
 
 /**
  * MaterialsList - Component to displaying list of stored materials by user

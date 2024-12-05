@@ -1,7 +1,24 @@
+//Style
 import style from './css/AddNewVisit.module.css'
+//Hooks
 import { useMutation } from '@tanstack/react-query'
-import { ChangeVisitStatus } from '../../../../api/https'
-import { queryClient } from '../../../../api/https'
+//Api
+import { ChangeVisitStatus } from '@api/https'
+import { queryClient } from '@api/https'
+
+/**
+ * VisitStatusButtonSection - Component to display buttons there change status of visits
+ * 
+ *  [1] - Displaying visits change buttons
+ * 
+ * Props:
+ * 
+ * @param {string} visitId - Id of visit the status is changed
+ * 
+ * @param {object} visitStatus - Current status of visit.
+ * 
+ * @param {string} SetFormDisplayHandler - Set form overlay mode
+ */
 
 const VisitStatusButtonSection = ({visitId,visitStatus,SetFormDisplayHandler}) => {
 

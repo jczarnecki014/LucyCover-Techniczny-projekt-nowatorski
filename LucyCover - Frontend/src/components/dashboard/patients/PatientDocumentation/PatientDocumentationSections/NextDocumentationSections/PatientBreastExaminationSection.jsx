@@ -1,8 +1,8 @@
 //Components
-import Canvas from "../../../../../utility/Canvas";
-import LabelInput from "../../../../../utility/LabelInput";
-import SelectInput from "../../../../../utility/SelectInput";
-import TextArea from "../../../../../utility/TextArea";
+import Canvas from "@components/utility/Canvas";
+import LabelInput from "@components/utility/LabelInput";
+import SelectInput from "@components/utility/SelectInput";
+import TextArea from "@components/utility/TextArea";
 //Style
 import style from '../css/PatientDocumentationSections.module.css'
 

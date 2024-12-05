@@ -6,7 +6,7 @@ import style from '../css/Education.module.css'
 //Hooks
 import { useDispatch } from 'react-redux';
 //Store
-import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE";
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE";
 
 /**
  * AssignedPatients - Component to displaying assigned patients to material

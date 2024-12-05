@@ -3,25 +3,23 @@ import PatientDetailsSection from "./PatientDetailsSection";
 import BabyDetailsSection from "./BabyDetailsSection";
 import PatientFamilyInterviewSection from "./PatientFamilyInterviewSection";
 import BaseInformation from "../BaseInformation";
-import Popup from "../../../../../utility/Popup";
-import OverlayModel from "../../../../../utility/OverlayModel"
+import Popup from "@components/utility/Popup";
+import OverlayModel from "@components/utility/OverlayModel"
 import { MdKeyboardArrowRight } from "react-icons/md";
 //Style
 import style from '../css/PatientDocumentation_FORMS.module.css'
 //Hooks
-import useFetchDocumentation from "../../../../../../hooks/useFetchDocumentation";
+import useFetchDocumentation from "@hooks/useFetchDocumentation";
 import { useState,useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { useFormData } from "../../../../../../hooks/useFormData";
+import { useFormData } from "@hooks/useFormData";
 import { useCallback } from "react";
-import useInputsSilce from "../../../../../../hooks/useInputsSlice";
+import useInputsSilce from "@hooks/useInputsSlice";
 //Slice
-import { OverlayToggle } from "../../../../../../context/slices/OverlayModel_SLICE";
-import { SetInput,LoadDefaultData,SetFormDefault } from "../../../../../../context/slices/AddFirstDocumentationForm";
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE";
+import { SetInput,LoadDefaultData,SetFormDefault } from "@context/slices/AddFirstDocumentationForm";
 //Assets
-import CheckFormIsValid from "../../../../../../assets/validation/CheckFormIsValid";
-
-
+import CheckFormIsValid from "@assets/validation/CheckFormIsValid";
 
 
 /**

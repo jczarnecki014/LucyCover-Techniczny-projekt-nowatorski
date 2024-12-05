@@ -1,18 +1,18 @@
 //components
-import LabelInput from "../utility/LabelInput"
+import LabelInput from "@components/utility/LabelInput"
 import {motion} from 'framer-motion'
 //style
 import style from "./css/RegisterComponent.module.css"
 //hooks
-import { useFormData } from "../../hooks/useFormData"
+import { useFormData } from "@hooks/useFormData"
 import { useSelector, useDispatch } from "react-redux"
 import { useMutation } from "@tanstack/react-query"
 //redux
-import { SetRegisterInputs } from "../../context/slices/AuthForm"
+import { SetRegisterInputs } from "@context/slices/AuthForm"
 //assets
-import logo from "../../assets/images/logo_graphics/logo.png"
+import logo from "@assets/images/logo_graphics/logo.png"
 //api
-import { CreateAccount } from "../../api/https"
+import { CreateAccount } from "@api/https"
 
 
 /**

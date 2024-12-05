@@ -1,18 +1,18 @@
 //Components
-import OverlayModel from "../../../../utility/OverlayModel";
+import OverlayModel from "@components/utility/OverlayModel";
 import { PiBabyBold } from "react-icons/pi";
-import LabelInput from '../../../../utility/LabelInput';
+import LabelInput from '@components/utility/LabelInput';
 //Style
 import style from '../css/ChildrenAddingForm.module.css'
 //Hooks
 import { useSelector,useDispatch } from 'react-redux';
-import { useFormData } from '../../../../../hooks/useFormData';
+import { useFormData } from '@hooks/useFormData';
 import { useCallback } from "react";
-import useInputsSilce from "../../../../../hooks/useInputsSlice";
+import useInputsSilce from "@hooks/useInputsSlice";
 //Context
-import { SetChildrenInput,ResetChildrenInputs } from '../../../../../context/slices/AddPatientForm';
+import { SetChildrenInput,ResetChildrenInputs } from '@context/slices/AddPatientForm';
 //Assets
-import CheckFormIsValid from '../../../../../assets/validation/CheckFormIsValid';
+import CheckFormIsValid from '@assets/validation/CheckFormIsValid';
 
 
 /**
