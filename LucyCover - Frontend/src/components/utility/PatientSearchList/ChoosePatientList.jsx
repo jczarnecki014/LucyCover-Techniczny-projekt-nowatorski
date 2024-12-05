@@ -6,9 +6,9 @@ import { useQuery } from '@tanstack/react-query'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 //Store
-import { SetActivePatient } from '../../../context/slices/PatientSearch_SLICE'
+import { SetActivePatient } from '@context/slices/PatientSearch_SLICE'
 //Api
-import { FetchPatientsForSearchList } from '../../../api/https'
+import { FetchPatientsForSearchList } from '@api/https'
 
 /**
  * ChoosePatientList - component to display other list of patients. It displays patient as a block. It is use in some forms where patient should be choosen from list

@@ -1,17 +1,17 @@
 //Components
 import NoticeList from "./NoticeList";
 import CustomDayPicker from "./CustomDayPicker";
-import PatientVisitsWrapper from "../../utility/PatientVisitManager/PatientVisitsWrapper"
+import PatientVisitsWrapper from "@components/utility/PatientVisitManager/PatientVisitsWrapper"
 //Style
 import style from './css/Schedule.module.css'
 //Hooks
 import {useQuery } from "@tanstack/react-query";
 import { useState,useEffect } from "react";
 //Api
-import { GetVisitsByDate } from "../../../api/https";
-import { queryClient } from "../../../api/https";
+import { GetVisitsByDate } from "@api/https";
+import { queryClient } from "@api/https";
 //Assets
-import { ConvertDateToLocalString } from "../../../assets/main/ConvertDateToLocalString";
+import { ConvertDateToLocalString } from "@assets/main/ConvertDateToLocalString";
 
 /** 
 * Schedule - Main component to display schedules page.

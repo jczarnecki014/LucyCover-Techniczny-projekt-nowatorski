@@ -1,5 +1,5 @@
 //Components
-import PageBreakLayout from "../../utility/PageBreakLayout/PageBreakLayout"
+import PageBreakLayout from "@components/utility/PageBreakLayout/PageBreakLayout"
 import MessagesContainer from "./messagesContainer/MessagesContainer";
 import PatientMessageSearchList from "./PatientMessageSearchList/PatientMessageSearchList";
 //Hooks

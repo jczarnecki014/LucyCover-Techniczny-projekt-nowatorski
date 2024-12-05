@@ -4,7 +4,7 @@ import Popup from "../../Popup";
 import { useSelector } from "react-redux";
 //Hooks
 import { useState } from "react"
-import { useFormData } from "../../../../hooks/useFormData";
+import { useFormData } from "@hooks/useFormData";
 
 /**
  * VisitConfirmation - Component with e-mail confirmation

@@ -1,6 +1,6 @@
 //Components
-import LabelInput from "../../../utility/LabelInput"
-import OverlayModel from "../../../utility/OverlayModel"
+import LabelInput from "@components/utility/LabelInput"
+import OverlayModel from "@components/utility/OverlayModel"
 import  {motion}  from "framer-motion";
 import { FaCloudUploadAlt } from "react-icons/fa";
 //Style
@@ -11,13 +11,13 @@ import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
 //store
-import { SetInput,SetFormDefault } from "../../../../context/slices/AddNewEducationMaterialSlice";
+import { SetInput,SetFormDefault } from "@context/slices/AddNewEducationMaterialSlice";
 //assets
-import CheckFormIsValid from '../../../../assets/validation/CheckFormIsValid'
-import { AcceptedFileUploadFormat } from "../../../../assets/validation/AcceptedFileUploadFormat";
+import CheckFormIsValid from '@assets/validation/CheckFormIsValid'
+import { AcceptedFileUploadFormat } from "@assets/validation/AcceptedFileUploadFormat";
 //api
-import { AddNewMaterial,queryClient } from "../../../../api/https";
-import useInputsSilce from "../../../../hooks/useInputsSlice";
+import { AddNewMaterial,queryClient } from "@api/https";
+import useInputsSilce from "@hooks/useInputsSlice";
 
 /**
  * AddMaterial - Component to adding material.

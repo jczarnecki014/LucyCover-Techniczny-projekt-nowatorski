@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { SetActivePage } from "../../context/slices/MainMenuSlice";
+import { SetActivePage } from "@context/slices/MainMenuSlice";
 import { useEffect } from "react";
-import Messages from "../../components/dashboard/messages/message";
-import { GetPatientsForPatientsListInMessages, queryClient } from "../../api/https";
+import Messages from "@components/dashboard/messages/message";
+import { GetPatientsForPatientsListInMessages, queryClient } from "@api/https";
 
 /**
  * MessagesPage - Page to display mail correspondence between patient and user.

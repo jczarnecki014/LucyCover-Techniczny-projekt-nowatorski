@@ -1,5 +1,5 @@
 //Components
-import SearchInput from '../../../../utility/SearchInput';
+import SearchInput from '@components/utility/SearchInput';
 import PatientElement from './PatientElement';
 import { AnimatePresence } from 'framer-motion';
 //Style
@@ -7,9 +7,9 @@ import style from '../css/PatientSearch.module.css'
 //Hooks
 import { useDispatch,useSelector } from 'react-redux';
 import { useState } from 'react';
-import useSearchList from '../../../../../hooks/useSearchList'
+import useSearchList from '@hooks/useSearchList'
 //Store
-import { SetActivePatient } from '../../../../../context/slices/PatientSearch_SLICE';
+import { SetActivePatient } from '@context/slices/PatientSearch_SLICE';
 
 
 /**

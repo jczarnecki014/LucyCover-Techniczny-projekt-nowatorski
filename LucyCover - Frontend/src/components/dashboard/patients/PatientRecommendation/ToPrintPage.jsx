@@ -3,7 +3,7 @@ import style from './css/PatientRecommendationDisplay.module.css'
 //Hooks
 import { forwardRef } from 'react'
 //Assets
-import logoImg from '../../../../assets/images/logo_graphics/logo.png'
+import logoImg from '@assets/images/logo_graphics/logo.png'
 
 /**
  * ToPrintPage - component to display ready to print patient documentation

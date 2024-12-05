@@ -1,6 +1,6 @@
 //Components
 import { FaUser } from "react-icons/fa";
-import LabelInput from '../../../utility/LabelInput'
+import LabelInput from '@components/utility/LabelInput'
 //Style
 import style from './css/PatientDetails.module.css'
 

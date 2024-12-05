@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion'
 import style from './css/PatientSearchList.module.css'
 //Hooks
 import { useState } from 'react'
-import useSearchList from "../../../hooks/useSearchList";
+import useSearchList from "@hooks/useSearchList";
 
 
 

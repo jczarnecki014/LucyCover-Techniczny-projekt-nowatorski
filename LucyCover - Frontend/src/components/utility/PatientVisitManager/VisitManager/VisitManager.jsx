@@ -3,16 +3,16 @@ import VisitForm from './VisitForm';
 import ChoosePatientList from '../../PatientSearchList/ChoosePatientList'
 import ChooseChildrenList from '../../PatientSearchList/ChooseChildrenList'
 import VisitConfirmation from './VisitConfirmation';
-import Popup from '../../../utility/Popup';
+import Popup from '@components/utility/Popup';
 //Hooks
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useSelector,useDispatch } from 'react-redux';
 //Store
-import { SetActivePatient,SetActiveChildren } from '../../../../context/slices/PatientSearch_SLICE';
-import { LoadDefaultData } from '../../../../context/slices/AddNewVisitToScheduleForm';
+import { SetActivePatient,SetActiveChildren } from '@context/slices/PatientSearch_SLICE';
+import { LoadDefaultData } from '@context/slices/AddNewVisitToScheduleForm';
 //Api
-import { queryClient, UpsertVisit } from '../../../../api/https'
+import { queryClient, UpsertVisit } from '@api/https'
 
 /**
  * VisitManager - Component to control new vist form. It adjustment displayed overlay to specific phase of form filling

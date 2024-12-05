@@ -1,10 +1,10 @@
 //Components
-import PageBreakLayout from "../../utility/PageBreakLayout/PageBreakLayout"
+import PageBreakLayout from "@components/utility/PageBreakLayout/PageBreakLayout"
 import MaterialsList from "./MaterialsList/MaterialsList";
 import FileInfo from "./FileInfo/FileInfo";
 import AssignedPatients from "./AssignedPatients/AssignedPatients";
-import ChoosePatientList from "../../utility/PatientSearchList/ChoosePatientList";
-import Popup from "../../utility/Popup";
+import ChoosePatientList from "@components/utility/PatientSearchList/ChoosePatientList";
+import Popup from "@components/utility/Popup";
 import AddMaterial from "./AddMaterial/AddMaterial";
 //Style
 import style from './css/Education.module.css'
@@ -13,10 +13,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 //assets
-import GetPatientsId from "../../../assets/main/GetPatientsId";
+import GetPatientsId from "@assets/main/GetPatientsId";
 //api
-import { FetchAllEducationMaterial,FetchAllAssignedPatientsToMaterial,queryClient } from "../../../api/https";
-import { AssignPatientToMaterial } from "../../../api/https";
+import { FetchAllEducationMaterial,FetchAllAssignedPatientsToMaterial,queryClient } from "@api/https";
+import { AssignPatientToMaterial } from "@api/https";
 
 /**
  * Education - component to storing and scharing education materials

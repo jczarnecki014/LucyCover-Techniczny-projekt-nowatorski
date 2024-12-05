@@ -3,7 +3,7 @@ import PatientDocumentationDisplay_FIRST from './PatientDocumentationDisplay_FIR
 import PatientDocumentationDisplay_NEXT from './PatientDocumentationDisplay_NEXT';
 import PatientDocumentationForm_FIRST from '../PatientDocumentationSections/FirstDocumentationSections/PatientDocumentationForm_FIRST';
 import PatientDocumentationForm_NEXT from '../PatientDocumentationSections/NextDocumentationSections/PatientDocumentationForm_NEXT';
-import DeleteConfirmation from '../../../../utility/PatientsPopups/DeleteConfirmation';
+import DeleteConfirmation from '@components/utility/PatientsPopups/DeleteConfirmation';
 import { AnimatePresence } from 'framer-motion';
 //Style
 import style from './css/PatientDocumentationDisplay.module.css'
@@ -12,9 +12,9 @@ import { useSelector,useDispatch } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 //Store
-import { OverlayToggle } from '../../../../../context/slices/OverlayModel_SLICE';
+import { OverlayToggle } from '@context/slices/OverlayModel_SLICE';
 //Api
-import { DeleteDocumentation } from '../../../../../api/https';
+import { DeleteDocumentation } from '@api/https';
 
 /**
  * PatientDocumentationDisplay - component to displaying first and next documentation of specific patient

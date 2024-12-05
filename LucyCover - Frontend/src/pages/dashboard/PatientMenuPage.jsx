@@ -1,6 +1,6 @@
-import PatientMenu from "../../components/dashboard/patients/PatientMenu/PatientMenu";
-import { queryClient } from "../../api/https";
-import { FetchPatient } from "../../api/https";
+import PatientMenu from "@components/dashboard/patients/PatientMenu/PatientMenu";
+import { queryClient } from "@api/https";
+import { FetchPatient } from "@api/https";
 
 /**
  * PatientMenuPage - Page to display menu for patient maintain options

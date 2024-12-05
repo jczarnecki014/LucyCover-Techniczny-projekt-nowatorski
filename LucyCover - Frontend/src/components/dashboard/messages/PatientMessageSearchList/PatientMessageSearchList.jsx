@@ -3,11 +3,11 @@ import { AnimatePresence } from "framer-motion";
 import {motion} from "framer-motion";
 import PatientMessageElement from "./PatientMessageSearchListElement"
 import PatientMessageSearchListElement from "../PatientMessageSearchList/PatientMessageSearchListElement";
-import SearchInput from '../../../utility/SearchInput'
+import SearchInput from '@components/utility/SearchInput'
 //Style
 import style from '../css/Message.module.css'
 //Hooks
-import useSearchList from "../../../../hooks/useSearchList";
+import useSearchList from "@hooks/useSearchList";
 import { useState } from "react";
 
 /**

@@ -9,13 +9,13 @@ import style from "./css/PatientVisitsWrapper.module.css"
 import { useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 //Store
-import { LoadDefaultData, SetFormDefault } from "../../../context/slices/AddNewVisitToScheduleForm"
-import { ResetActivePatients } from "../../../context/slices/PatientSearch_SLICE"
-import { OverlayToggle } from "../../../context/slices/OverlayModel_SLICE"
+import { LoadDefaultData, SetFormDefault } from "@context/slices/AddNewVisitToScheduleForm"
+import { ResetActivePatients } from "@context/slices/PatientSearch_SLICE"
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE"
 //Api
-import { DeleteSchedule } from "../../../api/https"
+import { DeleteSchedule } from "@api/https"
 //Assets
-import { GetDayFullMonthDate } from "../../../assets/main/GetDayFullMonthDate"
+import { GetDayFullMonthDate } from "@assets/main/GetDayFullMonthDate"
 import {format} from 'date-fns'
 
 /**

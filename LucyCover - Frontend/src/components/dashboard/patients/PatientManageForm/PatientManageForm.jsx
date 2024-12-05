@@ -1,20 +1,20 @@
 //Components
 import PatientForm from './PatientForm/PatientForm'
 import ChildrenForm from './ChildrenForm/ChildrenForm'
-import Popup from '../../../utility/Popup'
+import Popup from '@components/utility/Popup'
 //Hooks
 import { Fragment, useState,useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { useMutation } from '@tanstack/react-query'
-import {useFormData} from '../../../../hooks/useFormData'
+import {useFormData} from '@hooks/useFormData'
 //Slice
-import { ClearForm } from '../../../../context/slices/AddPatientForm'
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE'
+import { ClearForm } from '@context/slices/AddPatientForm'
+import { OverlayToggle } from '@context/slices/OverlayModel_SLICE'
 //Api
-import { CreateNewPatient } from '../../../../api/https'
-import { queryClient } from '../../../../api/https'
+import { CreateNewPatient } from '@api/https'
+import { queryClient } from '@api/https'
 //Assets
-import CheckFormIsValid from '../../../../assets/validation/CheckFormIsValid'
+import CheckFormIsValid from '@assets/validation/CheckFormIsValid'
 
 /**
  * PatientManageForm - component to display add / edit patient form and children

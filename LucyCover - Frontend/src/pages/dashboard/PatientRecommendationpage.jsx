@@ -1,6 +1,6 @@
-import PatientRecommendation from "../../components/dashboard/patients/PatientRecommendation/PatientRecommendation";
-import { queryClient } from "../../api/https";
-import { FetchRecommendation } from "../../api/https";
+import PatientRecommendation from "@components/dashboard/patients/PatientRecommendation/PatientRecommendation";
+import { queryClient } from "@api/https";
+import { FetchRecommendation } from "@api/https";
 
 /**
  * PatientRecommendationPage - Page to display recommendation available list 

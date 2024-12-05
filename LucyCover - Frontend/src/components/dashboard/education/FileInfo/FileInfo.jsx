@@ -1,18 +1,18 @@
 //Components
 import { FaRegFilePdf } from "react-icons/fa6";
-import LabelInput from '../../../utility/LabelInput'
+import LabelInput from '@components/utility/LabelInput'
 //Style
 import style from '../css/Education.module.css'
 //Hooks
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 //Store
-import { OverlayToggle } from "../../../../context/slices/OverlayModel_SLICE";
-import { LoadDefaultData } from "../../../../context/slices/AddNewEducationMaterialSlice";
+import { OverlayToggle } from "@context/slices/OverlayModel_SLICE";
+import { LoadDefaultData } from "@context/slices/AddNewEducationMaterialSlice";
 //Assets
-import DownloadFileInBrowser from "../../../../assets/main/DownloadFileInBrowser";
+import DownloadFileInBrowser from "@assets/main/DownloadFileInBrowser";
 //Api
-import { DownloadEducationMaterial,DeleteEducationMaterial } from "../../../../api/https";
+import { DownloadEducationMaterial,DeleteEducationMaterial } from "@api/https";
 
 /**
  * FileInfo - Component to displaying information about file as file name or fil title

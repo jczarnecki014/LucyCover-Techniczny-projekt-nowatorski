@@ -1,7 +1,7 @@
 //Components
 import {AnimatePresence} from 'framer-motion'
 import PatientManageForm from '../PatientManageForm/PatientManageForm'
-import PatientLayout from '../../../utility/PageBreakLayout/PageBreakLayout'
+import PatientLayout from '@components/utility/PageBreakLayout/PageBreakLayout'
 import PatientDetails from '../PatientDetails/PatientDetails'
 import Menu from './Menu';
 //Style
@@ -10,9 +10,9 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector, useDispatch } from 'react-redux';
 //Store
-import { OverlayToggle } from '../../../../context/slices/OverlayModel_SLICE';
+import { OverlayToggle } from '@context/slices/OverlayModel_SLICE';
 //Api
-import { FetchPatient } from '../../../../api/https';
+import { FetchPatient } from '@api/https';
 
 
 /**

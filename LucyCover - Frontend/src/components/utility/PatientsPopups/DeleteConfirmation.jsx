@@ -5,9 +5,9 @@ import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 //Store
-import { OverlayToggle } from '../../../context/slices/OverlayModel_SLICE';
+import { OverlayToggle } from '@context/slices/OverlayModel_SLICE';
 //Api
-import { queryClient } from '../../../api/https';
+import { queryClient } from '@api/https';
 
 /**
  * DeleteConfirmation - preconfigured popup component to display delete confirmation and status of processing and fetching delete request

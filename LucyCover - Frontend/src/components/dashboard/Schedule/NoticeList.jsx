@@ -3,7 +3,7 @@ import NoticeListElement from './NoticeListElement'
 //Style
 import style from './css/Schedule.module.css'
 //Dumydata
-import DUMMY_NOTES from '../../../assets/DUMMY_DATA/DUMMY_NOTES.json';
+import DUMMY_NOTES from '@assets/DUMMY_DATA/DUMMY_NOTES.json';
 
 /** 
 * NoticeList - component to controll user notice (anavaiable yet)

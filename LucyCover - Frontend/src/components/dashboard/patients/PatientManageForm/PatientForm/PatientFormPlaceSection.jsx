@@ -1,11 +1,11 @@
 //Components
 import { Fragment } from "react"
 import { BiSolidHomeHeart } from "react-icons/bi";
-import LabelInput from "../../../../utility/LabelInput";
+import LabelInput from "@components/utility/LabelInput";
 //Style
 import style from '../css/PatientAddingForm.module.css'
 //Assets
-import { CheckZipCodeIsValid } from "../../../../../assets/validation/PersonalData";
+import { CheckZipCodeIsValid } from "@assets/validation/PersonalData";
 
 /**
  * PatientFormPlaceSection - component to display patient address details inputs

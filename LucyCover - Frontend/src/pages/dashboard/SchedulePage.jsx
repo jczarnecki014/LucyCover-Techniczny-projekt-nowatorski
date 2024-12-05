@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { SetActivePage } from "../../context/slices/MainMenuSlice";
+import { SetActivePage } from "@context/slices/MainMenuSlice";
 import { useEffect } from "react";
-import Schedule from "../../components/dashboard/Schedule/Schedule";
+import Schedule from "@components/dashboard/Schedule/Schedule";
 
 /**
  * SchedulePage - Page to display list of scheduled visit for specific user

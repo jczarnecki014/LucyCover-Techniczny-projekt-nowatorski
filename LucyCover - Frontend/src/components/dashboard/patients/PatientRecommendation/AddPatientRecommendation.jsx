@@ -1,24 +1,24 @@
 //Components
-import OverlayModel from "../../../utility/OverlayModel"
-import LabelInput from '../../../utility/LabelInput'
-import TextArea from '../../../utility/TextArea'
+import OverlayModel from "@components/utility/OverlayModel"
+import LabelInput from '@components/utility/LabelInput'
+import TextArea from '@components/utility/TextArea'
 import { MdKeyboardArrowRight } from "react-icons/md";
-import Popup from '../../../utility/Popup'
+import Popup from '@components/utility/Popup'
 //Style
 import style from './css/AddPatientRecommendation.module.css'
 //Hooks
 import { useMutation } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
-import {useFormData} from '../../../../hooks/useFormData'
+import {useFormData} from '@hooks/useFormData'
 import { useCallback } from "react";
 //Slice
-import { SetInput } from '../../../../context/slices/AddPatientRecommendation'
+import { SetInput } from '@context/slices/AddPatientRecommendation'
 //Api
-import { CreateNewRecommendation } from '../../../../api/https'
-import { queryClient } from '../../../../api/https'
+import { CreateNewRecommendation } from '@api/https'
+import { queryClient } from '@api/https'
 //Assets
-import CheckFormIsValid from '../../../../assets/validation/CheckFormIsValid'
-import useInputsSilce from "../../../../hooks/useInputsSlice";
+import CheckFormIsValid from '@assets/validation/CheckFormIsValid'
+import useInputsSilce from "@hooks/useInputsSlice";
 
 
 /**

@@ -1,15 +1,15 @@
 //Components
 import style from '../css/PatientAddingForm.module.css'
-import OverlayModel from "../../../../utility/OverlayModel"
+import OverlayModel from "@components/utility/OverlayModel"
 import PatientFormContactSection from './PatientFormContactSection'
 import PatientFormPlaceSection from './PatientFormPlaceSection'
 import PatientFormChildrenSection from './PatientFormChildrenSection'
 import { AnimatePresence } from 'framer-motion'
 //Hooks
 import { useCallback } from "react";
-import useInputsSilce from "../../../../../hooks/useInputsSlice";
+import useInputsSilce from "@hooks/useInputsSlice";
 //Context
-import { SetPatientInput } from '../../../../../context/slices/AddPatientForm'
+import { SetPatientInput } from '@context/slices/AddPatientForm'
 
 /**
  * PatientForm - component to display patient details inputs in form 

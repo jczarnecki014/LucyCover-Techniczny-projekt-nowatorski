@@ -1,6 +1,6 @@
-import LabelInput from "../../../../../utility/LabelInput";
-import SelectInput from "../../../../../utility/SelectInput";
-import TextArea from "../../../../../utility/TextArea";
+import LabelInput from "@components/utility/LabelInput";
+import SelectInput from "@components/utility/SelectInput";
+import TextArea from "@components/utility/TextArea";
 
 import style from '../css/PatientDocumentationSections.module.css'
 
