@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using LucyCover___Backend.Exceptions;
+using LucyCover_Database;
 using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
@@ -12,7 +13,7 @@ namespace LucyCover___Backend.Services
 {
     public interface IRecommendationService {
         public RecommendationList_DTO GetAll(Guid patientId);
-        public RecommendationDetails_DTO GetDetails(Guid patientId,Guid recommendationId);
+        public RecommendationDetails_DTO GetDetails(Guid recommendationId);
         public Guid UpsertNewRecommendation(Guid patientId,RecommendationDetails_DTO recommendation);
         public void DeleteRecommendation(Guid recommendationId);
     }
@@ -44,7 +45,7 @@ namespace LucyCover___Backend.Services
             return recommendationList_DTO;
         }
 
-        public RecommendationDetails_DTO GetDetails(Guid patientId,Guid recommendationId) 
+        public RecommendationDetails_DTO GetDetails(Guid recommendationId) 
         {
             Recommendation recommendation = _unitOfWork.recommendation.GetFirstOfDefault(reco => reco.id == recommendationId,includeProperties:"patient");
                                                                                                         
@@ -92,7 +93,7 @@ namespace LucyCover___Backend.Services
 
             if(recommendation is null)
             {
-                throw new KeyNotFoundException("Recommendation with provided recommendationID doesnt exist");
+                throw new EntityNotFoundException("Recommendation with provided recommendationID doesnt exist");
             }
 
             if(recommendation.patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not delete this documentation");

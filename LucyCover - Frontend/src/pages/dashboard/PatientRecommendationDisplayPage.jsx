@@ -24,11 +24,10 @@ const PatientRecommendationDisplayPage = () => {
  */
 
 export const loader = async ({params}) => {
-    const patientId = params.patientId
     const recommendationId = params.recommendationId
     return queryClient.fetchQuery({
-        queryKey: ['recommendations',patientId],
-        queryFn: ({signal}) => FetchRecommendationDetails({signal,patientId,recommendationId})
+        queryKey: ['recommendations',recommendationId],
+        queryFn: ({signal}) => FetchRecommendationDetails({signal,recommendationId})
     })
 }
 

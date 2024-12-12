@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using LucyCover___Backend.Exceptions;
+using LucyCover_Database;
 using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
