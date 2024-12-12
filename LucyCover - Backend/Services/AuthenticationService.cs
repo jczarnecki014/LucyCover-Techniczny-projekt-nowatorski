@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LucyCover___Backend.Exceptions;
 using LucyCover___Backend.ExtensionMethods;
+using LucyCover_Database;
 using LucyCover_Database.Repository;
 using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.AuthModel;
@@ -29,7 +30,7 @@ namespace LucyCover___Backend.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly AuthenticationSettings _authSettings;
-        private const string userPassSalt = "646b1a65259763b6c701b7493937e6c3dbde6b09ea7145679b7724a5755718c16eb8ff5e0e7a697a79bea19eb6c51144be86ee8effc03353dad2df1c0dc06ec9";
+        private readonly string userPassSalt = IDatabaseAdditionalOptions.DefaultPasswordSalt;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         public AuthenticationService(IUnitOfWork unitOfWork, IPasswordHasher<User> passwordHasher, AuthenticationSettings authSettings,IHttpContextAccessor httpContextAccessor, IMapper mapper)
@@ -54,7 +55,7 @@ namespace LucyCover___Backend.Services
 
             if (resoult == PasswordVerificationResult.Failed)
             {
-                throw new InvalidCredentialException("Supplied password is incorrect");
+                throw new InvalidCredentialException("Supplied password is not correct");
             }
 
             List<Claim> claims = new List<Claim>()
@@ -104,12 +105,13 @@ namespace LucyCover___Backend.Services
         public Guid GetCurrentUserId()
         {
             var user = _httpContextAccessor.HttpContext.User;
-            if(user is null) 
+            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+
+            if(userIdClaim is null) 
             {
                 throw new UnauthorizedAccessException();
             }
 
-            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
             return Guid.Parse(userIdClaim.Value);
         }
 

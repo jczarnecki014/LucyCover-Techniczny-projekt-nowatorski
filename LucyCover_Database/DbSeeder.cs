@@ -13,12 +13,13 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Database
 {
+    
     public class DbSeeder
     {
         private readonly DbConnection _connection;
         private readonly IPasswordHasher<User> _passwordHasher;
-        private const string userPassSalt = "646b1a65259763b6c701b7493937e6c3dbde6b09ea7145679b7724a5755718c16eb8ff5e0e7a697a79bea19eb6c51144be86ee8effc03353dad2df1c0dc06ec9";
-        private readonly Guid testUserId = new Guid("f85fec77-10a4-4afa-9714-b8bb6f0c4202");
+        private string userPassSalt = IDatabaseAdditionalOptions.DefaultPasswordSalt;
+        public readonly Guid testUserId = ITestUserDetails.Id;
         public DbSeeder(DbConnection connection,IPasswordHasher<User> passwordHasher)
         {
             _connection = connection;
@@ -35,58 +36,58 @@ namespace LucyCover_Database
                     {
                         _connection.Database.Migrate();
                     }
-                }
-            }
 
-            if(appMode == "simulation")
-            {
-                //When database is clear seed simulation entities
+                    if(appMode == "simulation")
+                    {
+                        //When database is clear seed simulation entities
             
-                if(!(_connection.User.Any() || _connection.Patients.Any() || _connection.Documentation.Any()))
-                {
-                    User user = LoadTestUser();
-                    List<Patient> patients = LoadSimulationPatientsAndChildren(user);
-                    List<Documentation> firstVisitsForPatients = LoadSimulationFirstVisitsForPatients(patients);
-                    List<Documentation> nextVisitsForPatients = LoadSimulationNextVisitsForPatients(patients);
-                    List<Recommendation> recommendationsForPatients = LoadSimulationRecommendationsForPatients(patients);
-                    List<Schedule> schedules = LoadSimulationSchedulesForPatients(patients);
-                    _connection.AddRange(patients);
-                    _connection.AddRange(firstVisitsForPatients);
-                    _connection.AddRange(nextVisitsForPatients);
-                    _connection.AddRange(recommendationsForPatients);
-                    _connection.AddRange(schedules);
-                    _connection.SaveChanges();
-                }
-            }
-            else if (appMode == "default")
-            {
-                // Remove all potential simulation entities form db
-                User testUser = _connection.User.FirstOrDefault(u => u.id == testUserId);
-                if(testUser is null) return;
+                        if(!(_connection.User.Any() || _connection.Patients.Any() || _connection.Documentation.Any()))
+                        {
+                            User user = LoadTestUser();
+                            List<Patient> patients = LoadSimulationPatientsAndChildren(user);
+                            List<Documentation> firstVisitsForPatients = LoadSimulationFirstVisitsForPatients(patients);
+                            List<Documentation> nextVisitsForPatients = LoadSimulationNextVisitsForPatients(patients);
+                            List<Recommendation> recommendationsForPatients = LoadSimulationRecommendationsForPatients(patients);
+                            List<Schedule> schedules = LoadSimulationSchedulesForPatients(patients);
+                            _connection.AddRange(patients);
+                            _connection.AddRange(firstVisitsForPatients);
+                            _connection.AddRange(nextVisitsForPatients);
+                            _connection.AddRange(recommendationsForPatients);
+                            _connection.AddRange(schedules);
+                            _connection.SaveChanges();
+                        }
+                    }
+                    else if (appMode == "default")
+                    {
+                        // Remove all potential simulation entities form db
+                        User testUser = _connection.User.FirstOrDefault(u => u.id == testUserId);
+                        if(testUser is null) return;
 
-                IEnumerable<EducationMaterials> testUserMaterial = _connection.EducationMaterials.Where(m => m.userId == testUserId);
-                foreach(var material in testUserMaterial)
-                {
-                    File.Delete(material.filePath);
-                }
-                _connection.EducationMaterials.RemoveRange(testUserMaterial);
+                        IEnumerable<EducationMaterials> testUserMaterial = _connection.EducationMaterials.Where(m => m.userId == testUserId);
+                        foreach(var material in testUserMaterial)
+                        {
+                            File.Delete(material.filePath);
+                        }
+                        _connection.EducationMaterials.RemoveRange(testUserMaterial);
 
-                _connection.User.Remove(testUser);
-                _connection.SaveChanges();
-            }
+                        _connection.User.Remove(testUser);
+                        _connection.SaveChanges();
+                    }
 
   
+                }
+            }
         }
         public User LoadTestUser()
         {
             var newUser = new User();
 
             newUser.id = testUserId;
-            newUser.email = "testuser@lucycover.com";
-            newUser.firstName = "Test";
-            newUser.lastName = "User";
-            newUser.password = _passwordHasher.HashPassword(newUser,$"{userPassSalt}test{userPassSalt}");
-            newUser.avatarSrc = "";
+            newUser.email = ITestUserDetails.Email;
+            newUser.firstName = ITestUserDetails.FirstName;
+            newUser.lastName = ITestUserDetails.LastName;
+            newUser.password = _passwordHasher.HashPassword(newUser,$"{userPassSalt}{ITestUserDetails.Password}{userPassSalt}");
+            newUser.avatarSrc = ITestUserDetails.AvatarSrc;
 
             return newUser;
         }

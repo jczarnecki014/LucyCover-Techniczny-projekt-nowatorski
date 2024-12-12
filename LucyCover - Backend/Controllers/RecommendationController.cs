@@ -23,15 +23,15 @@ namespace LucyCover___Backend.Controllers
             return Ok(recommendationList);
         }
 
-        [HttpGet("{patientId}/{recommendationId}")]
-        public ActionResult<RecommendationDetails_DTO> GetAll([FromRoute] Guid patientId, [FromRoute] Guid recommendationId)
+        [HttpGet("details/{recommendationId}")]
+        public ActionResult<RecommendationDetails_DTO> GetRecommendationDetails([FromRoute] Guid recommendationId)
         {
-            RecommendationDetails_DTO recommendationDetails_DTO = _service.GetDetails(patientId, recommendationId);
+            RecommendationDetails_DTO recommendationDetails_DTO = _service.GetDetails(recommendationId);
             return Ok(recommendationDetails_DTO);
         }
 
         [HttpPost("{patientId}")]
-        public ActionResult UpsertRecommendation(Guid patientId,RecommendationDetails_DTO recommendation)
+        public ActionResult UpsertRecommendation([FromRoute] Guid patientId,[FromBody] RecommendationDetails_DTO recommendation)
         {
             Guid recommendationId = _service.UpsertNewRecommendation(patientId, recommendation);
             return Created(recommendationId.ToString(),null);

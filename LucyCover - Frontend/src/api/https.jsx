@@ -73,8 +73,8 @@ export async function FetchRecommendation({patientId,signal}) {
     return data;
 }
 
-export async function FetchRecommendationDetails({signal,patientId,recommendationId}) {
-    const response = await fetch(`https://localhost:7014/api/recommendation/${patientId}/${recommendationId}`,{
+export async function FetchRecommendationDetails({signal,recommendationId}) {
+    const response = await fetch(`https://localhost:7014/api/recommendation/details/${recommendationId}`,{
         signal,
         credentials: 'include'
     }) 
