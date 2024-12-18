@@ -32,6 +32,5 @@ namespace LucyCover_Model.DTO_Modeles
         public string childLastName { get; set; }
         public string childBirthDate { get; set; }
 
-
     }
 }

@@ -22,18 +22,7 @@ namespace LucyCover___Tests.Controllers
         private Guid _currentUser { get; set; } = ITestUserDetails.Id;
         public RecommendationController_Tests(WebApplicationFactory<Program> factory)
         {
-            _factory = factory
-            .WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    var dbContextOptions = services.SingleOrDefault(service => service.ServiceType == typeof(DbContextOptions<DbConnection>));
-                    services.Remove(dbContextOptions);
-                    services.AddDbContext<DbConnection>(options => options.UseInMemoryDatabase("TestDb"));
-                    services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
-                });
-            });
-
+            _factory = factory.ForTestPreconfigure<Program>("RecommendationDB");
             _client = _factory.CreateClient();
         }
 
@@ -43,9 +32,9 @@ namespace LucyCover___Tests.Controllers
         public async Task GetAll_ForPatientOwner_ReturnOk()
         {
             //arrange
-            var fakePatient = GetPatient(_currentUser);
+            var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser);
             //seed
-            SeedDatabase(fakePatient);
+            fakePatient.SaveInDatabase(_factory);
             //act
             var response = await _client.GetAsync($"/api/recommendation/{fakePatient.id}");
             //assert
@@ -56,7 +45,7 @@ namespace LucyCover___Tests.Controllers
         public async Task GetAll_ForNotExistingPatient_ReturnNotFound()
         {
             //arrange
-            var fakePatientId = new Guid();
+            var fakePatientId = Guid.NewGuid();
             //act
             var response = await _client.GetAsync($"/api/recommendation/{fakePatientId}");
             //assert
@@ -67,10 +56,10 @@ namespace LucyCover___Tests.Controllers
         public async Task GetAll_ForPatientNotAssignedToCurrentLoggedUser_RetunUnauthorized()
         {
             //arrange
-            var fakeUserId = new Guid();
-            var fakePatient = GetPatient(fakeUserId);
+            var fakeUserId = Guid.NewGuid();
+            var fakePatient = FakeEntitiesGenerator.GetPatient(fakeUserId);
             //seed
-            SeedDatabase(fakePatient);
+            fakePatient.SaveInDatabase(_factory);
             //act
             var response = await _client.GetAsync($"/api/recommendation/{fakePatient.id}");
             //assert
@@ -83,14 +72,14 @@ namespace LucyCover___Tests.Controllers
         public async Task GetRecommendationDetails_ForExistingAndUserAssignedRecommendation_ReturnOk()
         {
             //arrange
-            Patient fakePatient = GetPatient(_currentUser);
-            SeedDatabase(fakePatient);
+            Patient fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser);
+            fakePatient.SaveInDatabase(_factory);
 
-            Recommendation fakeRecommendation = GetRocommendation(fakePatient.id);
-            SeedDatabase(fakeRecommendation);
-            //act
+            Recommendation fakeRecommendation = FakeEntitiesGenerator.GetRecommendation(fakePatient.id);
+            fakeRecommendation.SaveInDatabase(_factory);
+        //act
             var response = await _client.GetAsync($"/api/recommendation/details/{fakeRecommendation.id}");
-            //assert
+        //assert
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
         }
 
@@ -98,7 +87,7 @@ namespace LucyCover___Tests.Controllers
         public async Task GetRecommendationDetails_ForNotExistingDocumentation_ReturnNotFound()
         {
             //arrange
-            var fakeRecommendationId = new Guid();
+            var fakeRecommendationId = Guid.NewGuid();
             //act
             var response = await _client.GetAsync($"/api/recommendation/details/{fakeRecommendationId}");
             //assert
@@ -109,11 +98,11 @@ namespace LucyCover___Tests.Controllers
         public async Task GetRecommendationDetails_ForNotCurrentUserAssignedPatient_ReturnUnauthorized()
         {
             //arrange
-            Patient fakePatient = GetPatient(new Guid());
-            SeedDatabase(fakePatient);
+            Patient fakePatient = FakeEntitiesGenerator.GetPatient(Guid.NewGuid());
+            fakePatient.SaveInDatabase(_factory);
 
-            Recommendation fakeRecommendation = GetRocommendation(fakePatient.id);
-            SeedDatabase(fakeRecommendation);
+            Recommendation fakeRecommendation = FakeEntitiesGenerator.GetRecommendation(fakePatient.id);
+            fakeRecommendation.SaveInDatabase(_factory);
             //act
             var response = await _client.GetAsync($"/api/recommendation/details/{fakeRecommendation.id}");
             //assert
@@ -126,10 +115,10 @@ namespace LucyCover___Tests.Controllers
         public async Task UpsertNewRecommendation_ForValidRequest_ReturnOk()
         {
             //arrange
-            var fakePatient = GetPatient(_currentUser);
-            SeedDatabase(fakePatient);
+            var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser);
+            fakePatient.SaveInDatabase(_factory);
 
-            var newFakeRecommendation = GetRecommendationDetails_DTO();
+            var newFakeRecommendation = FakeEntitiesGenerator.GetRecommendationDetails_DTO();
             //act
             var response = await _client.PostAsync($"/api/recommendation/{fakePatient.id}", newFakeRecommendation.ToJsonHttpContent());
             //assert
@@ -140,8 +129,8 @@ namespace LucyCover___Tests.Controllers
         public async Task UpsertNewRecommendation_ForInValidModel_ReturnBadRequest()
         {
             //arrange
-            var fakePatient = GetPatient(_currentUser);
-            SeedDatabase(fakePatient);
+            var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser);
+            fakePatient.SaveInDatabase(_factory);
 
             var newFakeRecommendation = new RecommendationDetails_DTO()
             {
@@ -155,15 +144,13 @@ namespace LucyCover___Tests.Controllers
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
         }
 
-        // TESTOWANIE VALIDATORA !!
-
         [Fact]
         public async Task UpsertNewRecommendation_ForNotExistingPatient_ReturnNotFound()
         {
             //arrange
-            var notExistingPatientId = new Guid();
+            var notExistingPatientId = Guid.NewGuid();
 
-            var newFakeRecommendation = GetRecommendationDetails_DTO();
+            var newFakeRecommendation = FakeEntitiesGenerator.GetRecommendationDetails_DTO();
             //act
             var response = await _client.PostAsync($"/api/recommendation/{notExistingPatientId}", newFakeRecommendation.ToJsonHttpContent());
             //assert
@@ -174,26 +161,27 @@ namespace LucyCover___Tests.Controllers
         public async Task UpsertNewRecommendation_ForPatientNotAssignedToCurrentUser_ReturnUnauthorized()
         {
             //arrange
-            var fakePatient = GetPatient(new Guid());
-            SeedDatabase(fakePatient);
+            var fakePatient = FakeEntitiesGenerator.GetPatient(Guid.NewGuid());
+            fakePatient.SaveInDatabase(_factory);
 
-            var newFakeRecommendation = GetRecommendationDetails_DTO();
+            var newFakeRecommendation = FakeEntitiesGenerator.GetRecommendationDetails_DTO();
             //act
             var response = await _client.PostAsync($"/api/recommendation/{fakePatient.id}", newFakeRecommendation.ToJsonHttpContent());
             //assert
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.Unauthorized);
         }
 
-        /* ------------------------------------------------ UPSERT NEW RECOMMENDATION ------------------------------------------------ */
+        /* ------------------------------------------------ DELETE RECOMMENDATION ------------------------------------------------ */
 
         [Fact]
-        public async Task DeleteDocumentation_ForExistingDocumentation_ReturnNoContent()
+        public async Task DeleteRecommendation_ForExistingRecommendation_ReturnNoContent()
         {
             //arrange
-            var fakePatient = GetPatient(_currentUser);
-            SeedDatabase(fakePatient);
-            var fakeRecommendation = GetRocommendation(fakePatient.id);
-            SeedDatabase(fakeRecommendation);
+            var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser);
+            fakePatient.SaveInDatabase(_factory);
+
+            var fakeRecommendation = FakeEntitiesGenerator.GetRecommendation(fakePatient.id);
+            fakeRecommendation.SaveInDatabase(_factory);
             //act
             var response = await _client.DeleteAsync($"/api/recommendation/{fakeRecommendation.id}");
             //assert
@@ -201,10 +189,10 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async Task DeleteDocumentation_ForNotExistingDocumentation_ReturnNotFound()
+        public async Task DeleteRecommendation_ForNotExistingRecommendation_ReturnNotFound()
         {
             //arrange
-            var fakeRecommendationId = new Guid();
+            var fakeRecommendationId = Guid.NewGuid();
             //act
             var response = await _client.DeleteAsync($"/api/recommendation/{fakeRecommendationId}");
             //assert
@@ -212,65 +200,17 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async Task DeleteDocumentation_ForUserNotAssignedToPatient_ReturnNUnauthorized()
+        public async Task DeleteRecommendation_ForUserNotAssignedToPatient_ReturnUnauthorized()
         {
             //arrange
-            var fakePatient = GetPatient(new Guid());
-            SeedDatabase(fakePatient);
-            var fakeRecommendation = GetRocommendation(fakePatient.id);
-            SeedDatabase(fakeRecommendation);
+            var fakePatient = FakeEntitiesGenerator.GetPatient(Guid.NewGuid());
+            fakePatient.SaveInDatabase(_factory);
+            var fakeRecommendation = FakeEntitiesGenerator.GetRecommendation(fakePatient.id);
+            fakeRecommendation.SaveInDatabase(_factory);
             //act
             var response = await _client.DeleteAsync($"/api/recommendation/{fakeRecommendation.id}");
             //assert
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.Unauthorized);
-        }
-
-        private T SeedDatabase<T>(T entity) where T : class
-        {
-            var scopeFactory = _factory.Services.GetService<IServiceScopeFactory>();
-            using var scope = scopeFactory.CreateScope();
-            var dbContext = scope.ServiceProvider.GetService<DbConnection>();
-            dbContext.Set<T>().Add(entity);
-            dbContext.SaveChanges();
-            return entity;
-        }
-
-        private Patient GetPatient(Guid userId)
-        {
-            return new Patient()
-            {
-                firstName = "test",
-                lastName = "test",
-                city = "test",
-                address = "test",
-                province = "test",
-                zipCode = "test",
-                phoneNumber = "test",
-                email = "test",
-                birthDate = "test",
-                birthPlace = "test",
-                userId = userId
-            };
-        }
-
-        private RecommendationDetails_DTO GetRecommendationDetails_DTO()
-        {
-            return new RecommendationDetails_DTO()
-            {
-                title = "test",
-                date = "test",
-                text = "test",
-            };
-        }
-        private Recommendation GetRocommendation(Guid userId)
-        {
-            return new Recommendation()
-            {
-                title = "test",
-                text = "test",
-                date = "test",
-                patientId = userId
-            };
         }
 
     }
