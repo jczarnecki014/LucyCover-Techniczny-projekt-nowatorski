@@ -21,7 +21,7 @@ namespace LucyCover___Backend.Controllers
 
 
         [HttpGet("{date}")]
-        public IActionResult GetVisits([FromRoute] string date)
+        public IActionResult GetVisitsByDate([FromRoute] string date)
         {
             List<ScheduleDTO> scheduleDTOs = _service.GetVisitsByDate(date);
             return Ok(scheduleDTOs);
@@ -56,6 +56,7 @@ namespace LucyCover___Backend.Controllers
             await _service.ChangeVisitStatus(visitId,visitStatus);
             return Ok();
         }
+
         [HttpDelete("{visitId}")]
         public IActionResult DeletePatientVisit([FromRoute] Guid visitId) 
         {

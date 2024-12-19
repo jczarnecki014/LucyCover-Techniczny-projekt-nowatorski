@@ -43,6 +43,11 @@ namespace LucyCover___Backend.Services
         {
             Patient patient = PatientService.GetPatient(patientId,_unitOfWork,includeProperties:"children");
 
+            if(!Guid.Equals(_loggedUser,patient.userId))
+            {
+                throw new UnauthorizedAccessException($"Current logged user have no permision to manage patient with id = {patientId}");
+            }
+
             List<Schedule> schedules = 
                 _unitOfWork.schedule.GetAll(schedule => schedule.patientId == patientId,includeProperties:"patient,child")
                 .ForCurrentUserOnly(_loggedUser)
@@ -63,7 +68,7 @@ namespace LucyCover___Backend.Services
 
             return _mapper.Map<List<ScheduleDTO>>(schedules);
         }
-
+        
         public List<string> GetVisitsByMonth(string month)
         {
             List<string> dateList = _unitOfWork.schedule
@@ -101,13 +106,13 @@ namespace LucyCover___Backend.Services
             }
             _unitOfWork.Save();
 
-            if(upsertPatientSheduleDTO.sendEmail == true)
+            if (upsertPatientSheduleDTO.sendEmail == true)
             {
                 IEmailMessage newMessage = new EmailMessage(
                     email: patient.email,
                     subject: upsertPatientSheduleDTO.id == Guid.Empty ? "Masz nową zaplanowaną wizytę położniczą" : "Uwaga ! Nastąpiły zmiany w twojej zaplanowanej wizycie położniczej",
                     message: @$"Szanowny pacjencie, w dniu ,{schedule.date} o godzinie {schedule.clock} na adresie {schedule.city} {schedule.street} {schedule.streetNumber} 
-                    odbędzie się wizyta położnicza związana z twoim nowonarodzonym dzieckiem uprzejmie prosimy o obecność w tym terminie lub o zgłoszenie swojej nieobecności położnej środowiskowej. Pozdrawiamy"
+                            odbędzie się wizyta położnicza związana z twoim nowonarodzonym dzieckiem uprzejmie prosimy o obecność w tym terminie lub o zgłoszenie swojej nieobecności położnej środowiskowej. Pozdrawiamy"
                 );
 
                 await _emailService.SendEmailAsync(newMessage);
@@ -153,12 +158,12 @@ namespace LucyCover___Backend.Services
         {
             Schedule visit =  _unitOfWork.schedule.GetFirstOfDefault(visit => visit.id == visitId,includeProperties:"patient");
 
-            if(visit.patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not delete this visit");
-
             if(visit is null)
             {
                 throw new EntityNotFoundException("Visit with that id does not exist");
             }
+
+            if(visit.patient.userId != _loggedUser) throw new UnauthorizedAccessException("Currently logged user can not delete this visit");
 
             _unitOfWork.schedule.Remove(visit);
             _unitOfWork.Save();
