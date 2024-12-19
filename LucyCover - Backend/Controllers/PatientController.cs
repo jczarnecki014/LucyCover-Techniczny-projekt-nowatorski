@@ -19,7 +19,7 @@ namespace LucyCover___Backend.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Patient> GetPatients()
+        public ActionResult<List<Patient>> GetPatients()
         {
             List<Patient> patients = _patientService.GetPatients().ToList();
             return Ok(patients);

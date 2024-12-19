@@ -41,11 +41,15 @@ namespace LucyCover___Backend.Services
         }
 
         public Patient GetPatient(Guid patientId) {
-        Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId && patient.userId == _loggedUser, includeProperties: "children");
-        if (patient == null) 
-        {
-            throw new EntityNotFoundException("User with this ID does not exist");
-        }
+            Patient patient = _unitOfWork.patient.GetFirstOfDefault(patient => patient.id == patientId, includeProperties: "children");
+
+            if (patient == null) 
+            {
+                throw new EntityNotFoundException("User with this ID does not exist");
+            }
+
+            if (patient.userId != _loggedUser) throw new UnauthorizedAccessException("Current user has not permission to this patient !");
+
             return patient;
         }
 
@@ -64,9 +68,13 @@ namespace LucyCover___Backend.Services
             if(formDTO.patientId != null)
             {
                 //If user try to remove children, system delete existing visits for this children also
+                var dbPatient = _unitOfWork.patient.GetFirstOfDefault(p => p.id == formDTO.patientId);
+                if(dbPatient.userId != _loggedUser) throw new UnauthorizedAccessException("Current user has not permission to this user !");
+
                 var childrenInDb = _unitOfWork.patient.GetFirstOfDefault(p => p.id == formDTO.patientId,includeProperties:"children").children.ToList();
                 var childrenToDelete = childrenInDb.Where(c => !formDTO.children.Any(p => p.id == c.id)).ToList(); //Get children in db which are not in formDTO (They will delete)
                 var schedulesForChildrenToDelete = _unitOfWork.schedule.GetAll(s => childrenToDelete.Select(p => p.id).Contains(s.childId)).ToList(); //Get visits/schedules for this children
+    
                  _unitOfWork.schedule.RemoveRange(schedulesForChildrenToDelete);
                 //
                  _unitOfWork.patient.Update(patient);

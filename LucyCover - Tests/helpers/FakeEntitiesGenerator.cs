@@ -3,6 +3,7 @@ using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System.IO;
 using System.Reflection.Emit;
 
@@ -98,6 +99,57 @@ namespace LucyCover___Tests.helpers
                 description = "test",
                 status = "test",
                 sendEmail = false,
+            };
+        }
+        public static PatientDTO GetPatientDTO(Guid? patientId = null)
+        {
+            return new PatientDTO()
+            { 
+                patientId = patientId,
+                firstName = "test",
+                lastName = "test",
+                city = "test",
+                address = "test",
+                province = "test",
+                zipCode= "test",
+                phoneNumber = "test",
+                email = $"test@{Guid.NewGuid()}",
+                birthDate  = "test",
+                BirthPlace = "test",
+                children = new List<ChildrenDTO>()
+            };
+        }
+        public static Documentation GetFirstVisitDocumentation(Guid patientId, Guid childrenId) 
+        {
+            return new Documentation()
+            {
+                first = true,
+                childId = childrenId,
+                patientId = patientId,
+                date = "test",
+                documentationNextVisit = null,
+                documentationFirstVisit = new DocumentationFirstVisit()
+                {
+                    MotherFirstName = "test",
+                    MotherLastName = "test",
+                    MotherAge = "21",
+                    MotherProfesion = "test",
+                    MotherAddress =  "test",
+                    BabyFirstName = "test",
+                    BabyAge = "1ss",
+                    BabyBirthDay =  "test",
+                    BabyBirthPlace =  "test",
+                    BabyApgarScore =  "21",
+                    BabyBirthTime =  "test",
+                    BabyBirthTime_ADDITIONAL =  "test",
+                    BabyBirthType =  "test",
+                    BabyBirthTypeReason =  "test",
+                    BabyBirthMedicine =  "test",
+                    DocumentationReason =  "test",
+                    MotherBreastfeedBefore =  "test",
+                    MotherBreastfeedBefore_HowLong =  "test",
+                    MotherBreastfeedBefore_Why =  "test"
+                }
             };
         }
 
