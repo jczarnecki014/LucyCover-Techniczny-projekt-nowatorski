@@ -8,10 +8,10 @@ namespace LucyCover___Backend.Controllers
     [ApiController]
     [Authorize]
     [Route("api/messages")]
-    public class MessagesControler : Controller
+    public class MessagesController : Controller
     {
         private readonly IMessagesService _service;
-        public MessagesControler(IMessagesService messagesService)
+        public MessagesController(IMessagesService messagesService)
         {
             _service = messagesService;
         }
