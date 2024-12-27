@@ -21,7 +21,7 @@ namespace LucyCover___Tests.helpers
         public static WebApplicationFactory<T> ForTestPreconfigure<T>(this WebApplicationFactory<T> factory,string dbName) where T : class
         {
             var _factory = factory.WithWebHostBuilder(builder =>
-            {
+            {   
                 builder.ConfigureServices(services =>
                 {
                     var dbContextOptions = services.SingleOrDefault(service => service.ServiceType == typeof(DbContextOptions<DbConnection>));
@@ -39,6 +39,21 @@ namespace LucyCover___Tests.helpers
         return _factory;
         }
 
+        public static WebApplicationFactory<T> ForTestPreconfigure<T>(this WebApplicationFactory<T> factory,string dbName, string fileDirectory) where T : class
+        {   
+            var newFactory = factory.WithWebHostBuilder(builder => {
+                builder.ConfigureAppConfiguration((context,config) => {
+                        config.AddInMemoryCollection(new Dictionary<string,string>
+                        {
+                            {"FileServerConfig:Directory", $"{fileDirectory}"} 
+                        });
+
+                    }); 
+            });
+
+            return newFactory.ForTestPreconfigure(dbName);
+        }
+
         public static WebApplicationFactory<T> MockService<T,Y>(this WebApplicationFactory<T> factory, Mock<Y> mockedService) 
                                                                       where T : class where Y: class
         {
@@ -51,6 +66,12 @@ namespace LucyCover___Tests.helpers
             });
 
             return _factory;
+        }
+
+        public static Y GetService<T,Y>(WebApplicationFactory<T> factory) where T : class where Y:class
+        {
+            using var scope = factory.Services.CreateScope();
+            return scope.ServiceProvider.GetRequiredService<Y>();
         }
     }
 }

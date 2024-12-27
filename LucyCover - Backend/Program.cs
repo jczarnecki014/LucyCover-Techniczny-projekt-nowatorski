@@ -4,6 +4,7 @@ using FluentValidation.AspNetCore;
 using LucyCover___Backend.Automapper_DTO_Maps;
 using LucyCover___Backend.MIddleware;
 using LucyCover___Backend.Services;
+using LucyCover___Backend.Utility;
 using LucyCover_Database;
 using LucyCover_Database.Repository;
 using LucyCover_Database.Repository.IRepository;
@@ -31,6 +32,10 @@ builder.Services.AddControllers().AddNewtonsoftJson(options => {
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Upload file directory
+string uploadsDirectory = builder.Configuration["FileServerConfig"];
+builder.Services.Configure<FileServerConfig>(builder.Configuration.GetSection("FileServerConfig"));
 
 //CORSE Settings
 string allowedOrigin = builder.Configuration["AllowedOrigin"];

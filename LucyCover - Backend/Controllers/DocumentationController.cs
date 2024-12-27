@@ -19,34 +19,33 @@ namespace LucyCover___Backend.Controllers
         }
 
         [HttpGet("{patientId}")]
-        public DocumentationList_DTO GetAll(Guid patientId)
+        public ActionResult<DocumentationList_DTO> GetAll([FromRoute] Guid patientId)
         {
             DocumentationList_DTO documentation = _service.GetAll(patientId);
-            return (documentation);
+            return Ok(documentation);
         }
 
         [HttpGet("{patientId}/{documentationId}")]
-        public DocumentationDTO GetDocumentationDetails(Guid documentationId, Guid patientId)
+        public ActionResult<DocumentationDTO> GetDocumentationDetails([FromRoute] Guid patientId, [FromRoute] Guid documentationId)
         {
             DocumentationDTO documentation = _service.GetDocumentationDetails(documentationId,patientId);
-            return documentation;
+            return Ok(documentation);
         }
 
 
         [HttpPost("{patientId}")]
         public IActionResult UpsertDocumentation([FromBody] UpsertDocumentationDTO documentationDTO, [FromRoute] Guid patientId)
         {
-            Guid documentationId;
 
             if(documentationDTO.First)
             {
-                documentationId = _service.UpsertFirstVisitDocumentation(patientId,documentationDTO);
+                _service.UpsertFirstVisitDocumentation(patientId,documentationDTO);
             }
             else 
             {
-                documentationId = _service.UpsertNextVisitDocumentation(patientId,documentationDTO);
+                _service.UpsertNextVisitDocumentation(patientId,documentationDTO);
             }
-            return Created(documentationId.ToString(),null);
+            return Created("Upsert success",null);
         }
 
         [HttpDelete("{documentationId}")]

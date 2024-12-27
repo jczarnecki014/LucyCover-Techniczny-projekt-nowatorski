@@ -23,14 +23,14 @@ namespace LucyCover___Tests.Controllers
         private Guid _currentUser { get; set; } = ITestUserDetails.Id;
         public PatientController_Tests(WebApplicationFactory<Program> factory)
         {
-            _factory = factory.ForTestPreconfigure<Program>("PatientDB");
+            _factory = factory.ForTestPreconfigure<Program>(nameof(PatientController_Tests));
             _client = _factory.CreateClient();
         }
 
         /* ------------------------------------------------ Get Patients ------------------------------------------------ */
 
         [Fact]
-        public async void GetPatients_ForPatientsAssignedToCurrentLoggedUser_ReturnOkAndPatientsList()
+        public async Task GetPatients_ForPatientsAssignedToCurrentLoggedUser_ReturnOkAndPatientsList()
         {
             //arrange
                 FakeEntitiesGenerator.GetPatient(_currentUser).SaveInDatabase(_factory);
@@ -44,7 +44,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void GetPatients_ForPatientsNotAssignedToCurrentLoggedUser_ReturnOkAndPatientsList()
+        public async Task GetPatients_ForPatientsNotAssignedToCurrentLoggedUser_ReturnOkAndPatientsList()
         {
             //arrange
                 FakeEntitiesGenerator.GetPatient(Guid.NewGuid()).SaveInDatabase(_factory);
@@ -60,7 +60,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ Get Patient ------------------------------------------------ */
 
          [Fact]
-         public async void GetPatient_ForPatientAssignedToCurrentLoggedUser_ReturnOkAndPatientDetails()
+         public async Task GetPatient_ForPatientAssignedToCurrentLoggedUser_ReturnOkAndPatientDetails()
          {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser).SaveInDatabase(_factory);
@@ -75,7 +75,7 @@ namespace LucyCover___Tests.Controllers
          }
 
          [Fact]
-         public async void GetPatient_ForNotExistPatient_ReturnNotFound()
+         public async Task GetPatient_ForNotExistPatient_ReturnNotFound()
          {
             //arrange
 
@@ -86,7 +86,7 @@ namespace LucyCover___Tests.Controllers
          }
 
          [Fact]
-         public async void GetPatient_ForPatientNotAssignedToCurrentLoggedUser_ReturnUnauthorized()
+         public async Task GetPatient_ForPatientNotAssignedToCurrentLoggedUser_ReturnUnauthorized()
          {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(Guid.NewGuid()).SaveInDatabase(_factory);
@@ -101,7 +101,7 @@ namespace LucyCover___Tests.Controllers
          /* ------------------------------------------------ Upsert Patient ------------------------------------------------ */
 
          [Fact]
-         public async void UpsertPatient_Adding_ForValidRequest_ReturnCreated()
+         public async Task UpsertPatient_Adding_ForValidRequest_ReturnCreated()
          {
             //arrange
                 var fakePatientDTO = FakeEntitiesGenerator.GetPatientDTO().ToJsonHttpContent();
@@ -112,7 +112,7 @@ namespace LucyCover___Tests.Controllers
          }
 
          [Fact]
-         public async void UpsertPatient_ForInValidModel_ReturnCreated()
+         public async Task UpsertPatient_ForInValidModel_ReturnCreated()
          {
             //arrange
                 var fakePatientDTO = new PatientDTO() {address="test",birthDate="test"}.ToJsonHttpContent();
@@ -123,7 +123,7 @@ namespace LucyCover___Tests.Controllers
          }
 
          [Fact]
-         public async void UpsertPatient_Edit_ForValidModel_ReturnCreated()
+         public async Task UpsertPatient_Edit_ForValidModel_ReturnCreated()
          {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser).SaveInDatabase(_factory);
@@ -135,7 +135,7 @@ namespace LucyCover___Tests.Controllers
          }
 
          [Fact]
-         public async void UpsertPatient_Edit_ForPatientNotAssignedToCurrentUser_ReturnUnauthorized()
+         public async Task UpsertPatient_Edit_ForPatientNotAssignedToCurrentUser_ReturnUnauthorized()
          {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(Guid.NewGuid()).SaveInDatabase(_factory);

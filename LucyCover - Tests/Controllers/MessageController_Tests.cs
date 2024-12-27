@@ -27,14 +27,14 @@ namespace LucyCover___Tests.Controllers
         private Mock<IEmailService> _emailServiceMock = new Mock<IEmailService>();
         public MessageController_Tests(WebApplicationFactory<Program> factory)
         {
-            _factory = factory.ForTestPreconfigure<Program>("MessageDB").MockService(_emailServiceMock);
+            _factory = factory.ForTestPreconfigure<Program>(nameof(MessageController_Tests)).MockService(_emailServiceMock);
             _client = _factory.CreateClient();
         }
 
         /* ------------------------------------------------ GET PATIENT LIST ------------------------------------------------ */
 
         [Fact]
-        public async void GetPatientList_ForCurrentLoggedUser_ReturnOkWithPatientMessageListElementDTOList()
+        public async Task GetPatientList_ForCurrentLoggedUser_ReturnOkWithPatientMessageListElementDTOList()
         {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser).SaveInDatabase(_factory);
@@ -49,7 +49,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void GetPatientList_ForNotCurrentLoggedUser_ReturnOkWithPatientMessageListElementDTOList()
+        public async Task GetPatientList_ForNotCurrentLoggedUser_ReturnOkWithPatientMessageListElementDTOList()
         {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(Guid.NewGuid()).SaveInDatabase(_factory);
@@ -65,7 +65,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ GET PATIENT EMAILS ------------------------------------------------ */
 
         [Fact]
-        public async void GetPatientEmails_ForDefaultEmailAndOneMimeMessage_ReturnOkAndEmailMessageDTODTOList()
+        public async Task GetPatientEmails_ForDefaultEmailAndOneMimeMessage_ReturnOkAndEmailMessageDTODTOList()
         {
             //arrange
                  var mimeMessage = new MimeMessage();
@@ -89,7 +89,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void GetPatientEmails_ForDefaultEmailAndNoMimeMessage_ReturnOkAndEmptyList()
+        public async Task GetPatientEmails_ForDefaultEmailAndNoMimeMessage_ReturnOkAndEmptyList()
         {
             //arrange
                 _emailServiceMock.Setup(
@@ -108,7 +108,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ SEND EMAIL TO PATIENT ------------------------------------------------ */
 
         [Fact]
-        public async void SendEmailToPatient_ForAnyPatientEmailAndMessage_ReturnEmailMessageDTO()
+        public async Task SendEmailToPatient_ForAnyPatientEmailAndMessage_ReturnEmailMessageDTO()
         {
             //arrange
                 _emailServiceMock.Setup(

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.Database_Entities
 {
-    public class User
+    public class User : IDbEntity
     {
         public Guid id { get; set; }
         public string password { get; set; }

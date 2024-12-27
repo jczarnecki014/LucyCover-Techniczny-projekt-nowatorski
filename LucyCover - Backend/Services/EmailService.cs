@@ -1,4 +1,5 @@
 ﻿using LucyCover___Backend.Exceptions;
+using LucyCover___Backend.Utility;
 using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Net.Smtp;
@@ -133,7 +134,6 @@ namespace LucyCover___Backend.Services
 
     public class EmailMessage : IEmailMessage
     {
-        private readonly string emailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; 
         public string email { get;set;}
         public string subject { get; set; }
         public string message { get; set; }
@@ -141,10 +141,10 @@ namespace LucyCover___Backend.Services
 
         public EmailMessage(string email, string subject, string message)
         {
-        if(!Regex.IsMatch(email,emailRegex))
-        {
-            throw new EmailValidationException("Patient has not assigned valid email"); 
-        }
+            if(!REGEX.EmailRegex.IsMatch(email))
+            {
+                throw new EmailValidationException("Patient has not assigned valid email"); 
+            }
         this.email = email;
         this.subject = subject;
         this.message = message;
