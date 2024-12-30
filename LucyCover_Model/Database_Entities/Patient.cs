@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LucyCover_Model.Database_Model
 {
-    public class Patient
+    public class Patient : IDbEntity
     {
         [Key]
         public Guid id { get; set; }

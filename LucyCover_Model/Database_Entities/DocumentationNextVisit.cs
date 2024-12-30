@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LucyCover_Model.Database_Entities
 {
-    public class DocumentationNextVisit
+    public class DocumentationNextVisit : IDbEntity
     {
         [Key]
         public Guid Id { get; set; }

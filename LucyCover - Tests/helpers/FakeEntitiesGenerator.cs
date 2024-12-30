@@ -1,4 +1,5 @@
-﻿using LucyCover_Database;
+﻿using AutoMapper;
+using LucyCover_Database;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
@@ -11,7 +12,7 @@ namespace LucyCover___Tests.helpers
 {
     public static class FakeEntitiesGenerator
     {
-        public static T SaveInDatabase<T>(this T entity,WebApplicationFactory<Program>factory) where T : class
+        public static T SaveInDatabase<T>(this T entity,WebApplicationFactory<Program>factory) where T : class,IDbEntity
         {
             var scopeFactory = factory.Services.GetService<IServiceScopeFactory>();
             using var scope = scopeFactory.CreateScope();
@@ -37,8 +38,9 @@ namespace LucyCover___Tests.helpers
                 childId = childId,
             };
         }
-        public static Patient GetPatient(Guid assignedUserId)
+        public static Patient GetPatient(Guid assignedUserId,string? providedEmail = null )
         {
+            var emailValue = providedEmail ??= $"test@{Guid.NewGuid()}.pl";
             return new Patient()
             {
                 firstName = "test",
@@ -48,7 +50,7 @@ namespace LucyCover___Tests.helpers
                 province = "test",
                 zipCode = "test",
                 phoneNumber = "test",
-                email = $"test@{Guid.NewGuid()}.pl",
+                email= emailValue,
                 birthDate = "test",
                 birthPlace = "test",
                 userId = assignedUserId
@@ -149,6 +151,182 @@ namespace LucyCover___Tests.helpers
                     MotherBreastfeedBefore =  "test",
                     MotherBreastfeedBefore_HowLong =  "test",
                     MotherBreastfeedBefore_Why =  "test"
+                }
+            };
+        }
+        public static Documentation GetNextVisitDocumentation(Guid patientId, Guid childrenId) 
+        {
+            return new Documentation()
+            {
+                first = false,
+                childId = childrenId,
+                patientId = patientId,
+                date = "test",
+                documentationFirstVisit = null,
+                documentationNextVisit = new DocumentationNextVisit()
+                {
+                    PatientFeedingCountPerDay = "test",
+                    PatientFeedingBreastNumber = "test",
+                    PatientFeedingHowMuchTime = "test",
+                    PatientFeedingInNight = "test",
+                    PatientBreastFeedingWithHood = "test",
+                    PatientBreastFeedingWithHood_HowLong = "test",
+                    PatientBreastFeedingAsNeeded = "test",
+                    PatientBreastFeedingAsNeeded_How = "test",
+                    PatientFeedingCountPerDay_DAY1 = "test",
+                    PatientFeedingCountPerDay_DAY2 = "test", 
+                    PatientFeedingCountPerDay_DAY3 = "test", 
+                    PatientFeedingMIXCountPerDay_DAY1 = "test",
+                    PatientFeedingMIXCountPerDay_DAY2 = "test",
+                    PatientFeedingMIXCountPerDay_DAY3 = "test",
+                    PatientFeedingWay = "test",
+                    PatientExpressingBreastMilk = "test",
+                    PatientExpressingBreastMilkHowManyYesterday= "test",
+                    PatientBreastGrowingDuringPregnacy = "test", 
+                    PatientBreastGrowingDuringPregnacy_DAY = "test",
+                    PatientMilkRush = "test",
+                    PatientBreastSize = "test",
+                    PatientBreastChanges = "test",
+                    PatientBreastChanges_WHAT = "test",
+                    PatientBreastNipple = "test",
+                    PatientBreastNippleAfterFeeding = "test",
+                    PatientBreastNippleChanges = "test",
+                    PatientBreastNippleChanges_WHAT = "test",
+                    PatientMentalState = "test",
+                    ResearchObservationBabyBehaviour = "test",
+                    BabyPeeingADay = "test",
+                    BabyExcretionADay = "test",
+                    BabyColic = "test",
+                    BabyColicSinceWhen = "test",
+                    BabyNipple = "test",
+                    BabyNippleSinceWhen = "test",
+                    PatientMedicationsUsed = "test",
+                    BabyMedicationsUsed = "test",
+                    PatientPeriodAfterDelivery = "test",
+                    PatientPeriodAfterDelivery_WHEN = "test",
+                    PostureCorection = "test",
+                    SuckTraining = "test",
+                    BabyFatten = "test",
+                    OtherRecommendation = "test",
+                }
+            };
+        }
+        public static Documentation GetDocumentation(Guid patientId, Guid childrenId) 
+        {
+            return new Documentation()
+            {
+                first = true,
+                childId = childrenId,
+                patientId = patientId,
+                date = "test",
+                documentationNextVisit = null,
+                documentationFirstVisit = null,
+            };
+        }
+        public static EducationMaterials GetEducationMaterials(Guid userId,string? filePath = "test")
+        {
+            return new EducationMaterials 
+            {
+                fileName = "test",
+                fileTitle = "test",
+                filePath = filePath,
+                date = "test",
+                userId = userId
+            };
+        }
+        public static EducationMaterialsAssignedPatients GetEducationMaterialsAssignedPatients(Guid educationMaterialsId,Guid patientId)
+        {
+            return new EducationMaterialsAssignedPatients 
+            {
+                educationMaterialsId = educationMaterialsId,
+                patientId = patientId,
+            };
+        }
+        public static UpsertDocumentationDTO GetUpsertDocumentationDTOForDocumentationFirstVisit(Guid ChildId,Guid existingDoucmentationId)
+        {
+            return new UpsertDocumentationDTO
+            {
+                Date="test",
+                ChildId = ChildId.ToString(),
+                First = true,
+                DocumentationId = existingDoucmentationId,
+                DocumentationFirstVisit = new DocumentationFirstVisitDTO 
+                {
+                    MotherFirstName = "test",
+                    MotherLastName = "test",
+                    MotherAge = "21",
+                    MotherProfesion = "test",
+                    MotherAddress =  "test",
+                    BabyFirstName = "test",
+                    BabyAge = "1ss",
+                    BabyBirthDay =  "test",
+                    BabyBirthPlace =  "test",
+                    BabyApgarScore =  "21",
+                    BabyBirthTime =  "test",
+                    BabyBirthTime_ADDITIONAL =  "test",
+                    BabyBirthType =  "test",
+                    BabyBirthTypeReason =  "test",
+                    BabyBirthMedicine =  "test",
+                    DocumentationReason =  "test",
+                    MotherBreastfeedBefore =  "test",
+                    MotherBreastfeedBefore_HowLong =  "test",
+                    MotherBreastfeedBefore_Why =  "test"
+                }
+            };
+        }
+        public static UpsertDocumentationDTO GetUpsertDocumentationDTOForDocumentationNextVisit(Guid ChildId,Guid existingDoucmentationId)
+        {
+            return new UpsertDocumentationDTO
+            {
+                Date="test",
+                ChildId = ChildId.ToString(),
+                First = false,
+                DocumentationId = existingDoucmentationId,
+                DocumentationNextVisit = new DocumentationNextVisitDTO
+                {
+                    PatientFeedingCountPerDay = "test",
+                    PatientFeedingBreastNumber = "test",
+                    PatientFeedingHowMuchTime = "test",
+                    PatientFeedingInNight = "test",
+                    PatientBreastFeedingWithHood = "test",
+                    PatientBreastFeedingWithHood_HowLong = "test",
+                    PatientBreastFeedingAsNeeded = "test",
+                    PatientBreastFeedingAsNeeded_How = "test",
+                    PatientFeedingCountPerDay_DAY1 = "3",
+                    PatientFeedingCountPerDay_DAY2 = "2", 
+                    PatientFeedingCountPerDay_DAY3 = "3", 
+                    PatientFeedingMIXCountPerDay_DAY1 = "4",
+                    PatientFeedingMIXCountPerDay_DAY2 = "3",
+                    PatientFeedingMIXCountPerDay_DAY3 = "3",
+                    PatientFeedingWay = "test",
+                    PatientExpressingBreastMilk = "test",
+                    PatientExpressingBreastMilkHowManyYesterday= "test",
+                    PatientBreastGrowingDuringPregnacy = "test", 
+                    PatientBreastGrowingDuringPregnacy_DAY = "test",
+                    PatientMilkRush = "test",
+                    PatientBreastSize = "test",
+                    PatientBreastChanges = "test",
+                    PatientBreastChanges_WHAT = "test",
+                    PatientBreastNipple = "test",
+                    PatientBreastNippleAfterFeeding = "test",
+                    PatientBreastNippleChanges = "test",
+                    PatientBreastNippleChanges_WHAT = "test",
+                    PatientMentalState = "test",
+                    ResearchObservationBabyBehaviour = "test",
+                    BabyPeeingADay = "test",
+                    BabyExcretionADay = "test",
+                    BabyColic = "test",
+                    BabyColicSinceWhen = "test",
+                    BabyNipple = "test",
+                    BabyNippleSinceWhen = "test",
+                    PatientMedicationsUsed = "test",
+                    BabyMedicationsUsed = "test",
+                    PatientPeriodAfterDelivery = "test",
+                    PatientPeriodAfterDelivery_WHEN = "test",
+                    PostureCorection = "test",
+                    SuckTraining = "test",
+                    BabyFatten = "test",
+                    OtherRecommendation = "test",
                 }
             };
         }

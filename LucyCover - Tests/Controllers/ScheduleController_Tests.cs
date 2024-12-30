@@ -19,7 +19,7 @@ namespace LucyCover___Tests.Controllers
         private Mock<IEmailService> _mailServiceMock = new Mock<IEmailService>();
         public ScheduleController_Tests(WebApplicationFactory<Program> factory)
         {
-            _factory = factory.ForTestPreconfigure("ScheduleDB")
+            _factory = factory.ForTestPreconfigure(nameof(ScheduleController_Tests))
                               .MockService(_mailServiceMock);
             _client = _factory.CreateClient();
         }
@@ -27,7 +27,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ GET VISIT BY DATE ------------------------------------------------ */
 
         [Fact]
-        public async void GetVisitsByDate_ForCurrentLoggedUser_ReturnOkWithVisits()
+        public async Task GetVisitsByDate_ForCurrentLoggedUser_ReturnOkWithVisits()
         {
             //arrange
                  var fakeSchedule = SeedTestSchedule(_currentUser, out Guid patientId);
@@ -41,7 +41,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void GetVisitsByDate_ForNotCurrentLoggedUser_ReturnOkWithoutVisits()
+        public async Task GetVisitsByDate_ForNotCurrentLoggedUser_ReturnOkWithoutVisits()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(Guid.NewGuid(), out Guid patientId);
@@ -57,7 +57,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ GET VISIT IN MONTH ------------------------------------------------ */
 
         [Fact]
-        public async void GetVisitsInMonth_FotCurrentLoggedUser_ReturnOkWithFullDatesOfVisits()
+        public async Task GetVisitsInMonth_FotCurrentLoggedUser_ReturnOkWithFullDatesOfVisits()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(_currentUser, out Guid patientId);
@@ -72,7 +72,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void GetVisitsInMonth_FotNotCurrentLoggedUser_ReturnOkWithoutAnyDatesOfVisits()
+        public async Task GetVisitsInMonth_FotNotCurrentLoggedUser_ReturnOkWithoutAnyDatesOfVisits()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(Guid.NewGuid(), out Guid patientId);
@@ -89,7 +89,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ GET PATIENT VISITS ------------------------------------------------ */
 
         [Fact] 
-        public async void GetPatientVisits_FotCurrentLoggedUser_ReturnOkWithPatientScheduleDTO()
+        public async Task GetPatientVisits_FotCurrentLoggedUser_ReturnOkWithPatientScheduleDTO()
         {
             //arrange
                 SeedTestSchedule(_currentUser, out Guid patientId);
@@ -104,7 +104,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact] 
-        public async void GetPatientVisits_FotNotCurrentLoggedUser_ReturnUnauthorizedWithoutPatientScheduleDTO()
+        public async Task GetPatientVisits_FotNotCurrentLoggedUser_ReturnUnauthorizedWithoutPatientScheduleDTO()
         {
             //arrange
                 SeedTestSchedule(Guid.NewGuid(), out Guid patientId);
@@ -116,7 +116,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact] 
-        public async void GetPatientVisits_FotNotExistedPatient_ReturnNotFoundWithoutPatientScheduleDTO()
+        public async Task GetPatientVisits_FotNotExistedPatient_ReturnNotFoundWithoutPatientScheduleDTO()
         {
             //arrange
                 SeedTestSchedule(_currentUser, out Guid patientId);
@@ -130,7 +130,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ UPSERT PATIENT VISITS ------------------------------------------------ */
 
         [Fact] 
-        public async void UpsertPatientVisit_ForLoggedUserExistingPatientAndValidModel_ReturnCreated()
+        public async Task UpsertPatientVisit_ForLoggedUserExistingPatientAndValidModel_ReturnCreated()
         {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser).SaveInDatabase(_factory);
@@ -144,7 +144,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void UpsertPatientVisit_ForLoggedUserExistingPatientAndInValidModel_ReturnBadRequest()
+        public async Task UpsertPatientVisit_ForLoggedUserExistingPatientAndInValidModel_ReturnBadRequest()
         {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(_currentUser).SaveInDatabase(_factory);
@@ -164,7 +164,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void UpsertPatientVisit_ForLoggedUserNotExistingPatientAndValidModel_ReturnBadRequest()
+        public async Task UpsertPatientVisit_ForLoggedUserNotExistingPatientAndValidModel_ReturnBadRequest()
         {
             //arrange
                 var fakePatientId = Guid.NewGuid();
@@ -178,7 +178,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void UpsertPatientVisit_ForNotAuthorizedUserExistingPatientAndValidModel_ReturnBadRequest()
+        public async Task UpsertPatientVisit_ForNotAuthorizedUserExistingPatientAndValidModel_ReturnBadRequest()
         {
             //arrange
                 var fakePatient = FakeEntitiesGenerator.GetPatient(Guid.NewGuid()).SaveInDatabase(_factory);
@@ -194,7 +194,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ CHANGE VISIT STATUS ------------------------------------------------ */
 
         [Fact]
-        public async void ChageVisitStatus_ForValidRequest_ReturnOk()
+        public async Task ChageVisitStatus_ForValidRequest_ReturnOk()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(_currentUser, out Guid patientId);
@@ -208,7 +208,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void ChageVisitStatus_ForNotExistVisit_ReturnNotFound()
+        public async Task ChageVisitStatus_ForNotExistVisit_ReturnNotFound()
         {
             //arrange
                 var fakeVisitId = Guid.NewGuid();
@@ -219,7 +219,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void ChageVisitStatus_ForNotValidVisitStatus_ReturnNotFound()
+        public async Task ChageVisitStatus_ForNotValidVisitStatus_ReturnNotFound()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(_currentUser, out Guid patientId);
@@ -230,7 +230,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void ChageVisitStatus_ForNotAuthorizedUser_ReturnUnauthorized()
+        public async Task ChageVisitStatus_ForNotAuthorizedUser_ReturnUnauthorized()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(Guid.NewGuid(), out Guid patientId);
@@ -244,7 +244,7 @@ namespace LucyCover___Tests.Controllers
         /* ------------------------------------------------ DELETE PATIENT VISITS ------------------------------------------------ */
 
         [Fact]
-        public async void DeletePatientVisit_ForValidRequest_ReturnNoContent()
+        public async Task DeletePatientVisit_ForValidRequest_ReturnNoContent()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(_currentUser,out Guid patientId);
@@ -255,7 +255,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void DeletePatientVisit_ForForNotAuthorizedUser_ReturnNoContent()
+        public async Task DeletePatientVisit_ForForNotAuthorizedUser_ReturnNoContent()
         {
             //arrange
                 var fakeSchedule = SeedTestSchedule(Guid.NewGuid(),out Guid patientId);
@@ -266,7 +266,7 @@ namespace LucyCover___Tests.Controllers
         }
 
         [Fact]
-        public async void DeletePatientVisit_ForNotExistVisit_ReturnNoFound()
+        public async Task DeletePatientVisit_ForNotExistVisit_ReturnNoFound()
         {
             //arrange
                 var fakeScheduleId = Guid.NewGuid();

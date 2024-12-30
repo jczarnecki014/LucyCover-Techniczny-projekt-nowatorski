@@ -21,7 +21,7 @@ namespace LucyCover___Backend.Controllers
         }
 
         [HttpGet()]
-        public ActionResult<EducationMaterials> GetAll()
+        public ActionResult<List<EducationMaterials>> GetAll()
         {
             List<EducationMaterials> materials =  _service.GetAll();
             return Ok(materials);
@@ -52,10 +52,10 @@ namespace LucyCover___Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewMaterial([FromForm] EducationMaterialDTO educationMaterialDTO)
+        public async Task<IActionResult> UpsertMaterial([FromForm] EducationMaterialDTO educationMaterialDTO)
         {
-            await _service.UpsertEducationMaterial(educationMaterialDTO);
-            return Created("Element was created",null);
+            string filePath = await _service.UpsertEducationMaterial(educationMaterialDTO);
+            return Created("Element was created",filePath);
         }
 
         [HttpPost("{materialId}/{patientId}")]

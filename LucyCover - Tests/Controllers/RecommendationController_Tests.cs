@@ -22,7 +22,7 @@ namespace LucyCover___Tests.Controllers
         private Guid _currentUser { get; set; } = ITestUserDetails.Id;
         public RecommendationController_Tests(WebApplicationFactory<Program> factory)
         {
-            _factory = factory.ForTestPreconfigure<Program>("RecommendationDB");
+            _factory = factory.ForTestPreconfigure<Program>(nameof(RecommendationController_Tests));
             _client = _factory.CreateClient();
         }
 
