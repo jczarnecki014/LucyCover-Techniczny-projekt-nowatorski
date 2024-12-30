@@ -36,6 +36,7 @@ namespace LucyCover_Model.DTO_Modeles.Validators
                     if(value == null)
                     {
                         context.AddFailure($"Imie i nazwisko nie może być puste");
+                        return;
                     }
 
                     var splitedName = value.Split(' ');

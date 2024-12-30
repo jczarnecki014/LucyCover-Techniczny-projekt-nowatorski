@@ -3,6 +3,7 @@ using LucyCover_Database;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System.IO;
@@ -329,6 +330,17 @@ namespace LucyCover___Tests.helpers
                     OtherRecommendation = "test",
                 }
             };
+        }
+        public static User GetUser(string email, string password) 
+        {
+            PasswordHasher<User> passwordHasher = new PasswordHasher<User>();
+            var user =  new User();
+            user.password = passwordHasher.HashPassword(user,password);
+            user.email = email;
+            user.firstName="test";
+            user.lastName="test";
+            user.avatarSrc = "test";
+            return user;
         }
 
     }
