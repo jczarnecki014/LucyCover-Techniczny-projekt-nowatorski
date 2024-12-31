@@ -1,4 +1,5 @@
-﻿using LucyCover_Database.Repository.IRepository;
+﻿using AESEncryption;
+using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,7 +14,7 @@ namespace LucyCover_Database.Repository
     public class PatientRepository : Repository<Patient>, IPatientRepository
     {
         private readonly DbConnection _db;
-        public PatientRepository(DbConnection db):base(db) 
+        public PatientRepository(DbConnection db,IEncryptionService encryptionService):base(db,encryptionService) 
         {
             _db = db;
         }

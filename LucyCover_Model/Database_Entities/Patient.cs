@@ -1,4 +1,5 @@
-﻿using LucyCover_Model.Database_Entities;
+﻿using LucyCover_EncryptionSystem;
+using LucyCover_Model.Database_Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,42 +11,52 @@ namespace LucyCover_Model.Database_Model
         public Guid id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
+        [SensitiveData]
         [MaxLength(50)]
         public string firstName { get; set; }
 
         [Required(AllowEmptyStrings = false)]
+        [SensitiveData]
         [MaxLength(50)]
         public string lastName { get; set; }
 
         [Required]
+        [SensitiveData]
         [MaxLength(50)]
         public string city { get; set; }
 
         [Required]
+        [SensitiveData]
         [MaxLength(50)]
         public string address { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [SensitiveData]
+        [MaxLength(50)]
         public string province { get; set; }
 
         [Required]
-        [MaxLength(10)]
+        [SensitiveData]
+        [MaxLength(50)]
         public string zipCode { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [SensitiveData]
+        [MaxLength(50)]
         public string phoneNumber { get; set; }
 
         [Required]
+        [SensitiveData]
         [MaxLength(50)]
         public string email { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [SensitiveData]
+        [MaxLength(50)]
         public string birthDate { get; set; }
 
         [Required]
+        [SensitiveData]
         [MaxLength(50)]
         public string birthPlace { get;set; }
 

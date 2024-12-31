@@ -1,4 +1,5 @@
-﻿using LucyCover_Database.Repository.IRepository;
+﻿using AESEncryption;
+using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ namespace LucyCover_Database.Repository
     public class DocumentationNextVisitRepository : Repository<DocumentationNextVisit>, IDocumentationNextVisitRepository
     {
         private readonly DbConnection _db;
-        public DocumentationNextVisitRepository(DbConnection db):base(db) 
+        public DocumentationNextVisitRepository(DbConnection db,IEncryptionService encryptionService):base(db,encryptionService) 
         {
             _db = db;
         }

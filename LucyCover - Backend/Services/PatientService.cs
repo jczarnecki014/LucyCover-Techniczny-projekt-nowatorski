@@ -88,10 +88,11 @@ namespace LucyCover___Backend.Services
             {
                 _unitOfWork.Save();
             }
-            catch (DbUpdateException ex) 
+            catch (ArgumentException ex) 
             {
-                throw new RelationBetweenEntityException("You can not delete childrens which have exiting documentation in system. " +
-                                        "Firstly you should delete every documentation for delating childrens.");
+                
+                /*throw new RelationBetweenEntityException("You can not delete childrens which have exiting documentation in system. " +
+                                        "Firstly you should delete every documentation for delating childrens.");*/
             }
 
             return patient.id.ToString();

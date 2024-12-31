@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using AESEncryption;
 
 namespace LucyCover_Database.Repository
 {
     public class EducationMaterialsRepository : Repository<EducationMaterials>, IEducationMaterialsRepository
     {
         private readonly DbConnection _db;
-        public EducationMaterialsRepository(DbConnection db):base(db) 
+        public EducationMaterialsRepository(DbConnection db,IEncryptionService encryptionService):base(db,encryptionService) 
         {
             _db = db;
         }

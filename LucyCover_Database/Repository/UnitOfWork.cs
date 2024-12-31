@@ -1,4 +1,5 @@
-﻿using LucyCover_Database.Repository.IRepository;
+﻿using AESEncryption;
+using LucyCover_Database.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,19 @@ namespace LucyCover_Database.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DbConnection _db;
-        public UnitOfWork(DbConnection db) 
+        public UnitOfWork(DbConnection db,IEncryptionService es) 
         {
             _db= db;
-            patient = new PatientRepository(db);
-            documentation= new DocumentationRepository(db);
-            documentationFirstVisit = new DocumentationFirstVisitRepository(db);
-            documentationNextVisit = new DocumentationNextVisitRepository(db);
-            recommendation = new RecommendationRepository(db);
-            children = new ChildrenRepository(db);
-            schedule = new ScheduleReposiotry(db);
-            educationMaterials = new EducationMaterialsRepository(db);
-            educationMaterialsAssignedPatients = new EducationMaterialsAssignedPatientsRepository(db);
-            users= new UserRepository(db);
+            patient = new PatientRepository(db,es);
+            documentation= new DocumentationRepository(db,es);
+            documentationFirstVisit = new DocumentationFirstVisitRepository(db,es);
+            documentationNextVisit = new DocumentationNextVisitRepository(db,es);
+            recommendation = new RecommendationRepository(db,es);
+            children = new ChildrenRepository(db,es);
+            schedule = new ScheduleReposiotry(db,es);
+            educationMaterials = new EducationMaterialsRepository(db,es);
+            educationMaterialsAssignedPatients = new EducationMaterialsAssignedPatientsRepository(db,es);
+            users= new UserRepository(db,es);
         }
 
         public IPatientRepository patient { get; private set; }

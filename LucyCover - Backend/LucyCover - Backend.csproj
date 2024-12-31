@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AESEncryption\LucyCover_EncryptionSystem.csproj" />
     <ProjectReference Include="..\LucyCover_Database\LucyCover_Database.csproj" />
     <ProjectReference Include="..\LucyCover_Model\LucyCover_Model.csproj" />
   </ItemGroup>

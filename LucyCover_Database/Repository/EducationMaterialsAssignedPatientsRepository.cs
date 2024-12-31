@@ -1,4 +1,5 @@
-﻿using LucyCover_Database.Repository.IRepository;
+﻿using AESEncryption;
+using LucyCover_Database.Repository.IRepository;
 using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using System;
@@ -12,7 +13,7 @@ namespace LucyCover_Database.Repository
     public class EducationMaterialsAssignedPatientsRepository : Repository<EducationMaterialsAssignedPatients>, IEducationMaterialsAssignedPatientsRepository
     {
         private readonly DbConnection _db;
-        public EducationMaterialsAssignedPatientsRepository(DbConnection db):base(db) 
+        public EducationMaterialsAssignedPatientsRepository(DbConnection db,IEncryptionService encryptionService):base(db,encryptionService) 
         {
             _db = db;
         }

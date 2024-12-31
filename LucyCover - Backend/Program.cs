@@ -1,3 +1,4 @@
+using AESEncryption;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -48,6 +49,16 @@ builder.Services.AddCors(option => {
         policyBuilder.AllowCredentials();
     });
 });
+
+//DEFAULT ENCRYPTION SETTINGS
+/*
+ *                                                      ! WARNING ! 
+ *  When you move this project on production you should keep booth key and IV concerned in separate safty place as AZURE KEY VALUT
+ *  Keeping this information in appsetings.json is only allowable in development mode !
+ */
+
+ var encryptionSettings = builder.Configuration.GetSection("EncryptionSettings");
+ builder.Services.AddSingleton<IEncryptionService>(new EncryptionService(encryptionSettings["Key"],encryptionSettings["IV"]));
 
 //Database connection + Repositories
 builder.Services.AddDbContext<DbConnection>(option => {
