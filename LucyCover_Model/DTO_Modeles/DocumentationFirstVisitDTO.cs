@@ -35,20 +35,20 @@ namespace LucyCover_Model.DTO_Modeles
 
         public string BabyBirthTime { get; set; }
 
-        public string BabyBirthTime_ADDITIONAL { get; set; }
+        public string? BabyBirthTime_ADDITIONAL { get; set; }
 
         public string BabyBirthType { get; set; }
 
-        public string BabyBirthTypeReason { get; set; }
+        public string? BabyBirthTypeReason { get; set; }
 
         public string BabyBirthMedicine { get; set; }
 
-        public string DocumentationReason { get; set; }
+        public string? DocumentationReason { get; set; }
 
         public string MotherBreastfeedBefore { get; set; }
 
-        public string MotherBreastfeedBefore_HowLong { get; set; }
+        public string? MotherBreastfeedBefore_HowLong { get; set; }
 
-        public string MotherBreastfeedBefore_Why { get; set; }
+        public string? MotherBreastfeedBefore_Why { get; set; }
     }
 }

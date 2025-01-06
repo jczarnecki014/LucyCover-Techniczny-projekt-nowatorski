@@ -1,7 +1,9 @@
-﻿using System;
+﻿using SoftFluent.ComponentModel.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,155 +16,176 @@ namespace LucyCover_Model.Database_Entities
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientFeedingCountPerDay { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientFeedingBreastNumber { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientFeedingHowMuchTime { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientFeedingInNight { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastFeedingWithHood { get; set; }
 
-        [MaxLength(50)]
-        public string PatientBreastFeedingWithHood_HowLong { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientBreastFeedingWithHood_HowLong { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastFeedingAsNeeded { get; set; }
 
-        [MaxLength(50)]
-        public string PatientBreastFeedingAsNeeded_How { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientBreastFeedingAsNeeded_How { get; set; }
 
-        [MaxLength(50)]
-        public string PatientFeedingCountPerDay_DAY1 { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientFeedingCountPerDay_DAY1 { get; set; }
 
-        [MaxLength(50)]
-        public string PatientFeedingCountPerDay_DAY2 { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientFeedingCountPerDay_DAY2 { get; set; }
 
-        [MaxLength(50)]
-        public string PatientFeedingCountPerDay_DAY3 { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientFeedingCountPerDay_DAY3 { get; set; }
 
-        [MaxLength(50)]
-        public string PatientFeedingMIXCountPerDay_DAY1 { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientFeedingMIXCountPerDay_DAY1 { get; set; }
 
-        [MaxLength(50)]
-        public string PatientFeedingMIXCountPerDay_DAY2 { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientFeedingMIXCountPerDay_DAY2 { get; set; }
 
-        [MaxLength(50)]
-        public string PatientFeedingMIXCountPerDay_DAY3 { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientFeedingMIXCountPerDay_DAY3 { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientFeedingWay { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientExpressingBreastMilk { get; set; }
 
-        [MaxLength(50)]
-        public string PatientExpressingBreastMilkHowManyYesterday { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientExpressingBreastMilkHowManyYesterday { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastGrowingDuringPregnacy { get; set; }
 
-        [MaxLength(50)]
-        public string PatientBreastGrowingDuringPregnacy_DAY { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientBreastGrowingDuringPregnacy_DAY { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientMilkRush { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastSize { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastChanges { get; set; }
 
-        [MaxLength(50)]
-        public string PatientBreastChanges_WHAT { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientBreastChanges_WHAT { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastNipple { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastNippleAfterFeeding { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientBreastNippleChanges { get; set; }
 
-        [MaxLength(50)]
-        public string PatientBreastNippleChanges_WHAT { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientBreastNippleChanges_WHAT { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientMentalState { get; set; }
 
-        [MaxLength(250)]
-        public string ResearchObservationBabyBehaviour { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? ResearchObservationBabyBehaviour { get; set; }
 
+        [AllowNull]
+        [Encrypted]
+        public string? BabyPeeingADay { get; set; }
 
-        [MaxLength(50)]
-        public string BabyPeeingADay { get; set; }
-
-        [MaxLength(50)]
-        public string BabyExcretionADay { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? BabyExcretionADay { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string BabyColic { get; set; }
 
-        [MaxLength(50)]
-        public string BabyColicSinceWhen { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? BabyColicSinceWhen { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string BabyNipple { get; set; }
 
-        [MaxLength(50)]
-        public string BabyNippleSinceWhen { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? BabyNippleSinceWhen { get; set; }
 
-        [MaxLength(50)]
-        public string PatientMedicationsUsed { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientMedicationsUsed { get; set; }
 
-        [MaxLength(50)]
-        public string BabyMedicationsUsed { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? BabyMedicationsUsed { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PatientPeriodAfterDelivery { get; set; }
 
-        [MaxLength(50)]
-        public string PatientPeriodAfterDelivery_WHEN { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? PatientPeriodAfterDelivery_WHEN { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string PostureCorection { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string SuckTraining { get; set; }
 
-        [MaxLength(50)]
-        public string BabyFatten { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? BabyFatten { get; set; }
 
-        [MaxLength(250)]
-        public string OtherRecommendation { get; set; }
+        [AllowNull]
+        [Encrypted]
+        public string? OtherRecommendation { get; set; }
 
         [Required]
         public Guid DocumentationId { get; set; }

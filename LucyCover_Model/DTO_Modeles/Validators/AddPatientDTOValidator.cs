@@ -11,16 +11,16 @@ namespace LucyCover_Model.DTO_Modeles.Validators
     {
         public AddPatientDTOValidator() 
         { 
-            RuleFor(x => x.firstName).NotEmpty().WithMessage("firstName cannot be empty");
-            RuleFor(x => x.lastName).NotEmpty().WithMessage("lastName cannot be empty");
-            RuleFor(x => x.BirthPlace).NotEmpty().WithMessage("birthPlace cannot be empty");
-            RuleFor(x => x.city).NotEmpty().WithMessage("city cannot be empty");
-            RuleFor(x => x.address).NotEmpty().WithMessage("address cannot be empty");
-            RuleFor(x => x.province).NotEmpty().WithMessage("province cannot be empty");
-            RuleFor(x => x.zipCode).NotEmpty().WithMessage("zipCode cannot be empty");
-            RuleFor(x => x.phoneNumber).NotEmpty().WithMessage("phoneNumber cannot be empty");
-            RuleFor(x => x.email).NotEmpty().WithMessage("email cannot be empty").EmailAddress();
-            RuleFor(x => x.birthDate).NotEmpty().WithMessage("birthDate cannot be empty");
+            RuleFor(x => x.firstName).NotEmpty().MaximumLength(15);
+            RuleFor(x => x.lastName).NotEmpty().MaximumLength(25);
+            RuleFor(x => x.BirthPlace).NotEmpty().MaximumLength(25);
+            RuleFor(x => x.city).NotEmpty().MaximumLength(25);
+            RuleFor(x => x.address).NotEmpty().MaximumLength(25);
+            RuleFor(x => x.province).NotEmpty().MaximumLength(25);
+            RuleFor(x => x.zipCode).NotEmpty().MaximumLength(7).Matches(@"\d{2}-\d{3}$");
+            RuleFor(x => x.phoneNumber).NotEmpty().MaximumLength(12).Matches(@"(\+48|48)?\s?\d{3}\s?\d{3}\s?\d{3}$");
+            RuleFor(x => x.email).NotEmpty().MaximumLength(50).Matches(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+            RuleFor(x => x.birthDate).NotEmpty().MaximumLength(25);
         }
     }
 }

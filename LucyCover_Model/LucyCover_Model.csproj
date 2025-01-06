@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFrameworkCore.DataEncryption" Version="7.0.0" />
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.19" />

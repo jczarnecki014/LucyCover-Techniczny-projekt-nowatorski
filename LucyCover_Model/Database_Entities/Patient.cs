@@ -1,4 +1,5 @@
 ﻿using LucyCover_Model.Database_Entities;
+using SoftFluent.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,43 +11,43 @@ namespace LucyCover_Model.Database_Model
         public Guid id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [MaxLength(50)]
+        [Encrypted]
         public string firstName { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [MaxLength(50)]
+        [Encrypted]
         public string lastName { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string city { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string address { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [Encrypted]
         public string province { get; set; }
 
         [Required]
-        [MaxLength(10)]
+        [Encrypted]
         public string zipCode { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [Encrypted]
         public string phoneNumber { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string email { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [Encrypted]
         public string birthDate { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string birthPlace { get;set; }
 
         [Required]

@@ -104,11 +104,13 @@ namespace LucyCover___Tests.Controllers
          public async Task UpsertPatient_Adding_ForValidRequest_ReturnCreated()
          {
             //arrange
-                var fakePatientDTO = FakeEntitiesGenerator.GetPatientDTO().ToJsonHttpContent();
+                var fakePatientDTO = FakeEntitiesGenerator.GetPatientDTO();
             //act
-                var response = await _client.PostAsync($"api/patients", fakePatientDTO);
+                var response = await _client.PostAsync($"api/patients", fakePatientDTO.ToJsonHttpContent());
+                var responseContent = await response.Content.ReadAsStringAsync();
             //assert
                 response.StatusCode.Should().Be(System.Net.HttpStatusCode.Created);
+
          }
 
          [Fact]

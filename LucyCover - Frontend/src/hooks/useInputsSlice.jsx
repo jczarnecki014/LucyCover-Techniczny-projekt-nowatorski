@@ -23,7 +23,6 @@ const useInputsSilce = (SliceEditFunction) => {
         const inputObjectExist = inputValueObject.hasOwnProperty("inputObject");
         if(!inputIdExist || !inputObjectExist) 
             throw new Error("inputValueObject has to contain inputId and inputObject properties")
-        
         const {inputId,inputObject} = inputValueObject
         if(inputObject.value == undefined || inputObject.isValid == undefined ) 
             throw new Error("inputObject has to contain value and isValid property")
