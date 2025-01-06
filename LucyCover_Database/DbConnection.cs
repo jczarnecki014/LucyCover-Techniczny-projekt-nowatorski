@@ -1,12 +1,30 @@
 ﻿using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.Extensions.Options;
+using SoftFluent.EntityFrameworkCore.DataEncryption;
+using SoftFluent.EntityFrameworkCore.DataEncryption.Providers;
 
 namespace LucyCover_Database
 {
     public class DbConnection:DbContext
     {
-        public DbConnection(DbContextOptions<DbConnection> options) : base(options) { }
+        private readonly byte[] _encryptionKey;
+	    private readonly byte[] _encryptionIV;
+	    private readonly IEncryptionProvider _provider;
+
+        public DbConnection(DbContextOptions<DbConnection> options,IOptions<EncryptionSettings> encryptionOptions) : base(options) 
+        {
+            _encryptionKey = Convert.FromBase64String(encryptionOptions.Value.Key);
+            _encryptionIV = Convert.FromBase64String(encryptionOptions.Value.IV);
+            _provider = new AesProvider(this._encryptionKey, this._encryptionIV);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+	    {
+		    modelBuilder.UseEncryption(_provider);
+	    }
 
         public DbSet<Patient> Patients{ get; set; }
         public DbSet<Children> Children { get;set;}

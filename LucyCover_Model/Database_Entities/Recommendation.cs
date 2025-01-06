@@ -1,4 +1,5 @@
 ﻿using LucyCover_Model.Database_Model;
+using SoftFluent.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,14 +16,15 @@ namespace LucyCover_Model.Database_Entities
         public Guid id { get;set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string date { get;set; }
 
         [Required]
-        [MaxLength(50)]
+        [Encrypted]
         public string title { get;set; }
 
         [Required]
+        [Encrypted]
         public string text { get;set; }
 
         [Required]

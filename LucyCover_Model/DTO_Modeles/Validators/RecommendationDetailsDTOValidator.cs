@@ -11,9 +11,9 @@ namespace LucyCover_Model.DTO_Modeles.Validators
     {
         public RecommendationDetailsDTOValidator() 
         { 
-            RuleFor(x => x.title).NotEmpty().WithMessage("title cannot be empty");
-            RuleFor(x => x.date).NotEmpty().WithMessage("date cannot be empty");
-            RuleFor(x => x.text).NotEmpty().WithMessage("text cannot be empty");
+            RuleFor(x => x.title).NotEmpty().MaximumLength(100);
+            RuleFor(x => x.date).NotEmpty().MaximumLength(15);
+            RuleFor(x => x.text).NotEmpty().MaximumLength(1000);
         }
     }
 }

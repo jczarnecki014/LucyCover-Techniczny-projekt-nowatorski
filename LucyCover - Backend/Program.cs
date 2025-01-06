@@ -49,6 +49,17 @@ builder.Services.AddCors(option => {
     });
 });
 
+//DEFAULT ENCRYPTION SETTINGS
+/*
+ *                                                      ! WARNING ! 
+ *  When you move this project on production you should keep booth key and IV concerned in separate safty place as AZURE KEY VALUT
+ *  Keeping this information in appsetings.json is only allowable in development mode !
+ */
+
+ var encryptionSettings = builder.Configuration.GetSection("EncryptionSettings");
+ builder.Services.Configure<EncryptionSettings>(builder.Configuration.GetSection("EncryptionSettings"));
+
+
 //Database connection + Repositories
 builder.Services.AddDbContext<DbConnection>(option => {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

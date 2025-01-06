@@ -236,9 +236,15 @@ export async function CreateNewDocumentation({documentationDetails,patientId}) {
         credentials:"include"
     })
 
+    if(response.status === 400)
+    {
+        throw new Error("Twój formularz zawiera błędy !")
+    }
+
     if(response.status !== 201) {
         throw new Error("Coś poszło nie tak podczas dodawania dokumentacji")
     }
+
 }
 
 export async function CreateNewRecommendation({recommendationDetails,patientId}) {

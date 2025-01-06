@@ -41,7 +41,7 @@ namespace LucyCover___Tests.helpers
         }
         public static Patient GetPatient(Guid assignedUserId,string? providedEmail = null )
         {
-            var emailValue = providedEmail ??= $"test@{Guid.NewGuid()}.pl";
+            var emailValue = providedEmail ??= $"test123@someaddres.pl";
             return new Patient()
             {
                 firstName = "test",
@@ -49,8 +49,8 @@ namespace LucyCover___Tests.helpers
                 city = "test",
                 address = "test",
                 province = "test",
-                zipCode = "test",
-                phoneNumber = "test",
+                zipCode = "58-560",
+                phoneNumber = "666999888",
                 email= emailValue,
                 birthDate = "test",
                 birthPlace = "test",
@@ -96,9 +96,9 @@ namespace LucyCover___Tests.helpers
                 city = "test",
                 street = "test",
                 streetNumber = "test",
-                zipCode = "58-560",
-                date = "test",
-                clock = "test",
+                zipCode = "58-566",
+                date = "10.12.2024",
+                clock = "8:00",
                 description = "test",
                 status = "test",
                 sendEmail = false,
@@ -114,9 +114,9 @@ namespace LucyCover___Tests.helpers
                 city = "test",
                 address = "test",
                 province = "test",
-                zipCode= "test",
-                phoneNumber = "test",
-                email = $"test@{Guid.NewGuid()}",
+                zipCode= "58-666",
+                phoneNumber = "666777888",
+                email = $"test@test.pl",
                 birthDate  = "test",
                 BirthPlace = "test",
                 children = new List<ChildrenDTO>()

@@ -302,7 +302,7 @@ namespace LucyCover___Tests.Controllers
         [InlineData("test@testpl")]
         [InlineData("testtest.pl")]
         [InlineData("@test.pl")]
-        [InlineData("")]
+        [InlineData("x")]
         public async Task SendMaterialToPatient_ForNotValidPatientEmail_ReturnUnprocessableEntity(string fakeEmail)
         {
             //Arrange

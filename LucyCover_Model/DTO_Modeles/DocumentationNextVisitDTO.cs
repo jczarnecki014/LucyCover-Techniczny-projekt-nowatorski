@@ -22,11 +22,11 @@ namespace LucyCover_Model.DTO_Modeles
 
         public string PatientBreastFeedingWithHood { get; set; }
 
-        public string PatientBreastFeedingWithHood_HowLong { get; set; }
+        public string? PatientBreastFeedingWithHood_HowLong { get; set; }
 
         public string PatientBreastFeedingAsNeeded { get; set; }
 
-        public string PatientBreastFeedingAsNeeded_How { get; set; }
+        public string? PatientBreastFeedingAsNeeded_How { get; set; }
 
         public string PatientFeedingCountPerDay_DAY1 { get; set; }
 
@@ -44,11 +44,11 @@ namespace LucyCover_Model.DTO_Modeles
 
         public string PatientExpressingBreastMilk { get; set; }
 
-        public string PatientExpressingBreastMilkHowManyYesterday { get; set; }
+        public string? PatientExpressingBreastMilkHowManyYesterday { get; set; }
 
         public string PatientBreastGrowingDuringPregnacy { get; set; }
 
-        public string PatientBreastGrowingDuringPregnacy_DAY { get; set; }
+        public string? PatientBreastGrowingDuringPregnacy_DAY { get; set; }
 
         public string PatientMilkRush { get; set; }
 
@@ -56,7 +56,7 @@ namespace LucyCover_Model.DTO_Modeles
 
         public string PatientBreastChanges { get; set; }
 
-        public string PatientBreastChanges_WHAT { get; set; }
+        public string? PatientBreastChanges_WHAT { get; set; }
 
         public string PatientBreastNipple { get; set; }
 
@@ -64,7 +64,7 @@ namespace LucyCover_Model.DTO_Modeles
 
         public string PatientBreastNippleChanges { get; set; }
 
-        public string PatientBreastNippleChanges_WHAT { get; set; }
+        public string? PatientBreastNippleChanges_WHAT { get; set; }
 
         public string PatientMentalState { get; set; }
 
@@ -76,27 +76,27 @@ namespace LucyCover_Model.DTO_Modeles
 
         public string BabyColic { get; set; }
 
-        public string BabyColicSinceWhen { get; set; }
+        public string? BabyColicSinceWhen { get; set; }
 
         public string BabyNipple { get; set; }
 
-        public string BabyNippleSinceWhen { get; set; }
+        public string? BabyNippleSinceWhen { get; set; }
 
-        public string PatientMedicationsUsed { get; set; }
+        public string? PatientMedicationsUsed { get; set; }
 
-        public string BabyMedicationsUsed { get; set; }
+        public string? BabyMedicationsUsed { get; set; }
 
         public string PatientPeriodAfterDelivery { get; set; }
 
-        public string PatientPeriodAfterDelivery_WHEN { get; set; }
+        public string? PatientPeriodAfterDelivery_WHEN { get; set; }
 
         public string PostureCorection { get; set; }
 
         public string SuckTraining { get; set; }
 
-        public string BabyFatten { get; set; }
+        public string? BabyFatten { get; set; }
 
-        public string OtherRecommendation { get; set; }
+        public string? OtherRecommendation { get; set; }
 
     }
 }

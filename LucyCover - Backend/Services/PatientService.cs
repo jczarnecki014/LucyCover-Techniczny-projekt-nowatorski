@@ -76,7 +76,6 @@ namespace LucyCover___Backend.Services
                 var schedulesForChildrenToDelete = _unitOfWork.schedule.GetAll(s => childrenToDelete.Select(p => p.id).Contains(s.childId)).ToList(); //Get visits/schedules for this children
     
                  _unitOfWork.schedule.RemoveRange(schedulesForChildrenToDelete);
-                //
                  _unitOfWork.patient.Update(patient);
             }
             else
@@ -88,13 +87,12 @@ namespace LucyCover___Backend.Services
             {
                 _unitOfWork.Save();
             }
-            catch (DbUpdateException ex) 
+            catch (DbUpdateException ex)
             {
-                throw new RelationBetweenEntityException("You can not delete childrens which have exiting documentation in system. " +
-                                        "Firstly you should delete every documentation for delating childrens.");
+                throw new RelationBetweenEntityException(ex.Message);
             }
 
-            return patient.id.ToString();
+        return patient.id.ToString();
         }
 
          public static Patient GetPatient(Guid patientId,IUnitOfWork _unitOfWork, string? includeProperties = null) 
