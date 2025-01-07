@@ -51,6 +51,7 @@ const Wrapper = ({children}) => {
             <RightSidePanel>
                 <RightSidePanel.UserDetails userName='USER_NAME' userRole='USER_ROLE' avatarSRC={Avatar} />
                 <RightSidePanel.NotyficationsList>
+                    {DUMMY_NOTYFICATIONS.count == 0 && <p>No content</p>}
                     {DUMMY_NOTYFICATIONS.map((notyfication,index) => (
                         <NotyficationsList.NotyficationElement key={index} title={notyfication.title} description={notyfication.description} />
                     ))}

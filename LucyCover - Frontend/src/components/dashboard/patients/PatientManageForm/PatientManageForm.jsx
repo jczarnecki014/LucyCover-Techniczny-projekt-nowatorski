@@ -39,11 +39,14 @@ const PatientManageForm = ({activePatient}) => {
     const [childrenList, SetChildrenList] = useState()
     const [childrenInEditMode,SetChildrenInEditMode] = useState(null);
 
-    const {mutate,isPending,isError,error} = useMutation({
+    const {mutate,isPending,error} = useMutation({
         mutationFn: CreateNewPatient,
         onSuccess: () => {
             SetFormMode("success")
             queryClient.invalidateQueries(["patients",defaultPatientInputs.id])
+        },
+        onError: () => {
+            SetFormMode("error")
         }
     })
 
@@ -141,7 +144,7 @@ const PatientManageForm = ({activePatient}) => {
 
             {formMode === 'success' && <Popup type='success' description="Pacjent został dodany pomyślnie"  AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
 
-            {isError && <Popup type='error' title="Coś poszło nie tak.." description={error.message} AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
+            {formMode === 'error' && <Popup type='error' title="Coś poszło nie tak.." description={error.message} AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
 
         </Fragment>
     )

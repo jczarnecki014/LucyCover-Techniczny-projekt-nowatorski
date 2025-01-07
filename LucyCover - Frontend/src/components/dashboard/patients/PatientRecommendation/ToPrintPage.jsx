@@ -4,6 +4,8 @@ import style from './css/PatientRecommendationDisplay.module.css'
 import { forwardRef } from 'react'
 //Assets
 import logoImg from '@assets/images/logo_graphics/logo.png'
+//Cookie
+import {useCookies} from 'react-cookie'
 
 /**
  * ToPrintPage - component to display ready to print patient documentation
@@ -11,15 +13,17 @@ import logoImg from '@assets/images/logo_graphics/logo.png'
  */
 
 const ToPrintPage = forwardRef((props,ref) => {
+
+    const [cookies] = useCookies(['authCookie']);
+
     return (
         <div ref={ref} className={style.RecommendationContent}>
             <div className={style.ContentHeader}>
                 <div className={style.DoctorSignature}>
                     <img src={logoImg} />
                     <span>
-                        <h4>LUCYNA CZARNECKA</h4>
-                        <h6>POŁOŻNA ŚRODOWISKOWA</h6>
-                        <h6>JELENIA GÓRA</h6>
+                        <h4>{cookies.authCookie.userName}</h4>
+                        <h6>{cookies.authCookie.userRole}</h6>
                     </span>
                 </div>
                 <h6>{props.date}</h6>
