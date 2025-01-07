@@ -28,6 +28,11 @@ namespace LucyCover___Tests.helpers
                     services.Remove(dbContextOptions);
                     services.AddDbContext<DbConnection>(options => options.UseInMemoryDatabase(dbName));
                     services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
+
+                    var serviceProvider = services.BuildServiceProvider();
+                    var env = serviceProvider.GetService<IWebHostEnvironment>();
+                    env.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot");
+                    Directory.CreateDirectory(env.WebRootPath);
                 });
             });
 

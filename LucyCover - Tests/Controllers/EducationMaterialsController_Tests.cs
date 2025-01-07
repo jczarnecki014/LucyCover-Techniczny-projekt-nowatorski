@@ -7,6 +7,7 @@ using LucyCover_Model.Database_Entities;
 using LucyCover_Model.Database_Model;
 using LucyCover_Model.DTO_Modeles;
 using Microsoft.AspNetCore.Authorization.Policy;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
@@ -207,8 +208,8 @@ namespace LucyCover___Tests.Controllers
             try
             {
                 //Arrange
-                    var exitFilePath = CreateFakeMaterial(uploadsDirectory,fileName);
-                    var educationMaterial = FakeEntitiesGenerator.GetEducationMaterials(_currentUser,exitFilePath).SaveInDatabase(_factory);
+                    var existFilePath = CreateFakeMaterial(uploadsDirectory,fileName);
+                    var educationMaterial = FakeEntitiesGenerator.GetEducationMaterials(_currentUser,existFilePath).SaveInDatabase(_factory);
 
                     var updateFile = GetUpsertMaterialArgument("testTestTest","test","UpdatedFile",educationMaterial.Id);
                 //Act

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot" />
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="EntityFrameworkCore.DataEncryption" Version="7.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
@@ -30,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Folder Include="Nowy folder\" />
   </ItemGroup>
 
 </Project>

@@ -21,7 +21,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
 
-
+CreateWWWRootDirectory();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -181,5 +181,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void CreateWWWRootDirectory()
+{
+    var wwwRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+
+    if (!Directory.Exists(wwwRootPath))
+    {
+        Directory.CreateDirectory(wwwRootPath);
+    }
+}
 
 public partial class Program { }

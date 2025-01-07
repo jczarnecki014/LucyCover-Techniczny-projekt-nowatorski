@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="..\LucyCover - Backend\wwwroot\bajka.txt" />
     <PackageReference Include="EntityFrameworkCore.DataEncryption" Version="7.0.0" />
     <PackageReference Include="FluentAssertions" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.18" />
@@ -32,6 +33,10 @@
     <ProjectReference Include="..\LucyCover - Backend\LucyCover - Backend.csproj" />
     <ProjectReference Include="..\LucyCover_Database\LucyCover_Database.csproj" />
     <ProjectReference Include="..\LucyCover_Model\LucyCover_Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

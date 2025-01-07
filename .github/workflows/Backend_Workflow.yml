@@ -20,8 +20,14 @@ jobs:
     - name: Restore dependencies
       working-directory: "LucyCover - Backend"
       run: dotnet restore
-    - name: Build
+    - name: Build Backend
       working-directory: "LucyCover - Backend"
+      run: dotnet build --no-restore
+    - name: Restore dependencies for Tests
+      working-directory: "LucyCover - Tests"
+      run: dotnet restore
+    - name: Build Tests
+      working-directory: "LucyCover - Tests"
       run: dotnet build --no-restore
     - name: Test
       working-directory: "LucyCover - Tests"

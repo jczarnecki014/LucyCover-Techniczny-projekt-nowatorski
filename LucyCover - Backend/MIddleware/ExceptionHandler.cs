@@ -40,7 +40,8 @@ namespace LucyCover___Backend.MIddleware
             }
             catch (Exception ex) when (ex is EmailValidationException || ex is ArgumentException) {
                 context.Response.StatusCode = 422;
-                await context.Response.WriteAsync(ex.Message);
+                /*await context.Response.WriteAsync(ex.Message);*/
+                await context.Response.WriteAsync(ex.ToString());
             }
             catch(Exception ex){
                 context.Response.StatusCode = 500;
