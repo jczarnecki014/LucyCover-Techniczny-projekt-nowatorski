@@ -5,8 +5,12 @@
     <RootNamespace>LucyCover___Tests</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
+    <EnableDefaultStaticWebAssets>false</EnableDefaultStaticWebAssets>
     <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EnableDefaultStaticWebAssets>false</EnableDefaultStaticWebAssets>
   </PropertyGroup>
 
   <ItemGroup>

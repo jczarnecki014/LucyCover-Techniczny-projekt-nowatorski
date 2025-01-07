@@ -31,14 +31,16 @@ namespace LucyCover___Backend.Controllers
         public IActionResult GetVisitsInMonth([FromRoute] string month)
         {
             List<string> dateList = _service.GetVisitsByMonth(month);
-            return Ok(dateList);
+            return Created("test",null);
+            /*return Ok(dateList);*/
         }
 
         [HttpGet("patients/{patientId}")]
         public IActionResult GetPatientVisits([FromRoute] Guid patientId)
         {
             PatientScheduleDTO patientScheduleDTO = _service.GetPatientVisits(patientId);
-            return Ok(patientScheduleDTO);
+            return Created("test",null);
+            /*return Ok(patientScheduleDTO);*/
         }
        
         
