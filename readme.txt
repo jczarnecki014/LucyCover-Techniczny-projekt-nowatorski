@@ -4,7 +4,3 @@ After deploy on production server this IssuerSigningKey MUST BE keeping in the m
 This IssuerSigningKey should be set in OS locacal variables ! 
 Keeping this code in visible place is very dangerous !!
 Storing IssuerSigningKey in following way is allowed only in developer mode.
-
-2)
-
-ValidateLifetime = false, // THIS CODE SHOULD ALSO BE CHANGED (JWTToken sould be expired after 120min)
