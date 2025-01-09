@@ -12,7 +12,7 @@ import SchedulePage from './pages/dashboard/SchedulePage'
 import MessagesPage,{loader as MessagesPageLoader} from './pages/dashboard/MessagesPage'
 import AuthPage from './pages/auth/AuthPage'
 import ErrorPage from './pages/ErrorPage'
-//////////////// hooks /////////////////////////////////
+//////////////// hooks //////////////////////////////////
 import {Navigate, RouterProvider,createBrowserRouter} from 'react-router-dom'
 import {QueryClientProvider} from '@tanstack/react-query'
 import { queryClient } from './api/https'
