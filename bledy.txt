@@ -1,10 +1,1 @@
-1) https://localhost:5173/auth - inputy z zakladki register nie mieszcza sie w oknie ok
-2) https://localhost:5173/auth - Po utworzeniu konta uzytkownika informacje nie wyswietla sie poprawnie ok
-3) Dodawnanie nowej kolejne wizyty input dotyczacy jak dlugo trwa jedno karmienie zajmuje za duzo miejsca ok
 
-4) Dodawanie nowej kolejnej wizyty wzrost piersi w ciazy po wybraniu deformuje formularz ok
-
-5) Podswietlanie aktualnej opcji w menu zle działa
-
-6) Jak odwolujesz wizyte i odbyłeś tez powinnien przychodzic email
-7)Schedule page po dodaniu wizyty nie odswieza listy wizyt
