@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Backend_workflow
     runs-on: ubuntu-latest
 
     steps:
