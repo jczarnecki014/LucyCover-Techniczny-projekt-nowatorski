@@ -125,4 +125,135 @@ Dane logowania:
 email: testuser@lucycover.com
 hasło: test
 ```
+
+
+# LucyCover 1.0 - Innovative Technical Project  
+## About the Project  
+The project was commissioned by local obstetric clinics that perform home visits after childbirth. The main goal of the application is to streamline the management of patients and the documentation generated after these visits. This application is a specially designed work tool that supports clinic staff at every stage of their work.  
+
+## Application Assumptions  
+1. The system provides separated access for all clinic employees through user accounts.
+2. Employees can independently create patient accounts that store information previously kept in the local patient file (medical documentation, post-visit recommendations, visit history).
+3. The system supports clinic employees during the planning of workdays with an integrated calendar. The calendar allows for scheduling visits for specific days and times. Simultaneously, the system automatically notifies the patient via email when a visit is scheduled.
+4. The system allows for secure management of documentation.
+5. The application enables the generation of post-visit recommendations for patients and prepares the document for quick printing.
+6. A file server has been provided that allows users to store educational materials and easily share them with patients via email.
+7. The application allows users to manage and analyze email correspondence between the patient and user directly from the system.
+
+## Used Technologies  
+![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Framer](https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+
+### Client-side
+* JavaScript
+* React
+* React Router
+* Framer motion
+* React Redux
+* Vite
+* TanStack Query
+
+### Server-side
+* EntityFramework
+* ASP .NET Core
+* JWT BEARER
+* Swashbuckle/swwagger
+* FluentValidtor
+* MailKit
+* AutoMapper
+
+## Required Dependencies to Run  
+1. Node.js - version 12.0.0 or higher -> [LINK](https://nodejs.org/en)
+2. .NET SDK 7.0 -> [LINK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+3. MS SQL Server -> [LINK](https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x415&culture=pl-pl&country=pl)
+
+## Installation  
+1) Download the repository to your local machine  
+    ~~~~  
+    git clone https://github.com/jczarnecki014/LucyCover-Techniczny-projekt-nowatorski.git  
+    ~~~~
+
+#### Client-side Application Installation  
+1) Navigate to the `./LucyCover - Frontend` folder and install the required dependencies.  
+    ```  
+    cd ./LucyCover - Frontend  
+    npm install  
+    ```  
+2) Run the client application with the following command:  
+    ```  
+    npm run dev  
+    ```  
+3) As a result, you will receive a local address to connect to the application:  
+    ```  
+    Vite v4.0.0  ready in 300ms  
+    
+      Local:   http://localhost:1578/  
+      Network: use --host to expose  
+    
+      VITE v4.0.0  ready in 300ms  
+      App running at:  
+      - Local:   http://localhost:3000/  
+      - Network: http://192.168.1.10:3000/  
+    
+    ```  
+    Use the "Local" address as the connection address. To connect to the application, simply type this address in the browser window.  
+
+#### MS SQL Configuration  
+To run the server-side application (backend), you must first configure the local database server, which is essential for the application to work properly.  
+
+1) Download and install MS SQL Server Express from the link in the "Required Dependencies" section.  
+2) After the MS SQL Server installation, the installer will display the name of the created server. In most cases, it will be `localhost\SQLEXPRESS`.  
+3) Once MS SQL Server is installed, you need to create a database to be used by LucyCover. To do this, open the CMD or PowerShell terminal and connect to the server with the following command:  
+    ```  
+    c:/ >  
+    sqlcmd -S localhost\SQLEXPRESS -E  
+    ```  
+4) After logging into SQL Server, execute the following SQL query to create the database:  
+    ```  
+    1> CREATE DATABASE LucyCover;  
+    2> GO  
+    ```  
+5) If you've followed the instructions correctly, you should have a database created and ready for use.
+
+#### Server-side Application Installation (Backend)  
+1) To run the server-side application, it is necessary to configure MS SQL first. If you haven’t done that yet, start with that step.  
+2) Before running the application, you must configure it. To do so, open the configuration file `LucyCover - Backend/appsettings.json`.  
+3) Below is an example of initial file configuration:  
+    In this section, set the address of your client application returned by Vite. This is used for the proper configuration of the `CORS` policy.  
+    ```  
+    "AllowedOrigin": "https://localhost:5173/"  
+    ```  
+    In this section, you can configure the mode in which the application runs. Available modes are:  
+    - `simulation` - Simulation mode for demonstrating the application. The application will automatically generate a test user, 20 assigned patients with randomly generated documentation and visits. `It is recommended to use this mode when testing or presenting the application, for example, if you are testing as a promoter.`  
+    - `default` - Default mode. The application has no default data and is ready for production purposes.  
+    ```  
+    "Mode": "simulation"  
+    ```  
+    In this section, configure the connection string for your database. The default configuration is set for MS SQL Express. If your server is named `localhost\SQLEXPRESS` and the database is `LucyCover`, you can leave this configuration unchanged. Otherwise, you must configure the connection string properly.  
+    ```  
+    "ConnectionStrings": {  
+        "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=LucyCover;Trusted_Connection=True;TrustServerCertificate=True"  
+      },  
+    ```  
+    The remaining configurations are for email services and authentication mechanisms. You shouldn’t modify them.  
+
+4) Once the `appsettings.json` file is properly configured, you can start the application by running the following command in the terminal inside the `./LucyCover - Backend` folder:  
+    ```  
+    dotnet run --launch-profile "https"  
+    ```  
+
+If the application started successfully, you can now begin using the client application. Connections between the applications will be established automatically.
+
+## Additional Information  
+`Note! If you are testing the application, run it in simulation mode.`  
+
+    appsetting.json  
+    ```  
+    "Mode": "simulation"  
+    ```  
+In simulation mode, the application provides a special test user with pre-generated data.  
+Login details:  
+```
+email: testuser@lucycover.com
+hasło: test
+```
     
