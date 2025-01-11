@@ -41,7 +41,11 @@ const CustomDayPicker = ({onDayChange}) => {
 
     const {mutate} = useMutation({
         mutationFn: GetVisitsByMonth,
-        onSuccess: (date) => ConvertAndSetArrangeDays(date),
+        onSuccess: (date) => {
+            console.log(date)
+            ConvertAndSetArrangeDays(date)
+            
+        },
         onError: (error) => console.log(error)
     })
 

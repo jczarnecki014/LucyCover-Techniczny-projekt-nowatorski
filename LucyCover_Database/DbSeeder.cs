@@ -56,6 +56,10 @@ namespace LucyCover_Database
                             _connection.AddRange(schedules);
                             _connection.SaveChanges();
                         }
+                        else 
+                        {
+                            throw new Exception("Database is not clear, user data must be removed before change mode of app working !");
+                        }
                     }
                     else if (appMode == "default")
                     {

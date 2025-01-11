@@ -220,6 +220,9 @@ export async function CreateNewPatient(patient) {
     {
         throw new Error("Wystąpił konflikt ! Najprawdopodobniej próbujesz usunać dziecko lub pacjenta dla, którego wciąż istnieje dokumentacja. Pamiętaj a by w pierwszej kolejności usunąć dokumentację przypisaną do dziecka !")
     }
+    if(response.status == 400) {
+        throw new Error("Wystąpił bąd walidacji formularza, proszę sprawdzić czy na pewno wypełniony jest prawidłowo.")
+    }
     if(response.status !== 201) {
         throw new Error("Podczas dodwania pacjenta coś poszło nie tak")
     }
