@@ -1,4 +1,4 @@
-# LucyCover 1.0 - Techniczny projekt nowatorski
+# LucyCover 2.0 - Techniczny projekt nowatorski
 ## O projekcie
 Projekt powstał na zlecenie loklanych przychodni położniczych zajmujących sie wykonywaniem wizyt środowiskowych po urodzniu. Głównym celem aplikacji jest usprawnienie procesu zarządzania pacjentami oraz dokumnetacją wytwarzaną po wizytach. Aplikacja ta jest specjalnie zaprojketowanym narzędziem pracy wspierającym pracowników w przychodni podczas wszystkich etapów ich pracy
 

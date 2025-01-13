@@ -1,0 +1,2 @@
+    "DefaultConnection": "Server=localhost;Database=testowanie;Trusted_Connection=True;TrustServerCertificate=True" 
+    "DefaultConnection": "Server=localhost;Database=testowa2;Trusted_Connection=True;TrustServerCertificate=True", 
