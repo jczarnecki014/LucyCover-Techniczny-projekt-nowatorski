@@ -44,6 +44,10 @@ const PatientManageForm = ({activePatient}) => {
         onSuccess: () => {
             SetFormMode("success")
             queryClient.invalidateQueries(["patients",defaultPatientInputs.id])
+        },
+        onError: () => {
+            SetFormMode("error")
+            queryClient.invalidateQueries(["patients",defaultPatientInputs.id])
         }
     })
 
@@ -141,7 +145,7 @@ const PatientManageForm = ({activePatient}) => {
 
             {formMode === 'success' && <Popup type='success' description="Pacjent został dodany pomyślnie"  AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
 
-            {isError && <Popup type='error' title="Coś poszło nie tak.." description={error.message} AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
+            {formMode === 'error' && <Popup type='error' title="Coś poszło nie tak.." description={error.message} AcceptAction={()=>dispatch(OverlayToggle(false))} /> }
 
         </Fragment>
     )
