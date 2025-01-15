@@ -1,6 +1,9 @@
+
 # LucyCover 2.0 - Techniczny projekt nowatorski
 ## O projekcie
 Projekt powstał na zlecenie loklanych przychodni położniczych zajmujących sie wykonywaniem wizyt środowiskowych po urodzniu. Głównym celem aplikacji jest usprawnienie procesu zarządzania pacjentami oraz dokumnetacją wytwarzaną po wizytach. Aplikacja ta jest specjalnie zaprojketowanym narzędziem pracy wspierającym pracowników w przychodni podczas wszystkich etapów ich pracy
+
+Link do prezentacji w formie WIDEO --> [YOUTUBE](https://youtu.be/Unh3EFnSdT8)
 
 ## Założenia aplikacji
 1. System zapewnia odseparowany dostęp wszystkim pracowniką przychodni poprzez prowadzenie kont użytkowników
@@ -130,6 +133,8 @@ hasło: test
 # LucyCover 1.0 - Innovative Technical Project  
 ## About the Project  
 The project was commissioned by local obstetric clinics that perform home visits after childbirth. The main goal of the application is to streamline the management of patients and the documentation generated after these visits. This application is a specially designed work tool that supports clinic staff at every stage of their work.  
+
+Link to wideo presentation --> [YOUTUBE](https://youtu.be/Unh3EFnSdT8)
 
 ## Application Assumptions  
 1. The system provides separated access for all clinic employees through user accounts.
